@@ -1,4 +1,4 @@
-# WYSTAK social media reels and posts
+# WYSTAK social media: Instagram reels and posts, LinkedIn posts
 
 This repo holds WYSTAK's marketing reels: scripts and brand files in `wystak/`, HyperFrames video projects in `videos/`, and the installed video and Instagram skills in `.claude/skills/`.
 
@@ -21,13 +21,22 @@ Posts reuse the system in `wystak/carousels/launch/` (`build.py`: HTML slides re
 
 Commit and push work without asking.
 
+## LinkedIn process (posts for Wystak's company page)
+
+The LinkedIn audience is wider than Instagram's: merchants first, plus investors, POS and payment partners, hires and other founders. The tone is professional and founder-led, still human. Formats: text only, text plus one image (1200×1200 or 1080×1350), a document carousel (a PDF, 1080×1350 pages) or native video (reuse a reel). Only the first two or three lines show before "…see more", so the hook must fit there. Use 3 to 5 hashtags, and put links in the first comment, not the post.
+
+1. **Brief.** The user sends the goal (launch, insight or opinion, product explainer, milestone, hiring, event), the format or "you pick", references (screenshots or a PDF of LinkedIn posts or pages they like) and any real facts they're happy to share.
+2. **Post text, then stop.** Send 2 or 3 hook options (scored with `ig-reel/hookscore.py`), the full post text, the hashtags and a first comment. For visual posts, also send the slide or image plan. The user edits or approves.
+3. **Visual draft, then stop.** For image, document or video posts, render drafts in the Wystak look (reuse `wystak/carousels/launch/build.py` and adapt the sizes) and send a preview sheet. Revise until the user is happy. Text-only posts skip this step.
+4. **Final after "go".** Export the final file (PNG for an image, a PDF combining all pages for a document carousel, MP4 for video). Save `post.md` with the post text, hashtags, first comment, alt text and a short reshare line for each founder. Everything goes in `wystak/linkedin/<name>/`; commit and push.
+
 ## Inputs from the user
 
-The user drops reference videos, ElevenLabs audio, reference screenshots/PDFs and photos into `inbox/<date-topic>/` (git-ignored) and points to them with `@inbox/...`. Watch videos by extracting frames and audio with ffmpeg. Put finished outputs in `wystak/` (posts, final MP4s) and `videos/<name>/` (reel projects), and tell the user each file's path. For a new carousel, copy `wystak/carousels/launch/` to `wystak/carousels/<name>/` and edit its `build.py`. User-facing steps are in `SETUP.md`, Part B.
+The user drops reference videos, ElevenLabs audio, reference screenshots/PDFs and photos into `inbox/<date-topic>/` (git-ignored) and points to them with `@inbox/...`. Watch videos by extracting frames and audio with ffmpeg. Put finished outputs in `wystak/` (posts, final MP4s, `wystak/linkedin/<name>/` for LinkedIn) and `videos/<name>/` (reel projects), and tell the user each file's path. For a new carousel, copy `wystak/carousels/launch/` to `wystak/carousels/<name>/` and edit its `build.py`. User-facing steps are in `SETUP.md`, Part B.
 
 ## Brand and content rules
 
-- Audience for reels: **merchants** (café, restaurant and shop owners), not consumers.
+- Audience for reels and Instagram posts: **merchants** (café, restaurant and shop owners), not consumers.
 - Logo: the navy, purple and teal three-card mark in `wystak/brand/`. Use the supplied files; never redraw it. Tagline: **ALL YOUR PASSES. ONE STACK.**
 - The name is pronounced "WHYS-TAK". Spell it "Whys-tak" in ElevenLabs text.
 - English only. The context is Indian (UPI, WhatsApp, kirana). India has no loyalty-card or stamp-card culture, so never build a story on lost loyalty cards.

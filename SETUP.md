@@ -1,6 +1,6 @@
 # Running this repo on your own computer
 
-Part A sets up your laptop (do it once). Part B is the everyday guide: how to make a reel or a carousel with Claude Code, including how to hand it files.
+Part A sets up your laptop (do it once). Part B is the everyday guide: how to make an Instagram reel or carousel, or a LinkedIn post, with Claude Code, including how to hand it files.
 
 # Part A: Setup (one-time)
 
@@ -147,6 +147,40 @@ Mention any real facts you're happy to show (an offer, a real number). Otherwise
 **Step 3: draft sheet.** Claude renders all slides and saves one preview image of every slide side by side. Open it and reply with changes ("slide 4: swap the phone for the dashboard").
 
 **Step 4: "go".** Say **go**. Claude exports the final PNGs to `wystak/carousels/<name>/slides/`, saves the caption in a copy file next to them, commits and pushes. Upload the PNGs to Instagram in order (01, 02, ...) and paste the caption.
+
+## Making a LinkedIn post (4 steps)
+
+**How LinkedIn is different.** Wystak's company page is read by café and shop owners, but also by investors, payment and POS partners, people who might join the team and other founders. Posts sound more professional and founder-led than on Instagram, but still human. LinkedIn shows only the first two or three lines before "…see more", so the opening line does most of the work.
+
+**Formats you can ask for:**
+
+| Format | What you upload to LinkedIn |
+|---|---|
+| Text only | Just the text |
+| Text and one image | The text plus one PNG |
+| Document carousel (often the strongest) | The text plus one PDF that people swipe through |
+| Video | The text plus an MP4 (a reel can be reused) |
+
+Not sure which? Say "you pick".
+
+**Step 1: brief.** Make a job folder (for example `inbox/2026-11-02-linkedin-launch/`) with screenshots or a PDF of LinkedIn posts or pages you like, and any photos. Then say:
+> Let's make a LinkedIn post. Follow the LinkedIn process in CLAUDE.md. Goal: (launch / insight / product explainer / milestone / hiring / event). Format: (text, image, document carousel, video, or you pick). References are in @inbox/2026-11-02-linkedin-launch/.
+
+Add any real facts you're happy to share: website, launch city, dates, whether you're looking for pilot cafés or partners, a café that agreed to be named.
+
+**Step 2: post text.** Claude sends 2 or 3 opening-line options, the full post, 3 to 5 hashtags and a "first comment" (where links go). Edit or approve.
+
+**Step 3: visual draft** (skipped for text-only posts). Claude renders the image, document pages or video in the Wystak look and saves a preview image of all of them. Open it and reply with changes.
+
+**Step 4: "go".** Claude saves everything in `wystak/linkedin/<name>/`:
+- the final file: `post.png`, `post.pdf` or `post.mp4`;
+- `post.md`, with the post text, hashtags, first comment, alt text and a short line each founder can add when resharing.
+
+It commits and pushes. To publish:
+1. On Wystak's LinkedIn page, start a post and paste the text.
+2. Attach the file. For a document carousel, choose "Add a document", upload the PDF and give it a title.
+3. Post it. Right away, add the first comment with the link.
+4. Ask each founder to reshare it from their own profile with their line. Company pages reach fewer people than personal profiles, so the reshares matter.
 
 ## Small things that help
 
