@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Inter Caption"; src: url("assets/vendor/fonts/inter-latin-500-normal.woff2") format("woff2"); font-weight: 500; }
+      @font-face { font-family: "Inter Caption"; src: url("assets/vendor/fonts/inter-latin-600-normal.woff2") format("woff2"); font-weight: 600; }
+      @font-face { font-family: "Inter Caption"; src: url("assets/vendor/fonts/inter-latin-800-normal.woff2") format("woff2"); font-weight: 800; }
+      @font-face { font-family: "Instrument Serif"; src: url("assets/vendor/fonts/instrument-serif-latin-400-italic.woff2") format("woff2"); font-style: italic; font-weight: 400; }
+      @font-face { font-family: "Instrument Serif"; src: url("assets/vendor/fonts/instrument-serif-latin-400-normal.woff2") format("woff2"); font-style: normal; font-weight: 400; }
+
+      :root {
+        --sage: #e7ecdc;
+        --sage-deep: #d9e0ca;
+        --ink: #0a2860;
+        --ink-soft: #4a5a52;
+        --purple: #6b2ba6;
+        --teal: #06737c;
+        --paper: #fbfcf7;
+        --night: #0e0f14;
+        --cream: #f3f1e7;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--sage); }
+      #root {
+        position: relative; width: 100%; height: 100%; overflow: hidden;
+        background: var(--sage);
+        font-family: "Inter Caption", Inter, sans-serif; color: var(--ink);
+      }
+      .grain {
+        position: absolute; inset: 0; pointer-events: none; z-index: 50; opacity: 0.32; mix-blend-mode: multiply;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.35  0 0 0 0 0.38  0 0 0 0 0.3  0 0 0 0.55 0'/></filter><rect width='300' height='300' filter='url(%23n)'/></svg>");
+      }
+      .vignette {
+        position: absolute; inset: 0; pointer-events: none; z-index: 49;
+        background: radial-gradient(ellipse at 50% 42%, rgba(0,0,0,0) 55%, rgba(40,50,30,0.16) 100%);
+      }
+      .scene { position: absolute; inset: 0; overflow: hidden; }
+      .stage { position: absolute; inset: 0; }
+      .center-x { position: absolute; left: 0; right: 0; display: flex; justify-content: center; }
+      .mono { font-family: "IBM Plex Mono", monospace; }
+      .serif-i { font-family: "Instrument Serif", serif; font-style: italic; font-weight: 400; }
+      .shadow { box-shadow: 0 30px 60px -20px rgba(30, 40, 20, 0.35), 0 8px 18px -8px rgba(30, 40, 20, 0.25); }
+
+      /* ---------- captions ---------- */
+      #captions { position: absolute; left: 110px; width: 860px; top: 1236px; height: 210px; z-index: 40; }
+      .cap-group { position: absolute; left: 0; right: 0; top: 0; text-align: center; display: block; }
+      .cap-line { display: block; font-weight: 600; font-size: 62px; line-height: 1.12; letter-spacing: -0.02em; color: var(--ink); }
+      .cap-word { display: inline-block; margin: 0 0.12em; opacity: 0; }
+      .cap-word.em { font-family: "Instrument Serif", serif; font-style: italic; font-weight: 400; font-size: 76px; letter-spacing: 0; color: var(--purple); }
+
+      /* ---------- S1 soundbox ---------- */
+      .counter-wrap { top: 250px; flex-direction: column; align-items: center; }
+      .counter { font-family: "IBM Plex Mono", monospace; font-weight: 700; font-size: 230px; line-height: 1; color: var(--ink); letter-spacing: -0.04em; display: block; width: 360px; text-align: center; }
+      .counter-label { font-family: "IBM Plex Mono", monospace; font-size: 28px; letter-spacing: 0.22em; color: var(--ink-soft); margin-top: 6px; }
+      .soundbox { position: absolute; left: 340px; top: 640px; width: 400px; height: 440px; border-radius: 64px; background: linear-gradient(160deg, #2a3142, #151a26); }
+      .soundbox .lcd { position: absolute; left: 50px; right: 50px; top: 46px; height: 110px; border-radius: 18px; background: #b9d3a0; display: flex; align-items: center; justify-content: center; font-family: "IBM Plex Mono", monospace; font-weight: 700; font-size: 58px; color: #1d2b14; }
+      .soundbox .grille { position: absolute; left: 70px; right: 70px; top: 200px; height: 190px; border-radius: 30px; background-image: radial-gradient(circle, #0b0e15 34%, transparent 36%); background-size: 26px 26px; opacity: 0.95; }
+      .ring { position: absolute; left: 160px; top: 480px; width: 760px; height: 760px; border-radius: 50%; border: 5px solid var(--teal); opacity: 0; }
+      .name-chip { position: absolute; left: 190px; top: 1010px; width: 700px; height: 150px; border-radius: 34px; background: var(--paper); display: flex; align-items: center; padding: 0 40px; gap: 28px; }
+      .name-chip .avatar { width: 86px; height: 86px; border-radius: 50%; background: #cfd6c3; display: flex; align-items: center; justify-content: center; font-family: "Instrument Serif", serif; font-style: italic; font-size: 64px; color: var(--purple); flex: none; }
+      .name-chip .lbl { font-size: 26px; color: var(--ink-soft); font-weight: 500; }
+      .name-chip .bar { margin-top: 10px; width: 330px; height: 30px; border-radius: 15px; background: repeating-linear-gradient(90deg, #c9d0bd 0 22px, transparent 22px 32px); }
+      .name-chip .amt { margin-left: auto; font-family: "IBM Plex Mono", monospace; font-weight: 700; font-size: 40px; color: var(--ink); }
+
+      /* ---------- shared QR card ---------- */
+      .qr-card { position: absolute; border-radius: 40px; background: var(--paper); display: flex; flex-direction: column; align-items: center; }
+      .qr-card .hd { font-weight: 800; font-size: 38px; letter-spacing: -0.01em; color: var(--ink); }
+      .qr-card .ft { font-size: 26px; font-weight: 500; color: var(--ink-soft); }
+      .qr-svg { display: block; }
+      .paid-pill { position: absolute; left: 330px; top: 1060px; width: 420px; height: 96px; border-radius: 48px; background: var(--teal); color: #fff; display: flex; align-items: center; justify-content: center; gap: 18px; font-weight: 600; font-size: 38px; }
+      .tick { width: 50px; height: 50px; border-radius: 50%; background: #fff; color: var(--teal); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 32px; }
+
+      /* ---------- phone ---------- */
+      .phone { position: absolute; width: 470px; height: 900px; border-radius: 70px; background: #11161f; padding: 16px; }
+      .phone .screen { position: relative; width: 100%; height: 100%; border-radius: 56px; overflow: hidden; background: #f6f7f2; }
+      .phone .island { position: absolute; left: 50%; top: 18px; width: 120px; height: 34px; margin-left: -60px; border-radius: 17px; background: #11161f; z-index: 5; }
+
+      /* history list */
+      .hist-top { position: relative; z-index: 2; background: #f6f7f2; height: 190px; }
+      .hist-hd { padding: 82px 34px 18px; font-weight: 800; font-size: 40px; letter-spacing: -0.02em; color: #1a1f2b; }
+      .hist-sub { padding: 0 34px 14px; font-size: 22px; color: #5c6359; font-weight: 500; }
+      .hist-clip { position: absolute; left: 0; right: 0; top: 190px; bottom: 0; overflow: hidden; }
+      .hist-list { position: absolute; left: 0; right: 0; top: 0; }
+      .row { display: flex; align-items: center; height: 92px; margin: 0 20px; padding: 0 16px; border-radius: 20px; gap: 18px; }
+      .row .ic { width: 54px; height: 54px; border-radius: 16px; background: #dfe3d8; flex: none; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 24px; color: #5b6358; }
+      .row .nm { font-weight: 600; font-size: 23px; color: #1a1f2b; white-space: nowrap; }
+      .row .dt { font-size: 19px; color: #474e45; font-weight: 500; margin-top: 2px; }
+      .row .am { margin-left: auto; font-family: "IBM Plex Mono", monospace; font-weight: 700; font-size: 23px; color: #1a1f2b; white-space: nowrap; }
+      .row.cafe .ic { background: #e3dcef; color: var(--purple); }
+      .hl { position: absolute; left: 20px; right: 20px; height: 92px; border-radius: 20px; border: 4px solid var(--purple); opacity: 0; }
+      .strike { position: absolute; left: 30px; height: 6px; border-radius: 3px; background: var(--purple); width: 400px; transform-origin: left center; }
+
+      /* chat */
+      .chat { position: absolute; left: 150px; top: 230px; width: 780px; height: 960px; border-radius: 48px; background: #ece7dd; overflow: hidden; }
+      .chat-hd { position: absolute; left: 0; right: 0; top: 0; height: 120px; background: #f8f6f0; display: flex; align-items: center; gap: 22px; padding: 0 34px; z-index: 3; }
+      .chat-hd .gp { width: 70px; height: 70px; border-radius: 50%; background: #c8d3bd; }
+      .chat-hd .t1 { font-weight: 700; font-size: 32px; color: #1a1f2b; }
+      .chat-hd .t2 { font-size: 22px; color: #7a8079; font-weight: 500; }
+      .chat-col { position: absolute; left: 0; right: 0; top: 140px; padding: 0 34px; }
+      .bubble { width: 600px; border-radius: 30px; background: #fff; padding: 22px 26px; margin-bottom: 22px; }
+      .bubble .from { font-size: 22px; font-weight: 700; color: var(--teal); margin-bottom: 6px; }
+      .bubble .msg { font-size: 30px; line-height: 1.25; color: #1a1f2b; font-weight: 500; }
+      .gm { width: 520px; height: 300px; border-radius: 30px; margin-bottom: 22px; position: relative; overflow: hidden; }
+      .gm .sun { position: absolute; width: 150px; height: 150px; border-radius: 50%; left: 185px; top: 120px; background: radial-gradient(circle, #ffe9a8, #f7b955 60%, rgba(247,185,85,0) 72%); }
+      .gm .hill { position: absolute; left: -40px; right: -40px; bottom: -120px; height: 220px; border-radius: 50%; }
+      .gm .txt { position: absolute; left: 0; right: 0; top: 34px; text-align: center; font-family: "Instrument Serif", serif; font-style: italic; font-size: 66px; color: #fff; text-shadow: 0 3px 12px rgba(80, 40, 0, 0.35); }
+
+      /* wallet + passes */
+      .wallet-title { position: absolute; left: 34px; top: 84px; font-weight: 800; font-size: 44px; color: #1a1f2b; letter-spacing: -0.02em; }
+      .pass { position: absolute; left: 22px; right: 22px; border-radius: 26px; padding: 22px 26px; color: #fff; }
+      .pass .ph { display: flex; justify-content: space-between; align-items: center; font-weight: 700; font-size: 25px; letter-spacing: 0.02em; }
+      .pass .big { font-family: "IBM Plex Mono", monospace; font-weight: 700; font-size: 62px; margin-top: 30px; }
+      .pass .sm { font-size: 20px; opacity: 0.85; font-weight: 500; letter-spacing: 0.1em; margin-top: 18px; }
+      .pass .qr-mini { position: absolute; right: 26px; bottom: 26px; width: 120px; height: 120px; border-radius: 14px; background: #fff; padding: 10px; }
+
+      /* scan scene */
+      .standee { position: absolute; left: 90px; top: 360px; width: 440px; height: 720px; }
+      .viewfinder { position: absolute; }
+      .vf-c { position: absolute; width: 60px; height: 60px; border: 8px solid #fff; }
+      .stamp { position: absolute; left: 0; right: 0; top: 560px; text-align: center; font-family: "Archivo Black", sans-serif; font-size: 190px; color: var(--purple); letter-spacing: -0.02em; line-height: 1; }
+      .chips { top: 790px; gap: 20px; }
+      .chip { height: 80px; padding: 0 34px; border-radius: 40px; background: var(--ink); color: #fff; display: flex; align-items: center; font-weight: 600; font-size: 32px; }
+
+      /* lock screen */
+      .lock { background: linear-gradient(170deg, #1b2a55 0%, #2d2257 55%, #133f4c 100%) !important; }
+      .lock .time { position: absolute; left: 0; right: 0; top: 136px; text-align: center; color: #fff; font-weight: 600; font-size: 132px; letter-spacing: -0.03em; }
+      .lock .date { position: absolute; left: 0; right: 0; top: 86px; text-align: center; color: rgba(255,255,255,0.85); font-weight: 500; font-size: 26px; }
+      .notif { position: absolute; left: 22px; right: 22px; top: 380px; border-radius: 30px; background: rgba(245, 246, 240, 0.94); padding: 22px 24px; display: flex; gap: 18px; }
+      .notif .ni { width: 64px; height: 64px; border-radius: 16px; background: var(--teal); flex: none; display: flex; align-items: center; justify-content: center; }
+      .notif .cup { width: 30px; height: 26px; border: 5px solid #fff; border-top: none; border-radius: 0 0 12px 12px; position: relative; }
+      .notif .nb { flex: 1; min-width: 0; }
+      .notif .t1 { display: flex; justify-content: space-between; font-weight: 700; font-size: 23px; color: #1a1f2b; }
+      .notif .t1 span { color: #7a8079; font-weight: 500; }
+      .notif .t2 { font-weight: 800; font-size: 30px; color: #1a1f2b; margin-top: 6px; }
+      .notif .t3 { font-size: 21px; line-height: 1.3; color: #3c4240; font-weight: 500; margin-top: 4px; }
+      .upi-toast { position: absolute; left: 290px; top: 250px; width: 500px; height: 88px; border-radius: 44px; background: var(--paper); display: flex; align-items: center; justify-content: center; gap: 14px; font-weight: 600; font-size: 32px; color: var(--ink); }
+
+      /* dashboard */
+      .dash { position: absolute; left: 90px; top: 300px; width: 900px; height: 880px; border-radius: 48px; background: var(--paper); padding: 50px 50px; }
+      .dash .h1 { font-weight: 800; font-size: 46px; letter-spacing: -0.02em; color: var(--ink); }
+      .dash .h2 { font-size: 24px; color: var(--ink-soft); font-weight: 500; margin-top: 6px; font-family: "IBM Plex Mono", monospace; letter-spacing: 0.12em; }
+      .reg { display: flex; align-items: center; height: 150px; border-bottom: 2px solid #e6e9df; gap: 26px; position: relative; }
+      .reg .av { width: 86px; height: 86px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 34px; color: #fff; flex: none; }
+      .reg .nm { font-weight: 700; font-size: 36px; color: var(--ink); }
+      .reg .sb { font-size: 24px; color: var(--ink-soft); font-weight: 500; margin-top: 4px; }
+      .reg .vs { margin-left: auto; font-family: "IBM Plex Mono", monospace; font-weight: 700; font-size: 34px; color: var(--teal); display: flex; align-items: center; gap: 10px; }
+      .reg .up { width: 0; height: 0; border-left: 12px solid transparent; border-right: 12px solid transparent; border-bottom: 18px solid var(--teal); }
+      .reg.lapsed .vs { color: var(--purple); font-size: 26px; }
+      .reg-hl { position: absolute; left: -24px; right: -24px; top: 8px; bottom: 8px; border-radius: 26px; background: #efe7f7; z-index: 0; }
+      .reg > *:not(.reg-hl) { position: relative; z-index: 1; }
+
+      /* black wallet beat */
+      .night { background: var(--night); }
+      .be-line { top: 640px; gap: 26px; }
+      .be-w { font-family: "Instrument Serif", serif; font-style: italic; font-size: 96px; color: var(--cream); display: inline-block; }
+      .wallet-word { position: absolute; left: 0; right: 0; top: 790px; text-align: center; font-family: "Archivo Black", sans-serif; font-size: 196px; line-height: 1; color: var(--cream); letter-spacing: -0.03em; }
+      .fan { position: absolute; left: 540px; top: 1230px; }
+      .fan-card { position: absolute; left: -36px; top: -190px; width: 72px; height: 190px; border-radius: 12px; transform-origin: 50% 100%; }
+
+      /* end card */
+      .end-mark { position: absolute; left: 190px; top: 470px; width: 700px; }
+      .end-word { position: absolute; left: 140px; top: 1010px; width: 800px; }
+      .end-tag { position: absolute; left: 190px; top: 1150px; width: 700px; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="33.6" data-width="1080" data-height="1920">
+
+      <!-- ===== S1 · hook: 40 payments, no name ===== -->
+      <div id="s1" class="scene clip" data-start="0" data-duration="4.85" data-track-index="1">
+        <div class="stage" id="s1-stage">
+          <div class="center-x counter-wrap">
+            <span class="counter" id="s1-count">0</span>
+          </div>
+          <div class="center-x" style="top: 500px"><span class="counter-label" id="s1-label">UPI PAYMENTS · ONE REGULAR</span></div>
+          <div class="ring" id="s1-r1"></div><div class="ring" id="s1-r2"></div><div class="ring" id="s1-r3"></div>
+          <div class="soundbox shadow" id="s1-box">
+            <div class="lcd" id="s1-lcd">₹180</div>
+            <div class="grille"></div>
+          </div>
+          <div class="name-chip shadow" id="s1-chip">
+            <div class="avatar" id="s1-q">?</div>
+            <div>
+              <div class="lbl">Received from</div>
+              <div class="bar"></div>
+            </div>
+            <div class="amt">₹180</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== S2 · UPI made paying easy ===== -->
+      <div id="s2" class="scene clip" data-start="4.85" data-duration="2.3" data-track-index="1">
+        <div class="stage" id="s2-stage">
+          <div class="qr-card shadow" id="s2-card" style="left: 250px; top: 300px; width: 580px; height: 720px; padding-top: 54px;">
+            <div class="hd">Scan &amp; Pay</div>
+            <div id="s2-qr" style="margin-top: 40px"></div>
+            <div class="ft" style="margin-top: 34px">Paper Crane Coffee</div>
+          </div>
+          <div class="paid-pill shadow" id="s2-paid"><div class="tick">✓</div>Paid ₹180</div>
+        </div>
+      </div>
+
+      <!-- ===== S3 · a line in their payment history ===== -->
+      <div id="s3" class="scene clip" data-start="7.15" data-duration="2.5" data-track-index="1">
+        <div class="stage" id="s3-stage">
+          <div class="phone shadow" id="s3-phone" style="left: 305px; top: 290px;">
+            <div class="island"></div>
+            <div class="screen">
+              <div class="hist-top"><div class="hist-hd">Payment history</div><div class="hist-sub">UPI · this month</div></div>
+              <div class="hist-clip"><div class="hist-list" id="s3-list"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== S4 · WhatsApp offer buried ===== -->
+      <div id="s4" class="scene clip" data-start="9.65" data-duration="3.85" data-track-index="1">
+        <div class="stage" id="s4-stage">
+          <div class="chat shadow" id="s4-chat">
+            <div class="chat-hd"><div class="gp"></div><div><div class="t1">Family ❤ Group</div><div class="t2">212 unread messages</div></div></div>
+            <div class="chat-col" id="s4-col">
+              <div class="gm" id="s4-g6" style="background: linear-gradient(180deg, #ffb37a, #ff7f8f)"><div class="sun"></div><div class="hill" style="background:#7a4f8f"></div><div class="txt">Good Morning</div></div>
+              <div class="gm" id="s4-g5" style="background: linear-gradient(180deg, #8fd3f4, #84fab0)"><div class="sun"></div><div class="hill" style="background:#3f7d5a"></div><div class="txt">Good Morning</div></div>
+              <div class="gm" id="s4-g4" style="background: linear-gradient(180deg, #fbc2eb, #a6c1ee)"><div class="sun"></div><div class="hill" style="background:#5a6fa8"></div><div class="txt">Shubh Prabhat</div></div>
+              <div class="gm" id="s4-g3" style="background: linear-gradient(180deg, #fddb92, #f6a37a)"><div class="sun"></div><div class="hill" style="background:#9a5a3c"></div><div class="txt">Good Morning</div></div>
+              <div class="gm" id="s4-g2" style="background: linear-gradient(180deg, #a1c4fd, #c2e9fb)"><div class="sun"></div><div class="hill" style="background:#3c6e8f"></div><div class="txt">Have a nice day</div></div>
+              <div class="gm" id="s4-g1" style="background: linear-gradient(180deg, #ffd29e, #ff9a8b)"><div class="sun"></div><div class="hill" style="background:#8a4a6a"></div><div class="txt">Good Morning</div></div>
+              <div class="bubble shadow" id="s4-offer">
+                <div class="from">Paper Crane Coffee</div>
+                <div class="msg">Weekend special: a free cookie with every cold coffee. Show this message at the counter.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== S5 · Wystak puts your shop in their wallet ===== -->
+      <div id="s5" class="scene clip" data-start="13.5" data-duration="3.0" data-track-index="1">
+        <div class="stage" id="s5-stage">
+          <div id="s5-markwrap" style="position:absolute; left: 240px; top: 520px; width: 600px; height: 391px;">
+            <img id="s5-mark" src="assets/logo-mark.png" alt="" style="width: 600px; height: 391px; display:block;" />
+          </div>
+          <div class="phone shadow" id="s5-phone" style="left: 305px; top: 420px; height: 780px;">
+            <div class="island"></div>
+            <div class="screen">
+              <div class="wallet-title">Wallet</div>
+              <div class="pass" style="top: 170px; height: 300px; background: #2e3a59;" id="s5-p1"><div class="ph"><span>CITY METRO</span><span>₹240</span></div></div>
+              <div class="pass" style="top: 240px; height: 300px; background: #8a5a2b;" id="s5-p2"><div class="ph"><span>BOOK CLUB</span><span>6 / 10</span></div><div class="big" id="s5-p2b">6 / 10</div><div class="sm" id="s5-p2s">VISITS · NEXT ONE FREE</div></div>
+              <div class="pass" style="top: 310px; height: 420px; background: var(--teal);" id="s5-p3">
+                <div class="ph"><span>PAPER CRANE COFFEE</span><span>132 PTS</span></div>
+                <div class="big">132 / 150</div>
+                <div class="sm">NEXT REWARD · AARAV</div>
+                <div class="qr-mini" id="s5-qr"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== S6 · one scan, no app ===== -->
+      <div id="s6" class="scene clip" data-start="16.5" data-duration="2.45" data-track-index="1">
+        <div class="stage" id="s6-stage">
+          <div id="s6-scan">
+            <div class="qr-card shadow standee" id="s6-standee" style="padding-top: 50px;">
+              <div class="hd" style="font-size: 34px">Join our rewards</div>
+              <div id="s6-qr" style="margin-top: 34px"></div>
+              <div class="ft" style="margin-top: 30px">Paper Crane Coffee</div>
+              <div class="ft" style="margin-top: 8px; font-size: 22px; color: var(--teal); font-weight: 600">Scan · add to your wallet</div>
+            </div>
+            <div class="phone shadow" id="s6-phone" style="left: 580px; top: 420px; width: 400px; height: 760px;">
+              <div class="island"></div>
+              <div class="screen" style="background: #2a2f38;">
+                <div class="viewfinder" id="s6-vf" style="left: 70px; top: 210px; width: 228px; height: 228px;">
+                  <div class="vf-c" style="left:0;top:0;border-right:none;border-bottom:none;border-radius:18px 0 0 0"></div>
+                  <div class="vf-c" style="right:0;top:0;border-left:none;border-bottom:none;border-radius:0 18px 0 0"></div>
+                  <div class="vf-c" style="left:0;bottom:0;border-right:none;border-top:none;border-radius:0 0 0 18px"></div>
+                  <div class="vf-c" style="right:0;bottom:0;border-left:none;border-top:none;border-radius:0 0 18px 0"></div>
+                </div>
+                <div id="s6-add" style="position:absolute; left: 0; right: 0; top: 0; bottom: 0; background: #f6f7f2; opacity: 0;">
+                  <div class="pass" style="top: 90px; height: 300px; background: var(--teal);"><div class="ph"><span>PAPER CRANE</span><span>0 PTS</span></div><div class="big" style="font-size: 44px">Welcome</div></div>
+                  <div id="s6-btn" style="position:absolute; left: 34px; right: 34px; top: 460px; height: 90px; border-radius: 45px; background: #11161f; color: #fff; display:flex; align-items:center; justify-content:center; font-weight: 600; font-size: 28px;">Add to wallet</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="stamp" id="s6-stamp">NO APP.</div>
+          <div class="center-x chips" id="s6-chips"><div class="chip">Apple Wallet</div><div class="chip">Google Wallet</div></div>
+        </div>
+      </div>
+
+      <!-- ===== S7 · points on the lock screen ===== -->
+      <div id="s7" class="scene clip" data-start="18.95" data-duration="3.35" data-track-index="1">
+        <div class="stage" id="s7-stage">
+          <div class="upi-toast shadow" id="s7-toast"><div class="tick" style="background: var(--teal); color:#fff">✓</div>₹180 paid by UPI</div>
+          <div class="phone shadow" id="s7-phone" style="left: 305px; top: 380px; height: 820px;">
+            <div class="island"></div>
+            <div class="screen lock">
+              <div class="date">Tuesday, 6 October</div>
+              <div class="time">10:24</div>
+              <div class="notif" id="s7-notif">
+                <div class="ni"><div class="cup"></div></div>
+                <div class="nb">
+                  <div class="t1">Paper Crane Coffee <span>now</span></div>
+                  <div class="t2">+18 points</div>
+                  <div class="t3">You're at 132 of 150. One more visit and it's on the house.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== S8 · who keeps coming back, who stopped ===== -->
+      <div id="s8" class="scene clip" data-start="22.3" data-duration="3.5" data-track-index="1">
+        <div class="stage" id="s8-stage">
+          <div class="dash shadow" id="s8-dash">
+            <div class="h1">Your regulars</div>
+            <div class="h2">PAPER CRANE COFFEE · OCTOBER</div>
+            <div style="margin-top: 26px">
+              <div class="reg" id="s8-r1"><div class="av" style="background: var(--ink)">A</div><div><div class="nm">Aarav S.</div><div class="sb">Last visit · yesterday</div></div><div class="vs"><div class="up"></div><span id="s8-v1">14</span></div></div>
+              <div class="reg" id="s8-r2"><div class="av" style="background: var(--teal)">M</div><div><div class="nm">Meera K.</div><div class="sb">Last visit · 2 days ago</div></div><div class="vs"><div class="up"></div><span id="s8-v2">11</span></div></div>
+              <div class="reg" id="s8-r3"><div class="av" style="background: #8a5a2b">R</div><div><div class="nm">Rohan D.</div><div class="sb">Last visit · 4 days ago</div></div><div class="vs"><div class="up"></div><span id="s8-v3">9</span></div></div>
+              <div class="reg lapsed" id="s8-r4"><div class="reg-hl" id="s8-hl"></div><div class="av" style="background: var(--purple)">K</div><div><div class="nm">Kabir J.</div><div class="sb">Last visit · 26 days ago</div></div><div class="vs">Stopped coming</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== S9 · don't be a line ===== -->
+      <div id="s9" class="scene clip" data-start="25.8" data-duration="2.25" data-track-index="1">
+        <div class="stage" id="s9-stage">
+          <div class="phone shadow" id="s9-phone" style="left: 305px; top: 290px;">
+            <div class="island"></div>
+            <div class="screen">
+              <div class="hist-top"><div class="hist-hd">Payment history</div><div class="hist-sub">UPI · this month</div></div>
+              <div class="hist-clip"><div class="hist-list" id="s9-list"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== S10 · be in their wallet (black) ===== -->
+      <div id="s10" class="scene night clip" data-start="28.05" data-duration="1.55" data-track-index="1">
+        <div class="stage" id="s10-stage">
+          <div class="center-x be-line"><span class="be-w" id="s10-w1">Be</span><span class="be-w" id="s10-w2">in</span><span class="be-w" id="s10-w3">their</span></div>
+          <div class="wallet-word" id="s10-wallet">WALLET.</div>
+          <div class="fan" id="s10-fan">
+            <div class="fan-card" id="s10-c1" style="background: #3156b0"></div>
+            <div class="fan-card" id="s10-c2" style="background: #8a45d1"></div>
+            <div class="fan-card" id="s10-c3" style="background: #0c9aa3"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== S11 · end card ===== -->
+      <div id="s11" class="scene clip" data-start="29.6" data-duration="4.0" data-track-index="1">
+        <div class="stage" id="s11-stage">
+          <div class="end-mark" id="s11-markwrap"><img src="assets/logo-mark-end.png" alt="WYSTAK" style="width: 700px; display:block" id="s11-mark" /></div>
+          <div class="end-word" id="s11-word"><img src="assets/logo-wordmark.png" alt="" style="width: 800px; display:block" /></div>
+          <div class="end-tag" id="s11-tag"><img src="assets/logo-tagline.png" alt="All your passes. One stack." style="width: 700px; display:block" /></div>
+        </div>
+      </div>
+
+      <div id="captions">
+        <div class="cap-group clip" id="cap-0" data-start="0.000" data-duration="3.020" data-track-index="5"><div class="cap-line"><span class="cap-word" id="w0">Your</span> <span class="cap-word" id="w1">regular</span> <span class="cap-word" id="w2">paid</span> <span class="cap-word" id="w3">you</span> <span class="cap-word em" id="w4">40</span> <span class="cap-word" id="w5">times</span> <span class="cap-word" id="w6">this</span> <span class="cap-word" id="w7">year.</span></div></div>
+        <div class="cap-group clip" id="cap-1" data-start="3.020" data-duration="1.920" data-track-index="5"><div class="cap-line"><span class="cap-word" id="w8">You</span> <span class="cap-word" id="w9">still</span> <span class="cap-word" id="w10">don&#x27;t</span> <span class="cap-word" id="w11">know</span> <span class="cap-word" id="w12">their</span> <span class="cap-word em" id="w13">name.</span></div></div>
+        <div class="cap-group clip" id="cap-2" data-start="4.940" data-duration="2.240" data-track-index="5"><div class="cap-line"><span class="cap-word" id="w14">UPI</span> <span class="cap-word" id="w15">made</span> <span class="cap-word" id="w16">paying</span> <span class="cap-word em" id="w17">easy.</span></div></div>
+        <div class="cap-group clip" id="cap-3" data-start="7.180" data-duration="2.500" data-track-index="5"><div class="cap-line"><span class="cap-word" id="w18">It</span> <span class="cap-word" id="w19">also</span> <span class="cap-word" id="w20">made</span> <span class="cap-word" id="w21">you</span> <span class="cap-word" id="w22">a</span> <span class="cap-word em" id="w23">line</span> <span class="cap-word" id="w24">in</span> <span class="cap-word" id="w25">their</span> <span class="cap-word" id="w26">payment</span> <span class="cap-word" id="w27">history.</span></div></div>
+        <div class="cap-group clip" id="cap-4" data-start="9.680" data-duration="3.890" data-track-index="5"><div class="cap-line"><span class="cap-word" id="w28">Your</span> <span class="cap-word" id="w29">WhatsApp</span> <span class="cap-word" id="w30">offers?</span> <span class="cap-word" id="w31">Lost</span> <span class="cap-word" id="w32">under</span> <span class="cap-word" id="w33">good</span> <span class="cap-word" id="w34">morning</span> <span class="cap-word em" id="w35">forwards.</span></div></div>
+        <div class="cap-group clip" id="cap-5" data-start="13.570" data-duration="2.970" data-track-index="5"><div class="cap-line"><span class="cap-word" id="w36">Wystak</span> <span class="cap-word" id="w37">puts</span> <span class="cap-word" id="w38">your</span> <span class="cap-word" id="w39">shop</span> <span class="cap-word" id="w40">in</span> <span class="cap-word" id="w41">their</span> <span class="cap-word" id="w42">phone&#x27;s</span> <span class="cap-word em" id="w43">wallet.</span></div></div>
+        <div class="cap-group clip" id="cap-6" data-start="16.540" data-duration="2.460" data-track-index="5"><div class="cap-line"><span class="cap-word" id="w44">One</span> <span class="cap-word" id="w45">scan</span> <span class="cap-word" id="w46">at</span> <span class="cap-word" id="w47">your</span> <span class="cap-word" id="w48">counter.</span> <span class="cap-word" id="w49">No</span> <span class="cap-word em" id="w50">app.</span></div></div>
+        <div class="cap-group clip" id="cap-7" data-start="19.000" data-duration="3.370" data-track-index="5"><div class="cap-line"><span class="cap-word" id="w51">Seconds</span> <span class="cap-word" id="w52">after</span> <span class="cap-word" id="w53">they</span> <span class="cap-word" id="w54">pay,</span> <span class="cap-word" id="w55">points</span> <span class="cap-word" id="w56">land</span> <span class="cap-word" id="w57">on</span> <span class="cap-word" id="w58">their</span> <span class="cap-word" id="w59">lock</span> <span class="cap-word em" id="w60">screen.</span></div></div>
+        <div class="cap-group clip" id="cap-8" data-start="22.370" data-duration="3.470" data-track-index="5"><div class="cap-line"><span class="cap-word" id="w61">You</span> <span class="cap-word" id="w62">see</span> <span class="cap-word" id="w63">who</span> <span class="cap-word" id="w64">keeps</span> <span class="cap-word" id="w65">coming</span> <span class="cap-word em" id="w66">back.</span> <span class="cap-word" id="w67">And</span> <span class="cap-word" id="w68">who</span> <span class="cap-word em" id="w69">stopped.</span></div></div>
+        <div class="cap-group clip" id="cap-9" data-start="25.840" data-duration="2.210" data-track-index="5"><div class="cap-line"><span class="cap-word" id="w70">Don&#x27;t</span> <span class="cap-word" id="w71">be</span> <span class="cap-word" id="w72">a</span> <span class="cap-word em" id="w73">line</span> <span class="cap-word" id="w74">in</span> <span class="cap-word" id="w75">their</span> <span class="cap-word" id="w76">payment</span> <span class="cap-word" id="w77">history.</span></div></div>
+      </div>
+      <div class="vignette"></div>
+      <div class="grain"></div>
+
+      <audio id="vo" src="assets/voiceover.mp3" data-start="0" data-duration="32.92" data-track-index="10" data-volume="1"></audio>
+      <audio id="bed" src="assets/music-bed.mp3" data-start="0" data-duration="33.6" data-track-index="11" data-volume="0.32"></audio>
+      <audio id="sfx" src="assets/sfx.mp3" data-start="0" data-duration="33.6" data-track-index="12" data-volume="0.75"></audio>
+    </div>
+
+    <script>
+      (function () {
+        // ---------- word timings (forced-aligned to assets/voiceover.mp3) ----------
+        const W = [["Your", 0.0, 0.32], ["regular", 0.32, 0.77], ["paid", 0.77, 1.06], ["you", 1.06, 1.21], ["40", 1.21, 1.75], ["times", 1.75, 2.24], ["this", 2.24, 2.48], ["year.", 2.48, 2.82], ["You", 3.08, 3.29], ["still", 3.29, 3.74], ["don't", 3.74, 3.92], ["know", 3.92, 4.06], ["their", 4.06, 4.2], ["name.", 4.2, 4.65], ["UPI", 5.0, 5.65], ["made", 5.65, 5.9], ["paying", 5.9, 6.37], ["easy.", 6.37, 7.0], ["It", 7.24, 7.38], ["also", 7.38, 7.7], ["made", 7.7, 7.93], ["you", 7.93, 8.04], ["a", 8.04, 8.07], ["line", 8.07, 8.37], ["in", 8.37, 8.45], ["their", 8.45, 8.57], ["payment", 8.57, 8.94], ["history.", 8.94, 9.55], ["Your", 9.74, 9.96], ["WhatsApp", 9.96, 10.37], ["offers?", 10.37, 10.95], ["Lost", 11.18, 11.6], ["under", 11.6, 11.95], ["good", 11.95, 12.23], ["morning", 12.23, 12.57], ["forwards.", 12.57, 13.3], ["Wystak", 13.63, 14.16], ["puts", 14.16, 14.42], ["your", 14.42, 14.69], ["shop", 14.69, 15.07], ["in", 15.07, 15.24], ["their", 15.24, 15.38], ["phone's", 15.38, 15.84], ["wallet.", 15.84, 16.47], ["One", 16.6, 16.89], ["scan", 16.89, 17.17], ["at", 17.17, 17.28], ["your", 17.28, 17.38], ["counter.", 17.38, 17.91], ["No", 18.11, 18.48], ["app.", 18.48, 18.92], ["Seconds", 19.06, 19.55], ["after", 19.55, 19.78], ["they", 19.78, 19.96], ["pay,", 19.96, 20.38], ["points", 20.47, 20.92], ["land", 20.92, 21.19], ["on", 21.19, 21.29], ["their", 21.29, 21.4], ["lock", 21.4, 21.69], ["screen.", 21.69, 22.15], ["You", 22.43, 22.61], ["see", 22.61, 22.92], ["who", 22.92, 23.2], ["keeps", 23.2, 23.51], ["coming", 23.51, 23.82], ["back.", 23.82, 24.31], ["And", 24.53, 24.93], ["who", 24.93, 25.1], ["stopped.", 25.1, 25.77], ["Don't", 25.9, 26.21], ["be", 26.21, 26.36], ["a", 26.36, 26.4], ["line", 26.4, 26.77], ["in", 26.77, 26.86], ["their", 26.86, 26.99], ["payment", 26.99, 27.4], ["history.", 27.4, 28.05], ["Be", 28.12, 28.53], ["in", 28.53, 28.66], ["their", 28.66, 28.81], ["wallet.", 28.81, 29.5], ["Wystak.", 29.71, 30.49], ["All", 30.65, 30.83], ["your", 30.83, 30.99], ["passes.", 30.99, 31.67], ["One", 31.86, 32.21], ["stack.", 32.21, 32.8]];
+        const PHRASES = [8, 6, 4, 10, 3, 5, 8, 5, 2, 4, 6, 6, 3, 8, 4, 1, 3, 2];
+        const GROUPS = [[0], [1], [2], [3], [4, 5], [6], [7, 8], [9, 10], [11, 12], [13]];
+        const EMPH = new Set(["0:40", "1:name.", "2:easy.", "3:line", "5:forwards.", "6:wallet.", "8:app.", "10:screen.", "11:back.", "12:stopped.", "13:line"]);
+        const GROUP_END = 28.05; // captions hand over to the full-screen type after this
+
+        // phrase -> word index ranges
+        const phraseWords = []; let k = 0;
+        PHRASES.forEach((n) => { phraseWords.push(W.slice(k, k + n).map((w, i) => ({ t: w[0], s: w[1], e: w[2], idx: k + i }))); k += n; });
+
+        // ---------- seeded QR-like pattern ----------
+        function rng(seed) { return function () { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; }; }
+        function qrSVG(size, seed, color) {
+          const N = 25, m = size / N, r = rng(seed); let rects = "";
+          const finder = (x, y) => (x >= 0 && x < 7 && y >= 0 && y < 7);
+          for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) {
+            const inF = finder(x, y) || finder(x - (N - 7), y) || finder(x, y - (N - 7));
+            if (inF) continue;
+            if (r() > 0.52) rects += `<rect x="${x * m}" y="${y * m}" width="${m + 0.4}" height="${m + 0.4}"/>`;
+          }
+          const fp = (x, y) => `<rect x="${x * m}" y="${y * m}" width="${7 * m}" height="${7 * m}" rx="${m}"/><rect x="${(x + 1) * m}" y="${(y + 1) * m}" width="${5 * m}" height="${5 * m}" rx="${m * 0.6}" fill="#fff"/><rect x="${(x + 2) * m}" y="${(y + 2) * m}" width="${3 * m}" height="${3 * m}" rx="${m * 0.4}"/>`;
+          return `<svg class="qr-svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" fill="${color}">${rects}${fp(0, 0)}${fp(N - 7, 0)}${fp(0, N - 7)}</svg>`;
+        }
+        document.getElementById("s2-qr").innerHTML = qrSVG(400, 11, "#0a2860");
+        document.getElementById("s6-qr").innerHTML = qrSVG(300, 29, "#0a2860");
+        document.getElementById("s5-qr").innerHTML = qrSVG(100, 5, "#11161f");
+
+        // ---------- payment history rows ----------
+        const OTHERS = [["Kirana Store", "₹64"], ["Metro recharge", "₹200"], ["Ananya", "₹450"], ["Dosa Corner", "₹120"], ["Electricity bill", "₹1,180"], ["Vikram", "₹300"], ["Fruit stall", "₹90"]];
+        function buildList(id, n, cafeEvery) {
+          let html = ""; let o = 0;
+          for (let i = 0; i < n; i++) {
+            const cafe = i % cafeEvery === 1;
+            const [nm, am] = cafe ? ["Paper Crane Coffee", "₹180"] : OTHERS[o++ % OTHERS.length];
+            const day = 6 + Math.floor(i / 2);
+            html += `<div class="row${cafe ? " cafe" : ""}" id="${id}-r${i}"><div class="ic">${nm[0]}</div><div><div class="nm">${nm}</div><div class="dt">${day % 30 + 1} Oct · UPI</div></div><div class="am">−${am}</div></div>`;
+          }
+          return html;
+        }
+        document.getElementById("s3-list").innerHTML = buildList("s3", 18, 2) + '<div class="hl" id="s3-hl" style="top: 92px"></div>';
+        document.getElementById("s9-list").innerHTML = buildList("s9", 9, 2) + '<div class="strike" id="s9-strike" style="top: 135px"></div><div class="strike" id="s9-strike2" style="top: 319px"></div>';
+
+        // ---------- timeline ----------
+        const tl = gsap.timeline({ paused: true });
+        const ws = (i) => W[i][1];
+
+        // captions: each word lands on its own start time
+        phraseWords.slice(0, 14).flat().forEach((w) => {
+          tl.fromTo("#w" + w.idx, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.16, ease: "power2.out" }, Math.max(0, w.s - 0.04));
+        });
+
+        // scene seams: the current runs LEFT. exit accelerates out, entry lands mid-flight.
+        const cuts = [4.85, 7.15, 9.65, 13.5, 16.5, 18.95, 22.3, 25.8];
+        const stageOf = { 4.85: ["#s1-stage", "#s2-stage"], 7.15: ["#s2-stage", "#s3-stage"], 9.65: ["#s3-stage", "#s4-stage"], 13.5: ["#s4-stage", "#s5-stage"], 16.5: ["#s5-stage", "#s6-stage"], 18.95: ["#s6-stage", "#s7-stage"], 22.3: ["#s7-stage", "#s8-stage"], 25.8: ["#s8-stage", "#s9-stage"] };
+        cuts.forEach((c) => {
+          const [a, b] = stageOf[c];
+          tl.fromTo(a, { x: 0 }, { x: -320, duration: 0.3, ease: "power4.in" }, c - 0.3);
+          tl.fromTo(b, { x: 320 }, { x: 0, duration: 0.42, ease: "power4.out" }, c);
+        });
+
+        // S1 · counter climbs with each beep, then the missing name
+        const cnt = { v: 0 };
+        tl.fromTo("#s1-box", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 0);
+        tl.fromTo("#s1-count", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.35, ease: "power3.out" }, 0.1);
+        tl.fromTo("#s1-label", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0.3);
+        tl.fromTo(cnt, { v: 0 }, { v: 40, duration: 1.75, ease: "power2.in", onUpdate: () => { document.getElementById("s1-count").textContent = Math.round(cnt.v); } }, 0.77);
+        [0.8, 1.26, 1.66].forEach((t, i) => {
+          tl.fromTo("#s1-r" + (i + 1), { scale: 0.05, opacity: 0.85 }, { scale: 1, opacity: 0, duration: 0.9, ease: "power2.out" }, t);
+        });
+        tl.to("#s1-box", { scale: 1.04, duration: 0.08, ease: "power1.out" }, 2.48).to("#s1-box", { scale: 1, duration: 0.12, ease: "power1.in" }, 2.56);
+        tl.fromTo("#s1-chip", { y: 80, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "back.out(1.5)" }, ws(8) - 0.05);
+        tl.fromTo("#s1-q", { scale: 0.6, rotation: -20 }, { scale: 1, rotation: 0, duration: 0.4, ease: "back.out(1.7)" }, ws(13));
+        tl.to("#s1-q", { color: "#ffffff", backgroundColor: "#6b2ba6", duration: 0.2 }, ws(13));
+
+        // S2 · QR, then paid
+        tl.fromTo("#s2-card", { rotation: 4 }, { rotation: 0, duration: 0.6, ease: "power3.out" }, 4.85);
+        tl.fromTo("#s2-paid", { y: 50, opacity: 0, scale: 0.9 }, { y: 0, opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, ws(17) - 0.05);
+        tl.to("#s2-card", { scale: 0.97, duration: 0.15, yoyo: true, repeat: 1 }, ws(17) - 0.05);
+
+        // S3 · the café is one line, then one of many identical lines
+        tl.fromTo("#s3-hl", { opacity: 0, scale: 1.08 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power3.out" }, ws(23));
+        tl.fromTo("#s3-list", { y: 0 }, { y: -900, duration: 1.0, ease: "power2.inOut" }, ws(26));
+        tl.to("#s3-hl", { opacity: 0, duration: 0.25 }, ws(26) + 0.1);
+        tl.fromTo("#s3-list .cafe", { backgroundColor: "rgba(226, 216, 240, 0)" }, { backgroundColor: "rgba(226, 216, 240, 1)", duration: 0.3, stagger: 0.04 }, ws(26) + 0.2);
+
+        // S4 · the offer lands, then good-morning forwards bury it
+        tl.fromTo("#s4-offer", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, ws(29) - 0.05);
+        tl.set("#s4-col", { y: -1940 }, 9.65);
+        const gms = ["#s4-g1", "#s4-g2", "#s4-g3", "#s4-g4", "#s4-g5", "#s4-g6"];
+        const drops = [11.2, 11.55, 11.9, 12.25, 12.6, 12.95];
+        gms.forEach((g, i) => {
+          tl.fromTo(g, { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(1.5)" }, drops[i]);
+          tl.to("#s4-col", { y: -1940 + 322 * (i + 1), duration: 0.3, ease: "power3.out" }, drops[i]);
+        });
+        tl.to("#s4-offer", { opacity: 0.35, duration: 0.6 }, 12.6);
+
+        // S5 · Wystak arrives (inverse zoom: something bigger lands), then the pass files into the wallet
+        tl.fromTo("#s5-mark", { scale: 1.35, opacity: 0, filter: "blur(14px)" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.6, ease: "power3.out" }, ws(36) - 0.08);
+        tl.to("#s5-markwrap", { y: -420, scale: 0.4, duration: 0.6, ease: "power3.inOut" }, ws(37));
+        tl.fromTo("#s5-phone", { y: 900, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, ws(37) + 0.05);
+        tl.to(["#s5-p2b", "#s5-p2s"], { opacity: 0, duration: 0.15 }, ws(43) - 0.2);
+        tl.fromTo("#s5-p3", { y: -520, rotation: -6, opacity: 0 }, { y: 0, rotation: 0, opacity: 1, duration: 0.5, ease: "back.out(1.2)" }, ws(43) - 0.15);
+
+        // S6 · one scan at the counter, no app
+        tl.fromTo("#s6-phone", { x: 120, rotation: 6 }, { x: 0, rotation: 0, duration: 0.6, ease: "power3.out" }, 16.5);
+        tl.fromTo("#s6-vf", { scale: 1.35, opacity: 0.4 }, { scale: 1, opacity: 1, duration: 0.25, ease: "power4.out" }, ws(45));
+        tl.to("#s6-add", { opacity: 1, duration: 0.2 }, ws(48));
+        tl.fromTo("#s6-btn", { scale: 1 }, { scale: 0.92, duration: 0.1, yoyo: true, repeat: 1 }, ws(48) + 0.3);
+        tl.to("#s6-scan", { opacity: 0, scale: 0.92, duration: 0.2, ease: "power2.in" }, ws(49) - 0.12);
+        tl.fromTo("#s6-stamp", { scale: 1.6, opacity: 0, rotation: -10 }, { scale: 1, opacity: 1, rotation: -4, duration: 0.3, ease: "power4.out" }, ws(49) - 0.05);
+        tl.fromTo("#s6-chips", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: "power3.out" }, ws(50));
+
+        // S7 · pay, then the points land on the lock screen
+        tl.fromTo("#s7-toast", { y: -60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "back.out(1.5)" }, ws(51));
+        tl.to("#s7-toast", { opacity: 0.4, duration: 0.3 }, ws(55) - 0.2);
+        tl.fromTo("#s7-notif", { y: -140, opacity: 0, scale: 0.94 }, { y: 0, opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.4)" }, ws(56) - 0.02);
+        tl.to("#s7-phone", { scale: 1.08, y: -30, duration: 1.1, ease: "power2.inOut" }, ws(59));
+
+        // S8 · regulars by name, then the one who stopped
+        ["#s8-r1", "#s8-r2", "#s8-r3"].forEach((r, i) => tl.fromTo(r, { x: 60, opacity: 0 }, { x: 0, opacity: 1, duration: 0.35, ease: "power3.out" }, ws(62) + i * 0.12));
+        tl.fromTo("#s8-dash .up", { y: 10, opacity: 0 }, { y: 0, opacity: 1, duration: 0.25, stagger: 0.1 }, ws(65));
+        tl.fromTo("#s8-r4", { x: 60, opacity: 0 }, { x: 0, opacity: 1, duration: 0.35, ease: "power3.out" }, ws(68) - 0.3);
+        tl.fromTo("#s8-hl", { opacity: 0, scaleX: 0.9 }, { opacity: 1, scaleX: 1, duration: 0.3, ease: "power3.out" }, ws(69));
+        tl.to(["#s8-r1", "#s8-r2", "#s8-r3"], { opacity: 0.45, duration: 0.3 }, ws(69));
+
+        // S9 · callback: don't be a line
+        tl.fromTo("#s9-strike", { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: "power3.inOut" }, ws(73));
+        tl.fromTo("#s9-strike2", { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: "power3.inOut" }, ws(75));
+        tl.to("#s9-phone", { scale: 0.86, opacity: 0.55, duration: 0.6, ease: "power2.in" }, ws(77));
+
+        // S10 · black: be in their WALLET. (stillness, then the slam)
+        tl.fromTo("#s10-w1", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.2 }, ws(78) - 0.03);
+        tl.fromTo("#s10-w2", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.2 }, ws(79) - 0.03);
+        tl.fromTo("#s10-w3", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.2 }, ws(80) - 0.03);
+        tl.fromTo("#s10-wallet", { scale: 1.45, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.28, ease: "power4.out" }, ws(81) - 0.02);
+        [["#s10-c1", -18], ["#s10-c2", 0], ["#s10-c3", 18]].forEach(([c, r], i) => tl.fromTo(c, { rotation: 0, opacity: 0 }, { rotation: r, opacity: 1, duration: 0.35, ease: "back.out(1.6)" }, ws(81) + 0.1 + i * 0.05));
+
+        // S11 · end card: the mark lands, wordmark, then the tagline in two beats
+        tl.fromTo("#s11-mark", { scale: 1.3, opacity: 0, filter: "blur(16px)" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.65, ease: "power3.out" }, 29.62);
+        tl.fromTo("#s11-word", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.55, ease: "power3.inOut" }, ws(82) + 0.15);
+        tl.fromTo("#s11-tag", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 46% 0 0)", duration: 0.45, ease: "power3.out" }, ws(83) - 0.02);
+        tl.to("#s11-tag", { clipPath: "inset(0 0% 0 0)", duration: 0.4, ease: "power3.out" }, ws(86) - 0.02);
+        tl.fromTo("#s11-stage", { scale: 1 }, { scale: 1.03, duration: 3.9, ease: "none" }, 29.65);
+
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>
