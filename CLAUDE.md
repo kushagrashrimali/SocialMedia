@@ -1,4 +1,4 @@
-# WYSTAK social media reels
+# WYSTAK social media reels and posts
 
 This repo holds WYSTAK's marketing reels: scripts and brand files in `wystak/`, HyperFrames video projects in `videos/`, and the installed video and Instagram skills in `.claude/skills/`.
 
@@ -9,6 +9,15 @@ This repo holds WYSTAK's marketing reels: scripts and brand files in `wystak/`, 
 3. **Audio.** The user records the script in ElevenLabs and sends the audio file.
 4. **Storyboard, then stop.** Don't build the reel yet. Force-align the audio to word timings, then deliver a storyboard showing every frame/image of the reel: a still of each scene at its key moment, with its time range, the line spoken and what moves. The user marks what they don't like; revise the storyboard until they're happy.
 5. **Build only after the user says "go".** Then build, check, render, master the audio to about -14 LUFS, verify frames from the delivered MP4, and commit.
+
+## Post process (carousels and single-image posts)
+
+1. **Brief and reference.** The user sends the topic or goal of the post, a reference (screenshots or a PDF of posts or accounts they like, for mindset and not to copy), and any assets or facts they're happy to show (photos, offers, real numbers).
+2. **Copy, then stop.** Send the slide-by-slide copy (headline, line under it and visual idea per slide), the caption and the cover alt text. Score the cover hook with `ig-reel/hookscore.py`. The user edits or approves.
+3. **Draft sheet, then stop.** Render all slides and send one contact sheet showing every slide side by side. The user marks what to change; revise until they're happy.
+4. **Final after "go".** Export the final 1080×1350 PNGs (1080×1080 if a square post is asked for), save the copy file with the caption and alt text, commit, and send the files.
+
+Posts reuse the system in `wystak/carousels/launch/` (`build.py`: HTML slides rendered by headless Chromium, alternating navy and light slides, logo badge top-left, one accent word per headline).
 
 Commit and push work without asking.
 
