@@ -3,3 +3,4 @@ snapshots/
 .hyperframes/
 renders/work-*/
 renders/.*
+renders/*.mp4
