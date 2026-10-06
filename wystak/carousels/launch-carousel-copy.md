@@ -1,39 +1,36 @@
-# WYSTAK launch carousel: copy for approval (9 slides, 1080×1350)
+# WYSTAK launch carousel (8 slides, 1080×1350)
 
-Audience: café, restaurant and shop owners. The story mirrors the launch reel.
+Files: `wystak/carousels/launch/slides/wystak-launch-01.png` to `-08.png`. Rebuild them with `python3 wystak/carousels/launch/build.py`.
 
-| # | Role | Headline | Line under it | Visual |
-|---|---|---|---|---|
-| 1 | Cover | Your regular paid you 40 times. | You still don't know their name. | UPI soundbox with a big "40" above it |
-| 2 | Stake | UPI made paying *easy*. | It also made you a line in their payment history. | Payment history with "Paper Crane Coffee −₹180" repeated |
-| 3 | Problem | Your offers go *nowhere*. | That WhatsApp offer? Lost under the good morning forwards. | Chat with the offer buried under Good Morning images |
-| 4 | Reveal | Meet *Wystak*. | Your shop's loyalty pass, in your customer's phone wallet. Apple Wallet and Google Wallet. | Logo, with the café pass sliding into a wallet |
-| 5 | How 1 | One scan. No *app*. | A QR at your counter. A name and a number. The pass is in their wallet in seconds. | Counter standee QR and phone |
-| 6 | How 2 | Points on their *lock screen*. | Seconds after they pay, their points update. No cost per message. | Lock screen: "+18 points at Paper Crane Coffee" |
-| 7 | How 3 | Know your *regulars*. | See who keeps coming back. And who quietly stopped. | Owner dashboard with "Stopped coming" highlighted |
-| 8 | Recap | Wystak in four lines. | 1 Scan at your counter. 2 Pass in their wallet. 3 Points on their lock screen. 4 You see who comes back. | Clean numbered list (the screenshot slide) |
-| 9 | CTA | Be in their *wallet*. | Comment STACK and we'll set up your counter. | Logo and tagline: ALL YOUR PASSES. ONE STACK. |
+Approach: Reelo's posting mindset, which is merchant-first, opens on a question that provokes owners, keeps the logo in the same spot on every post, shows product UI in phones and stays in one consistent colour world. The execution is Apple-style: one idea per slide, lots of space, a product shot as the hero. Dark navy and light grey slides alternate, and one accent word sits in each headline.
 
-Italic marks the purple serif emphasis word, as in the reel. Every slide carries a slide number (3/9) and the handle in a bottom corner.
+| # | Headline | Line under it |
+|---|---|---|
+| 1 | Is your café on their **phone?** (eyebrow: Introducing Wystak) | Phone wallet showing the Paper Crane Coffee pass |
+| 2 | Every app on their phone is **someone else's.** | Payments, delivery, chats. Your regulars see your café every week. Their phone never does. "None of them are yours." |
+| 3 | One place they keep what **matters.** | Boarding passes. Tickets. The wallet is already on every phone. (Stack: boarding pass, ticket, your café) |
+| 4 | Meet **Wystak.** | Your loyalty pass in Apple Wallet and Google Wallet. Your name. Your colours. Your rewards. |
+| 5 | One scan. **No app.** | A QR at your counter. A name and a number. The pass is in their wallet in seconds. |
+| 6 | Every visit, on their **lock screen.** | Seconds after they pay, the points update. No cost per message. |
+| 7 | Know your **regulars.** | See who keeps coming back. And who quietly stopped. |
+| 8 | Logo and tagline. Be in their **wallet.** | Bring Wystak to your counter. DM us "STACK". |
 
 ## Caption
 
-Your regular paid you 40 times this year. Do you know their name?
+Is your café on your customers' phones?
 
-UPI made paying easy, and it made your shop one more line in a payment history. Wystak puts your loyalty pass in your customer's phone wallet. One scan at the counter. No app. Points on their lock screen seconds after they pay. And you finally see who keeps coming back.
+Payment apps, delivery apps and chats all belong to someone else. Wystak puts your loyalty pass where your regulars keep what matters: Apple Wallet and Google Wallet. One scan at your counter. No app. Points on their lock screen seconds after they pay. And you see who keeps coming back.
 
 Built for India's cafés, restaurants and shops.
 
-Comment STACK and we'll set up your counter.
+DM us "STACK" to bring Wystak to your counter.
 
-#cafeowners #smallbusinessindia #customerloyalty
+#cafeowners #restaurantbusiness #customerloyalty
 
 ## Cover alt text
 
-A UPI soundbox under a large number 40, with the words "Your regular paid you 40 times. You still don't know their name." Wystak launch post.
+A phone wallet showing a Paper Crane Coffee loyalty pass at 132 of 150 points, under the headline "Is your café on their phone?" Wystak launch post.
 
-## Notes
+## Truth check
 
-- "40 times" describes one regular as an example. It is not a statistic.
-- Every claim is from the pitch deck. The merchant is the fictional Paper Crane Coffee.
-- Open: the Instagram handle for the slides, and whether to use "Comment STACK" or "DM us".
+Every claim comes from the pitch deck: no app, one QR for iPhone and Android, points update within seconds of a scan, no cost per message, and the owner sees returning and lapsed customers. All merchants and people shown are fictional. No real brand logos appear.
