@@ -1,0 +1,16 @@
+{
+  "name": "wystak-launch-reel",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npx --yes hyperframes@0.8.137 preview",
+    "check": "npx --yes hyperframes@0.8.137 check",
+    "render": "npx --yes hyperframes@0.8.137 render",
+    "publish": "npx --yes hyperframes@0.8.137 publish"
+  },
+  "dependencies": {
+    "@fontsource/instrument-serif": "^5.3.0",
+    "@fontsource/inter": "^5.3.0",
+    "gsap": "^3.15.0"
+  }
+}
