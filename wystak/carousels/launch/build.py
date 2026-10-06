@@ -2,8 +2,30 @@
 import os, subprocess, pathlib, random
 HERE = pathlib.Path(__file__).resolve().parent
 OUT = HERE / "slides"; OUT.mkdir(exist_ok=True)
-import glob
-CHROME = glob.glob("/opt/pw-browsers/chromium_headless_shell-1194/*/headless_shell")[0]
+import glob, shutil, platform
+
+def find_chrome():
+    """Return (path, is_headless_shell). Set the CHROME env var to override."""
+    if os.environ.get("CHROME"):
+        p = os.environ["CHROME"]; return p, "headless_shell" in p
+    shells = glob.glob("/opt/pw-browsers/chromium_headless_shell-*/*/headless_shell")
+    if shells:
+        return shells[0], True
+    home = os.path.expanduser("~")
+    candidates = [
+        "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+        "/Applications/Chromium.app/Contents/MacOS/Chromium",
+        r"C:\Program Files\Google\Chrome\Application\chrome.exe",
+        r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe",
+        os.path.join(home, r"AppData\Local\Google\Chrome\Application\chrome.exe"),
+    ]
+    candidates += [shutil.which(n) for n in ("google-chrome", "google-chrome-stable", "chromium", "chromium-browser", "chrome")]
+    for c in candidates:
+        if c and os.path.exists(c):
+            return c, False
+    raise SystemExit("Chrome not found. Install Google Chrome, or set CHROME=/path/to/chrome")
+
+CHROME, IS_SHELL = find_chrome()
 TOTAL = 8
 
 CSS = """
@@ -162,8 +184,17 @@ slides.append(frame("light", 8, f'''
 for i, html in enumerate(slides, 1):
     p = HERE / f"_slide{i:02d}.html"; p.write_text(html)
     png = OUT / f"wystak-launch-{i:02d}.png"
-    subprocess.run([CHROME, "--no-sandbox", "--disable-gpu", "--hide-scrollbars", "--force-device-scale-factor=1",
-                    "--window-size=1080,1350", "--allow-file-access-from-files", f"--screenshot={png}", p.as_uri()],
+    if IS_SHELL:
+        args = [CHROME, "--window-size=1080,1350"]
+    else:
+        # Regular Chrome's headless mode loses some height to the window frame,
+        # so render taller and crop back to 1080x1350 below.
+        args = [CHROME, "--headless=new", "--window-size=1080,1700"]
+    subprocess.run(args + ["--no-sandbox", "--disable-gpu", "--hide-scrollbars", "--force-device-scale-factor=1",
+                    "--allow-file-access-from-files", f"--screenshot={png}", p.as_uri()],
                    check=True, capture_output=True, timeout=120)
+    if not IS_SHELL:
+        from PIL import Image
+        Image.open(png).crop((0, 0, 1080, 1350)).save(png)
     p.unlink()
     print("ok", png.name)
