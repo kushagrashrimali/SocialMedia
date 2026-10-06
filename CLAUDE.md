@@ -21,6 +21,10 @@ Posts reuse the system in `wystak/carousels/launch/` (`build.py`: HTML slides re
 
 Commit and push work without asking.
 
+## Inputs from the user
+
+The user drops reference videos, ElevenLabs audio, reference screenshots/PDFs and photos into `inbox/<date-topic>/` (git-ignored) and points to them with `@inbox/...`. Watch videos by extracting frames and audio with ffmpeg. Put finished outputs in `wystak/` (posts, final MP4s) and `videos/<name>/` (reel projects), and tell the user each file's path. For a new carousel, copy `wystak/carousels/launch/` to `wystak/carousels/<name>/` and edit its `build.py`. User-facing steps are in `SETUP.md`, Part B.
+
 ## Brand and content rules
 
 - Audience for reels: **merchants** (café, restaurant and shop owners), not consumers.
