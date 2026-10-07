@@ -37,6 +37,8 @@ for gi, (a, b, acc) in enumerate(GROUPS):
     e = min(nxt - 0.04, WT[b][2] + 0.55)
     if WT[b][0] in ("cash.",):  # hand straight over to the next beat
         e = min(e, 9.05)
+    if WT[b][0] == "login.":   # clear the frame on the lock click, before Wystak is introduced
+        e = min(e, 29.62)
     # kinetic layout: the accent word(s) get their own big line; the rest sit small above / below
     lines, cur, cur_big = [], [], None
     for i in range(a, b + 1):
