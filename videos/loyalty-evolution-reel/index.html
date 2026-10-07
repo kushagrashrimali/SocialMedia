@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Archivo"; src: url("assets/vendor/fonts/archivo-latin-500-normal.woff2") format("woff2"); font-weight: 500; font-style: normal; }
+      @font-face { font-family: "Archivo"; src: url("assets/vendor/fonts/archivo-latin-500-italic.woff2") format("woff2"); font-weight: 500; font-style: italic; }
+      @font-face { font-family: "Archivo"; src: url("assets/vendor/fonts/archivo-latin-600-normal.woff2") format("woff2"); font-weight: 600; font-style: normal; }
+      @font-face { font-family: "Archivo"; src: url("assets/vendor/fonts/archivo-latin-700-normal.woff2") format("woff2"); font-weight: 700; font-style: normal; }
+      @font-face { font-family: "Archivo Black"; src: url("assets/vendor/fonts/archivo-black-latin-400-normal.woff2") format("woff2"); font-weight: 400; }
+      @font-face { font-family: "Manrope"; src: url("assets/vendor/fonts/manrope-latin-500-normal.woff2") format("woff2"); font-weight: 500; }
+      @font-face { font-family: "Manrope"; src: url("assets/vendor/fonts/manrope-latin-600-normal.woff2") format("woff2"); font-weight: 600; }
+      @font-face { font-family: "Manrope"; src: url("assets/vendor/fonts/manrope-latin-700-normal.woff2") format("woff2"); font-weight: 700; }
+      @font-face { font-family: "Manrope"; src: url("assets/vendor/fonts/manrope-latin-800-normal.woff2") format("woff2"); font-weight: 800; }
+      @font-face { font-family: "IBM Plex Mono"; src: url("assets/vendor/fonts/ibm-plex-mono-latin-500-normal.woff2") format("woff2"); font-weight: 500; }
+      @font-face { font-family: "IBM Plex Mono"; src: url("assets/vendor/fonts/ibm-plex-mono-latin-600-normal.woff2") format("woff2"); font-weight: 600; }
+
+      :root {
+        --void: #0b0410;
+        --raised: #140724;
+        --hair: #2a1145;
+        --paper: #f7f5fa;
+        --aub: #1a0b2e;
+        --muted-d: #9c8fb3;
+        --muted-l: #6b5d82;
+        --crane: #06737c;
+        --violet: #7c3aed;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--void); }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--void); font-family: "Manrope", sans-serif; color: var(--paper); }
+
+      .scene { position: absolute; inset: 0; overflow: hidden; }
+      .ground-void { background: var(--void); }
+      .ground-paper { background: var(--paper); }
+      .cam { position: absolute; inset: 0; }
+      .media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+      /* ---------- type ---------- */
+      .label { position: absolute; left: 0; right: 0; top: 1268px; text-align: center; font-family: "Archivo", sans-serif; font-weight: 600; font-size: 46px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--paper); text-shadow: 0 2px 18px rgba(11, 4, 16, 0.55); }
+      .label.on-paper { color: var(--aub); text-shadow: none; }
+      .hero { position: absolute; left: -40px; right: -40px; top: 820px; text-align: center; font-family: "Archivo Black", sans-serif; font-size: 214px; line-height: 1; letter-spacing: -0.035em; text-transform: uppercase; color: var(--paper); }
+      .quote { position: absolute; left: 90px; right: 230px; top: 300px; font-family: "Archivo", sans-serif; font-style: italic; font-weight: 500; font-size: 66px; line-height: 1.08; letter-spacing: -0.01em; color: var(--paper); text-shadow: 0 2px 22px rgba(11, 4, 16, 0.6); }
+      .mono { font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums; }
+
+      /* ---------- footage placeholder (replaced by real media) ---------- */
+      .fph { position: absolute; inset: 0; background: #1a1420; display: flex; align-items: center; justify-content: center; }
+      .fph span { font-family: "IBM Plex Mono", monospace; font-size: 30px; color: #8d8299; letter-spacing: 0.08em; text-align: center; padding: 0 140px; line-height: 1.5; }
+
+      /* ---------- phones ---------- */
+      .phone { position: absolute; width: 450px; height: 920px; left: 315px; top: 300px; border-radius: 78px; padding: 13px; background: linear-gradient(155deg, #3a3541 0%, #16131b 48%, #0d0b10 100%); box-shadow: 0 0 0 2px #2c2833, 0 70px 140px -30px rgba(0, 0, 0, 0.85), inset 0 0 0 1px rgba(255, 255, 255, 0.08); }
+      .phone::before, .phone::after { content: ""; position: absolute; width: 5px; border-radius: 3px; background: #2a2630; }
+      .phone::before { left: -5px; top: 190px; height: 80px; }
+      .phone::after { right: -5px; top: 250px; height: 120px; }
+      .phone .screen { position: relative; width: 100%; height: 100%; border-radius: 66px; overflow: hidden; background: #000; }
+      .phone .island { position: absolute; left: 50%; top: 20px; width: 128px; height: 38px; margin-left: -64px; border-radius: 19px; background: #000; z-index: 9; }
+      .phone.android { border-radius: 52px; background: linear-gradient(205deg, #33363d 0%, #15161a 50%, #0c0d10 100%); }
+      .phone.android .screen { border-radius: 42px; }
+      .phone.android .island { width: 30px; height: 30px; margin-left: -15px; border-radius: 50%; top: 22px; }
+      .phone.small { width: 340px; height: 696px; border-radius: 60px; padding: 10px; }
+      .phone.small .screen { border-radius: 51px; }
+      .phone.small.android { border-radius: 40px; }
+      .phone.small.android .screen { border-radius: 32px; }
+      .phone.small .island { width: 96px; height: 28px; margin-left: -48px; top: 15px; }
+      .phone.small.android .island { width: 22px; height: 22px; margin-left: -11px; top: 16px; }
+
+      /* lock screen */
+      .phone .screen.lock { background: #0b0410 url("assets/ui/wallpaper.jpg") center / cover no-repeat; }
+      .lock .date { position: absolute; left: 0; right: 0; top: 104px; text-align: center; font-weight: 600; font-size: 25px; color: rgba(247, 245, 250, 0.86); }
+      .lock .time { position: absolute; left: 0; right: 0; top: 132px; text-align: center; font-weight: 700; font-size: 124px; letter-spacing: -0.04em; line-height: 1; color: rgba(247, 245, 250, 0.95); }
+      .lock .bar { position: absolute; left: 50%; bottom: 18px; width: 140px; height: 6px; margin-left: -70px; border-radius: 3px; background: rgba(247, 245, 250, 0.7); }
+      .notif { position: absolute; left: 14px; right: 14px; border-radius: 28px; background: rgba(244, 241, 248, 0.95); padding: 18px 20px; display: flex; gap: 16px; color: var(--aub); box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.5); }
+      .notif .ic { width: 52px; height: 52px; border-radius: 13px; flex: none; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 24px; color: #fff; }
+      .notif .nb { flex: 1; min-width: 0; }
+      .notif .t1 { display: flex; justify-content: space-between; font-weight: 700; font-size: 21px; }
+      .notif .t1 span { color: var(--muted-l); font-weight: 500; font-size: 19px; }
+      .notif .t2 { font-weight: 500; font-size: 20px; line-height: 1.32; color: #3b2f4d; margin-top: 3px; }
+      .notif.hero-push .t1 { font-size: 19px; color: var(--muted-l); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+      .notif.hero-push .t1 span { letter-spacing: 0; text-transform: none; }
+      .notif.hero-push .tt { font-weight: 800; font-size: 25px; margin-top: 4px; color: var(--aub); }
+
+      /* chat screen */
+      .phone .screen.chat { background: #ece9f1; }
+      .chat .hd { position: absolute; left: 0; right: 0; top: 0; height: 150px; background: #f8f7fb; display: flex; align-items: flex-end; gap: 16px; padding: 0 26px 20px; border-bottom: 1px solid #ddd8e4; }
+      .chat .hd .back { font-size: 34px; color: var(--muted-l); margin-bottom: 4px; }
+      .chat .hd .av { width: 58px; height: 58px; border-radius: 50%; flex: none; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 26px; color: #fff; }
+      .chat .hd .nm { font-weight: 800; font-size: 25px; color: var(--aub); }
+      .chat .hd .sb { font-weight: 500; font-size: 18px; color: var(--muted-l); margin-top: 2px; }
+      .chip-date { position: absolute; left: 50%; transform: translateX(-50%); background: #dcd7e4; color: var(--muted-l); font-weight: 600; font-size: 17px; padding: 6px 16px; border-radius: 12px; white-space: nowrap; }
+      .bubble { position: absolute; left: 20px; max-width: 330px; background: #ffffff; color: var(--aub); border-radius: 26px 26px 26px 8px; padding: 18px 20px 30px; font-weight: 500; font-size: 23px; line-height: 1.34; box-shadow: 0 2px 4px rgba(26, 11, 46, 0.08); }
+      .bubble .tm { position: absolute; right: 16px; bottom: 9px; font-size: 15px; color: var(--muted-l); }
+      .bubble.old { opacity: 0.75; }
+
+      /* isolated objects */
+      .obj-label { position: absolute; left: 0; right: 0; text-align: center; font-family: "IBM Plex Mono", monospace; font-weight: 500; font-size: 24px; letter-spacing: 0.12em; color: var(--muted-d); }
+      .sms { position: absolute; left: 150px; width: 640px; background: #e9e6ee; color: var(--aub); border-radius: 36px 36px 36px 10px; padding: 30px 34px; font-weight: 500; font-size: 33px; line-height: 1.36; }
+      .bigbubble { position: absolute; left: 150px; width: 640px; background: #ffffff; color: var(--aub); border-radius: 36px 36px 36px 10px; padding: 30px 34px 46px; font-weight: 500; font-size: 33px; line-height: 1.36; }
+      .bigbubble .from { font-weight: 800; font-size: 25px; color: var(--muted-l); margin-bottom: 8px; }
+      .bigbubble .tm { position: absolute; right: 26px; bottom: 14px; font-size: 20px; color: var(--muted-l); }
+      .appicon { position: absolute; width: 230px; height: 230px; border-radius: 54px; display: flex; align-items: center; justify-content: center; }
+      .menu { position: absolute; width: 470px; border-radius: 30px; background: rgba(244, 241, 248, 0.96); color: var(--aub); overflow: hidden; }
+      .menu div { padding: 26px 30px; font-weight: 600; font-size: 29px; border-top: 1px solid #ddd8e4; display: flex; justify-content: space-between; }
+      .menu div:first-child { border-top: none; }
+      .menu .del { color: #d4314f; }
+
+      /* store + otp screens */
+      .phone .screen.light { background: #f6f5f8; color: var(--aub); }
+      .light .top { position: absolute; left: 30px; right: 30px; top: 96px; font-weight: 800; font-size: 34px; letter-spacing: -0.01em; line-height: 1.15; }
+      .light .sub { position: absolute; left: 30px; right: 30px; font-weight: 500; font-size: 21px; line-height: 1.35; color: var(--muted-l); }
+      .btn-dark { position: absolute; left: 30px; right: 30px; height: 78px; border-radius: 39px; background: var(--aub); color: var(--paper); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 26px; }
+      .otp { position: absolute; left: 30px; right: 30px; display: flex; gap: 12px; }
+      .otp div { flex: 1; height: 86px; border-radius: 18px; background: #fff; border: 2px solid #d9d3e2; display: flex; align-items: center; justify-content: center; font-family: "IBM Plex Mono", monospace; font-weight: 600; font-size: 38px; color: var(--aub); }
+      .otp div.on { border-color: var(--aub); }
+      .field { position: absolute; left: 30px; right: 30px; height: 80px; border-radius: 18px; background: #fff; border: 2px solid #d9d3e2; display: flex; align-items: center; padding: 0 22px; font-size: 32px; letter-spacing: 0.2em; color: var(--aub); }
+
+      /* wallet */
+      .phone .screen.wallet { background: #f3f2f6; }
+      .wallet .wt { position: absolute; left: 30px; top: 92px; font-weight: 800; font-size: 44px; color: var(--aub); letter-spacing: -0.02em; }
+      .pass { position: absolute; left: 18px; right: 18px; border-radius: 24px; padding: 20px 24px; color: #fff; }
+      .pass .phd { display: flex; justify-content: space-between; align-items: center; font-weight: 800; font-size: 20px; letter-spacing: 0.06em; }
+      .pass .big { font-family: "IBM Plex Mono", monospace; font-weight: 600; font-size: 58px; margin-top: 26px; letter-spacing: -0.02em; }
+      .pass .sm { font-size: 17px; opacity: 0.85; font-weight: 600; letter-spacing: 0.12em; margin-top: 10px; }
+      .pass .qr-box { position: absolute; left: 50%; bottom: 26px; width: 150px; height: 150px; margin-left: -75px; border-radius: 14px; background: #fff; padding: 12px; }
+      .gw-card { position: absolute; left: 18px; right: 18px; height: 150px; border-radius: 22px; padding: 18px 22px; color: #fff; }
+      .gw-card .phd { font-weight: 800; font-size: 18px; letter-spacing: 0.06em; }
+      .gw-card .big { font-family: "IBM Plex Mono", monospace; font-weight: 600; font-size: 34px; margin-top: 30px; }
+
+      /* add-to-wallet sheet */
+      .sheet { position: absolute; left: 0; right: 0; bottom: 0; height: 560px; border-radius: 40px 40px 0 0; background: #fbfafc; }
+      .btn-violet { position: absolute; left: 30px; right: 30px; height: 80px; border-radius: 40px; background: var(--violet); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 27px; }
+
+      /* chips */
+      .chips { position: absolute; left: 0; right: 0; display: flex; justify-content: center; gap: 60px; }
+      .chip { width: 340px; height: 74px; border-radius: 37px; border: 2px solid rgba(247, 245, 250, 0.55); display: flex; align-items: center; justify-content: center; font-family: "Archivo", sans-serif; font-weight: 600; font-size: 25px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--paper); }
+
+      /* end card */
+      .end-mark { position: absolute; left: 0; right: 0; top: 560px; display: flex; justify-content: center; }
+      .end-word { position: absolute; left: 0; right: 0; top: 1010px; display: flex; justify-content: center; }
+      .end-line { position: absolute; left: 0; right: 0; top: 1150px; text-align: center; font-family: "Archivo", sans-serif; font-weight: 600; font-size: 36px; letter-spacing: 0.16em; color: var(--aub); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="44.02" data-width="1080" data-height="1920">
+
+      <!-- ===== HOOK · "India didn't stop rewarding customers." ===== -->
+      <div id="s01" class="scene clip" data-start="0" data-duration="0.75" data-track-index="1">
+        <div class="fph"><span>FOOTAGE · café counter, QR standee</span></div>
+        <div class="label">Pay</div>
+      </div>
+      <div id="s02" class="scene clip" data-start="0.75" data-duration="0.75" data-track-index="1">
+        <div class="fph"><span>FOOTAGE · hand raises phone to scan the QR</span></div>
+        <div class="label">Phone</div>
+      </div>
+      <div id="s03" class="scene clip ground-void" data-start="1.5" data-duration="1.0" data-track-index="1">
+        <div class="phone"><div class="screen lock">
+          <div class="island"></div>
+          <div class="date">Wednesday, 7 October</div>
+          <div class="time">8:12</div>
+          <div class="notif" style="top: 330px">
+            <div class="ic" style="background:#b4532a">R</div>
+            <div class="nb"><div class="t1">Rewards <span>now</span></div><div class="t2">Thanks for your visit! Points added to your account.</div></div>
+          </div>
+          <div class="bar"></div>
+        </div></div>
+        <div class="label">Reward</div>
+      </div>
+
+      <!-- ===== "Your customers just stopped noticing." ===== -->
+      <div id="s04" class="scene clip" data-start="2.5" data-duration="0.85" data-track-index="1">
+        <div class="fph"><span>FOOTAGE · Indian street crowd, black and white</span></div>
+      </div>
+      <div id="s05" class="scene clip ground-void" data-start="3.35" data-duration="1.35" data-track-index="1">
+        <div class="cam" style="transform: scale(1.25); transform-origin: 540px 1200px">
+        <div class="phone"><div class="screen lock">
+          <div class="island"></div>
+          <div class="date">Wednesday, 7 October</div>
+          <div class="time">8:14</div>
+          <div class="notif" style="top: 330px; transform: translateX(62%); opacity: 0.55">
+            <div class="ic" style="background:#b4532a">R</div>
+            <div class="nb"><div class="t1">Rewards <span>2m ago</span></div><div class="t2">Thanks for your visit! Points added to your account.</div></div>
+        </div>
+          </div>
+          <div class="notif" style="top: 470px">
+            <div class="ic" style="background:#4d6b8a">S</div>
+            <div class="nb"><div class="t1">Store <span>now</span></div><div class="t2">Members get early access this Friday.</div></div>
+          </div>
+          <div class="notif" style="top: 600px">
+            <div class="ic" style="background:#7a6a2e">F</div>
+            <div class="nb"><div class="t1">Food app <span>1m ago</span></div><div class="t2">Rate your last order.</div></div>
+          </div>
+          <div class="bar"></div>
+        </div></div>
+      </div>
+
+      <!-- ===== "Sir, mobile number?" ===== -->
+      <div id="s06" class="scene clip" data-start="4.7" data-duration="0.7" data-track-index="1">
+        <div class="fph"><span>FOOTAGE · billing counter, cashier's view</span></div>
+        <div class="quote">“Sir, mobile number?”</div>
+      </div>
+      <div id="s07" class="scene clip" data-start="5.4" data-duration="0.8" data-track-index="1">
+        <div class="fph"><span>FOOTAGE · fingers typing ten digits on a keypad</span></div>
+        <div class="label mono" style="letter-spacing: 0.1em">98••• •••41</div>
+      </div>
+
+      <!-- ===== "Businesses learned to remember." ===== -->
+      <div id="s08" class="scene clip" data-start="6.2" data-duration="0.9" data-track-index="1">
+        <div class="fph"><span>ARCHIVE · old Indian shop counter, black and white</span></div>
+      </div>
+      <div id="s09" class="scene clip" data-start="7.1" data-duration="1.1" data-track-index="1">
+        <div class="fph"><span>FOOTAGE · today's café counter, owner at work</span></div>
+      </div>
+
+      <!-- ===== "Every visit. Every purchase. Every preference." ===== -->
+      <div id="s10" class="scene clip" data-start="8.2" data-duration="1.0" data-track-index="1">
+        <div class="fph"><span>FOOTAGE · a customer walks into the café</span></div>
+        <div class="label">Visit</div>
+      </div>
+      <div id="s11" class="scene clip" data-start="9.2" data-duration="1.2" data-track-index="1">
+        <div class="fph"><span>FOOTAGE · paying at the counter</span></div>
+        <div class="label">Purchase</div>
+      </div>
+      <div id="s12" class="scene clip" data-start="10.4" data-duration="1.3" data-track-index="1">
+        <div class="fph"><span>FOOTAGE · the usual being made: coffee or chai</span></div>
+        <div class="label">Preference</div>
+      </div>
+
+      <!-- ===== "And WhatsApp made staying connected effortless." ===== -->
+      <div id="s13" class="scene clip ground-void" data-start="11.7" data-duration="1.4" data-track-index="1">
+        <div class="cam" style="transform: scale(1.3); transform-origin: 540px 1200px">
+        <div class="phone"><div class="screen chat">
+          <div class="island"></div>
+          <div class="hd"><div class="back">‹</div><div class="av" style="background: var(--crane)">P</div><div><div class="nm">Paper Crane Coffee</div><div class="sb">Café · Indiranagar</div></div></div>
+        </div>
+          <div class="chip-date" style="top: 190px">Last month</div>
+          <div class="bubble old" style="top: 240px">Thanks for coming in today! See you soon.<span class="tm">6:40 pm</span></div>
+          <div class="chip-date" style="top: 420px">Today</div>
+          <div class="bubble" style="top: 470px">Aarav, we haven't seen you in a while. Your usual is waiting.<span class="tm">10:02 am</span></div>
+        </div></div>
+        <div class="label">Message</div>
+      </div>
+      <div id="s14" class="scene clip" data-start="13.1" data-duration="1.55" data-track-index="1">
+        <div class="fph"><span>FOOTAGE · the regular walks back in, greeted at the counter</span></div>
+        <div class="label">Return</div>
+      </div>
+
+      <!-- ===== "Salons remembered birthdays better than your cousins." ===== -->
+      <div id="s15" class="scene clip" data-start="14.65" data-duration="1.0" data-track-index="1">
+        <div class="fph"><span>FOOTAGE · salon, stylist at work</span></div>
+      </div>
+      <div id="s16" class="scene clip ground-void" data-start="15.65" data-duration="2.05" data-track-index="1">
+        <div class="cam" style="transform: scale(1.3); transform-origin: 540px 1200px">
+        <div class="phone"><div class="screen chat">
+          <div class="island"></div>
+          <div class="hd"><div class="back">‹</div><div class="av" style="background:#8a4f6b">S</div><div><div class="nm">The Salon</div><div class="sb">Hair &amp; beauty</div></div></div>
+        </div>
+          <div class="chip-date" style="top: 190px">Today</div>
+          <div class="bubble" style="top: 240px">Happy birthday, Aarav! Your next blow-dry is on us this week.<span class="tm">12:00 am</span></div>
+        </div></div>
+      </div>
+
+      <!-- ===== "But loyalty started living everywhere." ===== -->
+      <div id="s17" class="scene clip ground-void" data-start="17.7" data-duration="1.55" data-track-index="1">
+        <div class="phone"><div class="screen lock">
+          <div class="island"></div>
+          <div class="date">Wednesday, 7 October</div>
+          <div class="time">9:30</div>
+          <div class="notif" style="top: 300px"><div class="ic" style="background:#06737c">P</div><div class="nb"><div class="t1">Messages <span>now</span></div><div class="t2">VM-PCRANE: You earned 18 pts. Bal 132 pts.</div></div></div>
+          <div class="notif" style="top: 412px"><div class="ic" style="background:#8a4f6b">S</div><div class="nb"><div class="t1">The Salon <span>1m ago</span></div><div class="t2">Monsoon offer inside.</div></div></div>
+          <div class="notif" style="top: 508px"><div class="ic" style="background:#4d6b8a">S</div><div class="nb"><div class="t1">Store <span>3m ago</span></div><div class="t2">Members get early access this Friday.</div></div></div>
+          <div class="notif" style="top: 604px"><div class="ic" style="background:#b4532a">R</div><div class="nb"><div class="t1">Rewards <span>5m ago</span></div><div class="t2">Your points balance has changed.</div></div></div>
+          <div class="notif" style="top: 700px"><div class="ic" style="background:#7a6a2e">F</div><div class="nb"><div class="t1">Food app <span>8m ago</span></div><div class="t2">Rate your last order.</div></div></div>
+          <div class="notif" style="top: 796px"><div class="ic" style="background:#5c4a8a">G</div><div class="nb"><div class="t1">Gym <span>9m ago</span></div><div class="t2">We miss you at the gym!</div></div></div>
+          <div class="bar"></div>
+        </div></div>
+      </div>
+      <div id="s18" class="scene clip" data-start="19.25" data-duration="1.15" data-track-index="1">
+        <div class="fph"><span>FOOTAGE · train rushing past, black and white</span></div>
+        <div class="hero" style="top: 700px; font-size: 262px; line-height: 0.86"><span style="display: block">Every</span><span style="display: block">where</span></div>
+      </div>
+
+      <!-- ===== "An SMS. A chat. An app they deleted." ===== -->
+      <div id="s19" class="scene clip ground-void" data-start="20.4" data-duration="1.05" data-track-index="1">
+        <div class="obj-label" style="top: 650px">VM-PCRANE · SMS</div>
+        <div class="sms" style="top: 720px">You earned 18 pts at Paper Crane Coffee. Bal 132 pts. T&amp;C apply.</div>
+      </div>
+      <div id="s20" class="scene clip ground-void" data-start="21.45" data-duration="0.75" data-track-index="1">
+        <div class="bigbubble" style="top: 720px"><div class="from">The Salon</div>Monsoon offer: a free head massage with every haircut this week.<span class="tm">11:15 am</span></div>
+      </div>
+      <div id="s21" class="scene clip ground-void" data-start="22.2" data-duration="1.25" data-track-index="1">
+        <div class="appicon" style="left: 425px; top: 520px; background: linear-gradient(150deg, #e0794a, #a8431f);">
+          <svg width="120" height="120" viewBox="0 0 120 120"><circle cx="60" cy="60" r="44" fill="none" stroke="#fff" stroke-width="10"/><path d="M60 30 L68 52 L92 52 L72 66 L80 90 L60 75 L40 90 L48 66 L28 52 L52 52 Z" fill="#fff"/></svg>
+        </div>
+        <div class="obj-label" style="top: 772px; color: var(--paper); font-family: Manrope, sans-serif; letter-spacing: 0; font-size: 30px; font-weight: 600">Rewards</div>
+        <div class="menu" style="left: 305px; top: 850px"><div>Share app <span>↗</span></div><div>Edit Home Screen <span>⋯</span></div><div class="del">Delete App <span>⌫</span></div></div>
+      </div>
+
+      <!-- ===== "Another app. Another login." ===== -->
+      <div id="s22" class="scene clip ground-void" data-start="23.45" data-duration="1.2" data-track-index="1">
+        <div class="phone"><div class="screen light">
+          <div class="island"></div>
+          <div class="top">Download our app to collect points</div>
+          <div class="appicon" style="left: 30px; top: 230px; width: 150px; height: 150px; border-radius: 34px; background: linear-gradient(150deg, #6aa0c9, #2f5f86);">
+            <svg width="80" height="80" viewBox="0 0 120 120"><rect x="30" y="34" width="60" height="52" rx="8" fill="none" stroke="#fff" stroke-width="9"/><path d="M44 34 V26 a16 16 0 0 1 32 0 V34" fill="none" stroke="#fff" stroke-width="9"/></svg>
+          </div>
+          <div class="sub" style="top: 262px; left: 204px; right: 10px; white-space: nowrap; color: var(--aub); font-weight: 800; font-size: 28px">Store Rewards</div>
+          <div class="sub" style="top: 304px; left: 204px">Shopping</div>
+          <div class="btn-dark" style="top: 420px">Install</div>
+          <div class="sub" style="top: 530px">Sign up, verify your number, turn on notifications and start earning.</div>
+        </div></div>
+        <div class="label">App</div>
+      </div>
+      <div id="s23" class="scene clip ground-void" data-start="24.65" data-duration="1.25" data-track-index="1">
+        <div class="phone"><div class="screen light">
+          <div class="island"></div>
+          <div class="top">Verify your number</div>
+          <div class="sub" style="top: 150px">Enter the 6-digit code sent to <span class="mono">+91 98••• •••41</span></div>
+          <div class="otp" style="top: 240px"><div class="on">4</div><div class="on">8</div><div class="on">2</div><div></div><div></div><div></div></div>
+          <div class="sub" style="top: 350px">Resend code in <span class="mono">0:29</span></div>
+          <div class="sub" style="top: 440px; color: var(--aub); font-weight: 700">Create a password</div>
+          <div class="field" style="top: 480px">••••••</div>
+          <div class="btn-dark" style="top: 600px; opacity: 0.35">Continue</div>
+        </div></div>
+        <div class="label">Login</div>
+      </div>
+
+      <!-- ===== silence · black · one ding ===== -->
+      <div id="s24" class="scene clip ground-void" data-start="25.9" data-duration="1.1" data-track-index="1"></div>
+
+      <!-- ===== "What if loyalty didn't need another place?" ===== -->
+      <div id="s25" class="scene clip ground-void" data-start="27.0" data-duration="2.8" data-track-index="1">
+        <div class="phone"><div class="screen lock">
+          <div class="island"></div>
+          <div class="date">Wednesday, 7 October</div>
+          <div class="time">9:41</div>
+          <div class="bar"></div>
+        </div></div>
+      </div>
+
+      <!-- ===== "It already has one. The wallet on their phone." ===== -->
+      <div id="s26" class="scene clip ground-void" data-start="29.8" data-duration="2.9" data-track-index="1">
+        <div class="phone"><div class="screen wallet">
+          <div class="island"></div>
+          <div class="wt">Wallet</div>
+          <div class="pass" style="top: 170px; height: 220px; background: #24324f"><div class="phd"><span>BOARDING PASS</span><span class="mono">BLR → DEL</span></div></div>
+          <div class="pass" style="top: 236px; height: 220px; background: #5b2333"><div class="phd"><span>CINEMA</span><span>SCREEN 4</span></div></div>
+          <div class="pass" style="top: 302px; height: 560px; background: var(--crane)">
+            <div class="phd"><span>PAPER CRANE COFFEE</span><span class="mono">132 PTS</span></div>
+            <div class="big">132 / 150</div>
+            <div class="sm">NEXT REWARD · AARAV</div>
+            <div class="qr-box" id="qr-wallet"></div>
+          </div>
+        </div></div>
+        <div class="label">Wallet</div>
+      </div>
+
+      <!-- ===== "One scan at your counter. No app." ===== -->
+      <div id="s28" class="scene clip" data-start="32.7" data-duration="1.7" data-track-index="1">
+        <div class="fph"><span>FOOTAGE · a phone scans the QR at the counter</span></div>
+      </div>
+      <div id="s29" class="scene clip ground-void" data-start="34.4" data-duration="0.85" data-track-index="1">
+        <div class="phone"><div class="screen lock" style="filter: none">
+          <div class="island"></div>
+          <div class="sheet">
+            <div style="position:absolute; left: 30px; right: 30px; top: 34px; text-align:center; font-weight: 800; font-size: 26px; color: var(--aub)">Add this pass to your wallet?</div>
+            <div class="pass" style="top: 96px; height: 250px; left: 30px; right: 30px; background: var(--crane)"><div class="phd"><span>PAPER CRANE COFFEE</span><span class="mono">0 PTS</span></div><div class="big" style="font-size: 46px">0 / 150</div><div class="sm">WELCOME · AARAV</div></div>
+            <div class="btn-violet" style="top: 380px">Add</div>
+            <div style="position:absolute; left:0; right:0; top: 484px; text-align:center; font-weight: 600; font-size: 20px; color: var(--muted-l)">Phone number and first name only</div>
+          </div>
+        </div></div>
+        <div class="label">No app</div>
+      </div>
+
+      <!-- ===== "Seconds after they pay, points land on their lock screen." ===== -->
+      <div id="s30" class="scene clip" data-start="35.25" data-duration="1.5" data-track-index="1">
+        <div class="fph"><span>FOOTAGE · they pay at the counter</span></div>
+      </div>
+      <div id="s31" class="scene clip ground-void" data-start="36.75" data-duration="1.9" data-track-index="1">
+        <div class="cam" style="transform: scale(1.6); transform-origin: 540px 760px">
+        <div class="phone"><div class="screen lock">
+          <div class="island"></div>
+          <div class="date">Wednesday, 7 October</div>
+          <div class="time">9:42</div>
+          <div class="notif hero-push" style="top: 330px">
+            <div class="ic" style="background: var(--crane)">P</div>
+            <div class="nb"><div class="t1">Wallet <span>now</span></div><div class="tt">+18 points at Paper Crane Coffee</div><div class="t2">You're at 132 of 150. One more and the next one is on the house.</div></div>
+        </div>
+          </div>
+          <div class="bar"></div>
+        </div></div>
+      </div>
+
+      <!-- ===== "Now they notice." · different phones, same pass ===== -->
+      <div id="s32" class="scene clip ground-void" data-start="38.65" data-duration="1.35" data-track-index="1">
+        <div class="phone small" style="left: 100px; top: 380px"><div class="screen lock">
+          <div class="island"></div>
+          <div class="date" style="top: 76px; font-size: 19px">Wednesday, 7 October</div>
+          <div class="time" style="top: 98px; font-size: 92px">9:42</div>
+          <div class="notif hero-push" style="top: 250px; left: 10px; right: 10px; padding: 14px 14px; gap: 10px; border-radius: 22px">
+            <div class="ic" style="background: var(--crane); width: 40px; height: 40px; font-size: 18px; border-radius: 10px">P</div>
+            <div class="nb"><div class="t1" style="font-size: 14px">Wallet <span>now</span></div><div class="tt" style="font-size: 19px">+18 points at Paper Crane Coffee</div><div class="t2" style="font-size: 15px">You're at 132 of 150.</div></div>
+          </div>
+          <div class="bar" style="width: 110px; margin-left: -55px"></div>
+        </div></div>
+        <div class="phone small android" style="left: 500px; top: 380px"><div class="screen lock">
+          <div class="island"></div>
+          <div class="time" style="top: 86px; font-size: 92px; text-align: left; padding-left: 30px">9:42</div>
+          <div class="date" style="top: 192px; font-size: 19px; text-align: left; padding-left: 32px">Wed, 7 Oct</div>
+          <div class="notif hero-push" style="top: 250px; left: 10px; right: 10px; padding: 14px 14px; gap: 10px; border-radius: 18px">
+            <div class="ic" style="background: var(--crane); width: 40px; height: 40px; font-size: 18px; border-radius: 50%">P</div>
+            <div class="nb"><div class="t1" style="font-size: 14px">Wallet <span>now</span></div><div class="tt" style="font-size: 19px">+18 points at Paper Crane Coffee</div><div class="t2" style="font-size: 15px">You're at 132 of 150.</div></div>
+          </div>
+        </div></div>
+        <div class="chips" style="top: 1150px"><div class="chip">Apple Wallet</div><div class="chip">Google Wallet</div></div>
+      </div>
+
+      <!-- ===== recap · PAYMENT → REWARD → MESSAGE → WALLET ===== -->
+      <div id="s33a" class="scene clip ground-void" data-start="40.0" data-duration="0.16" data-track-index="1">
+        <div style="position:absolute; left: 340px; top: 560px; width: 400px; height: 400px; border-radius: 30px; background: var(--paper); padding: 28px" id="qr-recap"></div>
+        <div class="label">Payment</div>
+      </div>
+      <div id="s33b" class="scene clip ground-void" data-start="40.16" data-duration="0.16" data-track-index="1">
+        <div class="notif hero-push" style="left: 150px; right: 150px; top: 660px; padding: 26px 28px"><div class="ic" style="background: var(--crane); width: 64px; height: 64px">P</div><div class="nb"><div class="t1">Wallet <span>now</span></div><div class="tt" style="font-size: 30px">+18 points</div></div></div>
+        <div class="label">Reward</div>
+      </div>
+      <div id="s33c" class="scene clip ground-void" data-start="40.32" data-duration="0.16" data-track-index="1">
+        <div class="bigbubble" style="top: 680px">We haven't seen you in a while.</div>
+        <div class="label">Message</div>
+      </div>
+      <div id="s33d" class="scene clip ground-void" data-start="40.48" data-duration="0.16" data-track-index="1">
+        <div class="pass" style="left: 240px; right: 240px; top: 560px; height: 380px; background: var(--crane)"><div class="phd"><span>PAPER CRANE COFFEE</span></div><div class="big">132 / 150</div><div class="sm">AARAV</div></div>
+        <div class="label">Wallet</div>
+      </div>
+      <div id="s33e" class="scene clip ground-void" data-start="40.64" data-duration="0.1" data-track-index="1"></div>
+
+      <!-- ===== end card · "Whys-tak. The next place for loyalty." ===== -->
+      <div id="s34" class="scene clip ground-paper" data-start="40.74" data-duration="3.28" data-track-index="1">
+        <div class="end-mark"><img src="assets/brand/logo-mark.png" alt="" style="width: 600px; height: 390px; display: block" /></div>
+        <div class="end-word"><img src="assets/brand/logo-wordmark.png" alt="WYSTAK" style="width: 620px; height: 75px; display: block" /></div>
+        <div class="end-line">THE NEXT PLACE FOR LOYALTY.</div>
+      </div>
+
+      <audio id="vo" src="assets/voiceover.wav" data-start="0" data-duration="44.02" data-track-index="20" data-volume="1"></audio>
+
+      <div id="grain-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 100; overflow: hidden">
+        <div class="grain-texture"></div>
+      </div>
+      <style>
+        @keyframes hf-grain-noise {
+          0%, 100% { transform: translate(0, 0); }
+          10% { transform: translate(-5%, -5%); }
+          20% { transform: translate(-10%, 5%); }
+          30% { transform: translate(5%, -10%); }
+          40% { transform: translate(-5%, 15%); }
+          50% { transform: translate(-10%, 5%); }
+          60% { transform: translate(15%, 0); }
+          70% { transform: translate(0, 10%); }
+          80% { transform: translate(-15%, 0); }
+          90% { transform: translate(10%, 5%); }
+        }
+        #grain-overlay .grain-texture {
+          position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+          background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+          opacity: 0.09;
+          animation: hf-grain-noise 0.5s steps(1) infinite;
+        }
+      </style>
+    </div>
+
+    <script>
+      (function () {
+        // seeded QR-like pattern (deterministic)
+        function rng(seed) { return function () { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; }; }
+        function qrSVG(size, seed, color) {
+          const N = 25, m = size / N, r = rng(seed); let rects = "";
+          const finder = (x, y) => x >= 0 && x < 8 && y >= 0 && y < 8;
+          for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) {
+            if (finder(x, y) || finder(x - (N - 8), y) || finder(x, y - (N - 8))) continue;
+            if (r() > 0.52) rects += `<rect x="${x * m}" y="${y * m}" width="${m + 0.4}" height="${m + 0.4}"/>`;
+          }
+          const fp = (x, y) => `<rect x="${x * m}" y="${y * m}" width="${7 * m}" height="${7 * m}"/><rect x="${(x + 1) * m}" y="${(y + 1) * m}" width="${5 * m}" height="${5 * m}" fill="#fff"/><rect x="${(x + 2) * m}" y="${(y + 2) * m}" width="${3 * m}" height="${3 * m}"/>`;
+          return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" fill="${color}" style="display:block">${rects}${fp(0, 0)}${fp(N - 7, 0)}${fp(0, N - 7)}</svg>`;
+        }
+        document.getElementById("qr-wallet").innerHTML = qrSVG(126, 17, "#1a0b2e");
+        document.getElementById("qr-recap").innerHTML = qrSVG(344, 41, "#1a0b2e");
+
+        const tl = gsap.timeline({ paused: true });
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>

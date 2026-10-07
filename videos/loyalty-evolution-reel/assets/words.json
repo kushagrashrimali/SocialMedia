@@ -1,0 +1,477 @@
+[
+{
+"text": "India",
+"start": 0.0,
+"end": 0.42
+},
+{
+"text": "didn't",
+"start": 0.42,
+"end": 0.75
+},
+{
+"text": "stop",
+"start": 0.75,
+"end": 1.08
+},
+{
+"text": "rewarding",
+"start": 1.08,
+"end": 1.55
+},
+{
+"text": "customers.",
+"start": 1.55,
+"end": 2.33
+},
+{
+"text": "Your",
+"start": 2.57,
+"end": 2.7
+},
+{
+"text": "customers",
+"start": 2.7,
+"end": 3.39
+},
+{
+"text": "just",
+"start": 3.39,
+"end": 3.6
+},
+{
+"text": "stopped",
+"start": 3.6,
+"end": 3.86
+},
+{
+"text": "noticing.",
+"start": 3.86,
+"end": 4.54
+},
+{
+"text": "\"Sir,",
+"start": 4.83,
+"end": 5.36
+},
+{
+"text": "mobile",
+"start": 5.36,
+"end": 5.67
+},
+{
+"text": "number?\"",
+"start": 5.67,
+"end": 6.0
+},
+{
+"text": "Businesses",
+"start": 6.3,
+"end": 6.87
+},
+{
+"text": "learned",
+"start": 6.87,
+"end": 7.2
+},
+{
+"text": "to",
+"start": 7.2,
+"end": 7.31
+},
+{
+"text": "remember.",
+"start": 7.31,
+"end": 7.96
+},
+{
+"text": "Every",
+"start": 8.3,
+"end": 8.58
+},
+{
+"text": "visit.",
+"start": 8.58,
+"end": 9.08
+},
+{
+"text": "Every",
+"start": 9.29,
+"end": 9.56
+},
+{
+"text": "purchase.",
+"start": 9.56,
+"end": 10.26
+},
+{
+"text": "Every",
+"start": 10.45,
+"end": 10.8
+},
+{
+"text": "preference.",
+"start": 10.8,
+"end": 11.55
+},
+{
+"text": "And",
+"start": 11.79,
+"end": 11.95
+},
+{
+"text": "WhatsApp",
+"start": 11.95,
+"end": 12.45
+},
+{
+"text": "made",
+"start": 12.45,
+"end": 12.68
+},
+{
+"text": "staying",
+"start": 12.68,
+"end": 13.04
+},
+{
+"text": "connected",
+"start": 13.04,
+"end": 13.75
+},
+{
+"text": "effortless.",
+"start": 13.75,
+"end": 14.49
+},
+{
+"text": "Salons",
+"start": 14.76,
+"end": 15.27
+},
+{
+"text": "remembered",
+"start": 15.27,
+"end": 15.67
+},
+{
+"text": "birthdays",
+"start": 15.67,
+"end": 16.3
+},
+{
+"text": "better",
+"start": 16.3,
+"end": 16.63
+},
+{
+"text": "than",
+"start": 16.63,
+"end": 16.78
+},
+{
+"text": "your",
+"start": 16.78,
+"end": 16.9
+},
+{
+"text": "cousins.",
+"start": 16.9,
+"end": 17.57
+},
+{
+"text": "But",
+"start": 17.8,
+"end": 17.99
+},
+{
+"text": "loyalty",
+"start": 17.99,
+"end": 18.56
+},
+{
+"text": "started",
+"start": 18.56,
+"end": 18.93
+},
+{
+"text": "living",
+"start": 18.93,
+"end": 19.28
+},
+{
+"text": "everywhere.",
+"start": 19.28,
+"end": 20.17
+},
+{
+"text": "An",
+"start": 20.42,
+"end": 20.55
+},
+{
+"text": "SMS.",
+"start": 20.55,
+"end": 21.34
+},
+{
+"text": "A",
+"start": 21.47,
+"end": 21.54
+},
+{
+"text": "chat.",
+"start": 21.54,
+"end": 22.21
+},
+{
+"text": "An",
+"start": 22.21,
+"end": 22.35
+},
+{
+"text": "app",
+"start": 22.35,
+"end": 22.61
+},
+{
+"text": "they",
+"start": 22.61,
+"end": 22.74
+},
+{
+"text": "deleted.",
+"start": 22.74,
+"end": 23.34
+},
+{
+"text": "Another",
+"start": 23.53,
+"end": 23.98
+},
+{
+"text": "app.",
+"start": 23.98,
+"end": 24.29
+},
+{
+"text": "Another",
+"start": 24.74,
+"end": 25.18
+},
+{
+"text": "login.",
+"start": 25.18,
+"end": 25.79
+},
+{
+"text": "What",
+"start": 27.03,
+"end": 27.19
+},
+{
+"text": "if",
+"start": 27.19,
+"end": 27.37
+},
+{
+"text": "loyalty",
+"start": 27.37,
+"end": 27.87
+},
+{
+"text": "didn't",
+"start": 27.87,
+"end": 28.28
+},
+{
+"text": "need",
+"start": 28.28,
+"end": 28.53
+},
+{
+"text": "another",
+"start": 28.53,
+"end": 28.84
+},
+{
+"text": "place?",
+"start": 28.84,
+"end": 29.39
+},
+{
+"text": "It",
+"start": 29.88,
+"end": 29.96
+},
+{
+"text": "already",
+"start": 29.96,
+"end": 30.27
+},
+{
+"text": "has",
+"start": 30.27,
+"end": 30.58
+},
+{
+"text": "one.",
+"start": 30.58,
+"end": 30.9
+},
+{
+"text": "The",
+"start": 31.13,
+"end": 31.22
+},
+{
+"text": "wallet",
+"start": 31.22,
+"end": 31.68
+},
+{
+"text": "on",
+"start": 31.68,
+"end": 31.84
+},
+{
+"text": "their",
+"start": 31.84,
+"end": 31.98
+},
+{
+"text": "phone.",
+"start": 31.98,
+"end": 32.54
+},
+{
+"text": "One",
+"start": 32.78,
+"end": 33.07
+},
+{
+"text": "scan",
+"start": 33.07,
+"end": 33.46
+},
+{
+"text": "at",
+"start": 33.46,
+"end": 33.56
+},
+{
+"text": "your",
+"start": 33.56,
+"end": 33.67
+},
+{
+"text": "counter.",
+"start": 33.67,
+"end": 34.26
+},
+{
+"text": "No",
+"start": 34.47,
+"end": 34.78
+},
+{
+"text": "app.",
+"start": 34.78,
+"end": 35.07
+},
+{
+"text": "Seconds",
+"start": 35.37,
+"end": 35.86
+},
+{
+"text": "after",
+"start": 35.86,
+"end": 36.1
+},
+{
+"text": "they",
+"start": 36.1,
+"end": 36.26
+},
+{
+"text": "pay,",
+"start": 36.26,
+"end": 36.66
+},
+{
+"text": "points",
+"start": 36.81,
+"end": 37.21
+},
+{
+"text": "land",
+"start": 37.21,
+"end": 37.55
+},
+{
+"text": "on",
+"start": 37.55,
+"end": 37.65
+},
+{
+"text": "their",
+"start": 37.65,
+"end": 37.78
+},
+{
+"text": "lock",
+"start": 37.78,
+"end": 38.02
+},
+{
+"text": "screen.",
+"start": 38.02,
+"end": 38.47
+},
+{
+"text": "Now",
+"start": 38.73,
+"end": 39.19
+},
+{
+"text": "they",
+"start": 39.19,
+"end": 39.34
+},
+{
+"text": "notice.",
+"start": 39.34,
+"end": 39.94
+},
+{
+"text": "Whys-tak.",
+"start": 40.74,
+"end": 41.52
+},
+{
+"text": "The",
+"start": 41.73,
+"end": 41.84
+},
+{
+"text": "next",
+"start": 41.84,
+"end": 42.19
+},
+{
+"text": "place",
+"start": 42.19,
+"end": 42.5
+},
+{
+"text": "for",
+"start": 42.5,
+"end": 42.61
+},
+{
+"text": "loyalty.",
+"start": 42.61,
+"end": 43.31
+}
+]
