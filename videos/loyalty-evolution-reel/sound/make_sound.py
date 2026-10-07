@@ -1,9 +1,10 @@
 """Sound effects for the loyalty reel, v5: real recorded sounds, placed subtly.
 
-Every notification is one authentic two-tone phone alert, the payment and the free reward are one clean
+Every notification is one quick three-note ascending chime (the classic phone text-tone shape), the payment and the free reward are one clean
 confirmation ding, the lock is a real switch click, and transitions are soft air whooshes. All samples are
 Mixkit sound effects (Mixkit Sound Effects Free License), kept in assets/sfx-src/ (see assets/MANIFEST.md).
-Only the low thump under the logo is synthesised.
+Synthesised: the Wystak chime (a soft rising shimmer into a glassy FM bell chord with a ping-pong echo)
+and the low thump under the logo.
 
 usage (from the project folder): python3 -I sound/make_sound.py  -> assets/sfx.wav
 """
@@ -70,6 +71,46 @@ def reverb(x, seconds=1.2, wet=0.16, seed=9):
     return x * (1 - wet) + y * wet
 
 
+def wystak_chime():
+    """the sound of Wystak arriving: an airy shimmer rises into a glassy, slightly detuned FM bell chord
+    (E major add9, arpeggiated upward), with a soft digital pitch settle and a ping-pong echo. Subtle, bright, future."""
+    d = 3.4
+    t = T(d)
+    out = np.zeros((len(t), 2))
+    # 1 · reverse shimmer swell into the hit (0.0-0.45s)
+    sw = T(0.45)
+    air = filt(rng.standard_normal(len(sw)), "band", [3500, 11000]) * (sw / sw[-1]) ** 2.6 * 0.35
+    for c in range(2):
+        out[:len(sw), c] += air
+    hit = len(sw)
+    # 2 · FM glass bells, arpeggiated upward, each settling in pitch from slightly sharp
+    notes = [(76, 0.00, -0.35, 1.0), (83, 0.045, 0.3, 0.8), (88, 0.09, -0.15, 0.62), (90, 0.135, 0.4, 0.5), (95, 0.19, 0.0, 0.32)]
+    for n, dt, pan, g in notes:
+        tb = T(d - 0.45 - dt)
+        f = 440 * 2 ** ((n - 69) / 12) * (1 + 0.012 * np.exp(-tb / 0.05))      # digital settle from +20 cents
+        idx = 2.6 * np.exp(-tb / 0.18) + 0.25                                    # bright attack, glassy tail
+        mod = np.sin(2 * np.pi * np.cumsum(f * 3.51) / SR)                     # inharmonic ratio: glass
+        car = np.sin(2 * np.pi * np.cumsum(f) / SR + idx * mod)
+        car2 = np.sin(2 * np.pi * np.cumsum(f * 1.003) / SR + idx * 0.8 * mod)  # slow beating shimmer
+        env = (1 - np.exp(-tb / 0.004)) * np.exp(-tb / 1.1)
+        b = (0.6 * car + 0.4 * car2) * env * g
+        i0 = hit + int(dt * SR)
+        lg, rg = np.cos((pan + 1) * np.pi / 4) * np.sqrt(2), np.sin((pan + 1) * np.pi / 4) * np.sqrt(2)
+        out[i0:i0 + len(b), 0] += b * lg
+        out[i0:i0 + len(b), 1] += b * rg
+    # 3 · a soft sine an octave below for body
+    tb = T(d - 0.45)
+    out[hit:, :] += (np.sin(2 * np.pi * 329.63 * tb) * (1 - np.exp(-tb / 0.02)) * np.exp(-tb / 0.9) * 0.18)[:, None]
+    out = filt(out, "high", 180)
+    # 4 · ping-pong echo, darker each repeat
+    wet = np.zeros_like(out)
+    for k, (dl, g) in enumerate(((0.21, 0.32), (0.42, 0.2), (0.63, 0.12))):
+        i = int(dl * SR)
+        src = filt(out[:-i], "low", 7000 - 1500 * k)
+        wet[i:, (k + 1) % 2] += src[:, k % 2] * g
+    return out + wet
+
+
 def thump():
     t = T(1.2)
     f = 38 + 42 * np.exp(-t / 0.07)
@@ -77,7 +118,7 @@ def thump():
 
 
 # the palette
-NOTIF = lambda: smp(2867, 0.0, 0.62)            # two-tone phone alert
+NOTIF = lambda: smp(766, 0.0, 0.95) * 0.63      # quick three-note ascending chime (matched to the old alert level)
 DING = lambda: smp(2870, 0.0, 1.1)              # clean confirmation ding (paid, reward unlocked)
 LOCK = lambda: smp(2585, 0.0, 0.12)             # side-button click
 TAP = lambda: smp(2568, 0.0, 0.12)              # soft UI tap
@@ -133,8 +174,8 @@ for i in range(4):
     P(TICK(), 28.95 + i * 0.14, 0.14)                              # OTP
 P(LOCK(), 29.58, 0.5)                                              # click. silence.
 # the introduction: one bell, low room tone, the light across the mark
-P(BELL(), 30.1, 0.34)
-P(HUM(), 30.15, 0.10)
+P(wystak_chime(), 30.12 - 0.45, 0.10)                              # the Wystak chime lands with the mark
+P(HUM(), 30.15, 0.08)
 P(SWEEP(), 30.3, 0.05)                                             # the wordmark wipes on
 P(BREATH()[: int(1.4 * SR)], 31.78, 0.12)                          # the lockup flies into the rising phone
 for i in range(6):
@@ -155,8 +196,10 @@ for i in range(9):
     P(TICK(), 43.1 + i * 0.09, 0.05 + 0.006 * i)                    # points counting up
 P(DING(), 43.9, 0.2)                                               # free cappuccino
 P(WIND(), 44.1, 0.11)                                              # leak into the montage
-for t, p in ((44.6, -0.2), (45.36, 0.2), (46.02, 0.0)):
-    P(NOTIF(), t, 0.34, p)                                         # every category, one stack
+P(SWEEP(), 44.46, 0.09, -0.2)                                      # every category's pass deals into one stack
+for i in range(5):
+    P(TICK(), 44.62 + i * 0.08, 0.06, (i - 2) * 0.2)
+P(TAP(), 44.98, 0.12)                                              # the Cafe Aroma pass settles on top
 P(ZOOM(), 45.08, 0.08, 0.3); P(ZOOM(), 45.81, 0.08, -0.3)
 P(BREATH()[: int(0.9 * SR)], 45.9, 0.10)                           # the frame blows out to white
 P(BELL(), 46.64, 0.30); P(thump(), 46.64, 0.16)                    # the logo

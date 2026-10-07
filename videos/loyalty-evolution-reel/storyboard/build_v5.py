@@ -241,8 +241,9 @@ for k, (vid, f, t0, t1, cin, cout) in enumerate(SHOTS):
     videos_html.append(f'      <video id="{vid}" class="clip media" src="assets/footage/{f}.mp4" data-start="{t0}" data-duration="{round(end - t0, 3)}" data-track-index="{k % 2 * 3}" muted playsinline></video>')
     foot_js.append([vid, t0, round(end, 3), cin, cout])
 videos_html = "\n".join(videos_html)
-NSTACK = [("ns1", 44.6, "<b>Live Pass</b> · +120 points added."), ("ns2", 45.36, "<b>Club Night</b> · +80 points added."),
-          ("ns3", 46.02, "<b>Cafe Aroma</b> · Free cappuccino unlocked.")]
+# the ending's Wallet stack: every category's pass, the Cafe Aroma pass on top
+WSTACK = ("".join(f'<div class="ws-card" style="top:{i * 54}px;background:{bg}"><b>{name}</b><em>{kind}</em></div>' for i, (name, kind, bg) in enumerate(PASSES))
+          + f'<div id="wsPass" style="top:{len(PASSES) * 54}px"><img src="assets/ui/pass-apple.png" alt=""><i class="gs"></i></div>')
 
 S = {}  # v4.1: the people beats are real footage now (see the <video> elements in v4_template.html)
 TPL = (HERE / "v5_template.html").read_text()
@@ -257,8 +258,7 @@ rep = {
     "%%PH_N%%": phone3d("pwN", lock_screen(), notif("nN", WALLET_ICON(48), "Wallet", "now", "<b>Cafe Aroma</b> · +18 points. 150 of 150: your free cappuccino is ready.", "hero onlock")),
     "%%NG1%%": notif("nG1", app_icon("whatsapp", 64), "Cafe Aroma", "9:00", "Happy birthday, Aarav! Your next coffee is on us today.", "float"),
     "%%NG2%%": notif("nG2", app_icon("whatsapp", 64), "Cousins", "6:45 pm", "Rohan: wait, whose birthday is it today?", "float"),
-    "%%NSTACK%%": "".join(notif(i, WALLET_ICON(64), "Wallet", "now", body, "float") for i, _, body in NSTACK),
-    "%%NS_JS%%": json.dumps([[i, t] for i, t, _ in NSTACK]),
+    "%%WSTACK%%": WSTACK,
     "%%VIDEOS%%": videos_html, "%%FOOT_JS%%": json.dumps(foot_js), "%%LEAKS%%": " ".join(f"leak({t});" for t in LEAKS),
     "%%FRAGS%%": frag_html, "%%FRAG_JS%%": frag_js, "%%CHIPS%%": chips_html,
     "%%WALLET_ICON%%": WALLET_ICON(64), "%%GWALLET_ICON%%": GWALLET_ICON(64),

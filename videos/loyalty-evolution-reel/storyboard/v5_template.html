@@ -194,8 +194,18 @@
       .g-card { position: absolute; left: 14px; right: 14px; height: 200px; border-radius: 22px; padding: 16px 20px; color: #fff; }
       .g-card b { font: 600 17px/1 "Inter Tight"; letter-spacing: 0.01em; }
       /* the "now they notice" stack: one pile of passes, growing across categories */
-      #nstack { position: absolute; left: 90px; right: 90px; top: 230px; transform-style: preserve-3d; }
-      #nstack .nt.float { position: absolute; left: 0; right: 0; top: 0; }
+      /* the ending: no more notifications, just the Wallet stack itself, floating */
+      #wst { position: absolute; left: 300px; top: 190px; width: 480px; height: 880px; transform-style: preserve-3d; }
+      .ws-card { position: absolute; left: 0; width: 480px; height: 300px; border-radius: 22px; padding: 18px 22px; color: #fff;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 -6px 18px rgba(0, 0, 0, 0.18), 0 24px 40px -18px rgba(0, 0, 0, 0.5); }
+      .ws-card b { font: 700 17px/1 "Inter Tight"; letter-spacing: 0.12em; }
+      .ws-card em { position: absolute; right: 22px; top: 19px; font: 600 15px/1 "Inter Tight"; font-style: normal; letter-spacing: 0.06em; opacity: 0.75; }
+      #wsPass { position: absolute; left: 0; width: 480px; display: block; border-radius: 22px; overflow: hidden;
+        box-shadow: 0 -8px 22px rgba(0, 0, 0, 0.22), 0 50px 80px -30px rgba(0, 0, 0, 0.65); }
+      #wsPass img { width: 100%; display: block; }
+      #wsPass .gs { position: absolute; top: -40%; bottom: -40%; left: 0; width: 34%; background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.45) 50%, rgba(255, 255, 255, 0) 100%); transform: translateX(-160%) skewX(-16deg); }
+      .wsl { position: absolute; top: 1110px; display: flex; align-items: center; gap: 16px; }
+      .wsl b { font: 700 34px/1 "Inter Tight"; letter-spacing: -0.02em; color: #fff; text-shadow: 0 2px 16px rgba(0, 0, 0, 0.45); }
 
       /* ---------- captions: one family, words pop on their spoken time ---------- */
       #caps { position: absolute; inset: 0; z-index: 80; pointer-events: none; }
@@ -328,7 +338,9 @@
       <!-- O · now they notice -->
       <div id="sO" class="scene clip" data-start="44.42" data-duration="2.2" data-track-index="2">
         <div class="shade-b"></div>
-        <div class="stage"><div id="nstack">%%NSTACK%%</div></div>
+        <div class="stage"><div id="wst">%%WSTACK%%</div></div>
+        <div class="wsl" id="wslA" style="left:150px">%%WALLET_ICON%%<b>Apple Wallet</b></div>
+        <div class="wsl" id="wslG" style="left:570px">%%GWALLET_ICON%%<b>Google Wallet</b></div>
       </div>
 
       <!-- P · end card: logo + tagline only -->
@@ -349,7 +361,7 @@
 
       <audio id="vo" src="assets/voiceover.wav" data-start="0" data-duration="%%DUR%%" data-track-index="20" data-volume="1"></audio>
       <audio id="bed" src="assets/music-bed.wav" data-start="0" data-duration="%%DUR%%" data-track-index="21" data-volume="0.8"></audio>
-      <audio id="sfx" src="assets/sfx.wav" data-start="0" data-duration="%%DUR%%" data-track-index="22" data-volume="0.4"></audio>
+      <audio id="sfx" src="assets/sfx.wav" data-start="0" data-duration="%%DUR%%" data-track-index="22" data-volume="0.45"></audio>
 
       <div id="grain-overlay" style="position:absolute;inset:0;pointer-events:none;z-index:100;overflow:hidden"><div class="grain-texture"></div></div>
       <style>
@@ -578,15 +590,12 @@
         sceneOut("#sN", 44.33, 0.47);
 
         // ---------- O · now they notice ----------
-        // one pile of passes growing across categories: each new push lands on top, the older ones tuck behind
-        const NS = %%NS_JS%%;
-        NS.forEach(([id, t], i) => {
-          materialise(`#${id}`, t, { rotationY: -8 });
-          for (let j = i + 1; j < NS.length; j++) {
-            const d = j - i;
-            tl.to(`#${id}`, { y: d * 34, z: -d * 60, scale: 1 - d * 0.06, opacity: 1 - d * 0.28, rotationX: 4, duration: 0.45, ease: "power3.out" }, NS[j][1]);
-          }
-        });
+        // the Wallet itself, no notifications: every category's pass deals into one stack and turns slowly in the light
+        tl.fromTo("#wst", { rotationY: -16, rotationX: 12 }, { rotationY: 8, rotationX: 4, duration: 2.3, ease: "sine.inOut" }, 44.4);
+        tl.fromTo("#wst .ws-card, #wsPass", { opacity: 0, y: 520, z: 260, rotationX: -34 }, { opacity: 1, y: 0, z: 0, rotationX: 0, duration: 0.7, ease: "expo.out", stagger: 0.08 }, 44.48);
+        focus("#wsPass", 44.8, 12, 0.4);
+        tl.fromTo("#wsPass .gs", { xPercent: -160 }, { xPercent: 420, duration: 1.0, ease: "power2.inOut" }, 45.3);
+        tl.fromTo("#wslA, #wslG", { opacity: 0, y: 26, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "back.out(1.8)", stagger: 0.08 }, 45.05);
 
         // ---------- P · logo + tagline, held ----------
         tl.fromTo("#fadeP", { opacity: 1 }, { opacity: 0, duration: 0.5, ease: "power1.out" }, 46.62);
