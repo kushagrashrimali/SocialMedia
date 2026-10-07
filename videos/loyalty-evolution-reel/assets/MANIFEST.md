@@ -7,31 +7,37 @@ Licences:
 - Unsplash License: https://unsplash.com/license (commercial use, no attribution required)
 - CC0 1.0: https://creativecommons.org/publicdomain/zero/1.0/
 
-## Video
+## Video (v3)
 
 | File | Time | Source | Licence | Notes |
 |---|---|---|---|---|
-| footage/scan-at-counter.mp4 | 37.05–39.55s | Composite: Mixkit 42636 "Chroma on a smartphone with a green screen background" (https://mixkit.co/free-stock-video/chroma-on-a-smartphone-with-a-green-screen-background-42636/) over `stills/cafe-interior.jpg`, lightly blurred | Mixkit Free + Unsplash | Screen replaced with `ui/screen-scan.png` (`storyboard/composite_phone.py`, --blur 5 --dim 1.0); source 0.3–2.8s |
-| footage/pay-at-counter.mp4 | 39.55–41.15s | Composite: Mixkit 42636 over `stills/counter-kiosk.jpg` | Mixkit Free + Unsplash | Screen replaced with `ui/screen-pay.png`; source 2.2–3.8s |
+| footage/v3-open.mp4 | 0–2.72s | https://mixkit.co/free-stock-video/ (Mixkit 41220, "Young woman drinking a cup of coffee in a cafe"), file https://assets.mixkit.co/videos/41220/41220-2160.mp4 | Mixkit Free | 4K source, cropped 9:16, warm grade baked (`storyboard/prep_v3.py`); source 9.0s +2.75s |
+| footage/v3-pay.mp4 | 5.32–9.12s | https://mixkit.co/free-stock-video/ (Mixkit 41222, "Two girls chatting at the counter of a coffee shop"), file https://assets.mixkit.co/videos/41222/41222-2160.mp4 | Mixkit Free | 4K source, cropped 9:16, warm grade baked (`storyboard/prep_v3.py`); source 1.0s +3.85s |
+| footage/v3-barista.mp4 | 9.12–11.28s | https://mixkit.co/free-stock-video/ (Mixkit 205, "A waiter serves coffee to a customer"), file https://assets.mixkit.co/videos/205/205-2160.mp4 | Mixkit Free | 4K source, cropped 9:16, warm grade baked (`storyboard/prep_v3.py`); source 1.0s +2.2s |
+| footage/v3-walkin.mp4 | 11.28–12.38s | https://mixkit.co/free-stock-video/ (Mixkit 39948, "Couple walking into a romantic cafe on a date"), file https://assets.mixkit.co/videos/39948/39948-2160.mp4 | Mixkit Free | 4K source, cropped 9:16, warm grade baked (`storyboard/prep_v3.py`); source 2.6s +1.15s |
+| footage/v3-purchase.mp4 | 12.38–13.48s | https://mixkit.co/free-stock-video/ (Mixkit 41229, "Two girls choosing at the counter in a coffee shop"), file https://assets.mixkit.co/videos/41229/41229-2160.mp4 | Mixkit Free | 4K source, cropped 9:16, warm grade baked (`storyboard/prep_v3.py`); source 1.6s +1.15s |
+| footage/v3-pour.mp4 | 13.48–14.88s | https://mixkit.co/free-stock-video/ (Mixkit 41859, "Serving a sparkling cappuccino in a cup"), file https://assets.mixkit.co/videos/41859/41859-2160.mp4 | Mixkit Free | 4K source, cropped 9:16, warm grade baked (`storyboard/prep_v3.py`); source 2.6s +1.45s |
+| footage/v3-notice.mp4 | 43.42–45.62s | https://mixkit.co/free-stock-video/ (Mixkit 43257, "Friends looking at social networks in the cafe"), file https://assets.mixkit.co/videos/43257/43257-2160.mp4 | Mixkit Free | 4K source, cropped 9:16, warm grade baked (`storyboard/prep_v3.py`); source 4.6s +2.25s |
+| footage/scan-at-counter.mp4 | 37.12–39.62s | Composite: Mixkit 42636 "Chroma on a smartphone with a green screen background" over `stills/counter-long.jpg` | Mixkit Free + Unsplash | Screen replaced with `ui/screen-scan.png` (`storyboard/composite_phone.py`, --blur 6 --dim 1.0); source 0.3–2.8s |
+| footage/pay-at-counter.mp4 | 39.62–41.24s | Composite: Mixkit 42636 over `stills/cafe-india.jpg` | Mixkit Free + Unsplash | Screen `ui/screen-pay.png`; source 2.2–3.82s |
 
-## Stills (Unsplash License)
+## Stills (Unsplash License; bg-* are cropped 9:16 and lightly blurred as depth of field behind the phones)
 
-| File | Use | Page | Direct file | Licence |
-|---|---|---|---|---|
-| stills/cafe-interior.jpg | 0–2.7s; also the blurred ground of the scan composite | https://unsplash.com/photos/B2pVVV9Ee-o | https://images.unsplash.com/photo-1590741861173-85035e8af62c | Unsplash |
-| stills/cappuccino-hand.jpg | 2.7–5.25s | https://unsplash.com/photos/TMkrYpWW7kc | https://images.unsplash.com/photo-1550731358-491ded4af838 | Unsplash |
-| stills/pos-counter.jpg | 5.25–9.05s, behind the drawn customer card | https://unsplash.com/photos/aCkaR5G4Zd4 | https://images.unsplash.com/photo-1602665742701-389671bc40c0 | Unsplash |
-| stills/boutique-desk.jpg | 9.05–11.2s (Ishan Sharma, Ajmer) | https://unsplash.com/photos/6gZMN5UZJXU | https://images.unsplash.com/photo-1788953324777-3d98984c0fa0 | Unsplash |
-| stills/woman-counter.jpg | 11.2–12.4s | https://unsplash.com/photos/GMUbpaCjYSc | https://images.unsplash.com/photo-1790156591288-13a255334cd8 | Unsplash |
-| stills/latte-pour.jpg | 12.4–13.55s; strip image on the Cafe Aroma pass | https://unsplash.com/photos/OFdqt1ECako | https://images.unsplash.com/photo-1670404161009-29548c027d06 | Unsplash |
-| stills/flatwhite-pour.jpg | 13.55–14.8s | https://unsplash.com/photos/UBoH66BA48c | https://images.unsplash.com/photo-1670819916940-2db70584e3fc | Unsplash |
-| stills/birthday-cake.jpg | 18.1–21.35s | https://unsplash.com/photos/B8bzPWEHUDQ | https://images.unsplash.com/photo-1784638865161-f2b825d815db | Unsplash |
-| stills/counter-kiosk.jpg | blurred ground of the pay composite | https://unsplash.com/photos/5-39xoKn6ws | https://images.unsplash.com/photo-1790156591139-e460a7658661 | Unsplash |
-| stills/barista-modern.jpg | spare, not on screen | https://unsplash.com/photos/TezASx9giqU | https://images.unsplash.com/photo-1745347455714-fdfc711ec593 | Unsplash |
+| File | Scene | Page | Direct file | Author | Licence |
+|---|---|---|---|---|---|
+| bg-table | B, I | https://unsplash.com/photos/pezwxLK99zA | https://images.unsplash.com/photo-1636875485729-02ec3ec9091c | Valeriia Svitlini | Unsplash |
+| bg-counter | F, N | https://unsplash.com/photos/tvdN_53_iK8 | https://images.unsplash.com/photo-1635847420403-d03e037078a0 | Marie G. | Unsplash |
+| bg-window | H, K | https://unsplash.com/photos/2BI6mino4eY | https://images.unsplash.com/photo-1762304817469-1d6c808324ee | Bill Ringer | Unsplash |
+| counter-long | scan composite ground | https://unsplash.com/photos/djqAK4rP-G8 | https://images.unsplash.com/photo-1780404197319-14f7b0d63697 | Haberdoedas | Unsplash |
+| cafe-india | pay composite ground | https://unsplash.com/photos/81LMj3heZEs | https://images.unsplash.com/photo-1753541042293-5cbd98583db0 | Ashwin N | Unsplash |
+| birthday | G | https://unsplash.com/photos/B8bzPWEHUDQ | https://images.unsplash.com/photo-1784638865161-f2b825d815db | see page | Unsplash |
+| ui/aroma-strip, ui/aroma-hero | Cafe Aroma pass strip | https://unsplash.com/photos/LI8inyHnm_A | https://images.unsplash.com/photo-1611564494260-6f21b80af7ea | Robbie Down | Unsplash |
 
-## App and wallet marks
+## Drawn for this reel
 
-The user asked for WhatsApp, Instagram, Messages and other apps to appear as app icons, and for "Add to Apple Wallet" and "Add to Google Wallet" badges. The glyphs come from simple-icons (CC0, `storyboard/icons.json`); the badges and wallet glyphs are drawn in code at equal size.
+- `ui/pass-apple.png`, `ui/pass-google.png`: the Cafe Aroma Wallet passes (`storyboard/card/cards.html`, `render.sh`).
+- `ui/wallpaper-brand.jpg`: phone wallpaper in Wystak's navy, plum and teal (generated).
+- App glyphs from simple-icons (CC0, `storyboard/icons.json`): WhatsApp, Instagram, Messages, Facebook, Telegram, Gmail, YouTube, Snapchat, X, as the user asked; the wallet badges are drawn at equal size.
 
 ## Made for this reel (no third-party rights)
 

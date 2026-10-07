@@ -214,10 +214,10 @@ for k, v in S.items():
 T = {
     "tA": type_block("tA", [("sans", "India never stopped", 82), ("serif", "rewarding.", 196)], 1150),
     "tB": type_block("tB", [("sans", "Customers stopped", 80), ("serif", "noticing.", 184)], 210, "light"),
-    "tC": type_block("tC", [("sans", "Every counter started", 76), ("serif", "collecting data.", 150), ("kick", "+ not just cash", 26)], 1150),
+    "tC": type_block("tC", [("sans", "Every counter started", 76), ("serif", "collecting data.", 150), ("kick", "+ not just cash", 32)], 1150),
     "tD": type_block("tD", [("sans", "Businesses learned", 80), ("serif", "to remember.", 180)], 1170),
     "tF": type_block("tF", [("sans", "Staying connected", 80), ("serif", "got effortless.", 156)], 210, "light"),
-    "tG": type_block("tG", [("kick", "Cafés remembered birthdays", 26), ("serif", "better than", 150), ("serif", "your cousins.", 150)], 1110),
+    "tG": type_block("tG", [("kick", "Cafés remembered birthdays", 30), ("serif", "better than", 150), ("serif", "your cousins.", 150)], 1110),
     "tI": type_block("tI", [("kick", "Loyalty lived in", 30)], 230, "light"),
     "tJ": type_block("tJ", [("sans", "What if loyalty didn't need", 62), ("serif", "another place?", 168)], 210, "light"),
     "tK": type_block("tK", [("sans", "It already has a home.", 76), ("serif", "Their wallet.", 176)], 200, "light"),

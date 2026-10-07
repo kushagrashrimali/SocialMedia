@@ -24,18 +24,16 @@ The full creative brief from the user is in the conversation that made `wystak/s
 - assets/footage/, assets/stills/ — licensed stock and archival media; every file is listed in `assets/MANIFEST.md` with source, URL and licence.
 - assets/music-bed.wav, assets/sfx.wav — synthesised locally (`sound/make_sound.py`); the bed is carved under the voice (hyperframes-audio carve, strength 0.6).
 
-## Customizations (v2, user feedback on the first cut)
+## Customizations (v3, art-directed cut)
 
-- New script and new ElevenLabs take (51.39s after regapping); timings in `assets/words.json`.
-- Running captions, a phrase at a time, each word lighting gold as it is spoken (generated from the word timings).
-- Slower opening: two held shots over the first five seconds, fading up from black.
-- "Sir, mobile number?" is gone; "Every counter started collecting data" shows a drawn customer card over a POS counter.
-- Premium, bright café photography (Unsplash) in place of the archival and chai stills; every phone sits on a bright ground.
-- The fictional café is now **Cafe Aroma**, with a premium espresso-and-gold wallet pass.
-- The social-media line shows WhatsApp, Instagram, Messages and other apps popping in as app icons with unread badges (requested by the user).
-- "Add to Apple Wallet" and "Add to Google Wallet" badges, equal size, from "No app." (38.9s) through the payment, again on "Now they notice", and on the end card.
-- A held end card (45.6–51.4s): logo mark, wordmark, then ALL YOUR PASSES. / ONE STACK. on their words.
-- Build: `python3 storyboard/build_index.py`, then the carve (`carve.mjs --bed bed --voice vo --strength 0.6`), then render.
+- Type is art direction, not subtitles: Inter Tight (statements), Instrument Serif italic (the accent word), JetBrains Mono (data labels), cream/mint on footage and navy/plum/teal on bright grounds, lines rising out of masks. Short phrases, not the voiceover word for word. No boxes.
+- Real 4K café footage (Mixkit) cropped 9:16 with one shared warm grade; bright, softly blurred café photographs behind every phone.
+- Phone choreography after the first cut: notifications stacking iOS-style, a 13-ping cascade on "everywhere", one phone moving through SMS, chat, a deleted app, an App Store page and an OTP login, a clean lock screen in the silence, the Wallet push with the camera leaning in.
+- Cafe Aroma passes redesigned as real Apple Wallet store card and Google Wallet loyalty card (`storyboard/card/`); they land in an iPhone and an Android phone side by side (equal weight).
+- Add to Apple Wallet / Google Wallet badges on "No app." through the payment (38.9–41.2s).
+- End card: the Wystak logo and tagline only.
+- Sound at the first cut's density: tanpura, pads, kalimba and pulse; pings, shutters, card slides, the cascade and impact, riser, lock click, silence, one ding, the Wallet chime, logo bells.
+- Build: `python3 storyboard/build_v3.py`, then the carve (`carve.mjs --bed bed --voice vo --strength 0.6`), then render.
 
 ## Notes
 

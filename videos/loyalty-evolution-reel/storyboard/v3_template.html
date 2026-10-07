@@ -39,7 +39,8 @@
       .t.light { color: var(--navy); }
       .t.light .serif { color: var(--plum); }
       .t.light .kick { color: #0b6e6b; font-weight: 600; }
-      .t .sw { position: absolute; left: 0; top: 0; }
+      .t .sw { position: absolute; left: 0; top: 0; opacity: 0; }
+      #iS2, #iS3, #iS4, #iS5 { opacity: 0; }
       .giant { position: absolute; left: -40px; right: -40px; text-align: center; font-family: "Instrument Serif", serif; font-style: italic; font-size: 232px; line-height: 1; letter-spacing: -0.035em; color: var(--plum); overflow: hidden; padding: 0.04em 0 0.12em; }
       .giant span { display: inline-block; }
 
@@ -65,8 +66,8 @@
 
       /* lock screen */
       .scr.lock { background: #071230 url("assets/ui/wallpaper-brand.jpg") center / cover; }
-      .ldate { position: absolute; left: 0; right: 0; top: 92px; text-align: center; font: 600 22px/1 "Inter Tight"; color: rgba(255, 255, 255, 0.86); }
-      .ltime { position: absolute; left: 0; right: 0; top: 118px; text-align: center; font: 600 136px/1 "Inter Tight"; letter-spacing: -0.05em; color: rgba(255, 255, 255, 0.96); }
+      .ldate { position: absolute; left: 0; right: 0; top: 80px; text-align: center; font: 600 22px/1 "Inter Tight"; color: rgba(255, 255, 255, 0.86); }
+      .ltime { position: absolute; left: 0; right: 0; top: 122px; text-align: center; font: 600 136px/1 "Inter Tight"; letter-spacing: -0.05em; color: rgba(255, 255, 255, 0.96); }
       .lbtn { position: absolute; bottom: 46px; width: 62px; height: 62px; border-radius: 50%; background: rgba(20, 20, 32, 0.42); display: flex; align-items: center; justify-content: center; z-index: 30; }
       .sleep { position: absolute; inset: 0; background: #000; opacity: 0; z-index: 35; }
       .nlist { position: absolute; left: 0; right: 0; top: 470px; bottom: 120px; overflow: hidden; -webkit-mask-image: linear-gradient(to bottom, #000 82%, transparent 100%); }
@@ -79,7 +80,7 @@
       .nt.hero { padding: 18px 18px 19px; border-radius: 30px; }
       .nt.hero .nh { font-size: 19px; }
       .nt.hero .nx { font-size: 18.5px; }
-      .nt.banner { top: 56px; z-index: 32; }
+      .nt.banner { top: 56px; z-index: 32; background: rgba(248, 248, 251, 0.98); }
       .nt.float { left: 90px; right: 90px; padding: 24px 26px 26px; border-radius: 38px; gap: 18px; background: rgba(250, 249, 252, 0.93); box-shadow: 0 30px 60px -24px rgba(0, 0, 0, 0.55); }
       .nt.float .nh { font-size: 27px; }
       .nt.float .nh span { font-size: 22px; }
@@ -412,21 +413,31 @@
         kick("tI", 0, 24.14);
         const SW = %%SWAP_JS%%;
         SW.forEach(([w, t], i) => {
+          tl.set(`#sw${i}`, { opacity: 1 }, t);
           tl.fromTo(`#sw${i} > span`, { yPercent: 118 }, { yPercent: 0, duration: 0.6, ease: "power4.out" }, t);
           const end = i + 1 < SW.length ? SW[i + 1][1] - 0.06 : 29.45;
           tl.to(`#sw${i} > span`, { yPercent: -118, duration: 0.32, ease: "power3.in" }, end - 0.26);
+          tl.set(`#sw${i}`, { opacity: 0 }, end + 0.07);
         });
+        tl.set("#iS2", { opacity: 1 }, 25.18);
+        tl.set("#iS1", { opacity: 0 }, 25.66);
         tl.fromTo("#iS2", { xPercent: 100 }, { xPercent: 0, duration: 0.45, ease: "power3.inOut" }, 25.18);
         tl.to("#iS1", { xPercent: -30, duration: 0.45, ease: "power3.inOut" }, 25.18);
-        tl.fromTo("#iS3", { opacity: 0 }, { opacity: 1, duration: 0.25 }, 26.04);
+        tl.set("#iS3", { opacity: 1 }, 26.04);
+        tl.set("#iS2", { opacity: 0 }, 26.3);
+        
         tl.fromTo("#delIcon", { rotation: -3.5 }, { rotation: 3.5, duration: 0.1, repeat: 5, yoyo: true, ease: "sine.inOut" }, 26.12);
         tl.fromTo("#delMenu", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.28, ease: "back.out(1.6)" }, 26.2);
         tl.to("#delMenu .red", { backgroundColor: "#e3e3e8", duration: 0.1 }, 26.58);
         tl.to("#delMenu", { opacity: 0, duration: 0.2 }, 26.7);
         tl.to("#delIcon", { scale: 0, opacity: 0, duration: 0.36, ease: "back.in(1.8)" }, 26.74);
+        tl.set("#iS4", { opacity: 1 }, 27.4);
+        tl.set("#iS3", { opacity: 0 }, 27.88);
         tl.fromTo("#iS4", { xPercent: 100 }, { xPercent: 0, duration: 0.45, ease: "power3.inOut" }, 27.4);
         tl.to("#getBtn", { scale: 0.9, duration: 0.09, yoyo: true, repeat: 1 }, 27.92);
         tl.to("#getBtn", { backgroundColor: "#e5e5ea", color: "#0a84ff", duration: 0.15 }, 28.1);
+        tl.set("#iS5", { opacity: 1 }, 28.38);
+        tl.set("#iS4", { opacity: 0 }, 28.86);
         tl.fromTo("#iS5", { xPercent: 100 }, { xPercent: 0, duration: 0.45, ease: "power3.inOut" }, 28.38);
         tl.fromTo("#iS5 .dg", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.12, stagger: 0.14 }, 28.95);
 
