@@ -60,18 +60,29 @@
       .sleep { position: absolute; inset: 0; background: #000; opacity: 0; z-index: 35; }
 
       /* notifications live in front of the glass */
-      .nt { position: absolute; left: 12px; right: 12px; top: 0; border-radius: 26px; background: rgba(248, 248, 251, 0.96); padding: 14px 16px 15px; display: flex; gap: 12px; align-items: flex-start;
-        box-shadow: 0 26px 40px -18px rgba(24, 10, 52, 0.55), 0 2px 6px rgba(24, 10, 52, 0.12); }
+      /* Liquid Glass: frosted, refracting, a bright edge catching the light, vibrant white type */
+      .nt { position: absolute; left: 12px; right: 12px; top: 0; border-radius: 28px; padding: 14px 16px 15px; display: flex; gap: 12px; align-items: flex-start; overflow: hidden; color: #fff;
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.30) 0%, rgba(255, 255, 255, 0.10) 46%, rgba(255, 255, 255, 0.18) 100%), rgba(26, 18, 52, 0.48);
+        -webkit-backdrop-filter: blur(26px) saturate(190%); backdrop-filter: blur(26px) saturate(190%);
+        border: 1px solid rgba(255, 255, 255, 0.42);
+        box-shadow: inset 0 1.5px 0 rgba(255, 255, 255, 0.78), inset 0 -1px 0 rgba(255, 255, 255, 0.16), inset 1.5px 0 0 rgba(255, 255, 255, 0.22), inset 0 0 24px rgba(255, 255, 255, 0.06),
+          0 30px 46px -20px rgba(10, 4, 30, 0.6), 0 3px 10px rgba(10, 4, 30, 0.2); }
+      .nt::before { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+        background: radial-gradient(120% 90% at 0% 0%, rgba(255, 255, 255, 0.32) 0%, rgba(255, 255, 255, 0) 45%), linear-gradient(180deg, rgba(255, 255, 255, 0) 70%, rgba(255, 255, 255, 0.10) 100%); }
+      .nt .gs { position: absolute; top: -60%; bottom: -60%; left: 0; width: 38%; pointer-events: none; z-index: 2;
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 100%); transform: translateX(-160%) skewX(-18deg); }
+      .nt > .ai, .nt > .nb { position: relative; z-index: 1; }
       .nt.onlock { top: 520px; }
       .nb { flex: 1; min-width: 0; }
-      .nh { display: flex; justify-content: space-between; align-items: baseline; font: 600 17px/1.2 "Inter Tight"; color: #111; }
-      .nh span { font-weight: 400; font-size: 14.5px; color: #6e6e73; }
-      .nx { font: 400 16.5px/1.3 "Inter Tight"; color: #1c1c1e; margin-top: 2px; }
+      .nh { display: flex; justify-content: space-between; align-items: baseline; font: 700 17px/1.2 "Inter Tight"; color: #fff; letter-spacing: 0.005em; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.18); }
+      .nh span { font-weight: 500; font-size: 14.5px; color: rgba(255, 255, 255, 0.72); }
+      .nx { font: 500 16.5px/1.3 "Inter Tight"; color: rgba(255, 255, 255, 0.94); margin-top: 2px; letter-spacing: 0.005em; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.18); }
+      .nx b { color: #fff; }
       .nt.hero { padding: 18px 18px 19px; border-radius: 30px; }
       .nt.hero .nh { font-size: 19px; }
       .nt.hero .nx { font-size: 18.5px; }
       .nt.banner { top: 56px; }
-      .nt.float { position: relative; left: 0; right: 0; padding: 24px 26px 26px; border-radius: 38px; gap: 18px; box-shadow: 0 40px 70px -26px rgba(0, 0, 0, 0.6); }
+      .nt.float { position: relative; left: 0; right: 0; padding: 24px 26px 26px; border-radius: 40px; gap: 18px; }
       .nt.float .nh { font-size: 27px; }
       .nt.float .nh span { font-size: 22px; }
       .nt.float .nx { font-size: 27px; line-height: 1.28; }
@@ -127,6 +138,8 @@
       .gw-h { position: absolute; left: 24px; right: 24px; top: 66px; display: flex; justify-content: space-between; align-items: center; font: 500 30px "Inter Tight"; color: #1f1f1f; }
       .gw-h i { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #5b2287, #0f7f7c); }
       .flood { position: absolute; inset: 0; clip-path: circle(0% at 50% 42%); }
+      .intro { position: absolute; left: 0; right: 0; top: 640px; display: flex; flex-direction: column; align-items: center; transform-origin: 50% 40%; z-index: 5; }
+      .intro .ik { font: 700 28px/1 "Inter Tight"; letter-spacing: 0.34em; color: var(--violet); margin-bottom: 46px; padding-left: 0.34em; }
       .wl { position: absolute; top: 1040px; width: 330px; display: flex; align-items: center; justify-content: center; gap: 16px; }
       .wl b { font: 700 34px/1 "Inter Tight"; letter-spacing: -0.02em; color: #fff; }
 
@@ -134,11 +147,11 @@
       .frag { position: absolute; left: 540px; top: 780px; transform-style: preserve-3d; }
       .frag > * { transform: translate(-50%, -50%); }
       .frag .nt { position: relative; left: auto; right: auto; width: 420px; }
-      .otpcard { width: 300px; padding: 22px 28px; border-radius: 28px; background: #fff; font: 600 46px/1 "JetBrains Mono"; letter-spacing: 0.08em; color: #111; text-align: center; box-shadow: 0 26px 40px -18px rgba(24, 10, 52, 0.55); }
-      .otpcard span { display: block; font: 700 16px "Inter Tight"; letter-spacing: 0.2em; color: #8e8e93; margin-bottom: 10px; }
+      .otpcard { width: 300px; padding: 22px 28px; border-radius: 30px; font: 600 46px/1 "JetBrains Mono"; letter-spacing: 0.08em; color: #fff; text-align: center; background: linear-gradient(145deg, rgba(255,255,255,0.3), rgba(255,255,255,0.1)), rgba(26,18,52,0.42); -webkit-backdrop-filter: blur(26px) saturate(190%); backdrop-filter: blur(26px) saturate(190%); border: 1px solid rgba(255,255,255,0.42); box-shadow: inset 0 1.5px 0 rgba(255,255,255,0.78), 0 30px 46px -20px rgba(10,4,30,0.6); }
+      .otpcard span { display: block; font: 700 16px "Inter Tight"; letter-spacing: 0.2em; color: rgba(255,255,255,0.7); margin-bottom: 10px; }
 
       /* data card + chips (3D UI over photography) */
-      .dcard { position: absolute; left: 90px; right: 90px; top: 250px; border-radius: 38px; background: rgba(252, 251, 255, 0.96); color: #111; padding: 30px 34px 14px; box-shadow: 0 50px 80px -30px rgba(0, 0, 0, 0.65); }
+      .dcard { position: absolute; left: 90px; right: 90px; top: 250px; border-radius: 40px; color: #111; padding: 30px 34px 14px; overflow: hidden; background: linear-gradient(150deg, rgba(255,255,255,0.78), rgba(255,255,255,0.56)); -webkit-backdrop-filter: blur(30px) saturate(180%); backdrop-filter: blur(30px) saturate(180%); border: 1px solid rgba(255,255,255,0.7); box-shadow: inset 0 2px 0 rgba(255,255,255,0.9), 0 50px 80px -30px rgba(0, 0, 0, 0.65); }
       .dcard .who { display: flex; align-items: center; gap: 18px; padding-bottom: 22px; border-bottom: 1.5px solid #ebe6f2; }
       .dcard .av { width: 78px; height: 78px; border-radius: 50%; background: linear-gradient(140deg, #6b2ba6, #0f7f7c); color: #fff; font: 700 30px "Inter Tight"; display: flex; align-items: center; justify-content: center; }
       .dcard .nm { font: 700 36px/1.1 "Inter Tight"; letter-spacing: -0.02em; }
@@ -147,7 +160,7 @@
       .dcard .row:last-child { border-bottom: none; }
       .dcard .row span { font: 600 19px "Inter Tight"; letter-spacing: 0.1em; color: #8a7f98; text-transform: uppercase; }
       .dcard .row b { font: 700 29px "Inter Tight"; letter-spacing: -0.015em; }
-      .chip3 { position: absolute; left: 110px; width: 560px; padding: 24px 30px; border-radius: 30px; background: rgba(252, 251, 255, 0.96); display: flex; align-items: center; justify-content: space-between; box-shadow: 0 36px 60px -26px rgba(0, 0, 0, 0.6); }
+      .chip3 { position: absolute; left: 110px; width: 560px; padding: 24px 30px; border-radius: 32px; display: flex; align-items: center; justify-content: space-between; overflow: hidden; background: linear-gradient(150deg, rgba(255,255,255,0.8), rgba(255,255,255,0.56)); -webkit-backdrop-filter: blur(28px) saturate(180%); backdrop-filter: blur(28px) saturate(180%); border: 1px solid rgba(255,255,255,0.7); box-shadow: inset 0 2px 0 rgba(255,255,255,0.9), 0 36px 60px -26px rgba(0, 0, 0, 0.6); }
       .chip3 span { font: 700 20px "Inter Tight"; letter-spacing: 0.16em; text-transform: uppercase; color: #6b2ba6; }
       .chip3 b { font: 700 36px "Inter Tight"; letter-spacing: -0.02em; color: #0b2a63; }
       .ring3d { position: absolute; left: 650px; top: 880px; width: 330px; height: 330px; border-radius: 40px; background: rgba(252, 251, 255, 0.97); box-shadow: 0 40px 70px -26px rgba(20, 6, 50, 0.6); display: flex; flex-direction: column; align-items: center; justify-content: center; }
@@ -158,14 +171,16 @@
 
       /* ---------- captions: one family, words pop on their spoken time ---------- */
       #caps { position: absolute; inset: 0; z-index: 80; pointer-events: none; }
-      .cap { position: absolute; left: 70px; right: 70px; top: 1330px; text-align: center; opacity: 0; }
-      .ci { font: 700 70px/1.1 "Inter Tight"; letter-spacing: -0.035em; }
-      .cw { display: inline-block; opacity: 0; }
+      .cap { position: absolute; left: 50px; right: 50px; top: 1300px; text-align: center; opacity: 0; perspective: 900px; }
+      .ci { font: 700 64px/1.08 "Inter Tight"; letter-spacing: -0.035em; }
+      .cl { display: block; }
+      .cl.big { font-size: 118px; font-weight: 800; line-height: 1.0; letter-spacing: -0.05em; margin: 2px 0 4px; }
+      .cw { display: inline-block; opacity: 0; transform-origin: 50% 80%; }
       .cap.top { top: 300px; }
       .cap.dark .ci { color: #fff; text-shadow: 0 2px 22px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.25); }
-      .cap.dark .acc { color: var(--mint); }
+      .cap.dark .acc { color: #ffffff; }
       .cap.light .ci { color: var(--navy); }
-      .cap.light .acc { color: var(--violet); }
+      .cap.light .acc { color: var(--navy); }
       .acc { font-weight: 800; }
 
       /* end card */
@@ -179,14 +194,19 @@
     <div id="root" data-composition-id="main" data-start="0" data-duration="%%DUR%%" data-width="1080" data-height="1920">
 
       <!-- footage (track 0) -->
+      <video id="vA" class="clip media" src="assets/footage/v4-open.mp4" data-start="0" data-duration="2.72" data-track-index="0" muted playsinline></video>
+      <video id="vC" class="clip media" src="assets/footage/v4-counter.mp4" data-start="5.32" data-duration="3.8" data-track-index="0" muted playsinline></video>
+      <video id="vE1" class="clip media" src="assets/footage/v4-visit.mp4" data-start="11.28" data-duration="1.1" data-track-index="0" muted playsinline></video>
+      <video id="vE2" class="clip media" src="assets/footage/v4-purchase.mp4" data-start="12.38" data-duration="1.1" data-track-index="0" muted playsinline></video>
+      <video id="vG" class="clip media" src="assets/footage/v4-birthday.mp4" data-start="18.18" data-duration="3.24" data-track-index="0" muted playsinline></video>
+      <video id="vO" class="clip media" src="assets/footage/v4-notice.mp4" data-start="43.42" data-duration="2.2" data-track-index="0" muted playsinline></video>
       <video id="vD" class="clip media" src="assets/footage/v3-barista.mp4" data-start="9.12" data-duration="2.16" data-track-index="0" muted playsinline></video>
       <video id="vE3" class="clip media" src="assets/footage/v3-pour.mp4" data-start="13.48" data-duration="1.4" data-track-index="0" muted playsinline></video>
       <video id="vL" class="clip media" src="assets/footage/scan-at-counter.mp4" data-start="37.12" data-duration="2.5" data-track-index="0" muted playsinline></video>
       <video id="vM" class="clip media" src="assets/footage/pay-at-counter.mp4" data-start="39.62" data-duration="1.62" data-track-index="0" muted playsinline></video>
 
       <!-- A · India didn't stop rewarding customers -->
-      <div id="sA" class="scene clip" data-start="0" data-duration="2.72" data-track-index="1">
-        <img id="mA" class="media" src="%%S_open%%" alt="">
+      <div id="sA" class="scene clip" data-start="0" data-duration="2.72" data-track-index="2">
         <div class="shade-b"></div>
         <div id="fadeA" class="fade" style="background:#0b0806"></div>
       </div>
@@ -198,8 +218,7 @@
       </div>
 
       <!-- C · every counter started collecting data -->
-      <div id="sC" class="scene clip" data-start="5.32" data-duration="3.8" data-track-index="1">
-        <img id="mC" class="media" src="%%S_counter%%" alt="">
+      <div id="sC" class="scene clip" data-start="5.32" data-duration="3.8" data-track-index="2">
         <div class="shade-b"></div>
         <div class="stage">
           <div class="dcard" id="dcard">
@@ -216,8 +235,6 @@
       <div id="sD" class="scene clip" data-start="9.12" data-duration="2.16" data-track-index="2"><div class="shade-b"></div></div>
 
       <!-- E · every visit / purchase / preference -->
-      <div id="sE1" class="scene clip" data-start="11.28" data-duration="1.1" data-track-index="1"><img id="mE1" class="media" src="%%S_visit%%" alt=""></div>
-      <div id="sE2" class="scene clip" data-start="12.38" data-duration="1.1" data-track-index="1"><img id="mE2" class="media" src="%%S_purchase%%" alt=""></div>
       <div id="sE" class="scene clip" data-start="11.28" data-duration="3.6" data-track-index="2">
         <div class="shade-b"></div>
         <div class="stage" style="perspective-origin:30% 60%">%%CHIPS%%</div>
@@ -230,8 +247,7 @@
       </div>
 
       <!-- G · birthdays (and the cousins) -->
-      <div id="sG" class="scene clip" data-start="18.18" data-duration="3.24" data-track-index="1">
-        <img id="mG" class="media" src="%%S_friends%%" alt="">
+      <div id="sG" class="scene clip" data-start="18.18" data-duration="3.24" data-track-index="2">
         <div class="shade-b"></div>
         <div class="stage">
           <div style="position:absolute;left:90px;right:90px;top:150px;transform-style:preserve-3d" id="gG1">%%NG1%%</div>
@@ -257,6 +273,11 @@
         <div class="bg-light"></div>
         <div class="flood" id="flood"><div class="bg-violet"></div></div>
         <div class="glow" id="glJ"></div>
+        <div class="intro" id="intro">
+          <div class="ik" id="introK">INTRODUCING</div>
+          <img id="introMark" src="assets/brand/logo-mark.png" alt="" style="width:440px;height:286px;display:block">
+          <img id="introWord" src="assets/brand/logo-wordmark.png" alt="WYSTAK" style="width:520px;height:63px;display:block;margin-top:42px">
+        </div>
         <div class="stage" id="stJ">
           %%FRAGS%%
           %%PH_J%%
@@ -284,8 +305,7 @@
       </div>
 
       <!-- O · now they notice -->
-      <div id="sO" class="scene clip" data-start="43.42" data-duration="2.2" data-track-index="1">
-        <img id="mO" class="media" src="%%S_notice%%" alt="">
+      <div id="sO" class="scene clip" data-start="43.42" data-duration="2.2" data-track-index="2">
         <div class="shade-b"></div>
         <div class="stage"><div style="position:absolute;left:110px;right:110px;top:250px;transform-style:preserve-3d" id="gO">%%NO%%</div></div>
       </div>
@@ -333,18 +353,34 @@
         const DY = [0, 1, 2, 2.55, 2.85, 3.05, 3.2], DS = [1, 1, 1, 0.94, 0.88, 0.83, 0.78], DO = [1, 1, 1, 0.75, 0.5, 0.3, 0.15];
         function stack3d(ids, times, gap) {
           ids.forEach((id, i) => {
-            tl.fromTo(`#${id}`, { opacity: 0, z: 260, y: -46, rotationX: -32, scale: 0.9 }, { opacity: 1, z: 34, y: 0, rotationX: 0, scale: 1, duration: 0.55, ease: "back.out(1.25)" }, times[i]);
+            island(id, times[i], 34);
             for (let j = i + 1; j < ids.length; j++) {
               const d = Math.min(j - i, 6);
               tl.to(`#${id}`, { y: DY[d] * gap, z: 34 - d * 6, scale: DS[d], opacity: DO[d], duration: 0.36, ease: "power3.out" }, times[j]);
             }
           });
         }
+        // blur resolves on its own non-overshooting curve (a spring would push blur below zero, which CSS rejects)
+        const focus = (sel, t, px, d) => tl.fromTo(sel, { filter: `blur(${px}px)` }, { filter: "blur(0px)", duration: d, ease: "power2.out" }, t);
+        // a notification grows out of the Dynamic Island: a pill that springs open into frosted glass, then light sweeps across it
+        function island(id, t, z) {
+          tl.fromTo(`#${id}`, { opacity: 0, y: -500, scaleX: 0.29, scaleY: 0.08, z: 60 },
+            { opacity: 1, y: 0, scaleX: 1, scaleY: 1, z: z, duration: 0.62, ease: "back.out(1.5)", transformOrigin: "50% 0%" }, t);
+          focus(`#${id}`, t, 10, 0.4);
+          tl.fromTo(`#${id} .gs`, { xPercent: -160 }, { xPercent: 360, duration: 0.85, ease: "power2.inOut" }, t + 0.3);
+        }
+        // a floating glass card materialises: blur and scale resolve together (Apple: materialise, don't fade)
+        function materialise(sel, t, from) {
+          tl.fromTo(sel, Object.assign({ opacity: 0, scale: 0.82, z: 300, rotationX: -26 }, from || {}),
+            { opacity: 1, scale: 1, z: 0, rotationX: 4, duration: 0.7, ease: "back.out(1.35)" }, t);
+          focus(sel, t, 16, 0.45);
+          tl.fromTo(`${sel} .gs`, { xPercent: -160 }, { xPercent: 360, duration: 0.9, ease: "power2.inOut" }, t + 0.3);
+        }
         const ken = (sel, t0, d, a, b, x) => tl.fromTo(sel, { scale: a, xPercent: 0 }, { scale: b, xPercent: x || 0, duration: d, ease: "none" }, t0);
 
         // ---------- A ----------
         tl.fromTo("#fadeA", { opacity: 1 }, { opacity: 0, duration: 0.9, ease: "power1.inOut" }, 0);
-        ken("#mA", 0, 2.72, 1.04, 1.13, -2);
+        push("#vA", 0, 2.72, 1.02, 1.08);
 
         // ---------- B · notifications nobody reads; the screen sleeps ----------
         phoneIn("#pwB", 2.72, 2.6, [-30, 14, 160, -320], [-14, 7], [-6, 3]);
@@ -353,7 +389,7 @@
         tl.to("#pwB .nl", { opacity: 0.25, duration: 0.5, ease: "power2.in" }, 4.5);
 
         // ---------- C · the counter collects data ----------
-        ken("#mC", 5.32, 3.8, 1.03, 1.1, 1.5);
+        push("#vC", 5.32, 3.8, 1.02, 1.07);
         tl.fromTo("#dcard", { opacity: 0, z: -260, rotationY: -26, rotationX: 14, y: 80 }, { opacity: 1, z: 0, rotationY: -9, rotationX: 5, y: 0, duration: 0.85, ease: "expo.out" }, 5.62);
         tl.to("#dcard", { rotationY: -3, rotationX: 2, duration: 2.6, ease: "sine.inOut" }, 6.47);
         ["#dr1", "#dr2", "#dr3", "#dr4"].forEach((r, i) => tl.fromTo(r, { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.35, ease: "power3.out" }, 6.5 + i * 0.27));
@@ -361,8 +397,8 @@
 
         // ---------- D / E ----------
         push("#vD", 9.12, 2.16, 1.03, 1.09);
-        ken("#mE1", 11.28, 1.1, 1.04, 1.1, -1.5);
-        ken("#mE2", 12.38, 1.1, 1.04, 1.1, 1.5);
+        push("#vE1", 11.28, 1.1, 1.03, 1.08);
+        push("#vE2", 12.38, 1.1, 1.03, 1.08);
         push("#vE3", 13.48, 1.4, 1.03, 1.1);
         [["#ch1", 11.6, 300], ["#ch2", 12.6, 450], ["#ch3", 13.78, 600]].forEach(([c, t, top], i) => {
           tl.fromTo(c, { opacity: 0, z: 300, x: 120, rotationY: -30, rotationX: 10 }, { opacity: 1, z: 0, x: i * 40, rotationY: -14, rotationX: 6, duration: 0.6, ease: "back.out(1.2)" }, t);
@@ -375,12 +411,14 @@
         for (let i = 0; i < 12; i++) tl.fromTo(`#hF${i} .ai`, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.42, ease: "back.out(2.2)" }, 15.05 + i * 0.07);
         tl.fromTo("#pwF .hl", { opacity: 0 }, { opacity: 1, duration: 0.3, stagger: 0.07 }, 15.2);
         tl.fromTo("#pwF .hbadge", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(2.6)", stagger: 0.1 }, 16.3);
-        tl.fromTo("#nF", { opacity: 0, z: 240, y: -90, rotationX: -30 }, { opacity: 1, z: 40, y: 0, rotationX: 0, duration: 0.55, ease: "back.out(1.3)" }, 17.15);
+        tl.fromTo("#nF", { opacity: 0, y: -40, scaleX: 0.29, scaleY: 0.1, z: 60 }, { opacity: 1, y: 0, scaleX: 1, scaleY: 1, z: 40, duration: 0.6, ease: "back.out(1.5)", transformOrigin: "50% 0%" }, 17.15);
+        focus("#nF", 17.15, 10, 0.4);
+        tl.fromTo("#nF .gs", { xPercent: -160 }, { xPercent: 360, duration: 0.85, ease: "power2.inOut" }, 17.45);
 
         // ---------- G · birthdays ----------
-        ken("#mG", 18.18, 3.24, 1.04, 1.11, 1.5);
-        tl.fromTo("#gG1", { opacity: 0, z: 320, y: -60, rotationX: -26, rotationY: -10 }, { opacity: 1, z: 0, y: 0, rotationX: 4, rotationY: -6, duration: 0.7, ease: "back.out(1.2)" }, 18.8);
-        tl.fromTo("#gG2", { opacity: 0, z: 320, y: -50, rotationX: -26, rotationY: 10 }, { opacity: 1, z: -40, y: 0, rotationX: 4, rotationY: 6, duration: 0.65, ease: "back.out(1.2)" }, 20.38);
+        push("#vG", 18.18, 3.24, 1.02, 1.08);
+        materialise("#gG1", 18.8, { rotationY: -10 });
+        materialise("#gG2", 20.38, { rotationY: 10 });
         tl.to("#gG1", { rotationY: 2, duration: 2.0, ease: "sine.inOut" }, 19.5);
 
         // ---------- H · everywhere: the stack overflows the phone and scatters into space ----------
@@ -412,14 +450,23 @@
         tl.to("#pwI", { rotationY: 0, rotationX: 0, duration: 0.4, ease: "power2.inOut" }, 29.2);
         tl.fromTo("#sleepI", { opacity: 0 }, { opacity: 1, duration: 0.06 }, 29.6);
 
-        // ---------- J · silence, the ding wakes the phone, the question gathers the scattered pieces ----------
-        tl.fromTo("#pwJ", { rotationY: 0, rotationX: 0, opacity: 1 }, { rotationY: -10, rotationX: 5, duration: 3.5, ease: "sine.inOut" }, 29.66);
-        tl.fromTo("#pwJ .glass", { filter: "brightness(0.15)" }, { filter: "brightness(1)", duration: 0.5, ease: "power2.out" }, 30.12);
+        // ---------- J · silence, then the introduction: the ding brings Wystak in, and Wystak hands over to the question ----------
+        tl.fromTo("#introK", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 29.86);
+        tl.fromTo("#introMark", { opacity: 0, scale: 0.6, rotation: -8 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.7, ease: "back.out(1.7)" }, 30.12);
+        focus("#introMark", 30.12, 18, 0.45);
+        tl.fromTo("#introWord", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.45, ease: "power3.inOut" }, 30.32);
         tl.fromTo("#glJ", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.8, ease: "power2.out" }, 30.12);
+        push("#intro", 29.86, 1.0, 0.98, 1.02, "50% 40%");
+        // the lockup flies down into the phone as the phone rises to meet it
+        tl.to("#intro", { y: 240, scale: 0.16, opacity: 0, filter: "blur(4px)", duration: 0.55, ease: "power3.in" }, 30.86);
+        tl.fromTo("#pwJ", { opacity: 0, y: 820, rotationX: 24 }, { opacity: 1, y: 0, rotationX: 0, duration: 0.75, ease: "expo.out" }, 30.84);
+        tl.fromTo("#pwJ .glass", { filter: "brightness(1.6)" }, { filter: "brightness(1)", duration: 0.5, ease: "power2.out" }, 31.25);
+        tl.fromTo("#pwJ", { rotationY: 0 }, { rotationY: -10, rotationX: 5, duration: 2.1, ease: "sine.inOut", immediateRender: false }, 31.6);
         const FR = %%FRAG_JS%%;
         FR.forEach(([id, x, y, z, r], i) => {
-          tl.fromTo(`#${id}`, { opacity: 0, x: x * 1.6, y: y * 1.6, z: -500, rotation: r * 2 }, { opacity: 1, x: x, y: y, z: z, rotation: r, duration: 0.9, ease: "expo.out" }, 31.0 + i * 0.14);
-          tl.to(`#${id}`, { x: x * 1.05, y: y * 1.05, rotationY: x > 0 ? -12 : 12, duration: 1.3, ease: "sine.inOut" }, 31.9);
+          tl.fromTo(`#${id}`, { opacity: 0, x: x * 1.6, y: y * 1.6, z: -500, rotation: r * 2, filter: "blur(14px)" }, { opacity: 1, x: x, y: y, z: z, rotation: r, filter: "blur(0px)", duration: 0.8, ease: "expo.out" }, 31.3 + i * 0.11);
+          tl.fromTo(`#${id} .gs`, { xPercent: -160 }, { xPercent: 360, duration: 0.9, ease: "power2.inOut" }, 31.55 + i * 0.11);
+          tl.to(`#${id}`, { x: x * 1.05, y: y * 1.05, rotationY: x > 0 ? -12 : 12, duration: 1.1, ease: "sine.inOut" }, 32.1);
           // the answer pulls every piece into the phone
           tl.to(`#${id}`, { x: 0, y: -120, z: 20, rotation: 0, rotationY: 0, scale: 0.12, opacity: 0, duration: 0.42, ease: "power3.in" }, 33.2 + i * 0.05);
         });
@@ -443,7 +490,7 @@
 
         // ---------- N · +18 points: the push lands in front of the phone, the ring fills ----------
         phoneIn("#pwN", 41.24, 2.18, [-26, 12, 140, -300], [-12, 6], [-4, 3]);
-        tl.fromTo("#nN", { opacity: 0, z: 340, y: -70, rotationX: -34, scale: 0.86 }, { opacity: 1, z: 90, y: 0, rotationX: 0, scale: 1, duration: 0.6, ease: "back.out(1.4)" }, 41.48);
+        island("nN", 41.48, 90);
         tl.fromTo("#ringN", { opacity: 0, z: 300, rotationY: -24, scale: 0.8 }, { opacity: 1, z: 160, rotationY: -12, scale: 1, duration: 0.6, ease: "back.out(1.3)" }, 41.85);
         const pts = { v: 132 };
         tl.to(pts, { v: 150, duration: 0.8, ease: "power2.out", onUpdate: () => { document.getElementById("ringNum").textContent = Math.round(pts.v); } }, 42.1);
@@ -451,12 +498,13 @@
         tl.to("#ringArc", { attr: { stroke: "#00b386" }, duration: 0.2 }, 42.9);
 
         // ---------- O · now they notice ----------
-        ken("#mO", 43.42, 2.2, 1.03, 1.1, -1.5);
-        tl.fromTo("#gO", { opacity: 0, z: 320, y: -50, rotationX: -28, rotationY: -8 }, { opacity: 1, z: 0, y: 0, rotationX: 4, rotationY: -4, duration: 0.65, ease: "back.out(1.3)" }, 43.62);
+        push("#vO", 43.42, 2.2, 1.02, 1.07);
+        materialise("#gO", 43.62, { rotationY: -8 });
 
         // ---------- P · logo + tagline, held ----------
         tl.fromTo("#fadeP", { opacity: 1 }, { opacity: 0, duration: 0.5, ease: "power1.out" }, 45.62);
-        tl.fromTo("#eMark", { opacity: 0, scale: 0.86, filter: "blur(16px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.9, ease: "back.out(1.4)" }, 45.66);
+        tl.fromTo("#eMark", { opacity: 0, scale: 0.86 }, { opacity: 1, scale: 1, duration: 0.9, ease: "back.out(1.4)" }, 45.66);
+        focus("#eMark", 45.66, 16, 0.6);
         tl.fromTo("#eWord", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.7, ease: "power3.inOut" }, 46.05);
         tl.fromTo("#eT1", { opacity: 0, y: 18, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.3, ease: "back.out(2)" }, 46.78);
         tl.fromTo("#eT2", { opacity: 0, y: 18, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.3, ease: "back.out(2)" }, 47.96);
@@ -464,13 +512,26 @@
 
         // ---------- captions: each word pops on its spoken time (launch-reel language) ----------
         const CAPS = %%CAP_JS%%;
-        CAPS.forEach(([g, s, e, ws]) => {
+        CAPS.forEach(([g, s, e, ws, col]) => {
           tl.fromTo(`#cg${g}`, { opacity: 0 }, { opacity: 1, duration: 0.01 }, Math.max(0, s - 0.05));
-          ws.forEach(([i, t], k) => {
-            tl.fromTo(`#w${i}`, { opacity: 0, y: 26 + (k % 3) * 6, scale: 0.8 + (k % 2) * 0.08, rotation: k % 2 ? 2.5 : -2.5 },
-                                { opacity: 1, y: 0, scale: 1, rotation: 0, duration: 0.22, ease: "back.out(2.4)" }, Math.max(0, t - 0.03));
+          let last = 0;
+          ws.forEach(([i, t, acc], k) => {
+            const at = Math.max(0, t - 0.04), w = `#w${i}`;
+            if (acc) {
+              // the key word lands big: squashed, it springs up to size, comes into focus, and its colour floods in
+              tl.fromTo(w, { opacity: 0, scaleX: 1.35, scaleY: 0.45, y: 40 }, { opacity: 1, scaleX: 1, scaleY: 1, y: 0, duration: 0.55, ease: "elastic.out(1, 0.5)" }, at);
+              focus(w, at, 14, 0.3);
+              tl.fromTo(w, { color: "#ffffff" }, { color: col, duration: 0.22, ease: "power2.out" }, at + 0.08);
+              last = Math.max(last, at + 0.55);
+            } else {
+              // every other word punches in: oversize, tipped back, out of focus, then snaps into place
+              tl.fromTo(w, { opacity: 0, scale: 1.5, y: -14, rotationX: -50, rotation: k % 2 ? 3 : -3 }, { opacity: 1, scale: 1, y: 0, rotationX: 0, rotation: 0, duration: 0.3, ease: "back.out(2.6)" }, at);
+              focus(w, at, 10, 0.22);
+              last = Math.max(last, at + 0.3);
+            }
           });
-          tl.to(`#cg${g}`, { opacity: 0, y: -10, scale: 0.97, duration: 0.12, ease: "power2.in" }, e - 0.12);
+          // the phrase lifts away and dissolves on time; the container moves, so the word springs are never cut short
+          tl.to(`#cg${g}`, { opacity: 0, y: -40, scale: 1.05, duration: 0.17, ease: "power2.in" }, e - 0.17);
         });
 
         window.__timelines = window.__timelines || {};

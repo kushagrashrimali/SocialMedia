@@ -343,8 +343,11 @@ for i in range(4):
     place(sfx, keyclick(), 28.95 + i * 0.14, 0.32)                 # OTP
 place(sfx, lock_click(), 29.58, 0.85)
 place(sfx, ding(), 30.12, 0.5)                                     # E6: wakes the phone
+place(sfx, ping(hz(B5), 1.6, 0.2), 30.14, 0.12)                     # Wystak arrives with the ding
+place(sfx, whoosh(0.3, 600, 3200), 30.34, 0.08)                     # wordmark wipes on
+place(sfx, whoosh(0.55, 300, 2600, rising=False), 30.84, 0.2)       # the lockup flies into the rising phone
 for i in range(6):
-    place(sfx, whoosh(0.4, 300, 2400, rising=False), 31.0 + i * 0.14, 0.09, (-0.6, 0.6)[i % 2])  # pieces drift in
+    place(sfx, whoosh(0.4, 300, 2400, rising=False), 31.3 + i * 0.11, 0.09, (-0.6, 0.6)[i % 2])  # pieces drift in
 place(sfx, riser(0.7), 33.0, 0.2)                                  # pulled into the phone
 for i in range(6):
     place(sfx, tick(bright=5000), 33.2 + i * 0.05, 0.1, (-0.4, 0.4)[i % 2])

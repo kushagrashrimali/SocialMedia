@@ -26,11 +26,11 @@ The full creative brief from the user is in the conversation that made `wystak/s
 
 ## Customizations (v4, current)
 
-- People are young urban Indians (Unsplash photography by mostly India-based photographers), animated with slow camera moves; the strongest footage (French press, latte pour, the hand-held scan and pay) stays.
-- One caption family: Inter Tight. Exact words of the voice in short groups, each word popping on its spoken time (the launch reel's language: scale, lift and a slight tilt, back-out ease). One accent word per group: violet (#6b2ba6) on light grounds, mint (#00e0a3) on footage and violet grounds.
-- 3D phones with edge thickness, glass reflection, glow and contact shadow; notifications live in front of the glass and pop toward camera; the "everywhere" stack bursts into space around the phone.
+- People are real action at the counter, on video: a cup handed across, a barista at the machine, coffee carried to a customer, a lid snapped on a takeaway cup, a phone at the counter (Mixkit 4K, framed on the action rather than faces).
+- Kinetic captions, one family (Inter Tight), exact words in short groups: each word punches in on its spoken time (oversize, tipped back, out of focus, then snaps into place); the accent word gets its own big line, lands with a squash-and-stretch spring and floods into brand colour (violet #6b2ba6 on light, mint #00e0a3 on footage/violet); phrases lift away on time.
+- 3D phones with edge thickness, glass reflection, glow and contact shadow. Notifications are Apple Liquid Glass (frosted backdrop blur, bright catching edge, inner highlights, a light sweep); on the lock screen they grow out of the Dynamic Island and spring open; floating cards materialise (blur and scale resolve together). The "everywhere" stack bursts into space around the phone.
 - Brand grounds behind every showcased phone: light lilac for the problem, Wystak violet for the answer.
-- The turn (29.7–34s): silence, the ding wakes the phone, the scattered places loyalty lived float round it on the question, then get pulled into the phone as the Wallet and the Cafe Aroma pass land and the frame floods violet on the music drop ("It already has one").
+- The turn (29.7–34s): silence on a clean frame, then the ding introduces Wystak ("Introducing", the mark, the wordmark); the lockup flies down into the phone as it rises, and the scattered places loyalty lived float round it on the question, then get pulled into the phone as the Wallet and the Cafe Aroma pass land and the frame floods violet on the music drop ("It already has one").
 - Apple Wallet and Google Wallet: an iPhone and an Android phone side by side, each with its own icon and name beneath it, equal size; the Add-to-Wallet badges sit inside the scanned page on the hand-held phone, so they move with it.
 - Hand-held composites re-cut from the part of the source where the whole phone is in frame.
 - Music: Mixkit "Cat Walk" edited to the voice (`sound/make_music.py`); SFX tuned to its E minor (`sound/make_sound.py`).
