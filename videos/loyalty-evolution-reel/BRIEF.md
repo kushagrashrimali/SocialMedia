@@ -2,12 +2,12 @@
 workflow: general-video
 flow: automation
 storyboard: yes
-message: "India already went digital on loyalty. Wystak gives it a place to live: the wallet."
+message: "India never stopped rewarding customers; loyalty just got scattered. Wystak puts it in the wallet: one scan, no app, points on the lock screen."
 destination: instagram-reels
 aspect: 1080x1920
 language: en
 audience: Indian café, restaurant, salon and shop owners (merchants)
-length: 44s
+length: 51s
 ---
 
 ## Intent
@@ -24,14 +24,21 @@ The full creative brief from the user is in the conversation that made `wystak/s
 - assets/footage/, assets/stills/ — licensed stock and archival media; every file is listed in `assets/MANIFEST.md` with source, URL and licence.
 - assets/music-bed.wav, assets/sfx.wav — synthesised locally (`sound/make_sound.py`); the bed is carved under the voice (hyperframes-audio carve, strength 0.6).
 
-## Customizations
+## Customizations (v2, user feedback on the first cut)
 
-- Isolated words only, no running subtitles (the user's brief): PAY · PHONE · REWARD, VISIT · PURCHASE · PREFERENCE, MESSAGE, EVERYWHERE, APP · LOGIN, WALLET, PAYMENT → REWARD → MESSAGE → WALLET.
-- Phone UI is drawn in code: lock screens, chats, SMS, app screens, the Paper Crane Coffee pass and its push.
-- End card: the Wystak logo with "THE NEXT PLACE FOR LOYALTY." (the user's line, used in place of the standing tagline).
+- New script and new ElevenLabs take (51.39s after regapping); timings in `assets/words.json`.
+- Running captions, a phrase at a time, each word lighting gold as it is spoken (generated from the word timings).
+- Slower opening: two held shots over the first five seconds, fading up from black.
+- "Sir, mobile number?" is gone; "Every counter started collecting data" shows a drawn customer card over a POS counter.
+- Premium, bright café photography (Unsplash) in place of the archival and chai stills; every phone sits on a bright ground.
+- The fictional café is now **Cafe Aroma**, with a premium espresso-and-gold wallet pass.
+- The social-media line shows WhatsApp, Instagram, Messages and other apps popping in as app icons with unread badges (requested by the user).
+- "Add to Apple Wallet" and "Add to Google Wallet" badges, equal size, from "No app." (38.9s) through the payment, again on "Now they notice", and on the end card.
+- A held end card (45.6–51.4s): logo mark, wordmark, then ALL YOUR PASSES. / ONE STACK. on their words.
+- Build: `python3 storyboard/build_index.py`, then the carve (`carve.mjs --bed bed --voice vo --strength 0.6`), then render.
 
 ## Notes
 
-- Brand rules from the repo's CLAUDE.md and the wystak-brand skill: fictional merchant Paper Crane Coffee only; no real company logos (chats are plain bubbles, no WhatsApp branding); Apple Wallet and Google Wallet with equal weight as plain text; the lock-screen push is a real points change, never marketing; no invented statistics.
+- Brand rules from the repo's CLAUDE.md and the wystak-brand skill: fictional merchant Cafe Aroma (the user's choice for this reel); app logos only where the user asked for them; Apple Wallet and Google Wallet with equal weight as plain text; the lock-screen push is a real points change, never marketing; no invented statistics.
 - Claims allowed: no app, one scan at the counter, points on the lock screen within seconds.
-- Hard limit 45s; target 42–44s.
+- Length follows the recorded voice: 51.39s.

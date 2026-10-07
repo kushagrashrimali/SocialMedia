@@ -1,0 +1,149 @@
+      @font-face { font-family: "Archivo"; src: url("assets/vendor/fonts/archivo-latin-500-normal.woff2") format("woff2"); font-weight: 500; font-style: normal; }
+      @font-face { font-family: "Archivo"; src: url("assets/vendor/fonts/archivo-latin-500-italic.woff2") format("woff2"); font-weight: 500; font-style: italic; }
+      @font-face { font-family: "Archivo"; src: url("assets/vendor/fonts/archivo-latin-600-normal.woff2") format("woff2"); font-weight: 600; font-style: normal; }
+      @font-face { font-family: "Archivo"; src: url("assets/vendor/fonts/archivo-latin-700-normal.woff2") format("woff2"); font-weight: 700; font-style: normal; }
+      @font-face { font-family: "Archivo Black"; src: url("assets/vendor/fonts/archivo-black-latin-400-normal.woff2") format("woff2"); font-weight: 400; }
+      @font-face { font-family: "Manrope"; src: url("assets/vendor/fonts/manrope-latin-500-normal.woff2") format("woff2"); font-weight: 500; }
+      @font-face { font-family: "Manrope"; src: url("assets/vendor/fonts/manrope-latin-600-normal.woff2") format("woff2"); font-weight: 600; }
+      @font-face { font-family: "Manrope"; src: url("assets/vendor/fonts/manrope-latin-700-normal.woff2") format("woff2"); font-weight: 700; }
+      @font-face { font-family: "Manrope"; src: url("assets/vendor/fonts/manrope-latin-800-normal.woff2") format("woff2"); font-weight: 800; }
+      @font-face { font-family: "IBM Plex Mono"; src: url("assets/vendor/fonts/ibm-plex-mono-latin-500-normal.woff2") format("woff2"); font-weight: 500; }
+      @font-face { font-family: "IBM Plex Mono"; src: url("assets/vendor/fonts/ibm-plex-mono-latin-600-normal.woff2") format("woff2"); font-weight: 600; }
+
+      :root {
+        --void: #0b0410;
+        --raised: #140724;
+        --hair: #2a1145;
+        --paper: #f7f5fa;
+        --aub: #1a0b2e;
+        --muted-d: #9c8fb3;
+        --muted-l: #6b5d82;
+        --crane: #06737c;
+        --violet: #7c3aed;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--void); }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--void); font-family: "Manrope", sans-serif; color: var(--paper); }
+
+      .scene { position: absolute; inset: 0; overflow: hidden; }
+      .ground-void { background: var(--void); }
+      .ground-paper { background: var(--paper); }
+      .cam { position: absolute; inset: 0; }
+      .media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+      /* ---------- type ---------- */
+      .label { position: absolute; left: 0; right: 0; top: 1268px; text-align: center; font-family: "Archivo", sans-serif; font-weight: 600; font-size: 46px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--paper); text-shadow: 0 2px 18px rgba(11, 4, 16, 0.55); }
+      .label.on-paper { color: var(--aub); text-shadow: none; }
+      .hero { position: absolute; left: -40px; right: -40px; top: 820px; text-align: center; font-family: "Archivo Black", sans-serif; font-size: 214px; line-height: 1; letter-spacing: -0.035em; text-transform: uppercase; color: var(--paper); }
+      .quote { position: absolute; left: 90px; right: 230px; top: 300px; font-family: "Archivo", sans-serif; font-style: italic; font-weight: 500; font-size: 66px; line-height: 1.08; letter-spacing: -0.01em; color: var(--paper); text-shadow: 0 2px 22px rgba(11, 4, 16, 0.6); }
+      .mono { font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums; }
+
+      .scrim { position: absolute; left: 0; right: 0; top: 1110px; height: 380px; background: linear-gradient(to bottom, rgba(11, 4, 16, 0) 0%, rgba(11, 4, 16, 0.58) 48%, rgba(11, 4, 16, 0) 100%); }
+      .scrim-top { position: absolute; left: 0; right: 0; top: 0; height: 640px; background: linear-gradient(to bottom, rgba(11, 4, 16, 0.72) 0%, rgba(11, 4, 16, 0.45) 55%, rgba(11, 4, 16, 0) 100%); }
+      .pill { display: inline-block; padding: 14px 34px; border-radius: 44px; background: rgba(11, 4, 16, 0.78); }
+      /* ---------- footage placeholder (replaced by real media) ---------- */
+      .fph { position: absolute; inset: 0; background: #1a1420; display: flex; align-items: center; justify-content: center; }
+      .fph span { font-family: "IBM Plex Mono", monospace; font-size: 30px; color: #8d8299; letter-spacing: 0.08em; text-align: center; padding: 0 140px; line-height: 1.5; }
+
+      /* ---------- phones ---------- */
+      .phone { position: absolute; width: 450px; height: 920px; left: 315px; top: 300px; border-radius: 78px; padding: 13px; background: linear-gradient(155deg, #3a3541 0%, #16131b 48%, #0d0b10 100%); box-shadow: 0 0 0 2px #2c2833, 0 70px 140px -30px rgba(0, 0, 0, 0.85), inset 0 0 0 1px rgba(255, 255, 255, 0.08); }
+      .phone::before, .phone::after { content: ""; position: absolute; width: 5px; border-radius: 3px; background: #2a2630; }
+      .phone::before { left: -5px; top: 190px; height: 80px; }
+      .phone::after { right: -5px; top: 250px; height: 120px; }
+      .phone .screen { position: relative; width: 100%; height: 100%; border-radius: 66px; overflow: hidden; background: #000; }
+      .phone .island { position: absolute; left: 50%; top: 20px; width: 128px; height: 38px; margin-left: -64px; border-radius: 19px; background: #000; z-index: 9; }
+      .phone.android { border-radius: 52px; background: linear-gradient(205deg, #33363d 0%, #15161a 50%, #0c0d10 100%); }
+      .phone.android .screen { border-radius: 42px; }
+      .phone.android .island { width: 30px; height: 30px; margin-left: -15px; border-radius: 50%; top: 22px; }
+      .phone.small { width: 340px; height: 696px; border-radius: 60px; padding: 10px; }
+      .phone.small .screen { border-radius: 51px; }
+      .phone.small.android { border-radius: 40px; }
+      .phone.small.android .screen { border-radius: 32px; }
+      .phone.small .island { width: 96px; height: 28px; margin-left: -48px; top: 15px; }
+      .phone.small.android .island { width: 22px; height: 22px; margin-left: -11px; top: 16px; }
+
+      /* lock screen */
+      .phone .screen.lock { background: #0b0410 url("assets/ui/wallpaper.jpg") center / cover no-repeat; }
+      .lock .date { position: absolute; left: 0; right: 0; top: 84px; text-align: center; font-weight: 600; font-size: 25px; color: rgba(247, 245, 250, 0.86); }
+      .lock .time { position: absolute; left: 0; right: 0; top: 156px; text-align: center; font-weight: 700; font-size: 124px; letter-spacing: -0.04em; line-height: 1; color: rgba(247, 245, 250, 0.95); }
+      .lock .bar { position: absolute; left: 50%; bottom: 18px; width: 140px; height: 6px; margin-left: -70px; border-radius: 3px; background: rgba(247, 245, 250, 0.7); }
+      .notif { position: absolute; left: 14px; right: 14px; border-radius: 28px; background: rgba(244, 241, 248, 0.95); padding: 18px 20px; display: flex; gap: 16px; color: var(--aub); box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.5); }
+      .notif .ic { width: 52px; height: 52px; border-radius: 13px; flex: none; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 24px; color: #fff; }
+      .notif .nb { flex: 1; min-width: 0; }
+      .notif .t1 { display: flex; justify-content: space-between; font-weight: 700; font-size: 21px; }
+      .notif .t1 span { color: var(--muted-l); font-weight: 500; font-size: 19px; }
+      .notif .t2 { font-weight: 500; font-size: 20px; line-height: 1.32; color: #3b2f4d; margin-top: 3px; }
+      .notif.hero-push .t1 { font-size: 19px; color: var(--muted-l); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+      .notif.hero-push .t1 span { letter-spacing: 0; text-transform: none; }
+      .notif.hero-push .tt { font-weight: 800; font-size: 25px; margin-top: 4px; color: var(--aub); }
+
+      /* chat screen */
+      .phone .screen.chat { background: #ece9f1; }
+      .chat .hd { position: absolute; left: 0; right: 0; top: 0; height: 150px; background: #f8f7fb; display: flex; align-items: flex-end; gap: 16px; padding: 0 26px 20px; border-bottom: 1px solid #ddd8e4; }
+      .chat .hd .back { font-size: 34px; color: var(--muted-l); margin-bottom: 4px; }
+      .chat .hd .av { width: 58px; height: 58px; border-radius: 50%; flex: none; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 26px; color: #fff; }
+      .chat .hd .nm { font-weight: 800; font-size: 25px; color: var(--aub); }
+      .chat .hd .sb { font-weight: 500; font-size: 18px; color: var(--muted-l); margin-top: 2px; }
+      .chip-date { position: absolute; left: 50%; transform: translateX(-50%); background: #dcd7e4; color: #574a6b; font-weight: 600; font-size: 17px; padding: 6px 16px; border-radius: 12px; white-space: nowrap; }
+      .bubble { position: absolute; left: 20px; max-width: 330px; background: #ffffff; color: var(--aub); border-radius: 26px 26px 26px 8px; padding: 18px 20px 30px; font-weight: 500; font-size: 23px; line-height: 1.34; box-shadow: 0 2px 4px rgba(26, 11, 46, 0.08); }
+      .bubble .tm { position: absolute; right: 16px; bottom: 9px; font-size: 15px; color: var(--muted-l); }
+      .bubble.old { opacity: 0.75; }
+
+      /* isolated objects */
+      .obj-label { position: absolute; left: 0; right: 0; text-align: center; font-family: "IBM Plex Mono", monospace; font-weight: 500; font-size: 24px; letter-spacing: 0.12em; color: var(--muted-d); }
+      .sms { position: absolute; left: 150px; width: 640px; background: #e9e6ee; color: var(--aub); border-radius: 36px 36px 36px 10px; padding: 30px 34px; font-weight: 500; font-size: 33px; line-height: 1.36; }
+      .bigbubble { position: absolute; left: 150px; width: 640px; background: #ffffff; color: var(--aub); border-radius: 36px 36px 36px 10px; padding: 30px 34px 46px; font-weight: 500; font-size: 33px; line-height: 1.36; }
+      .bigbubble .from { font-weight: 800; font-size: 25px; color: var(--muted-l); margin-bottom: 8px; }
+      .bigbubble .tm { position: absolute; right: 26px; bottom: 14px; font-size: 20px; color: var(--muted-l); }
+      .appicon { position: absolute; width: 230px; height: 230px; border-radius: 54px; display: flex; align-items: center; justify-content: center; }
+      .menu { position: absolute; width: 470px; border-radius: 30px; background: rgba(244, 241, 248, 0.96); color: var(--aub); overflow: hidden; }
+      .menu div { padding: 26px 30px; font-weight: 600; font-size: 29px; border-top: 1px solid #ddd8e4; display: flex; justify-content: space-between; }
+      .menu div:first-child { border-top: none; }
+      .menu .del { color: #d4314f; }
+
+      /* store + otp screens */
+      .phone .screen.light { background: #f6f5f8; color: var(--aub); }
+      .light .top { position: absolute; left: 30px; right: 30px; top: 96px; font-weight: 800; font-size: 34px; letter-spacing: -0.01em; line-height: 1.15; }
+      .light .sub { position: absolute; left: 30px; right: 30px; font-weight: 500; font-size: 21px; line-height: 1.35; color: var(--muted-l); }
+      .btn-dark { position: absolute; left: 30px; right: 30px; height: 78px; border-radius: 39px; background: var(--aub); color: var(--paper); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 26px; }
+      .otp { position: absolute; left: 30px; right: 30px; display: flex; gap: 12px; }
+      .otp div { flex: 1; height: 86px; border-radius: 18px; background: #fff; border: 2px solid #d9d3e2; display: flex; align-items: center; justify-content: center; font-family: "IBM Plex Mono", monospace; font-weight: 600; font-size: 38px; color: var(--aub); }
+      .otp div.on { border-color: var(--aub); }
+      .field { position: absolute; left: 30px; right: 30px; height: 80px; border-radius: 18px; background: #fff; border: 2px solid #d9d3e2; display: flex; align-items: center; padding: 0 22px; font-size: 32px; letter-spacing: 0.2em; color: var(--aub); }
+
+      /* wallet */
+      .phone .screen.wallet { background: #f3f2f6; }
+      .wallet .wt { position: absolute; left: 30px; top: 92px; font-weight: 800; font-size: 44px; color: var(--aub); letter-spacing: -0.02em; }
+      .pass { position: absolute; left: 18px; right: 18px; border-radius: 24px; padding: 20px 24px; color: #fff; }
+      .pass .phd { display: flex; justify-content: space-between; align-items: center; font-weight: 800; font-size: 20px; letter-spacing: 0.06em; }
+      .pass .big { font-family: "IBM Plex Mono", monospace; font-weight: 600; font-size: 58px; margin-top: 26px; letter-spacing: -0.02em; }
+      .pass .sm { font-size: 17px; opacity: 0.85; font-weight: 600; letter-spacing: 0.12em; margin-top: 10px; }
+      .pass .qr-box { position: absolute; left: 50%; bottom: 26px; width: 150px; height: 150px; margin-left: -75px; border-radius: 14px; background: #fff; padding: 12px; }
+      .gw-card { position: absolute; left: 18px; right: 18px; height: 150px; border-radius: 22px; padding: 18px 22px; color: #fff; }
+      .gw-card .phd { font-weight: 800; font-size: 18px; letter-spacing: 0.06em; }
+      .gw-card .big { font-family: "IBM Plex Mono", monospace; font-weight: 600; font-size: 34px; margin-top: 30px; }
+
+      /* add-to-wallet sheet */
+      .sheet { position: absolute; left: 0; right: 0; bottom: 0; height: 560px; border-radius: 40px 40px 0 0; background: #fbfafc; }
+      .btn-violet { position: absolute; left: 30px; right: 30px; height: 80px; border-radius: 40px; background: var(--violet); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 27px; }
+
+      /* chips */
+      .chips { position: absolute; left: 0; right: 0; display: flex; justify-content: center; gap: 60px; }
+      .chip { width: 340px; height: 74px; border-radius: 37px; border: 2px solid rgba(247, 245, 250, 0.55); display: flex; align-items: center; justify-content: center; font-family: "Archivo", sans-serif; font-weight: 600; font-size: 25px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--paper); }
+
+      /* QR standee (generic, no brand) */
+      .standee { position: absolute; left: 300px; top: 470px; width: 480px; height: 640px; border-radius: 26px; background: #ffffff; border: 14px solid #dfe7ee; box-shadow: 0 50px 70px -40px rgba(26, 11, 46, 0.55); display: flex; flex-direction: column; align-items: center; padding-top: 44px; }
+      .standee .sd-top { font-family: "Archivo", sans-serif; font-weight: 600; font-size: 34px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--aub); }
+      .standee .sd-qr { margin-top: 34px; }
+      .standee .sd-bot { margin-top: 30px; font-weight: 600; font-size: 22px; color: var(--muted-l); }
+      .standee-base { position: absolute; left: 270px; top: 1098px; width: 540px; height: 26px; border-radius: 13px; background: #cfd8e0; }
+
+      .qw { display: inline-block; }
+      .dg { display: inline-block; }
+      .cursor { display: block; width: 3px; height: 44px; background: var(--aub); }
+      .otp div { position: relative; }
+
+      /* end card */
+      .end-mark { position: absolute; left: 0; right: 0; top: 560px; display: flex; justify-content: center; }
+      .end-word { position: absolute; left: 0; right: 0; top: 1010px; display: flex; justify-content: center; }
+      .end-line { position: absolute; left: 0; right: 0; top: 1150px; text-align: center; font-family: "Archivo", sans-serif; font-weight: 600; font-size: 36px; letter-spacing: 0.16em; color: var(--aub); }

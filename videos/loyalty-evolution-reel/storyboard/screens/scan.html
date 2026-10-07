@@ -1,10 +1,10 @@
 <!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="_base.css"><style>
-body{background:linear-gradient(170deg,#4a3a2c 0%,#2b2119 45%,#17110d 100%);position:relative}
+body{background:linear-gradient(170deg,#8a7563 0%,#5d4a3b 45%,#3a2d23 100%);position:relative}
 .top{position:absolute;left:0;right:0;top:120px;text-align:center;font-weight:700;font-size:30px;color:#f7f5fa;opacity:.9}
 .qr{position:absolute;left:150px;top:400px;width:300px;height:300px;background:#fff;border-radius:18px;padding:22px}
 .br{position:absolute;width:70px;height:70px;border-color:#fff;border-style:solid}
 .chip{position:absolute;left:60px;right:60px;top:860px;height:100px;border-radius:50px;background:#f7f5fa;display:flex;align-items:center;justify-content:center;gap:14px;font-weight:800;font-size:28px;color:#1a0b2e}
-.dot{width:40px;height:40px;border-radius:10px;background:#06737c;color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px}
+.dot{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#3b2417,#140b07);color:#e9c98b;font-family:Georgia,serif;font-style:italic;display:flex;align-items:center;justify-content:center;font-size:22px}
 </style></head><body>
 <div class="top">QR code</div>
 <div class="br" style="left:110px;top:360px;border-width:8px 0 0 8px;border-radius:22px 0 0 0"></div>
@@ -12,7 +12,7 @@ body{background:linear-gradient(170deg,#4a3a2c 0%,#2b2119 45%,#17110d 100%);posi
 <div class="br" style="left:110px;top:670px;border-width:0 0 8px 8px;border-radius:0 0 0 22px"></div>
 <div class="br" style="left:420px;top:670px;border-width:0 8px 8px 0;border-radius:0 0 22px 0"></div>
 <div class="qr" id="q"></div>
-<div class="chip"><div class="dot">P</div>Add Paper Crane Coffee pass</div>
+<div class="chip"><div class="dot">a</div>Add Cafe Aroma pass</div>
 <script>
 function rng(s){return function(){s=(s*1664525+1013904223)>>>0;return s/4294967296}}
 const N=25,size=256,m=size/N,r=rng(23);let rects="";const f=(x,y)=>x>=0&&x<8&&y>=0&&y<8;
