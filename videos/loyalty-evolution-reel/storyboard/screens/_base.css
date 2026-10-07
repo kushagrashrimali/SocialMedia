@@ -1,0 +1,6 @@
+@font-face{font-family:A;src:url(../../assets/vendor/fonts/archivo-latin-600-normal.woff2);font-weight:600}
+@font-face{font-family:M;src:url(../../assets/vendor/fonts/manrope-latin-500-normal.woff2);font-weight:500}
+@font-face{font-family:M;src:url(../../assets/vendor/fonts/manrope-latin-700-normal.woff2);font-weight:700}
+@font-face{font-family:M;src:url(../../assets/vendor/fonts/manrope-latin-800-normal.woff2);font-weight:800}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:600px;height:1300px;overflow:hidden;font-family:M,sans-serif}
