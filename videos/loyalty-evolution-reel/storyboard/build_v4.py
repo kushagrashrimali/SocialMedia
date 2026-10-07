@@ -37,7 +37,8 @@ for gi, (a, b, acc) in enumerate(GROUPS):
     if WT[b][0] in ("cash.",):  # hand straight over to the next beat
         e = min(e, 9.05)
     words = "".join(f'<span class="cw{" acc" if i in acc else ""}" id="w{i}">{WT[i][0]}</span> ' for i in range(a, b + 1))
-    cap_html.append(f'<div class="cap {theme(s)}" id="cg{gi}"><div class="ci">{words.strip()}</div></div>')
+    pos = " top" if 37.0 <= s < 41.24 else ""  # over the hand-held phone, captions move up so the screen stays clear
+    cap_html.append(f'<div class="cap {theme(s)}{pos}" id="cg{gi}"><div class="ci">{words.strip()}</div></div>')
     cap_js.append([gi, round(s, 3), round(e, 3), [[i, round(WT[i][1], 3)] for i in range(a, b + 1)]])
 
 # ------------------------------------------------------------------ drawing helpers
@@ -187,7 +188,7 @@ FRAGS = [  # the scattered places loyalty lived, floating round the phone in the
 frag_html = "".join(f'<div class="frag" id="{i}" data-x="{x}" data-y="{y}" data-z="{z}" data-r="{r}">{inner}</div>' for i, inner, x, y, z, r in FRAGS)
 frag_js = json.dumps([[i, x, y, z, r] for i, _, x, y, z, r in FRAGS])
 
-CHIPS = [("ch1", "Visit", "No. 12", 300), ("ch2", "Order", "Flat white", 450), ("ch3", "Prefers", "Oat milk, extra hot", 600)]
+CHIPS = [("ch1", "Visit", "No. 12", 880), ("ch2", "Order", "Flat white", 1020), ("ch3", "Prefers", "Oat milk, extra hot", 1160)]
 chips_html = "".join(f'<div class="chip3" id="{i}" style="top:{t}px"><span>{k}</span><b>{v}</b></div>' for i, k, v, t in CHIPS)
 
 S = {

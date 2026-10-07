@@ -24,16 +24,18 @@ The full creative brief from the user is in the conversation that made `wystak/s
 - assets/footage/, assets/stills/ — licensed stock and archival media; every file is listed in `assets/MANIFEST.md` with source, URL and licence.
 - assets/music-bed.wav, assets/sfx.wav — synthesised locally (`sound/make_sound.py`); the bed is carved under the voice (hyperframes-audio carve, strength 0.6).
 
-## Customizations (v3, art-directed cut)
+## Customizations (v4, current)
 
-- Type is art direction, not subtitles: Inter Tight (statements), Instrument Serif italic (the accent word), JetBrains Mono (data labels), cream/mint on footage and navy/plum/teal on bright grounds, lines rising out of masks. Short phrases, not the voiceover word for word. No boxes.
-- Real 4K café footage (Mixkit) cropped 9:16 with one shared warm grade; bright, softly blurred café photographs behind every phone.
-- Phone choreography after the first cut: notifications stacking iOS-style, a 13-ping cascade on "everywhere", one phone moving through SMS, chat, a deleted app, an App Store page and an OTP login, a clean lock screen in the silence, the Wallet push with the camera leaning in.
-- Cafe Aroma passes redesigned as real Apple Wallet store card and Google Wallet loyalty card (`storyboard/card/`); they land in an iPhone and an Android phone side by side (equal weight).
-- Add to Apple Wallet / Google Wallet badges on "No app." through the payment (38.9–41.2s).
+- People are young urban Indians (Unsplash photography by mostly India-based photographers), animated with slow camera moves; the strongest footage (French press, latte pour, the hand-held scan and pay) stays.
+- One caption family: Inter Tight. Exact words of the voice in short groups, each word popping on its spoken time (the launch reel's language: scale, lift and a slight tilt, back-out ease). One accent word per group: violet (#6b2ba6) on light grounds, mint (#00e0a3) on footage and violet grounds.
+- 3D phones with edge thickness, glass reflection, glow and contact shadow; notifications live in front of the glass and pop toward camera; the "everywhere" stack bursts into space around the phone.
+- Brand grounds behind every showcased phone: light lilac for the problem, Wystak violet for the answer.
+- The turn (29.7–34s): silence, the ding wakes the phone, the scattered places loyalty lived float round it on the question, then get pulled into the phone as the Wallet and the Cafe Aroma pass land and the frame floods violet on the music drop ("It already has one").
+- Apple Wallet and Google Wallet: an iPhone and an Android phone side by side, each with its own icon and name beneath it, equal size; the Add-to-Wallet badges sit inside the scanned page on the hand-held phone, so they move with it.
+- Hand-held composites re-cut from the part of the source where the whole phone is in frame.
+- Music: Mixkit "Cat Walk" edited to the voice (`sound/make_music.py`); SFX tuned to its E minor (`sound/make_sound.py`).
 - End card: the Wystak logo and tagline only.
-- Sound at the first cut's density: tanpura, pads, kalimba and pulse; pings, shutters, card slides, the cascade and impact, riser, lock click, silence, one ding, the Wallet chime, logo bells.
-- Build: `python3 storyboard/build_v3.py`, then the carve (`carve.mjs --bed bed --voice vo --strength 0.6`), then render.
+- Build: `python3 storyboard/build_v4.py`, then the carve, then render.
 
 ## Notes
 

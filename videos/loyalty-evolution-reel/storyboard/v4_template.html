@@ -20,6 +20,7 @@
       .media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
       .shade-b { position: absolute; left: 0; right: 0; bottom: 0; height: 900px; background: linear-gradient(to bottom, rgba(10, 6, 4, 0) 0%, rgba(10, 6, 4, 0.42) 52%, rgba(10, 6, 4, 0.7) 100%); }
       .fade { position: absolute; inset: 0; pointer-events: none; }
+      .shade-t { position: absolute; left: 0; right: 0; top: 0; height: 760px; background: linear-gradient(to top, rgba(10, 6, 4, 0) 0%, rgba(10, 6, 4, 0.45) 55%, rgba(10, 6, 4, 0.62) 100%); }
 
       /* ---------- brand grounds: light lilac for the problem, Wystak violet for the answer ---------- */
       .bg-light { position: absolute; inset: 0; background: radial-gradient(70% 42% at 50% 40%, #ffffff 0%, rgba(255, 255, 255, 0) 72%), linear-gradient(172deg, #f7f4fc 0%, #ece5f8 50%, #e2f1ee 100%); }
@@ -160,6 +161,7 @@
       .cap { position: absolute; left: 70px; right: 70px; top: 1330px; text-align: center; opacity: 0; }
       .ci { font: 700 70px/1.1 "Inter Tight"; letter-spacing: -0.035em; }
       .cw { display: inline-block; opacity: 0; }
+      .cap.top { top: 300px; }
       .cap.dark .ci { color: #fff; text-shadow: 0 2px 22px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.25); }
       .cap.dark .acc { color: var(--mint); }
       .cap.light .ci { color: var(--navy); }
@@ -218,7 +220,7 @@
       <div id="sE2" class="scene clip" data-start="12.38" data-duration="1.1" data-track-index="1"><img id="mE2" class="media" src="%%S_purchase%%" alt=""></div>
       <div id="sE" class="scene clip" data-start="11.28" data-duration="3.6" data-track-index="2">
         <div class="shade-b"></div>
-        <div class="stage" style="perspective-origin:30% 30%">%%CHIPS%%</div>
+        <div class="stage" style="perspective-origin:30% 60%">%%CHIPS%%</div>
       </div>
 
       <!-- F · social media -->
@@ -232,8 +234,8 @@
         <img id="mG" class="media" src="%%S_friends%%" alt="">
         <div class="shade-b"></div>
         <div class="stage">
-          <div style="position:absolute;left:90px;right:90px;top:250px;transform-style:preserve-3d" id="gG1">%%NG1%%</div>
-          <div style="position:absolute;left:150px;right:90px;top:500px;transform-style:preserve-3d" id="gG2">%%NG2%%</div>
+          <div style="position:absolute;left:90px;right:90px;top:150px;transform-style:preserve-3d" id="gG1">%%NG1%%</div>
+          <div style="position:absolute;left:200px;right:70px;top:400px;transform-style:preserve-3d" id="gG2">%%NG2%%</div>
         </div>
       </div>
 
@@ -265,8 +267,8 @@
       </div>
 
       <!-- L / M · scan and pay (footage) -->
-      <div id="sL" class="scene clip" data-start="37.12" data-duration="2.5" data-track-index="2"><div class="shade-b"></div></div>
-      <div id="sM" class="scene clip" data-start="39.62" data-duration="1.62" data-track-index="2"><div class="shade-b"></div></div>
+      <div id="sL" class="scene clip" data-start="37.12" data-duration="2.5" data-track-index="2"><div class="shade-t"></div></div>
+      <div id="sM" class="scene clip" data-start="39.62" data-duration="1.62" data-track-index="2"><div class="shade-t"></div></div>
 
       <!-- N · points on the lock screen -->
       <div id="sN" class="scene clip" data-start="41.24" data-duration="2.18" data-track-index="1">
@@ -327,10 +329,15 @@
           tl.fromTo(`${id} .refl i`, { xPercent: -120 }, { xPercent: 260, duration: dur, ease: "sine.inOut" }, t0);
         }
         // notifications pop out of the glass toward camera, then settle just in front of it; older ones step down
+        // iOS-style depth stack: the newest lands on top, three stay readable, older ones tuck behind and recede
+        const DY = [0, 1, 2, 2.55, 2.85, 3.05, 3.2], DS = [1, 1, 1, 0.94, 0.88, 0.83, 0.78], DO = [1, 1, 1, 0.75, 0.5, 0.3, 0.15];
         function stack3d(ids, times, gap) {
           ids.forEach((id, i) => {
             tl.fromTo(`#${id}`, { opacity: 0, z: 260, y: -46, rotationX: -32, scale: 0.9 }, { opacity: 1, z: 34, y: 0, rotationX: 0, scale: 1, duration: 0.55, ease: "back.out(1.25)" }, times[i]);
-            for (let j = i + 1; j < ids.length; j++) tl.to(`#${id}`, { y: (j - i) * gap, z: 34 - (j - i) * 4, duration: 0.36, ease: "power3.out" }, times[j]);
+            for (let j = i + 1; j < ids.length; j++) {
+              const d = Math.min(j - i, 6);
+              tl.to(`#${id}`, { y: DY[d] * gap, z: 34 - d * 6, scale: DS[d], opacity: DO[d], duration: 0.36, ease: "power3.out" }, times[j]);
+            }
           });
         }
         const ken = (sel, t0, d, a, b, x) => tl.fromTo(sel, { scale: a, xPercent: 0 }, { scale: b, xPercent: x || 0, duration: d, ease: "none" }, t0);
@@ -380,8 +387,9 @@
         phoneIn("#pwH", 21.42, 2.7, [-24, 12, 160, -300], [-10, 6], [6, 2]);
         const NH = ["nH1", "nH2", "nH3", "nH4", "nH5", "nH6", "nH7"];
         stack3d(NH, [21.72, 22.0, 22.25, 22.46, 22.64, 22.8, 22.94], 108);
-        const burst = [[-330, -520, 220, -12], [320, -430, 300, 10], [-380, -60, 180, 8], [360, 60, 260, -9], [-300, 330, 320, -7], [330, 420, 200, 11], [0, -680, 360, 4]];
-        NH.forEach((id, i) => tl.to(`#${id}`, { x: burst[i][0], y: "+=" + burst[i][1], z: burst[i][2], rotation: burst[i][3], rotationY: burst[i][0] > 0 ? -16 : 16, duration: 0.7, ease: "expo.out" }, 23.1 + i * 0.025));
+        // absolute targets (screen coords, relative to the stack line) spread round the phone, clear of the caption band
+        const burst = [[-320, -360, 220, -12], [310, -300, 300, 10], [-330, 40, 180, 8], [330, 120, 260, -9], [-320, 360, 320, -7], [320, 420, 200, 11], [0, -520, 360, 4]];
+        NH.forEach((id, i) => tl.to(`#${id}`, { x: burst[i][0], y: burst[i][1], z: burst[i][2], rotation: burst[i][3], rotationY: burst[i][0] > 0 ? -16 : 16, scale: 0.92, opacity: 1, duration: 0.7, ease: "expo.out" }, 23.1 + i * 0.025));
         tl.to("#pwH", { z: -160, duration: 0.7, ease: "expo.out" }, 23.1);
 
         // ---------- I · one phone, five places ----------
@@ -417,6 +425,7 @@
         });
         tl.to("#pwJ", { rotationY: 0, rotationX: 0, duration: 0.5, ease: "power2.inOut" }, 33.3);
         tl.fromTo("#jWallet", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 33.55);
+        tl.set("#pwJ .scr.lock", { opacity: 0 }, 33.8);
         tl.fromTo("#jc1, #jc2", { y: 120, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "power3.out", stagger: 0.06 }, 33.56);
         tl.fromTo("#jPass", { y: -520, opacity: 0, rotationX: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "back.out(1.5)" }, 33.62);
         tl.fromTo("#flood", { clipPath: "circle(0% at 50% 42%)" }, { clipPath: "circle(150% at 50% 42%)", duration: 0.75, ease: "power3.inOut" }, 33.82);
