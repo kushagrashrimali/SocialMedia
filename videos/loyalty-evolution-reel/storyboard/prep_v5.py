@@ -18,8 +18,8 @@ SHOTS = [
     ("v5-cafe-open", "222", 1.4, 1.4, 0.57, ""),            # a cup handed across the counter
     ("v5-boutique", "51217", 7.4, 1.85, 0.52, ""),          # an assistant shows a gown's fabric
     ("v5-bar", "4295", 0.5, 1.65, 0.48, ",unsharp=5:5:0.6"),  # a cocktail poured at the bar counter
-    ("v5-barber", "40126", 7.0, 2.6, 0.5, ""),              # barber at work, client in the chair (vertical source)
-    ("v5-cinema", "33312", 1.4, 1.55, "window", ""),        # cinema audience with popcorn (720p source: widescreen window)
+    ("v5-salon", "49556", 5.0, 2.6, "window", "brightness=-0.32:saturation=1.0"),  # the salon setup: a blow-dry, the round mirror, the room (720p)
+    ("v5-cinema", "33312", 1.4, 1.55, "window", "brightness=-0.06:saturation=1.35"),        # cinema audience with popcorn (720p source: widescreen window)
     ("v5-boutique-browse", "51228", 2.2, 1.55, 0.5, ""),    # a customer flips through the rail (vertical source)
     ("v5-pour", "41859", 2.6, 1.9, 0.45, ""),               # a cappuccino served
     ("v5-birthday", "41860", 0.95, 3.75, 0.24, ""),         # café counter, cup from the machine
@@ -47,7 +47,7 @@ for out, sid, t0, dur, cx, extra in [x for x in SHOTS if len(sys.argv) < 3 or x[
         cw = int(h * 4 / 3) // 2 * 2; cx0 = (w - cw) // 2
         fw = 1000; fh = round(fw * 3 / 4 / 2) * 2; window_mask(fw, fh, 44)
         fc = (f"[0:v]fps=30,{GRADE}[g];[g]split[a][b];"
-              f"[a]crop=iw:ih*0.32:0:0,scale=1080:1920,boxblur=70:3,eq=brightness=-0.06:saturation=1.35[bg];"
+              f"[a]crop=iw:ih*0.32:0:0,scale=1080:1920,boxblur=70:3,eq={extra}[bg];"
               f"[b]crop={cw}:{h}:{cx0}:0,scale={fw}:{fh}:flags=lanczos,unsharp=5:5:0.5,format=rgba[fg0];[1:v]format=gray[m];[fg0][m]alphamerge[fg];"
               f"[bg][fg]overlay=40:250,format=yuv420p[v]")
         cmd = ["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-ss", str(t0), "-t", str(dur), "-i", str(src), "-loop", "1", "-i", str(MASK),

@@ -24,9 +24,16 @@ The full creative brief from the user is in the conversation that made `wystak/s
 - assets/footage/, assets/stills/ — licensed stock and archival media; every file is listed in `assets/MANIFEST.md` with source, URL and licence.
 - assets/music-bed.wav, assets/sfx.wav — synthesised locally (`sound/make_sound.py`); the bed is carved under the voice (hyperframes-audio carve, strength 0.6).
 
-## Customizations (v5, current)
+## Customizations (v6, current)
 
-- Every category, in real footage: a club, a barber's blow-dry and a café in the opening montage; "Every counter" crosses a boutique, a bar and a café; a barber for "Businesses learned to remember"; a cinema audience with popcorn ("Every visit"), a boutique rail ("Every purchase") and a café pour ("Every preference"); "Now they notice" runs concert, club, café, and the Wallet notifications pile into one stack across them (Live Pass, Club Night, Cafe Aroma).
+- "Businesses learned to remember" is now a wide salon setup (round mirror, stylist blow-drying, shelves) in the rounded window, instead of a face close-up.
+- Notifications use a quick three-note ascending chime (Mixkit "Alert quick chime"); Apple's own iOS sounds are Apple's copyrighted assets and are not licensed for use in ads, so they are not used.
+- The Wystak introduction has its own synthesised futuristic chime: an airy shimmer rising into a glassy, detuned FM bell chord with a soft pitch settle and a ping-pong echo (`wystak_chime()` in `sound/make_sound.py`).
+- The ending ("Now they notice") shows no notifications: every category's pass deals into one floating Wallet stack with Apple Wallet and Google Wallet beneath it.
+
+## Customizations (v5)
+
+- Every category, in real footage: a club, a barber's blow-dry and a café in the opening montage; "Every counter" crosses a boutique, a bar and a café; a barber for "Businesses learned to remember" (v6: a wide salon); a cinema audience with popcorn ("Every visit"), a boutique rail ("Every purchase") and a café pour ("Every preference"); "Now they notice" runs concert, club, café, and the Wallet notifications pile into one stack across them (Live Pass, Club Night, Cafe Aroma).
 - The Wallet stack holds every category (Movie Club, Salon Club, Style Rewards, Live Pass) under the Cafe Aroma pass, on both Apple Wallet and Google Wallet.
 - Transitions: every footage cut is a zoom-through dissolve (clips overlap 0.4s; scale and focus hand over); brand-ground scenes focus-pull in and dissolve out over the footage; warm light leaks on the three topic changes; the last shot blows out to white into the logo. Slow bokeh drifts behind every phone.
 - The Wystak introduction holds 1.0s longer (voice re-gapped at 30.40s, everything after it +1.0s): a light sweep runs across the mark and the wordmark, and the promise "All your passes. One stack." settles underneath before the lockup flies into the phone.

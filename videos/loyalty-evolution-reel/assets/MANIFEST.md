@@ -26,7 +26,7 @@ Times include the overlap with the next shot (every cut is a zoom-through dissol
 | footage/v5-boutique.mp4 | 5.12–6.95s | Mixkit 51217 "A young sales woman shows bride dresses to a bride to be", https://assets.mixkit.co/videos/51217/51217-2160.mp4 | Mixkit Free | source 7.4s +1.85s, crop 0.52 |
 | footage/v5-bar.mp4 | 6.55–8.15s | Mixkit 4295 "Barmaid preparing a cocktail in the bar", https://assets.mixkit.co/videos/4295/4295-1080.mp4 | Mixkit Free | source 0.5s +1.65s, crop 0.48, light sharpen |
 | footage/v4-counter.mp4 | 7.75–9.52s | Mixkit 3574 "Serving coffee in a cup at a coffee shop", https://assets.mixkit.co/videos/3574/3574-2160.mp4 | Mixkit Free | source 1.0s +3.85s, crop 0.45 |
-| footage/v5-barber.mp4 | 9.12–11.68s | Mixkit 40126 "Hairdresser and his client during a haircut" (vertical), https://assets.mixkit.co/videos/40126/40126-1080.mp4 | Mixkit Free | source 7.0s +2.6s |
+| footage/v5-salon.mp4 | 9.12–11.68s | Mixkit 49556 "Slow motion hairdresser blow drying young woman's long blonde hair" (720p only), https://assets.mixkit.co/videos/49556/49556-720.mp4 | Mixkit Free | source 5.0s +2.6s; the whole salon setup (round mirror, stylist at work, product shelves) in a 4:3 rounded window over a dimmed enlargement |
 | footage/v5-cinema.mp4 | 11.28–12.78s | Mixkit 33312 cinema audience with popcorn (720p only), https://assets.mixkit.co/videos/33312/33312-720.mp4 | Mixkit Free | source 1.4s +1.55s; 4:3 rounded window over a blurred enlargement of the seats, so the low-res source is never upscaled |
 | footage/v5-boutique-browse.mp4 | 12.38–13.88s | Mixkit 51228 "A young woman browse trough the wedding dresses at the store" (vertical), https://assets.mixkit.co/videos/51228/51228-1080.mp4 | Mixkit Free | source 2.2s +1.55s |
 | footage/v5-pour.mp4 | 13.48–15.28s | Mixkit 41859 "Serving a sparkling cappuccino in a cup", https://assets.mixkit.co/videos/41859/41859-2160.mp4 | Mixkit Free | source 2.6s +1.9s, crop 0.45 |
@@ -42,7 +42,8 @@ Previews from https://assets.mixkit.co/active_storage/sfx/<id>/<id>-preview.mp3,
 
 | File | Mixkit title | Used for |
 |---|---|---|
-| sfx-src/mixkit-2867.mp3 | Confirmation tone | every phone notification (two-tone alert) |
+| sfx-src/mixkit-766.mp3 | Alert quick chime | every phone notification (quick three-note ascending chime) |
+| sfx-src/mixkit-2867.mp3 | Confirmation tone | not in the current mix (v5 notification) |
 | sfx-src/mixkit-2870.mp3 | Correct answer tone | payment done, reward unlocked |
 | sfx-src/mixkit-2585.mp3 | On or off light switch tap | the lock click |
 | sfx-src/mixkit-2568.mp3 | Cool interface click tone | taps (GET, Remove App, chips, tagline) |
@@ -52,7 +53,7 @@ Previews from https://assets.mixkit.co/active_storage/sfx/<id>/<id>-preview.mp3,
 | sfx-src/mixkit-166.mp3 | Fast small sweep transition | cards and swipes |
 | sfx-src/mixkit-1471.mp3 | Cinematic wind swoosh | light-leak scene changes |
 | sfx-src/mixkit-1489.mp3 | Air woosh | long soft air (opening, lockup fly-in, white-out) |
-| sfx-src/mixkit-3109.mp3 | Relaxing bell chime | the Wystak introduction and the logo |
+| sfx-src/mixkit-3109.mp3 | Relaxing bell chime | the logo (the introduction uses the synthesised Wystak chime) |
 | sfx-src/mixkit-2297.mp3 | Bass rumble hum | low room tone under the held introduction |
 
 ### Photography (Unsplash License)
@@ -75,4 +76,4 @@ Previews from https://assets.mixkit.co/active_storage/sfx/<id>/<id>-preview.mp3,
 - `brand/logo-mark.png`, `brand/logo-wordmark.png`: crops of WYSTAK's own logo files (`wystak/brand/`).
 - Fonts: Archivo, Archivo Black, Manrope, IBM Plex Mono (SIL Open Font License, via @fontsource on npm). GSAP from npm.
 - `voiceover.wav`: WYSTAK's ElevenLabs recording (Kendra), edited.
-- `music-bed.wav`: the Mixkit track edited by `sound/make_music.py`. `sfx.wav`: the Mixkit sound effects above, placed by `sound/make_sound.py` (only the low logo thump is synthesised).
+- `music-bed.wav`: the Mixkit track edited by `sound/make_music.py`. `sfx.wav`: the Mixkit sound effects above, placed by `sound/make_sound.py` (synthesised: the futuristic Wystak chime under the introduction and the low logo thump).

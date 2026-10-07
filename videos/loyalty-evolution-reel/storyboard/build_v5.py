@@ -223,7 +223,7 @@ SHOTS = [
     ("vC1", "v5-boutique", 5.12, 6.55, "under", "zoom"),        # "Every counter": a boutique,
     ("vC2", "v5-bar", 6.55, 7.75, "zoom", "zoom"),              # a bar,
     ("vC", "v4-counter", 7.75, 9.12, "zoom", "zoom"),           # a café
-    ("vD", "v5-barber", 9.12, 11.28, "zoom", "zoom"),           # "Businesses learned to remember"
+    ("vD", "v5-salon", 9.12, 11.28, "zoom", "zoom"),            # "Businesses learned to remember": the salon
     ("vE1", "v5-cinema", 11.28, 12.38, "zoom", "zoom"),         # "Every visit": the cinema
     ("vE2", "v5-boutique-browse", 12.38, 13.48, "zoom", "zoom"),  # "Every purchase": the boutique
     ("vE3", "v5-pour", 13.48, 14.88, "zoom", "zoom"),           # "Every preference": the café
