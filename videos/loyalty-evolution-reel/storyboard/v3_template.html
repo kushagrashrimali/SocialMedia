@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1080, height=1920">
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Inter Tight"; src: url("assets/vendor/fonts/inter-tight-latin-400-normal.woff2") format("woff2"); font-weight: 400; }
+      @font-face { font-family: "Inter Tight"; src: url("assets/vendor/fonts/inter-tight-latin-500-normal.woff2") format("woff2"); font-weight: 500; }
+      @font-face { font-family: "Inter Tight"; src: url("assets/vendor/fonts/inter-tight-latin-600-normal.woff2") format("woff2"); font-weight: 600; }
+      @font-face { font-family: "Inter Tight"; src: url("assets/vendor/fonts/inter-tight-latin-700-normal.woff2") format("woff2"); font-weight: 700; }
+      @font-face { font-family: "Inter Tight"; src: url("assets/vendor/fonts/inter-tight-latin-800-normal.woff2") format("woff2"); font-weight: 800; }
+      @font-face { font-family: "Instrument Serif"; src: url("assets/vendor/fonts/instrument-serif-latin-400-italic.woff2") format("woff2"); font-style: italic; }
+      @font-face { font-family: "Instrument Serif"; src: url("assets/vendor/fonts/instrument-serif-latin-400-normal.woff2") format("woff2"); font-style: normal; }
+      @font-face { font-family: "JetBrains Mono"; src: url("assets/vendor/fonts/jetbrains-mono-latin-500-normal.woff2") format("woff2"); font-weight: 500; }
+      @font-face { font-family: "JetBrains Mono"; src: url("assets/vendor/fonts/jetbrains-mono-latin-600-normal.woff2") format("woff2"); font-weight: 600; }
+
+      :root { --navy: #0b2a63; --plum: #5b2287; --teal: #0f7f7c; --cream: #f6dfb4; --mint: #a3efe4; --paper: #faf8f4; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #0b0806; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #0b0806; font-family: "Inter Tight", sans-serif; -webkit-font-smoothing: antialiased; }
+      .scene { position: absolute; inset: 0; overflow: hidden; }
+      .media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+      .ground-cream { background: radial-gradient(120% 80% at 50% 30%, #fffdf9 0%, #f6efe6 60%, #eee4d8 100%); }
+      .shade-b { position: absolute; left: 0; right: 0; bottom: 0; height: 980px; background: linear-gradient(to bottom, rgba(12, 7, 4, 0) 0%, rgba(12, 7, 4, 0.5) 55%, rgba(12, 7, 4, 0.72) 100%); }
+      .shade-t { position: absolute; left: 0; right: 0; top: 0; height: 860px; background: linear-gradient(to top, rgba(12, 7, 4, 0) 0%, rgba(12, 7, 4, 0.48) 55%, rgba(12, 7, 4, 0.66) 100%); }
+      .wash { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255, 252, 247, 0.55) 0%, rgba(255, 252, 247, 0.12) 40%, rgba(255, 252, 247, 0) 60%); }
+
+      /* ---------- art-directed type ---------- */
+      .t { position: absolute; left: 72px; right: 72px; z-index: 50; }
+      .t .ln { overflow: hidden; line-height: 1; padding: 0.06em 0.12em 0.12em 0; margin-right: -0.12em; }
+      .t .ln > span { display: inline-block; white-space: nowrap; }
+      .t .sans { font-family: "Inter Tight", sans-serif; font-weight: 600; letter-spacing: -0.045em; }
+      .t .serif { font-family: "Instrument Serif", serif; font-style: italic; font-weight: 400; letter-spacing: -0.02em; line-height: 0.9; margin-top: -0.08em; }
+      .t .kick { font-family: "JetBrains Mono", monospace; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 20px; }
+      .t.dark { color: #fff; text-shadow: 0 2px 28px rgba(0, 0, 0, 0.25); }
+      .t.dark .serif { color: var(--cream); }
+      .t.dark .kick { color: var(--mint); }
+      .t.light { color: var(--navy); }
+      .t.light .serif { color: var(--plum); }
+      .t.light .kick { color: #0b6e6b; font-weight: 600; }
+      .t .sw { position: absolute; left: 0; top: 0; }
+      .giant { position: absolute; left: -40px; right: -40px; text-align: center; font-family: "Instrument Serif", serif; font-style: italic; font-size: 232px; line-height: 1; letter-spacing: -0.035em; color: var(--plum); overflow: hidden; padding: 0.04em 0 0.12em; }
+      .giant span { display: inline-block; }
+
+      /* ---------- phones ---------- */
+      .pw { position: absolute; width: 480px; height: 990px; }
+      .phone { position: absolute; left: 0; top: 0; width: 480px; height: 990px; border-radius: 76px; padding: 11px;
+        background: linear-gradient(140deg, #dcd7cf 0%, #9b958e 14%, #57534f 48%, #8e8882 84%, #dad3ca 100%);
+        box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.45), 0 0 0 1px rgba(0, 0, 0, 0.35), 0 70px 90px -40px rgba(45, 28, 16, 0.6), 0 24px 36px -16px rgba(45, 28, 16, 0.35); }
+      .phone::before { content: ""; position: absolute; left: -4px; top: 210px; width: 5px; height: 64px; border-radius: 3px; background: #8d8780; }
+      .phone::after { content: ""; position: absolute; right: -4px; top: 270px; width: 5px; height: 110px; border-radius: 3px; background: #8d8780; }
+      .phone .glass { position: relative; width: 100%; height: 100%; border-radius: 65px; overflow: hidden; background: #000; border: 7px solid #050505; }
+      .phone .island { position: absolute; left: 50%; top: 12px; width: 124px; height: 36px; margin-left: -62px; border-radius: 18px; background: #000; z-index: 40; }
+      .phone .punch { position: absolute; left: 50%; top: 14px; width: 26px; height: 26px; margin-left: -13px; border-radius: 50%; background: #000; z-index: 40; }
+      .phone .refl { position: absolute; inset: 0; z-index: 41; pointer-events: none; background: linear-gradient(118deg, rgba(255, 255, 255, 0.13) 0%, rgba(255, 255, 255, 0.04) 26%, rgba(255, 255, 255, 0) 38%); }
+      .phone.android { border-radius: 50px; background: linear-gradient(140deg, #4a4c52 0%, #222326 45%, #45474c 100%); }
+      .phone.android .glass { border-radius: 40px; }
+      .scr { position: absolute; inset: 0; overflow: hidden; }
+      .sb { position: absolute; left: 40px; right: 30px; top: 16px; height: 26px; display: flex; justify-content: space-between; align-items: center; font: 600 19px/1 "Inter Tight"; z-index: 30; }
+      .sbi { display: flex; gap: 8px; align-items: center; }
+      .sbi svg { width: auto; height: 15px; }
+      .hbar { position: absolute; left: 50%; bottom: 10px; width: 150px; height: 6px; margin-left: -75px; border-radius: 3px; background: rgba(255, 255, 255, 0.86); z-index: 30; }
+      .hbar.dk { background: #111; }
+
+      /* lock screen */
+      .scr.lock { background: #071230 url("assets/ui/wallpaper-brand.jpg") center / cover; }
+      .ldate { position: absolute; left: 0; right: 0; top: 92px; text-align: center; font: 600 22px/1 "Inter Tight"; color: rgba(255, 255, 255, 0.86); }
+      .ltime { position: absolute; left: 0; right: 0; top: 118px; text-align: center; font: 600 136px/1 "Inter Tight"; letter-spacing: -0.05em; color: rgba(255, 255, 255, 0.96); }
+      .lbtn { position: absolute; bottom: 46px; width: 62px; height: 62px; border-radius: 50%; background: rgba(20, 20, 32, 0.42); display: flex; align-items: center; justify-content: center; z-index: 30; }
+      .sleep { position: absolute; inset: 0; background: #000; opacity: 0; z-index: 35; }
+      .nlist { position: absolute; left: 0; right: 0; top: 470px; bottom: 120px; overflow: hidden; -webkit-mask-image: linear-gradient(to bottom, #000 82%, transparent 100%); }
+      .nt { position: absolute; left: 12px; right: 12px; top: 0; border-radius: 26px; background: rgba(246, 246, 250, 0.88); padding: 14px 16px 15px; display: flex; gap: 12px; align-items: flex-start; box-shadow: 0 10px 26px -12px rgba(0, 0, 0, 0.45); }
+      .scr.lock > .nt { top: 520px; }
+      .nb { flex: 1; min-width: 0; }
+      .nh { display: flex; justify-content: space-between; align-items: baseline; font: 600 17px/1.2 "Inter Tight"; color: #111; }
+      .nh span { font-weight: 400; font-size: 14.5px; color: #6e6e73; }
+      .nx { font: 400 16.5px/1.3 "Inter Tight"; color: #1c1c1e; margin-top: 2px; }
+      .nt.hero { padding: 18px 18px 19px; border-radius: 30px; }
+      .nt.hero .nh { font-size: 19px; }
+      .nt.hero .nx { font-size: 18.5px; }
+      .nt.banner { top: 56px; z-index: 32; }
+      .nt.float { left: 90px; right: 90px; padding: 24px 26px 26px; border-radius: 38px; gap: 18px; background: rgba(250, 249, 252, 0.93); box-shadow: 0 30px 60px -24px rgba(0, 0, 0, 0.55); }
+      .nt.float .nh { font-size: 27px; }
+      .nt.float .nh span { font-size: 22px; }
+      .nt.float .nx { font-size: 27px; line-height: 1.28; }
+      .ai { display: flex; align-items: center; justify-content: center; flex: none; overflow: hidden; }
+
+      /* home screen */
+      .scr.home { background: #071230 url("assets/ui/wallpaper-brand.jpg") center / cover; }
+      .hgrid { position: absolute; left: 22px; right: 22px; top: 80px; display: grid; grid-template-columns: repeat(4, 1fr); row-gap: 24px; justify-items: center; }
+      .hc { position: relative; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+      .hl { font: 500 15px/1 "Inter Tight"; color: #fff; text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4); }
+      .hbadge { position: absolute; right: -9px; top: -9px; min-width: 32px; height: 32px; padding: 0 8px; border-radius: 16px; background: #ff3b30; color: #fff; font: 600 18px/32px "Inter Tight"; text-align: center; }
+      .dock { position: absolute; left: 14px; right: 14px; bottom: 24px; height: 120px; border-radius: 40px; background: rgba(255, 255, 255, 0.2); display: flex; justify-content: space-around; align-items: center; }
+      .dim { position: absolute; inset: 0; background: rgba(6, 8, 20, 0.42); }
+      .hc.focus { position: absolute; left: 162px; top: 300px; }
+      .ctx { position: absolute; left: 70px; right: 70px; top: 486px; border-radius: 20px; background: rgba(242, 242, 247, 0.97); overflow: hidden; }
+      .ctx div { padding: 18px 22px; font: 400 21px/1 "Inter Tight"; color: #111; border-top: 1px solid #d1d1d6; }
+      .ctx div:first-child { border-top: none; }
+      .ctx .red { color: #ff3b30; }
+
+      /* light app screens */
+      .scr.light { background: #fff; color: #111; }
+      .navb { position: absolute; left: 0; right: 0; top: 0; height: 150px; background: rgba(248, 248, 250, 0.97); border-bottom: 1px solid #e2e2e6; display: flex; align-items: flex-end; gap: 12px; padding: 0 20px 16px; }
+      .bk { font: 300 54px/0.8 "Inter Tight"; color: #0a84ff; }
+      .cav { width: 50px; height: 50px; border-radius: 50%; color: #fff; font: 600 22px "Inter Tight"; display: flex; align-items: center; justify-content: center; flex: none; }
+      .cn { font: 600 20px/1.1 "Inter Tight"; }
+      .cs { font: 400 14px/1.2 "Inter Tight"; color: #8e8e93; }
+      .day { position: absolute; left: 0; right: 0; top: 190px; text-align: center; font: 500 14px "Inter Tight"; color: #8e8e93; }
+      .bub { position: absolute; left: 16px; max-width: 336px; padding: 13px 17px; border-radius: 22px; font: 400 19.5px/1.32 "Inter Tight"; background: #e9e9eb; color: #111; }
+      .bub.w { background: #fff; box-shadow: 0 1px 1.5px rgba(0, 0, 0, 0.1); padding-bottom: 28px; }
+      .bub i { position: absolute; right: 13px; bottom: 7px; font-style: normal; font-size: 12.5px; color: #8e8e93; }
+      .st-top { position: absolute; left: 22px; right: 22px; top: 88px; display: flex; gap: 18px; }
+      .st-n { font: 700 26px/1.12 "Inter Tight"; }
+      .st-s { font: 400 15px "Inter Tight"; color: #8e8e93; margin-top: 4px; }
+      .get { display: inline-block; margin-top: 16px; padding: 8px 28px; border-radius: 20px; background: #0a84ff; color: #fff; font: 700 17px "Inter Tight"; }
+      .st-row { position: absolute; left: 22px; right: 22px; top: 292px; display: flex; justify-content: space-between; border-top: 1px solid #e5e5ea; padding-top: 16px; }
+      .st-row div { text-align: center; }
+      .st-row b { display: block; font: 700 20px "Inter Tight"; color: #6e6e73; }
+      .st-row span { font: 600 11px "Inter Tight"; color: #8e8e93; letter-spacing: 0.06em; }
+      .st-shot { position: absolute; left: 22px; right: 22px; top: 392px; height: 470px; border-radius: 22px; background: linear-gradient(165deg, #ffe0c2 0%, #ff9b52 55%, #e8452c 100%); }
+      .lg-h { position: absolute; left: 28px; top: 108px; font: 700 34px/1.12 "Inter Tight"; }
+      .lg-s { position: absolute; left: 28px; right: 28px; top: 210px; font: 400 17px/1.35 "Inter Tight"; color: #6e6e73; }
+      .otp { position: absolute; left: 28px; right: 28px; top: 300px; display: flex; gap: 12px; }
+      .otp div { flex: 1; height: 82px; border-radius: 16px; border: 2px solid #d1d1d6; display: flex; align-items: center; justify-content: center; font: 600 36px "JetBrains Mono"; color: #111; }
+      .lg-b { position: absolute; left: 28px; right: 28px; top: 420px; height: 62px; border-radius: 16px; background: #111; color: #fff; font: 600 19px/62px "Inter Tight"; text-align: center; }
+      .lg-x { position: absolute; left: 0; right: 0; top: 504px; text-align: center; font: 400 15px "Inter Tight"; color: #8e8e93; }
+
+      /* wallets */
+      .w-h { position: absolute; left: 24px; right: 26px; top: 70px; font: 700 38px/1 "Inter Tight"; display: flex; justify-content: space-between; color: #111; }
+      .w-h span { color: #0a84ff; font-weight: 400; }
+      .w-card { position: absolute; left: 14px; right: 14px; height: 240px; border-radius: 14px; padding: 16px 18px; color: #fff; font: 700 14px "Inter Tight"; letter-spacing: 0.1em; }
+      .w-pass { position: absolute; left: 14px; width: 416px; display: block; }
+      .gw-h { position: absolute; left: 24px; right: 24px; top: 66px; display: flex; justify-content: space-between; align-items: center; font: 500 30px "Inter Tight"; color: #1f1f1f; }
+      .gw-h i { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #5b2287, #0f7f7c); }
+      .hero-pass { position: absolute; width: 520px; display: block; transform-origin: 0 0; filter: drop-shadow(0 40px 50px rgba(40, 22, 10, 0.45)); }
+      .sheen { position: absolute; inset: 0; overflow: hidden; border-radius: 22px; pointer-events: none; }
+      .sheen i { position: absolute; top: -20%; bottom: -20%; width: 34%; background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 246, 228, 0.28), rgba(255, 255, 255, 0)); transform: skewX(-18deg); }
+      .sweep { position: absolute; left: 18px; top: 18px; width: 444px; height: 954px; border-radius: 58px; overflow: hidden; pointer-events: none; z-index: 5; }
+      .sweep i { position: absolute; top: -10%; bottom: -10%; width: 40%; background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0)); transform: skewX(-16deg); }
+
+      /* data card + list */
+      .dcard { position: absolute; left: 72px; right: 72px; top: 250px; border-radius: 36px; background: rgba(252, 250, 247, 0.94); color: #111; padding: 30px 34px 14px; box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.6); }
+      .dcard .who { display: flex; align-items: center; gap: 18px; padding-bottom: 22px; border-bottom: 1.5px solid #ece6dd; }
+      .dcard .av { width: 78px; height: 78px; border-radius: 50%; background: linear-gradient(140deg, var(--plum), var(--teal)); color: #fff; font: 600 30px "Inter Tight"; display: flex; align-items: center; justify-content: center; }
+      .dcard .nm { font: 600 36px/1.1 "Inter Tight"; letter-spacing: -0.02em; }
+      .dcard .kk { font: 500 17px "JetBrains Mono"; letter-spacing: 0.16em; color: var(--teal); margin-top: 4px; }
+      .dcard .row { display: flex; justify-content: space-between; align-items: baseline; padding: 19px 0; border-bottom: 1px solid #ece6dd; }
+      .dcard .row:last-child { border-bottom: none; }
+      .dcard .row span { font: 500 18px "JetBrains Mono"; letter-spacing: 0.12em; color: #8a7f72; text-transform: uppercase; }
+      .dcard .row b { font: 600 29px "Inter Tight"; letter-spacing: -0.015em; }
+      .dlist { position: absolute; left: 72px; right: 72px; top: 1040px; z-index: 50; }
+      .dlist .dr { margin-bottom: 28px; }
+
+      /* badges */
+      .badges { position: absolute; left: 0; right: 0; display: flex; justify-content: center; gap: 30px; z-index: 50; }
+      .badge { width: 400px; height: 112px; border-radius: 22px; background: #000; border: 2px solid #a6a6a6; display: flex; align-items: center; gap: 14px; padding: 0 22px; color: #fff; box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.6); }
+      .badge .bt { font: 600 33px/1.05 "Inter Tight"; letter-spacing: -0.015em; white-space: nowrap; }
+      .badge .bt span { display: block; font-weight: 500; font-size: 19px; letter-spacing: 0.01em; opacity: 0.9; }
+
+      /* end card */
+      .end { position: absolute; left: 0; right: 0; top: 650px; display: flex; flex-direction: column; align-items: center; }
+      .end .tag { margin-top: 58px; font: 600 40px/1 "Inter Tight"; letter-spacing: 0.16em; color: var(--navy); white-space: nowrap; }
+      .end .tag span { display: inline-block; }
+      .end .tag #eT2 { color: var(--plum); }
+      .fade { position: absolute; inset: 0; pointer-events: none; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="%%DUR%%" data-width="1080" data-height="1920">
+
+      <!-- ===================== footage (track 0) ===================== -->
+      <video id="vA" class="clip media" src="%%V_open%%" data-start="0" data-duration="2.72" data-track-index="0" muted playsinline></video>
+      <video id="vC" class="clip media" src="%%V_pay%%" data-start="5.32" data-duration="3.8" data-track-index="0" muted playsinline></video>
+      <video id="vD" class="clip media" src="%%V_barista%%" data-start="9.12" data-duration="2.16" data-track-index="0" muted playsinline></video>
+      <video id="vE1" class="clip media" src="%%V_walkin%%" data-start="11.28" data-duration="1.1" data-track-index="0" muted playsinline></video>
+      <video id="vE2" class="clip media" src="%%V_purchase%%" data-start="12.38" data-duration="1.1" data-track-index="0" muted playsinline></video>
+      <video id="vE3" class="clip media" src="%%V_pour%%" data-start="13.48" data-duration="1.4" data-track-index="0" muted playsinline></video>
+      <video id="vL" class="clip media" src="%%V_scan%%" data-start="37.12" data-duration="2.5" data-track-index="0" muted playsinline></video>
+      <video id="vM" class="clip media" src="%%V_paid%%" data-start="39.62" data-duration="1.6" data-track-index="0" muted playsinline></video>
+      <video id="vO" class="clip media" src="%%V_notice%%" data-start="43.42" data-duration="2.2" data-track-index="0" muted playsinline></video>
+
+      <!-- ===================== A · India didn't stop rewarding customers ===================== -->
+      <div id="sA" class="scene clip" data-start="0" data-duration="2.72" data-track-index="2">
+        <div class="shade-b"></div>
+        %%tA%%
+        <div id="fadeA" class="fade" style="background:#0b0806"></div>
+      </div>
+
+      <!-- ===================== B · stopped noticing ===================== -->
+      <div id="sB" class="scene clip" data-start="2.72" data-duration="2.6" data-track-index="1">
+        <img id="bgB" class="media" src="%%S_table%%" alt="">
+        <div class="wash"></div>
+        <div class="pw" id="pwB" style="left:300px;top:640px">%%LOCK_B%%</div>
+        %%tB%%
+      </div>
+
+      <!-- ===================== C · every counter collects data ===================== -->
+      <div id="sC" class="scene clip" data-start="5.32" data-duration="3.8" data-track-index="2">
+        <div class="shade-b"></div>
+        <div class="dcard" id="dcard">
+          <div class="who"><div class="av">AM</div><div><div class="nm">Aarav Mehta</div><div class="kk">CUSTOMER PROFILE</div></div></div>
+          <div class="row" id="dr1"><span>Visits</span><b>12</b></div>
+          <div class="row" id="dr2"><span>Usual</span><b>Cold brew, no sugar</b></div>
+          <div class="row" id="dr3"><span>Birthday</span><b>14 October</b></div>
+          <div class="row" id="dr4"><span>Last visit</span><b>Tuesday, 6:40 pm</b></div>
+        </div>
+        %%tC%%
+      </div>
+
+      <!-- ===================== D · businesses learned to remember ===================== -->
+      <div id="sD" class="scene clip" data-start="9.12" data-duration="2.16" data-track-index="2">
+        <div class="shade-b"></div>
+        %%tD%%
+      </div>
+
+      <!-- ===================== E · visit / purchase / preference ===================== -->
+      <div id="sE" class="scene clip" data-start="11.28" data-duration="3.6" data-track-index="2">
+        <div class="shade-b"></div>
+        <div class="dlist t dark" style="left:72px;right:72px;top:1040px">
+          <div class="dr" id="e1"><div class="kick" style="font-size:24px;margin-bottom:6px">Visit</div><div class="ln serif" style="font-size:112px"><span>No. 12</span></div></div>
+          <div class="dr" id="e2"><div class="kick" style="font-size:24px;margin-bottom:6px">Purchase</div><div class="ln serif" style="font-size:112px"><span>Flat white</span></div></div>
+          <div class="dr" id="e3"><div class="kick" style="font-size:24px;margin-bottom:6px">Preference</div><div class="ln serif" style="font-size:112px"><span>Oat milk, extra hot</span></div></div>
+        </div>
+      </div>
+
+      <!-- ===================== F · social media ===================== -->
+      <div id="sF" class="scene clip" data-start="14.88" data-duration="3.3" data-track-index="1">
+        <img id="bgF" class="media" src="%%S_counter%%" alt="">
+        <div class="wash"></div>
+        <div class="pw" id="pwF" style="left:300px;top:640px">%%HOME_F%%</div>
+        %%tF%%
+      </div>
+
+      <!-- ===================== G · birthdays ===================== -->
+      <div id="sG" class="scene clip" data-start="18.18" data-duration="3.24" data-track-index="1">
+        <img id="bgG" class="media" src="%%S_cake%%" alt="">
+        <div class="shade-b"></div>
+        <div style="position:absolute;left:0;right:0;top:250px">%%AROMA_NOTIF_G1%%</div>
+        <div style="position:absolute;left:0;right:0;top:500px">%%AROMA_NOTIF_G2%%</div>
+        %%tG%%
+      </div>
+
+      <!-- ===================== H · everywhere ===================== -->
+      <div id="sH" class="scene clip" data-start="21.42" data-duration="2.7" data-track-index="1">
+        <img id="bgH" class="media" src="%%S_window%%" alt="">
+        <div class="wash"></div>
+        <div class="t light" id="tHk" style="top:200px;text-align:center"><div class="kick" style="font-size:30px">But loyalty started living</div></div>
+        <div class="giant" id="gH" style="top:250px"><span>everywhere.</span></div>
+        <div class="pw" id="pwH" style="left:300px;top:560px">%%LOCK_H%%</div>
+      </div>
+
+      <!-- ===================== I · SMS, chat, deleted app, another app, another login ===================== -->
+      <div id="sI" class="scene clip" data-start="24.12" data-duration="5.54" data-track-index="1">
+        <img id="bgI" class="media" src="%%S_table%%" alt="">
+        <div class="wash"></div>
+        %%tI%%
+        <div class="t light" style="top:280px;height:200px">%%SWAP%%</div>
+        <div class="pw" id="pwI" style="left:300px;top:620px">%%SCREENS_I%%</div>
+      </div>
+
+      <!-- ===================== J · silence, then "another place?" ===================== -->
+      <div id="sJ" class="scene clip ground-cream" data-start="29.66" data-duration="4.16" data-track-index="1">
+        <div class="pw" id="pwJ" style="left:300px;top:640px">%%LOCK_J%%<div class="sweep"><i id="swJ"></i></div></div>
+        %%tJ%%
+      </div>
+
+      <!-- ===================== K · the wallet (Apple + Google, equal weight) ===================== -->
+      <div id="sK" class="scene clip" data-start="33.82" data-duration="3.3" data-track-index="1">
+        <img id="bgK" class="media" src="%%S_window%%" alt="">
+        <div class="wash"></div>
+        %%tK%%
+        <div class="pw" id="pwKa" style="left:170px;top:600px;transform-origin:0 0">%%WALLET_K%%</div>
+        <div class="pw" id="pwKg" style="left:564px;top:600px;transform-origin:0 0">%%GWALLET_K%%</div>
+        <img class="hero-pass" id="hpG" src="assets/ui/pass-google.png" alt="" style="left:450px;top:600px">
+        <img class="hero-pass" id="hpA" src="assets/ui/pass-apple.png" alt="" style="left:110px;top:560px">
+        %%tK2%%
+      </div>
+
+      <!-- ===================== L / M overlays on the scan and pay footage ===================== -->
+      <div id="sL" class="scene clip" data-start="37.12" data-duration="2.5" data-track-index="2">
+        <div class="shade-t"></div>
+        %%tL%%
+      </div>
+      <div id="sM" class="scene clip" data-start="39.62" data-duration="1.64" data-track-index="2">
+        <div class="shade-t"></div>
+        %%tM%%
+      </div>
+      <div id="sBd" class="scene clip" data-start="38.8" data-duration="2.44" data-track-index="3">
+        <div style="position:absolute;left:0;right:0;top:1330px">%%BADGES%%</div>
+      </div>
+
+      <!-- ===================== N · points on the lock screen ===================== -->
+      <div id="sN" class="scene clip" data-start="41.26" data-duration="2.16" data-track-index="1">
+        <img id="bgN" class="media" src="%%S_counter%%" alt="">
+        <div class="wash"></div>
+        <div class="pw" id="pwN" style="left:300px;top:470px">%%LOCK_N%%</div>
+      </div>
+
+      <!-- ===================== O · now they notice ===================== -->
+      <div id="sO" class="scene clip" data-start="43.42" data-duration="2.2" data-track-index="2">
+        <div class="shade-b"></div>
+        %%tO%%
+      </div>
+
+      <!-- ===================== P · end card: logo + tagline only ===================== -->
+      <div id="sP" class="scene clip" data-start="45.62" data-duration="5.77" data-track-index="1" style="background:var(--paper)">
+        <div class="end" id="eGroup">
+          <img id="eMark" src="assets/brand/logo-mark.png" alt="" style="width:560px;height:364px;display:block">
+          <img id="eWord" src="assets/brand/logo-wordmark.png" alt="WYSTAK" style="width:640px;height:77px;display:block;margin-top:64px">
+          <div class="tag"><span id="eT1">ALL YOUR PASSES.</span> <span id="eT2">ONE STACK.</span></div>
+        </div>
+        <div id="fadeP" class="fade" style="background:#fff"></div>
+      </div>
+
+      <audio id="vo" src="assets/voiceover.wav" data-start="0" data-duration="%%DUR%%" data-track-index="20" data-volume="1"></audio>
+      <audio id="bed" src="assets/music-bed.wav" data-start="0" data-duration="%%DUR%%" data-track-index="21" data-volume="0.9"></audio>
+      <audio id="sfx" src="assets/sfx.wav" data-start="0" data-duration="%%DUR%%" data-track-index="22" data-volume="0.6"></audio>
+
+      <div id="grain-overlay" style="position:absolute;inset:0;pointer-events:none;z-index:100;overflow:hidden"><div class="grain-texture"></div></div>
+      <style>
+        @keyframes hf-grain-noise { 0%, 100% { transform: translate(0, 0); } 20% { transform: translate(-10%, 5%); } 40% { transform: translate(-5%, 15%); } 60% { transform: translate(15%, 0); } 80% { transform: translate(-15%, 0); } }
+        #grain-overlay .grain-texture { position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+          background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+          opacity: 0.04; animation: hf-grain-noise 0.5s steps(1) infinite; }
+      </style>
+    </div>
+
+    <script>
+      (function () {
+        const tl = gsap.timeline({ paused: true });
+        const push = (t, t0, d, a, b, o) => tl.fromTo(t, { scale: a }, { scale: b, duration: d, ease: "none", transformOrigin: o || "50% 50%" }, t0);
+        // a type line rises out of its mask
+        const line = (id, k, t, d) => tl.fromTo(`#${id}-l${k} > span`, { yPercent: 118 }, { yPercent: 0, duration: d || 0.85, ease: "power4.out" }, t);
+        const kick = (id, k, t) => tl.fromTo(`#${id}-k${k}`, { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.7, ease: "power3.out" }, t);
+        const out = (sel, t) => tl.to(sel, { opacity: 0, y: -22, duration: 0.3, ease: "power2.in" }, t);
+        const rise = (sel, t, dy, d) => tl.fromTo(sel, { opacity: 0, y: dy || 60 }, { opacity: 1, y: 0, duration: d || 0.7, ease: "power3.out" }, t);
+        // iOS-style stacking: the newest notification lands on top, older ones slide down
+        function stack(ids, times, gap) {
+          ids.forEach((id, i) => {
+            tl.fromTo(`#${id}`, { opacity: 0, y: -28, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "back.out(1.4)" }, times[i]);
+            for (let j = i + 1; j < ids.length; j++) tl.to(`#${id}`, { y: (j - i) * gap, duration: 0.36, ease: "power3.out" }, times[j]);
+          });
+        }
+
+        // ---------- A · opening: fade up, slow push, type in two beats ----------
+        tl.fromTo("#fadeA", { opacity: 1 }, { opacity: 0, duration: 1.1, ease: "power1.inOut" }, 0);
+        push("#vA", 0, 2.72, 1.0, 1.07);
+        line("tA", 0, 0.35); line("tA", 1, 1.15, 1.0);
+        out("#tA", 2.42);
+
+        // ---------- B · notifications pile up, nobody looks, the screen sleeps ----------
+        rise("#pwB", 2.72, 90, 0.75);
+        push("#bgB", 2.72, 2.6, 1.04, 1.1);
+        tl.fromTo("#pwB", { rotation: -2.5 }, { rotation: 0, duration: 2.6, ease: "none" }, 2.72);
+        stack(["nB1", "nB2", "nB3"], [3.05, 3.42, 3.78], 112);
+        tl.fromTo("#sleepB", { opacity: 0 }, { opacity: 0.88, duration: 0.55, ease: "power2.in" }, 4.5);
+        line("tB", 0, 2.92); line("tB", 1, 4.18, 0.95);
+        out("#tB", 5.05);
+
+        // ---------- C · the counter starts collecting data ----------
+        push("#vC", 5.32, 3.8, 1.02, 1.08);
+        tl.fromTo("#dcard", { opacity: 0, y: 50, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "power3.out" }, 5.7);
+        ["#dr1", "#dr2", "#dr3", "#dr4"].forEach((r, i) => tl.fromTo(r, { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 6.45 + i * 0.27));
+        line("tC", 0, 5.45); line("tC", 1, 6.5, 0.95); kick("tC", 2, 7.8);
+        out("#tC, #dcard", 8.85);
+
+        // ---------- D · businesses remember ----------
+        push("#vD", 9.12, 2.16, 1.03, 1.09);
+        line("tD", 0, 9.22); line("tD", 1, 10.12, 0.95);
+        out("#tD", 11.0);
+
+        // ---------- E · visit / purchase / preference, logged one by one ----------
+        push("#vE1", 11.28, 1.1, 1.04, 1.1); push("#vE2", 12.38, 1.1, 1.04, 1.1); push("#vE3", 13.48, 1.4, 1.03, 1.1);
+        [["#e1", 11.38], ["#e2", 12.45], ["#e3", 13.6]].forEach(([e, t], i) => {
+          tl.fromTo(`${e} .kick`, { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, t);
+          tl.fromTo(`${e} .ln > span`, { yPercent: 118 }, { yPercent: 0, duration: 0.75, ease: "power4.out" }, t + 0.06);
+          if (i < 2) tl.to(e, { opacity: 0.42, duration: 0.3 }, [12.45, 13.6][i]);
+        });
+        out("#sE .dlist", 14.62);
+
+        // ---------- F · apps, badges, a message from the café ----------
+        rise("#pwF", 14.88, 90, 0.7);
+        push("#bgF", 14.88, 3.3, 1.04, 1.1);
+        for (let i = 0; i < 12; i++) tl.fromTo(`#hF${i} .ai`, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.42, ease: "back.out(2)" }, 15.02 + i * 0.075);
+        tl.fromTo("#phF .hl", { opacity: 0 }, { opacity: 1, duration: 0.3, stagger: 0.075 }, 15.15);
+        tl.fromTo("#phF .hbadge", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(2.6)", stagger: 0.11 }, 16.3);
+        tl.fromTo("#nF", { y: -150, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "back.out(1.3)" }, 17.15);
+        line("tF", 0, 15.0); line("tF", 1, 17.05, 0.9);
+        out("#tF", 17.95);
+
+        // ---------- G · birthdays (and the cousins) ----------
+        push("#bgG", 18.18, 3.24, 1.03, 1.1);
+        tl.fromTo("#nG1", { opacity: 0, y: -60, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "back.out(1.3)" }, 18.8);
+        tl.fromTo("#nG2", { opacity: 0, y: -40, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "back.out(1.3)" }, 20.4);
+        kick("tG", 0, 18.3); line("tG", 1, 19.86, 0.8); line("tG", 2, 20.38, 0.8);
+        out("#tG", 21.2);
+
+        // ---------- H · everywhere: a cascade on the lock screen ----------
+        rise("#pwH", 21.42, 70, 0.6);
+        push("#bgH", 21.42, 2.7, 1.04, 1.1);
+        stack(["nH1", "nH2", "nH3", "nH4", "nH5", "nH6", "nH7"], [21.72, 22.08, 22.38, 22.63, 22.84, 23.02, 23.18], 108);
+        kick("tHk", 0, 21.5);
+        tl.fromTo("#gH span", { yPercent: 110 }, { yPercent: 0, duration: 0.8, ease: "power4.out" }, 23.08);
+        push("#pwH", 22.0, 2.1, 1.0, 1.05, "50% 60%");
+
+        // ---------- I · one phone, five places ----------
+        rise("#pwI", 24.12, 50, 0.5);
+        push("#bgI", 24.12, 5.54, 1.04, 1.12);
+        push("#pwI", 24.4, 5.2, 1.0, 1.05);
+        kick("tI", 0, 24.14);
+        const SW = %%SWAP_JS%%;
+        SW.forEach(([w, t], i) => {
+          tl.fromTo(`#sw${i} > span`, { yPercent: 118 }, { yPercent: 0, duration: 0.6, ease: "power4.out" }, t);
+          const end = i + 1 < SW.length ? SW[i + 1][1] - 0.06 : 29.45;
+          tl.to(`#sw${i} > span`, { yPercent: -118, duration: 0.32, ease: "power3.in" }, end - 0.26);
+        });
+        tl.fromTo("#iS2", { xPercent: 100 }, { xPercent: 0, duration: 0.45, ease: "power3.inOut" }, 25.18);
+        tl.to("#iS1", { xPercent: -30, duration: 0.45, ease: "power3.inOut" }, 25.18);
+        tl.fromTo("#iS3", { opacity: 0 }, { opacity: 1, duration: 0.25 }, 26.04);
+        tl.fromTo("#delIcon", { rotation: -3.5 }, { rotation: 3.5, duration: 0.1, repeat: 5, yoyo: true, ease: "sine.inOut" }, 26.12);
+        tl.fromTo("#delMenu", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.28, ease: "back.out(1.6)" }, 26.2);
+        tl.to("#delMenu .red", { backgroundColor: "#e3e3e8", duration: 0.1 }, 26.58);
+        tl.to("#delMenu", { opacity: 0, duration: 0.2 }, 26.7);
+        tl.to("#delIcon", { scale: 0, opacity: 0, duration: 0.36, ease: "back.in(1.8)" }, 26.74);
+        tl.fromTo("#iS4", { xPercent: 100 }, { xPercent: 0, duration: 0.45, ease: "power3.inOut" }, 27.4);
+        tl.to("#getBtn", { scale: 0.9, duration: 0.09, yoyo: true, repeat: 1 }, 27.92);
+        tl.to("#getBtn", { backgroundColor: "#e5e5ea", color: "#0a84ff", duration: 0.15 }, 28.1);
+        tl.fromTo("#iS5", { xPercent: 100 }, { xPercent: 0, duration: 0.45, ease: "power3.inOut" }, 28.38);
+        tl.fromTo("#iS5 .dg", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.12, stagger: 0.14 }, 28.95);
+
+        // ---------- J · silence, a ding, a clean lock screen ----------
+        push("#pwJ", 29.66, 4.16, 0.97, 1.03);
+        tl.fromTo("#swJ", { xPercent: -160 }, { xPercent: 340, duration: 1.0, ease: "power2.inOut" }, 30.1);
+        line("tJ", 0, 30.98); line("tJ", 1, 32.56, 0.95);
+        out("#tJ", 33.55);
+
+        // ---------- K · it already has a home: the passes land in both wallets ----------
+        push("#bgK", 33.82, 3.3, 1.04, 1.1);
+        tl.fromTo("#hpA", { opacity: 0, y: 140, rotation: -7 }, { opacity: 1, y: 0, rotation: -4, duration: 0.9, ease: "power3.out" }, 33.85);
+        tl.fromTo("#hpG", { opacity: 0, y: 180, rotation: 8 }, { opacity: 1, y: 40, rotation: 5, duration: 0.9, ease: "power3.out" }, 34.0);
+        line("tK", 0, 33.92);
+        tl.to("#tK-l0", { opacity: 0, duration: 0.25 }, 35.1);
+        line("tK", 1, 35.3, 0.9);
+        tl.fromTo("#pwKa", { opacity: 0, y: 260, scale: 0.72 }, { opacity: 1, y: 0, scale: 0.72, duration: 0.65, ease: "power3.out" }, 35.32);
+        tl.fromTo("#pwKg", { opacity: 0, y: 300, scale: 0.72 }, { opacity: 1, y: 0, scale: 0.72, duration: 0.65, ease: "power3.out" }, 35.4);
+        tl.to("#hpA", { x: 83, y: 242, rotation: 0, scale: 0.576, duration: 0.6, ease: "power3.inOut" }, 35.45);
+        tl.to("#hpG", { x: 137, y: 121, rotation: 0, scale: 0.576, duration: 0.6, ease: "power3.inOut" }, 35.52);
+        tl.to("#hpA, #hpG", { opacity: 0, duration: 0.18 }, 36.08);
+        tl.fromTo("#kPassA, #kPassG", { opacity: 0 }, { opacity: 1, duration: 0.18 }, 36.02);
+        kick("tK2", 0, 36.05);
+
+        // ---------- L / M · scan, no app, paid ----------
+        push("#vL", 37.12, 2.5, 1.0, 1.05);
+        line("tL", 0, 37.22); line("tL", 1, 38.84, 0.9);
+        out("#tL", 39.42);
+        tl.fromTo("#bdA, #bdG", { opacity: 0, y: 40, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "back.out(1.6)", stagger: 0.08 }, 38.9);
+        tl.to("#bdL", { opacity: 0, duration: 0.25 }, 40.98);
+        push("#vM", 39.62, 1.6, 1.02, 1.07);
+        line("tM", 0, 39.84, 0.9); line("tM", 1, 40.36);
+        out("#tM", 41.02);
+
+        // ---------- N · +18 points, then the camera leans in ----------
+        rise("#pwN", 41.26, 60, 0.5);
+        tl.fromTo("#nN", { opacity: 0, y: -40, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "back.out(1.6)" }, 41.5);
+        tl.fromTo("#pwN", { scale: 1 }, { scale: 1.42, duration: 1.85, ease: "power2.inOut", transformOrigin: "50% 62%" }, 41.6);
+
+        // ---------- O · now they notice ----------
+        push("#vO", 43.42, 2.2, 1.02, 1.07);
+        line("tO", 0, 43.52); line("tO", 1, 44.1, 1.0);
+        out("#tO", 45.38);
+
+        // ---------- P · logo + tagline, held ----------
+        tl.fromTo("#fadeP", { opacity: 1 }, { opacity: 0, duration: 0.5, ease: "power1.out" }, 45.62);
+        tl.fromTo("#eMark", { opacity: 0, scale: 0.9, filter: "blur(16px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 1.1, ease: "power3.out" }, 45.66);
+        tl.fromTo("#eWord", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.9, ease: "power3.inOut" }, 46.08);
+        tl.fromTo("#eT1", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 46.8);
+        tl.fromTo("#eT2", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 47.98);
+        push("#eGroup", 45.62, 5.77, 0.985, 1.02, "50% 40%");
+
+        window.__timelines = window.__timelines || {};
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>
