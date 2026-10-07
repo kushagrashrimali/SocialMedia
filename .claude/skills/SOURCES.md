@@ -11,6 +11,7 @@ To update, re-clone the upstream repo and copy the skill folder over.
 | [echris6/motion-video-kit](https://github.com/echris6/motion-video-kit) (MIT) | 255562b | business-motion-film |
 | [nolangz/pixel2motion](https://github.com/nolangz/pixel2motion) (MIT) | e9faedb | pixel2motion (without docs/ gallery) |
 | [Jakeschincariol/instagram-agent-skill](https://github.com/Jakeschincariol/instagram-agent-skill) | d03c56b | ig-reel, ig-story, ig-caption, ig-viral, ig-repurpose |
+| [emilkowalski/skills](https://github.com/emilkowalski/skills) | e8a175d | animate, animate-expo, animation-vocabulary, apple-design, ask-sonner, break-ui, emil-design-eng, find-animation-opportunities, improve-animations, mobile-native, pick-ui-library, prototype, review-animations, write-swift (installed with `npx skills add`; motion and UI-polish guidance used for the reels' phone and notification animation) |
 
 Each skill keeps its upstream LICENSE terms.
 
@@ -21,3 +22,4 @@ Each skill keeps its upstream LICENSE terms.
 - **OpenMontage**: a 92 MB standalone production system that overlaps with HyperFrames.
 - **guizang-product-video-skill**: AGPL, written in Chinese, and overlaps with product-launch-video.
 - **diffusionstudio/lottie**: needs its own Skia player. HyperFrames already has a Lottie adapter.
+- **gooseworks-ai/gooseworks-ads-skills** (render-ios-lockscreen, notification-flood-ad): not reachable — the repo is private or no longer exists (anonymous clone refused). The public gooseworks-ai/gooseworks skills (goose-ads, goose-video and others) are front-ends to GooseWorks' paid, credit-billed cloud service, so they were not installed.
