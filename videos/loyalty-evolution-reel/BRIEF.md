@@ -6,8 +6,8 @@ message: "India never stopped rewarding customers; loyalty just got scattered. W
 destination: instagram-reels
 aspect: 1080x1920
 language: en
-audience: Indian café, restaurant, salon and shop owners (merchants)
-length: 51s
+audience: Indian merchants of every category (cafés, salons, stores, cinemas, clubs, events)
+length: 52s
 ---
 
 ## Intent
@@ -24,7 +24,16 @@ The full creative brief from the user is in the conversation that made `wystak/s
 - assets/footage/, assets/stills/ — licensed stock and archival media; every file is listed in `assets/MANIFEST.md` with source, URL and licence.
 - assets/music-bed.wav, assets/sfx.wav — synthesised locally (`sound/make_sound.py`); the bed is carved under the voice (hyperframes-audio carve, strength 0.6).
 
-## Customizations (v4, current)
+## Customizations (v5, current)
+
+- Every category, in real footage: a club, a barber's blow-dry and a café in the opening montage; "Every counter" crosses a boutique, a bar and a café; a barber for "Businesses learned to remember"; a cinema audience with popcorn ("Every visit"), a boutique rail ("Every purchase") and a café pour ("Every preference"); "Now they notice" runs concert, club, café, and the Wallet notifications pile into one stack across them (Live Pass, Club Night, Cafe Aroma).
+- The Wallet stack holds every category (Movie Club, Salon Club, Style Rewards, Live Pass) under the Cafe Aroma pass, on both Apple Wallet and Google Wallet.
+- Transitions: every footage cut is a zoom-through dissolve (clips overlap 0.4s; scale and focus hand over); brand-ground scenes focus-pull in and dissolve out over the footage; warm light leaks on the three topic changes; the last shot blows out to white into the logo. Slow bokeh drifts behind every phone.
+- The Wystak introduction holds 1.0s longer (voice re-gapped at 30.40s, everything after it +1.0s): a light sweep runs across the mark and the wordmark, and the promise "All your passes. One stack." settles underneath before the lockup flies into the phone.
+- Sound: real recorded effects (Mixkit) in place of the synthesised pops: one two-tone phone alert for every notification, a confirmation ding for paid and reward, a switch click for the lock, soft air whooshes for the cuts, one bell for Wystak. The effects sit about 6 dB lower than v4.
+- Build: `python3 -I storyboard/prep_v5.py SRC_DIR`, `python3 -I sound/make_music.py assets/music-src/mixkit-371-cat-walk.mp3`, `python3 -I sound/make_sound.py`, `python3 storyboard/build_v5.py`, then the carve, then render.
+
+## Customizations (v4)
 
 - People are real action at the counter, on video: a cup handed across, a barista at the machine, coffee carried to a customer, a lid snapped on a takeaway cup, a phone at the counter (Mixkit 4K, framed on the action rather than faces).
 - Kinetic captions, one family (Inter Tight), exact words in short groups: each word punches in on its spoken time (oversize, tipped back, out of focus, then snaps into place); the accent word gets its own big line, lands with a squash-and-stretch spring and floods into brand colour (violet #6b2ba6 on light, mint #00e0a3 on footage/violet); phrases lift away on time.
@@ -41,4 +50,4 @@ The full creative brief from the user is in the conversation that made `wystak/s
 
 - Brand rules from the repo's CLAUDE.md and the wystak-brand skill: fictional merchant Cafe Aroma (the user's choice for this reel); app logos only where the user asked for them; Apple Wallet and Google Wallet with equal weight as plain text; the lock-screen push is a real points change, never marketing; no invented statistics.
 - Claims allowed: no app, one scan at the counter, points on the lock screen within seconds.
-- Length follows the recorded voice: 51.39s.
+- Length follows the recorded voice: 52.39s (v5 added 1.0s of hold to the introduction).
