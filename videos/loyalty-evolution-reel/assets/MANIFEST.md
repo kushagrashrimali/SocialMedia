@@ -1,6 +1,6 @@
 # Asset manifest: loyalty evolution reel
 
-Every third-party file in this reel, with its source and licence. All of them allow commercial use: Mixkit Stock Video Free License, Unsplash License or CC0. None is CC BY-SA, NC, ND or a Mixkit Restricted (Envato) item. Crops and grades are listed under Notes. Shot numbers refer to `storyboard/shots.json`.
+Every third-party file in this reel, with its source and licence. All of them allow commercial use: Mixkit Stock Video Free License, Unsplash License or CC0. None is CC BY-SA, NC, ND or a Mixkit Restricted (Envato) item. Crops and grades are listed under Notes. Video grades are baked into the files with ffmpeg (muted, lifted blacks, light vignette and grain; the train is black and white) because runtime grading of video is too slow to render in this environment; stills keep their runtime grade (`data-color-grading`). Shot numbers refer to `storyboard/shots.json`.
 
 Licences:
 - Mixkit Stock Video Free License: https://mixkit.co/license/#videoFree (commercial use, no attribution required)
@@ -42,3 +42,4 @@ Licences:
 - `brand/logo-mark.png`, `brand/logo-wordmark.png`: crops of WYSTAK's own logo files (`wystak/brand/`).
 - Fonts: Archivo, Archivo Black, Manrope, IBM Plex Mono (SIL Open Font License, via @fontsource on npm). GSAP from npm.
 - `voiceover.wav`: WYSTAK's ElevenLabs recording (Kendra), edited.
+- `music-bed.wav`, `sfx.wav`: synthesised for this reel by `sound/make_sound.py` (tanpura drone, pads, kalimba, pulse, chimes, pings, ding). No samples.

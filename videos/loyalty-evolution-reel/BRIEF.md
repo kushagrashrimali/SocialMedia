@@ -20,8 +20,9 @@ The full creative brief from the user is in the conversation that made `wystak/s
 
 - assets/voiceover.wav — ElevenLabs take (Kendra), sped up 5% with pitch kept and re-gapped for the brief's silences; 44.02s. It drives all timing.
 - assets/words.json — word timings force-aligned (pocketsphinx) to the edited take.
-- assets/brand/logo-mark.png, logo-wordmark.png, logo-full.png — crops of the supplied three-card logo (`wystak/brand/`). Never redrawn or recoloured.
+- assets/brand/logo-mark.png, logo-wordmark.png — crops of the supplied three-card logo (`wystak/brand/`). Never redrawn or recoloured.
 - assets/footage/, assets/stills/ — licensed stock and archival media; every file is listed in `assets/MANIFEST.md` with source, URL and licence.
+- assets/music-bed.wav, assets/sfx.wav — synthesised locally (`sound/make_sound.py`); the bed is carved under the voice (hyperframes-audio carve, strength 0.6).
 
 ## Customizations
 
