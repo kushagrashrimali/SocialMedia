@@ -10,8 +10,8 @@ import glob, json, os, pathlib, shutil, subprocess, sys
 
 HERE = pathlib.Path(__file__).resolve().parent
 PROJECT = HERE.parent
-PER_SHEET = 12
-COLS = 4
+PER_SHEET = 15
+COLS = 5
 
 
 def find_chrome():
@@ -66,10 +66,10 @@ def main():
 @font-face{{font-family:M;src:url({fonts}/manrope-latin-700-normal.woff2);font-weight:700}}
 @font-face{{font-family:P;src:url({fonts}/ibm-plex-mono-latin-500-normal.woff2)}}
 *{{margin:0;padding:0;box-sizing:border-box}}
-body{{background:#f7f5fa;color:#1a0b2e;font-family:M,sans-serif;width:1480px;padding:48px 40px 40px}}
+body{{background:#f7f5fa;color:#1a0b2e;font-family:M,sans-serif;width:1700px;padding:48px 40px 40px}}
 h1{{font-family:AB;font-size:44px;letter-spacing:-.02em}}
 .meta{{font-family:A;font-weight:600;font-size:17px;letter-spacing:.16em;text-transform:uppercase;color:#6b5d82;margin:10px 0 34px}}
-.grid{{display:grid;grid-template-columns:repeat({COLS},1fr);gap:34px 30px}}
+.grid{{display:grid;grid-template-columns:repeat({COLS},1fr);gap:34px 26px}}
 .cell img{{width:100%;aspect-ratio:9/16;display:block;border-radius:10px;background:#0b0410}}
 .hd{{display:flex;justify-content:space-between;align-items:baseline;margin-top:12px}}
 .no{{font-family:AB;font-size:22px}}
@@ -100,8 +100,8 @@ h1{{font-family:AB;font-size:44px;letter-spacing:-.02em}}
         src.write_text(html)
         png = HERE / f"storyboard-{pi}.png"
         rows = (len(page) + COLS - 1) // COLS
-        height = 150 + rows * 900
-        subprocess.run([chrome, "--headless=new", f"--window-size=1480,{height}", "--no-sandbox", "--disable-gpu",
+        height = 150 + rows * 860
+        subprocess.run([chrome, "--headless=new", f"--window-size=1700,{height}", "--no-sandbox", "--disable-gpu",
                         "--hide-scrollbars", "--force-device-scale-factor=1", "--allow-file-access-from-files",
                         "--virtual-time-budget=4000", f"--screenshot={png}", src.as_uri()],
                        check=True, capture_output=True)

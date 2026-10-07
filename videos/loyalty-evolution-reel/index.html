@@ -1,8 +1,8 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=1080, height=1920" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1080, height=1920">
     <script src="assets/vendor/gsap.min.js"></script>
     <style>
       @font-face { font-family: "Archivo"; src: url("assets/vendor/fonts/archivo-latin-500-normal.woff2") format("woff2"); font-weight: 500; font-style: normal; }
@@ -45,6 +45,9 @@
       .quote { position: absolute; left: 90px; right: 230px; top: 300px; font-family: "Archivo", sans-serif; font-style: italic; font-weight: 500; font-size: 66px; line-height: 1.08; letter-spacing: -0.01em; color: var(--paper); text-shadow: 0 2px 22px rgba(11, 4, 16, 0.6); }
       .mono { font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums; }
 
+      .scrim { position: absolute; left: 0; right: 0; top: 1110px; height: 380px; background: linear-gradient(to bottom, rgba(11, 4, 16, 0) 0%, rgba(11, 4, 16, 0.58) 48%, rgba(11, 4, 16, 0) 100%); }
+      .scrim-top { position: absolute; left: 0; right: 0; top: 0; height: 640px; background: linear-gradient(to bottom, rgba(11, 4, 16, 0.72) 0%, rgba(11, 4, 16, 0.45) 55%, rgba(11, 4, 16, 0) 100%); }
+      .pill { display: inline-block; padding: 14px 34px; border-radius: 44px; background: rgba(11, 4, 16, 0.78); }
       /* ---------- footage placeholder (replaced by real media) ---------- */
       .fph { position: absolute; inset: 0; background: #1a1420; display: flex; align-items: center; justify-content: center; }
       .fph span { font-family: "IBM Plex Mono", monospace; font-size: 30px; color: #8d8299; letter-spacing: 0.08em; text-align: center; padding: 0 140px; line-height: 1.5; }
@@ -135,6 +138,13 @@
       .chips { position: absolute; left: 0; right: 0; display: flex; justify-content: center; gap: 60px; }
       .chip { width: 340px; height: 74px; border-radius: 37px; border: 2px solid rgba(247, 245, 250, 0.55); display: flex; align-items: center; justify-content: center; font-family: "Archivo", sans-serif; font-weight: 600; font-size: 25px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--paper); }
 
+      /* QR standee (generic, no brand) */
+      .standee { position: absolute; left: 300px; top: 470px; width: 480px; height: 640px; border-radius: 26px; background: #ffffff; border: 14px solid #dfe7ee; box-shadow: 0 50px 70px -40px rgba(26, 11, 46, 0.55); display: flex; flex-direction: column; align-items: center; padding-top: 44px; }
+      .standee .sd-top { font-family: "Archivo", sans-serif; font-weight: 600; font-size: 34px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--aub); }
+      .standee .sd-qr { margin-top: 34px; }
+      .standee .sd-bot { margin-top: 30px; font-weight: 600; font-size: 22px; color: var(--muted-l); }
+      .standee-base { position: absolute; left: 270px; top: 1098px; width: 540px; height: 26px; border-radius: 13px; background: #cfd8e0; }
+
       /* end card */
       .end-mark { position: absolute; left: 0; right: 0; top: 560px; display: flex; justify-content: center; }
       .end-word { position: absolute; left: 0; right: 0; top: 1010px; display: flex; justify-content: center; }
@@ -142,309 +152,322 @@
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-start="0" data-duration="44.02" data-width="1080" data-height="1920">
+    <div data-hf-id="hf-q3tk" id="root" data-composition-id="main" data-start="0" data-duration="44.02" data-width="1080" data-height="1920">
 
       <!-- ===== HOOK · "India didn't stop rewarding customers." ===== -->
-      <div id="s01" class="scene clip" data-start="0" data-duration="0.75" data-track-index="1">
-        <div class="fph"><span>FOOTAGE · café counter, QR standee</span></div>
-        <div class="label">Pay</div>
+      <div data-hf-id="hf-1035" id="s01" class="scene clip ground-void" data-start="0" data-duration="0.42" data-track-index="1">
+        <img data-hf-id="hf-n2w4" id="m-coin" src="assets/stills/coin-quarter-anna-1862.png" alt="" style="position: absolute; left: 150px; top: 570px; width: 780px; height: 780px">
       </div>
-      <div id="s02" class="scene clip" data-start="0.75" data-duration="0.75" data-track-index="1">
-        <div class="fph"><span>FOOTAGE · hand raises phone to scan the QR</span></div>
-        <div class="label">Phone</div>
+      <div data-hf-id="hf-stfn" id="s01b" class="scene clip ground-paper" data-start="0.42" data-duration="0.66" data-track-index="1">
+        <div data-hf-id="hf-534y" class="standee"><div data-hf-id="hf-m6l2" class="sd-top">Scan &amp; pay</div><div data-hf-id="hf-bn2t" class="sd-qr" id="qr-standee"></div><div data-hf-id="hf-chfm" class="sd-bot">Pay with any UPI app</div></div>
+        <div data-hf-id="hf-c52k" class="standee-base"></div>
+        <div data-hf-id="hf-5gm2" class="label on-paper">Pay</div>
       </div>
-      <div id="s03" class="scene clip ground-void" data-start="1.5" data-duration="1.0" data-track-index="1">
-        <div class="phone"><div class="screen lock">
-          <div class="island"></div>
-          <div class="date">Wednesday, 7 October</div>
-          <div class="time">8:12</div>
-          <div class="notif" style="top: 330px">
-            <div class="ic" style="background:#b4532a">R</div>
-            <div class="nb"><div class="t1">Rewards <span>now</span></div><div class="t2">Thanks for your visit! Points added to your account.</div></div>
+      <div data-hf-id="hf-2ds2" id="s02" class="scene clip" data-start="1.08" data-duration="0.47" data-track-index="1">
+        <img data-color-grading="{&quot;preset&quot;:&quot;muted-editorial&quot;,&quot;intensity&quot;:0.85,&quot;adjust&quot;:{&quot;exposure&quot;:-0.02,&quot;contrast&quot;:0.08,&quot;highlights&quot;:-0.08,&quot;shadows&quot;:0.06,&quot;whites&quot;:0,&quot;blacks&quot;:-0.05,&quot;temperature&quot;:-0.03,&quot;tint&quot;:0,&quot;vibrance&quot;:0,&quot;saturation&quot;:-0.12},&quot;details&quot;:{&quot;vignette&quot;:0.12,&quot;vignetteMidpoint&quot;:0.5,&quot;vignetteRoundness&quot;:0,&quot;vignetteFeather&quot;:0.65,&quot;grain&quot;:0.06,&quot;grainSize&quot;:0.2,&quot;grainRoughness&quot;:0.6},&quot;effects&quot;:{&quot;blur&quot;:0,&quot;pixelate&quot;:0,&quot;chromaBleed&quot;:0,&quot;tapeDamage&quot;:0,&quot;tapeTracking&quot;:0,&quot;tapeNoise&quot;:1,&quot;tapeSpeed&quot;:0.5,&quot;filmArtifacts&quot;:0,&quot;halftone&quot;:0,&quot;halftoneSize&quot;:0,&quot;twoInkPrint&quot;:0,&quot;twoInkPrintSize&quot;:0,&quot;ascii&quot;:0,&quot;asciiSize&quot;:0.06578947368421052,&quot;asciiInvert&quot;:0,&quot;asciiStyle&quot;:0,&quot;asciiColor&quot;:1,&quot;asciiRotation&quot;:0,&quot;dither&quot;:0,&quot;ditherSize&quot;:0,&quot;bloom&quot;:0,&quot;bloomRadius&quot;:8,&quot;monoScreen&quot;:0,&quot;monoScreenSize&quot;:0,&quot;monoScreenAngle&quot;:0,&quot;monoScreenSpread&quot;:0,&quot;monoScreenShape&quot;:0,&quot;monoScreenInvert&quot;:0,&quot;scanlines&quot;:0,&quot;scanlineCount&quot;:0,&quot;scanlineSoftness&quot;:0,&quot;chromaticAberration&quot;:0,&quot;chromaticAngle&quot;:0,&quot;crtCurvature&quot;:0,&quot;digitalGlitch&quot;:0,&quot;digitalGlitchColorSplit&quot;:0,&quot;digitalGlitchLineTear&quot;:0,&quot;digitalGlitchPixelate&quot;:0,&quot;digitalGlitchBlockAmount&quot;:0,&quot;digitalGlitchBlockDisplacement&quot;:0,&quot;digitalGlitchBlockOpacity&quot;:0,&quot;digitalGlitchSpeed&quot;:0,&quot;engraving&quot;:0,&quot;engravingSpacing&quot;:0.4117647058823529,&quot;engravingMinThickness&quot;:0.2,&quot;engravingMaxThickness&quot;:0.4571428571428572,&quot;engravingAngle&quot;:0.25,&quot;engravingContrast&quot;:0.4666666666666667,&quot;engravingSharpness&quot;:0.59,&quot;engravingWave&quot;:0.2,&quot;engravingWaveFrequency&quot;:0.2222222222222222,&quot;crosshatch&quot;:0,&quot;crosshatchSpacing&quot;:0.28,&quot;crosshatchThickness&quot;:0.25,&quot;crosshatchAngle&quot;:0.25,&quot;crosshatchContrast&quot;:0.3333333333333333,&quot;crosshatchEdges&quot;:0.5,&quot;crosshatchLineWeight&quot;:0,&quot;crosshatchWave&quot;:0.33,&quot;crosshatchWaveFrequency&quot;:0.2222222222222222,&quot;kuwahara&quot;:0,&quot;kuwaharaRadius&quot;:0.14285714285714285,&quot;kuwaharaSharpness&quot;:0.3125,&quot;kuwaharaSaturation&quot;:0.5},&quot;lut&quot;:null,&quot;colorSpace&quot;:&quot;rec709&quot;}" data-hf-id="hf-sgza" id="m-phonefood" class="media" src="assets/stills/phone-photo-food.jpg" alt="">
+        <div class="scrim"></div>
+        <div data-hf-id="hf-s3ea" class="label">Phone</div>
+      </div>
+      <div data-hf-id="hf-nwgk" id="s03" class="scene clip ground-void" data-start="1.55" data-duration="0.95" data-track-index="1">
+        <div data-hf-id="hf-kda4" class="phone"><div data-hf-id="hf-xm09" class="screen lock">
+          <div data-hf-id="hf-7sfr" class="island"></div>
+          <div data-hf-id="hf-dolx" class="date">Wednesday, 7 October</div>
+          <div data-hf-id="hf-qpza" class="time">8:12</div>
+          <div data-hf-id="hf-r56x" class="notif" style="top: 330px">
+            <div data-hf-id="hf-a9ne" class="ic" style="background:#b4532a">R</div>
+            <div data-hf-id="hf-xjjk" class="nb"><div data-hf-id="hf-cuff" class="t1">Rewards <span data-hf-id="hf-9yvn">now</span></div><div data-hf-id="hf-3l0j" class="t2">Thanks for your visit! Points added to your account.</div></div>
           </div>
-          <div class="bar"></div>
+          <div data-hf-id="hf-ufsv" class="bar"></div>
         </div></div>
-        <div class="label">Reward</div>
+        <div data-hf-id="hf-j2bh" class="label">Reward</div>
       </div>
 
       <!-- ===== "Your customers just stopped noticing." ===== -->
-      <div id="s04" class="scene clip" data-start="2.5" data-duration="0.85" data-track-index="1">
-        <div class="fph"><span>FOOTAGE · Indian street crowd, black and white</span></div>
+      <div data-hf-id="hf-ypl4" id="s04" class="scene clip" data-start="2.5" data-duration="0.85" data-track-index="1">
+        <img data-color-grading="{&quot;preset&quot;:&quot;mono-fade&quot;,&quot;intensity&quot;:1,&quot;adjust&quot;:{&quot;exposure&quot;:0,&quot;contrast&quot;:-0.04,&quot;highlights&quot;:-0.06,&quot;shadows&quot;:0.1,&quot;whites&quot;:0,&quot;blacks&quot;:0.12,&quot;temperature&quot;:0,&quot;tint&quot;:0,&quot;vibrance&quot;:0,&quot;saturation&quot;:-1},&quot;details&quot;:{&quot;vignette&quot;:0.12,&quot;vignetteMidpoint&quot;:0.5,&quot;vignetteRoundness&quot;:0,&quot;vignetteFeather&quot;:0.65,&quot;grain&quot;:0.06,&quot;grainSize&quot;:0.2,&quot;grainRoughness&quot;:0.6},&quot;effects&quot;:{&quot;blur&quot;:0,&quot;pixelate&quot;:0,&quot;chromaBleed&quot;:0,&quot;tapeDamage&quot;:0,&quot;tapeTracking&quot;:0,&quot;tapeNoise&quot;:1,&quot;tapeSpeed&quot;:0.5,&quot;filmArtifacts&quot;:0,&quot;halftone&quot;:0,&quot;halftoneSize&quot;:0,&quot;twoInkPrint&quot;:0,&quot;twoInkPrintSize&quot;:0,&quot;ascii&quot;:0,&quot;asciiSize&quot;:0.06578947368421052,&quot;asciiInvert&quot;:0,&quot;asciiStyle&quot;:0,&quot;asciiColor&quot;:1,&quot;asciiRotation&quot;:0,&quot;dither&quot;:0,&quot;ditherSize&quot;:0,&quot;bloom&quot;:0,&quot;bloomRadius&quot;:8,&quot;monoScreen&quot;:0,&quot;monoScreenSize&quot;:0,&quot;monoScreenAngle&quot;:0,&quot;monoScreenSpread&quot;:0,&quot;monoScreenShape&quot;:0,&quot;monoScreenInvert&quot;:0,&quot;scanlines&quot;:0,&quot;scanlineCount&quot;:0,&quot;scanlineSoftness&quot;:0,&quot;chromaticAberration&quot;:0,&quot;chromaticAngle&quot;:0,&quot;crtCurvature&quot;:0,&quot;digitalGlitch&quot;:0,&quot;digitalGlitchColorSplit&quot;:0,&quot;digitalGlitchLineTear&quot;:0,&quot;digitalGlitchPixelate&quot;:0,&quot;digitalGlitchBlockAmount&quot;:0,&quot;digitalGlitchBlockDisplacement&quot;:0,&quot;digitalGlitchBlockOpacity&quot;:0,&quot;digitalGlitchSpeed&quot;:0,&quot;engraving&quot;:0,&quot;engravingSpacing&quot;:0.4117647058823529,&quot;engravingMinThickness&quot;:0.2,&quot;engravingMaxThickness&quot;:0.4571428571428572,&quot;engravingAngle&quot;:0.25,&quot;engravingContrast&quot;:0.4666666666666667,&quot;engravingSharpness&quot;:0.59,&quot;engravingWave&quot;:0.2,&quot;engravingWaveFrequency&quot;:0.2222222222222222,&quot;crosshatch&quot;:0,&quot;crosshatchSpacing&quot;:0.28,&quot;crosshatchThickness&quot;:0.25,&quot;crosshatchAngle&quot;:0.25,&quot;crosshatchContrast&quot;:0.3333333333333333,&quot;crosshatchEdges&quot;:0.5,&quot;crosshatchLineWeight&quot;:0,&quot;crosshatchWave&quot;:0.33,&quot;crosshatchWaveFrequency&quot;:0.2222222222222222,&quot;kuwahara&quot;:0,&quot;kuwaharaRadius&quot;:0.14285714285714285,&quot;kuwaharaSharpness&quot;:0.3125,&quot;kuwaharaSaturation&quot;:0.5},&quot;lut&quot;:null,&quot;colorSpace&quot;:&quot;rec709&quot;}" data-hf-id="hf-jo2s" id="m-crowd" class="media" src="assets/stills/bazaar-crowd-1900s.jpg" alt="">
       </div>
-      <div id="s05" class="scene clip ground-void" data-start="3.35" data-duration="1.35" data-track-index="1">
-        <div class="cam" style="transform: scale(1.25); transform-origin: 540px 1200px">
-        <div class="phone"><div class="screen lock">
-          <div class="island"></div>
-          <div class="date">Wednesday, 7 October</div>
-          <div class="time">8:14</div>
-          <div class="notif" style="top: 330px; transform: translateX(62%); opacity: 0.55">
-            <div class="ic" style="background:#b4532a">R</div>
-            <div class="nb"><div class="t1">Rewards <span>2m ago</span></div><div class="t2">Thanks for your visit! Points added to your account.</div></div>
+      <div data-hf-id="hf-22y7" id="s05" class="scene clip ground-void" data-start="3.35" data-duration="1.35" data-track-index="1">
+        <div data-hf-id="hf-4oyu" class="cam" style="transform: scale(1.25); transform-origin: 540px 1200px">
+        <div data-hf-id="hf-3kj8" class="phone"><div data-hf-id="hf-azkt" class="screen lock">
+          <div data-hf-id="hf-b0dz" class="island"></div>
+          <div data-hf-id="hf-5e6h" class="date">Wednesday, 7 October</div>
+          <div data-hf-id="hf-pxd8" class="time">8:14</div>
+          <div data-hf-id="hf-yjys" class="notif" style="top: 330px; transform: translateX(62%); opacity: 0.55">
+            <div data-hf-id="hf-69ha" class="ic" style="background:#b4532a">R</div>
+            <div data-hf-id="hf-mf48" class="nb"><div data-hf-id="hf-g6ln" class="t1">Rewards <span data-hf-id="hf-15ut">2m ago</span></div><div data-hf-id="hf-zqjn" class="t2">Thanks for your visit! Points added to your account.</div></div>
         </div>
           </div>
-          <div class="notif" style="top: 470px">
-            <div class="ic" style="background:#4d6b8a">S</div>
-            <div class="nb"><div class="t1">Store <span>now</span></div><div class="t2">Members get early access this Friday.</div></div>
+          <div data-hf-id="hf-zh7q" class="notif" style="top: 470px">
+            <div data-hf-id="hf-yxx5" class="ic" style="background:#4d6b8a">S</div>
+            <div data-hf-id="hf-l875" class="nb"><div data-hf-id="hf-evqm" class="t1">Store <span data-hf-id="hf-dx6b">now</span></div><div data-hf-id="hf-sn17" class="t2">Members get early access this Friday.</div></div>
           </div>
-          <div class="notif" style="top: 600px">
-            <div class="ic" style="background:#7a6a2e">F</div>
-            <div class="nb"><div class="t1">Food app <span>1m ago</span></div><div class="t2">Rate your last order.</div></div>
+          <div data-hf-id="hf-gmn1" class="notif" style="top: 600px">
+            <div data-hf-id="hf-nh75" class="ic" style="background:#7a6a2e">F</div>
+            <div data-hf-id="hf-lmi6" class="nb"><div data-hf-id="hf-z2ni" class="t1">Food app <span data-hf-id="hf-euze">1m ago</span></div><div data-hf-id="hf-hard" class="t2">Rate your last order.</div></div>
           </div>
-          <div class="bar"></div>
+          <div data-hf-id="hf-c51b" class="bar"></div>
         </div></div>
       </div>
 
       <!-- ===== "Sir, mobile number?" ===== -->
-      <div id="s06" class="scene clip" data-start="4.7" data-duration="0.7" data-track-index="1">
-        <div class="fph"><span>FOOTAGE · billing counter, cashier's view</span></div>
-        <div class="quote">“Sir, mobile number?”</div>
+      <div data-hf-id="hf-4fp0" id="s06" class="scene clip" data-start="4.7" data-duration="0.7" data-track-index="1">
+        <img data-color-grading="{&quot;preset&quot;:&quot;muted-editorial&quot;,&quot;intensity&quot;:0.85,&quot;adjust&quot;:{&quot;exposure&quot;:-0.02,&quot;contrast&quot;:0.08,&quot;highlights&quot;:-0.08,&quot;shadows&quot;:0.06,&quot;whites&quot;:0,&quot;blacks&quot;:-0.05,&quot;temperature&quot;:-0.03,&quot;tint&quot;:0,&quot;vibrance&quot;:0,&quot;saturation&quot;:-0.12},&quot;details&quot;:{&quot;vignette&quot;:0.12,&quot;vignetteMidpoint&quot;:0.5,&quot;vignetteRoundness&quot;:0,&quot;vignetteFeather&quot;:0.65,&quot;grain&quot;:0.06,&quot;grainSize&quot;:0.2,&quot;grainRoughness&quot;:0.6},&quot;effects&quot;:{&quot;blur&quot;:0,&quot;pixelate&quot;:0,&quot;chromaBleed&quot;:0,&quot;tapeDamage&quot;:0,&quot;tapeTracking&quot;:0,&quot;tapeNoise&quot;:1,&quot;tapeSpeed&quot;:0.5,&quot;filmArtifacts&quot;:0,&quot;halftone&quot;:0,&quot;halftoneSize&quot;:0,&quot;twoInkPrint&quot;:0,&quot;twoInkPrintSize&quot;:0,&quot;ascii&quot;:0,&quot;asciiSize&quot;:0.06578947368421052,&quot;asciiInvert&quot;:0,&quot;asciiStyle&quot;:0,&quot;asciiColor&quot;:1,&quot;asciiRotation&quot;:0,&quot;dither&quot;:0,&quot;ditherSize&quot;:0,&quot;bloom&quot;:0,&quot;bloomRadius&quot;:8,&quot;monoScreen&quot;:0,&quot;monoScreenSize&quot;:0,&quot;monoScreenAngle&quot;:0,&quot;monoScreenSpread&quot;:0,&quot;monoScreenShape&quot;:0,&quot;monoScreenInvert&quot;:0,&quot;scanlines&quot;:0,&quot;scanlineCount&quot;:0,&quot;scanlineSoftness&quot;:0,&quot;chromaticAberration&quot;:0,&quot;chromaticAngle&quot;:0,&quot;crtCurvature&quot;:0,&quot;digitalGlitch&quot;:0,&quot;digitalGlitchColorSplit&quot;:0,&quot;digitalGlitchLineTear&quot;:0,&quot;digitalGlitchPixelate&quot;:0,&quot;digitalGlitchBlockAmount&quot;:0,&quot;digitalGlitchBlockDisplacement&quot;:0,&quot;digitalGlitchBlockOpacity&quot;:0,&quot;digitalGlitchSpeed&quot;:0,&quot;engraving&quot;:0,&quot;engravingSpacing&quot;:0.4117647058823529,&quot;engravingMinThickness&quot;:0.2,&quot;engravingMaxThickness&quot;:0.4571428571428572,&quot;engravingAngle&quot;:0.25,&quot;engravingContrast&quot;:0.4666666666666667,&quot;engravingSharpness&quot;:0.59,&quot;engravingWave&quot;:0.2,&quot;engravingWaveFrequency&quot;:0.2222222222222222,&quot;crosshatch&quot;:0,&quot;crosshatchSpacing&quot;:0.28,&quot;crosshatchThickness&quot;:0.25,&quot;crosshatchAngle&quot;:0.25,&quot;crosshatchContrast&quot;:0.3333333333333333,&quot;crosshatchEdges&quot;:0.5,&quot;crosshatchLineWeight&quot;:0,&quot;crosshatchWave&quot;:0.33,&quot;crosshatchWaveFrequency&quot;:0.2222222222222222,&quot;kuwahara&quot;:0,&quot;kuwaharaRadius&quot;:0.14285714285714285,&quot;kuwaharaSharpness&quot;:0.3125,&quot;kuwaharaSaturation&quot;:0.5},&quot;lut&quot;:null,&quot;colorSpace&quot;:&quot;rec709&quot;}" data-hf-id="hf-jwg7" id="m-kirana" class="media" src="assets/stills/kirana-shopkeeper.jpg" alt="">
+        <div class="scrim-top"></div>
+        <div data-hf-id="hf-dcq1" class="quote">“Sir, mobile number?”</div>
       </div>
-      <div id="s07" class="scene clip" data-start="5.4" data-duration="0.8" data-track-index="1">
-        <div class="fph"><span>FOOTAGE · fingers typing ten digits on a keypad</span></div>
-        <div class="label mono" style="letter-spacing: 0.1em">98••• •••41</div>
+      <video data-color-grading="{&quot;preset&quot;:&quot;muted-editorial&quot;,&quot;intensity&quot;:0.7,&quot;adjust&quot;:{&quot;exposure&quot;:-0.02,&quot;contrast&quot;:0.08,&quot;highlights&quot;:-0.08,&quot;shadows&quot;:0.06,&quot;whites&quot;:0,&quot;blacks&quot;:-0.05,&quot;temperature&quot;:-0.03,&quot;tint&quot;:0,&quot;vibrance&quot;:0,&quot;saturation&quot;:-0.12},&quot;details&quot;:{&quot;vignette&quot;:0.12,&quot;vignetteMidpoint&quot;:0.5,&quot;vignetteRoundness&quot;:0,&quot;vignetteFeather&quot;:0.65,&quot;grain&quot;:0.06,&quot;grainSize&quot;:0.2,&quot;grainRoughness&quot;:0.6},&quot;effects&quot;:{&quot;blur&quot;:0,&quot;pixelate&quot;:0,&quot;chromaBleed&quot;:0,&quot;tapeDamage&quot;:0,&quot;tapeTracking&quot;:0,&quot;tapeNoise&quot;:1,&quot;tapeSpeed&quot;:0.5,&quot;filmArtifacts&quot;:0,&quot;halftone&quot;:0,&quot;halftoneSize&quot;:0,&quot;twoInkPrint&quot;:0,&quot;twoInkPrintSize&quot;:0,&quot;ascii&quot;:0,&quot;asciiSize&quot;:0.06578947368421052,&quot;asciiInvert&quot;:0,&quot;asciiStyle&quot;:0,&quot;asciiColor&quot;:1,&quot;asciiRotation&quot;:0,&quot;dither&quot;:0,&quot;ditherSize&quot;:0,&quot;bloom&quot;:0,&quot;bloomRadius&quot;:8,&quot;monoScreen&quot;:0,&quot;monoScreenSize&quot;:0,&quot;monoScreenAngle&quot;:0,&quot;monoScreenSpread&quot;:0,&quot;monoScreenShape&quot;:0,&quot;monoScreenInvert&quot;:0,&quot;scanlines&quot;:0,&quot;scanlineCount&quot;:0,&quot;scanlineSoftness&quot;:0,&quot;chromaticAberration&quot;:0,&quot;chromaticAngle&quot;:0,&quot;crtCurvature&quot;:0,&quot;digitalGlitch&quot;:0,&quot;digitalGlitchColorSplit&quot;:0,&quot;digitalGlitchLineTear&quot;:0,&quot;digitalGlitchPixelate&quot;:0,&quot;digitalGlitchBlockAmount&quot;:0,&quot;digitalGlitchBlockDisplacement&quot;:0,&quot;digitalGlitchBlockOpacity&quot;:0,&quot;digitalGlitchSpeed&quot;:0,&quot;engraving&quot;:0,&quot;engravingSpacing&quot;:0.4117647058823529,&quot;engravingMinThickness&quot;:0.2,&quot;engravingMaxThickness&quot;:0.4571428571428572,&quot;engravingAngle&quot;:0.25,&quot;engravingContrast&quot;:0.4666666666666667,&quot;engravingSharpness&quot;:0.59,&quot;engravingWave&quot;:0.2,&quot;engravingWaveFrequency&quot;:0.2222222222222222,&quot;crosshatch&quot;:0,&quot;crosshatchSpacing&quot;:0.28,&quot;crosshatchThickness&quot;:0.25,&quot;crosshatchAngle&quot;:0.25,&quot;crosshatchContrast&quot;:0.3333333333333333,&quot;crosshatchEdges&quot;:0.5,&quot;crosshatchLineWeight&quot;:0,&quot;crosshatchWave&quot;:0.33,&quot;crosshatchWaveFrequency&quot;:0.2222222222222222,&quot;kuwahara&quot;:0,&quot;kuwaharaRadius&quot;:0.14285714285714285,&quot;kuwaharaSharpness&quot;:0.3125,&quot;kuwaharaSaturation&quot;:0.5},&quot;lut&quot;:null,&quot;colorSpace&quot;:&quot;rec709&quot;}" data-hf-id="hf-na51" id="m-keypad" class="clip media" src="assets/footage/keypad-digits.mp4" data-start="5.4" data-duration="0.8" data-track-index="0" muted playsinline></video>
+      <div data-hf-id="hf-b15e" id="s07" class="scene clip" data-start="5.4" data-duration="0.8" data-track-index="1">
+        <div data-hf-id="hf-k0f8" class="label mono" style="letter-spacing: 0.1em"><span class="pill">98••• •••41</span></div>
       </div>
 
       <!-- ===== "Businesses learned to remember." ===== -->
-      <div id="s08" class="scene clip" data-start="6.2" data-duration="0.9" data-track-index="1">
-        <div class="fph"><span>ARCHIVE · old Indian shop counter, black and white</span></div>
+      <div data-hf-id="hf-321f" id="s08" class="scene clip" data-start="6.2" data-duration="0.9" data-track-index="1">
+        <img data-color-grading="{&quot;preset&quot;:&quot;mono-fade&quot;,&quot;intensity&quot;:1,&quot;adjust&quot;:{&quot;exposure&quot;:0,&quot;contrast&quot;:-0.04,&quot;highlights&quot;:-0.06,&quot;shadows&quot;:0.1,&quot;whites&quot;:0,&quot;blacks&quot;:0.12,&quot;temperature&quot;:0,&quot;tint&quot;:0,&quot;vibrance&quot;:0,&quot;saturation&quot;:-1},&quot;details&quot;:{&quot;vignette&quot;:0.12,&quot;vignetteMidpoint&quot;:0.5,&quot;vignetteRoundness&quot;:0,&quot;vignetteFeather&quot;:0.65,&quot;grain&quot;:0.06,&quot;grainSize&quot;:0.2,&quot;grainRoughness&quot;:0.6},&quot;effects&quot;:{&quot;blur&quot;:0,&quot;pixelate&quot;:0,&quot;chromaBleed&quot;:0,&quot;tapeDamage&quot;:0,&quot;tapeTracking&quot;:0,&quot;tapeNoise&quot;:1,&quot;tapeSpeed&quot;:0.5,&quot;filmArtifacts&quot;:0,&quot;halftone&quot;:0,&quot;halftoneSize&quot;:0,&quot;twoInkPrint&quot;:0,&quot;twoInkPrintSize&quot;:0,&quot;ascii&quot;:0,&quot;asciiSize&quot;:0.06578947368421052,&quot;asciiInvert&quot;:0,&quot;asciiStyle&quot;:0,&quot;asciiColor&quot;:1,&quot;asciiRotation&quot;:0,&quot;dither&quot;:0,&quot;ditherSize&quot;:0,&quot;bloom&quot;:0,&quot;bloomRadius&quot;:8,&quot;monoScreen&quot;:0,&quot;monoScreenSize&quot;:0,&quot;monoScreenAngle&quot;:0,&quot;monoScreenSpread&quot;:0,&quot;monoScreenShape&quot;:0,&quot;monoScreenInvert&quot;:0,&quot;scanlines&quot;:0,&quot;scanlineCount&quot;:0,&quot;scanlineSoftness&quot;:0,&quot;chromaticAberration&quot;:0,&quot;chromaticAngle&quot;:0,&quot;crtCurvature&quot;:0,&quot;digitalGlitch&quot;:0,&quot;digitalGlitchColorSplit&quot;:0,&quot;digitalGlitchLineTear&quot;:0,&quot;digitalGlitchPixelate&quot;:0,&quot;digitalGlitchBlockAmount&quot;:0,&quot;digitalGlitchBlockDisplacement&quot;:0,&quot;digitalGlitchBlockOpacity&quot;:0,&quot;digitalGlitchSpeed&quot;:0,&quot;engraving&quot;:0,&quot;engravingSpacing&quot;:0.4117647058823529,&quot;engravingMinThickness&quot;:0.2,&quot;engravingMaxThickness&quot;:0.4571428571428572,&quot;engravingAngle&quot;:0.25,&quot;engravingContrast&quot;:0.4666666666666667,&quot;engravingSharpness&quot;:0.59,&quot;engravingWave&quot;:0.2,&quot;engravingWaveFrequency&quot;:0.2222222222222222,&quot;crosshatch&quot;:0,&quot;crosshatchSpacing&quot;:0.28,&quot;crosshatchThickness&quot;:0.25,&quot;crosshatchAngle&quot;:0.25,&quot;crosshatchContrast&quot;:0.3333333333333333,&quot;crosshatchEdges&quot;:0.5,&quot;crosshatchLineWeight&quot;:0,&quot;crosshatchWave&quot;:0.33,&quot;crosshatchWaveFrequency&quot;:0.2222222222222222,&quot;kuwahara&quot;:0,&quot;kuwaharaRadius&quot;:0.14285714285714285,&quot;kuwaharaSharpness&quot;:0.3125,&quot;kuwaharaSaturation&quot;:0.5},&quot;lut&quot;:null,&quot;colorSpace&quot;:&quot;rec709&quot;}" data-hf-id="hf-nf3r" id="m-baniyas" class="media" src="assets/stills/baniyas-of-delhi-1862.jpg" alt="">
       </div>
-      <div id="s09" class="scene clip" data-start="7.1" data-duration="1.1" data-track-index="1">
-        <div class="fph"><span>FOOTAGE · today's café counter, owner at work</span></div>
+      <div data-hf-id="hf-x4rn" id="s09" class="scene clip" data-start="7.1" data-duration="1.1" data-track-index="1">
+        <img data-color-grading="{&quot;preset&quot;:&quot;muted-editorial&quot;,&quot;intensity&quot;:0.85,&quot;adjust&quot;:{&quot;exposure&quot;:-0.02,&quot;contrast&quot;:0.08,&quot;highlights&quot;:-0.08,&quot;shadows&quot;:0.06,&quot;whites&quot;:0,&quot;blacks&quot;:-0.05,&quot;temperature&quot;:-0.03,&quot;tint&quot;:0,&quot;vibrance&quot;:0,&quot;saturation&quot;:-0.12},&quot;details&quot;:{&quot;vignette&quot;:0.12,&quot;vignetteMidpoint&quot;:0.5,&quot;vignetteRoundness&quot;:0,&quot;vignetteFeather&quot;:0.65,&quot;grain&quot;:0.06,&quot;grainSize&quot;:0.2,&quot;grainRoughness&quot;:0.6},&quot;effects&quot;:{&quot;blur&quot;:0,&quot;pixelate&quot;:0,&quot;chromaBleed&quot;:0,&quot;tapeDamage&quot;:0,&quot;tapeTracking&quot;:0,&quot;tapeNoise&quot;:1,&quot;tapeSpeed&quot;:0.5,&quot;filmArtifacts&quot;:0,&quot;halftone&quot;:0,&quot;halftoneSize&quot;:0,&quot;twoInkPrint&quot;:0,&quot;twoInkPrintSize&quot;:0,&quot;ascii&quot;:0,&quot;asciiSize&quot;:0.06578947368421052,&quot;asciiInvert&quot;:0,&quot;asciiStyle&quot;:0,&quot;asciiColor&quot;:1,&quot;asciiRotation&quot;:0,&quot;dither&quot;:0,&quot;ditherSize&quot;:0,&quot;bloom&quot;:0,&quot;bloomRadius&quot;:8,&quot;monoScreen&quot;:0,&quot;monoScreenSize&quot;:0,&quot;monoScreenAngle&quot;:0,&quot;monoScreenSpread&quot;:0,&quot;monoScreenShape&quot;:0,&quot;monoScreenInvert&quot;:0,&quot;scanlines&quot;:0,&quot;scanlineCount&quot;:0,&quot;scanlineSoftness&quot;:0,&quot;chromaticAberration&quot;:0,&quot;chromaticAngle&quot;:0,&quot;crtCurvature&quot;:0,&quot;digitalGlitch&quot;:0,&quot;digitalGlitchColorSplit&quot;:0,&quot;digitalGlitchLineTear&quot;:0,&quot;digitalGlitchPixelate&quot;:0,&quot;digitalGlitchBlockAmount&quot;:0,&quot;digitalGlitchBlockDisplacement&quot;:0,&quot;digitalGlitchBlockOpacity&quot;:0,&quot;digitalGlitchSpeed&quot;:0,&quot;engraving&quot;:0,&quot;engravingSpacing&quot;:0.4117647058823529,&quot;engravingMinThickness&quot;:0.2,&quot;engravingMaxThickness&quot;:0.4571428571428572,&quot;engravingAngle&quot;:0.25,&quot;engravingContrast&quot;:0.4666666666666667,&quot;engravingSharpness&quot;:0.59,&quot;engravingWave&quot;:0.2,&quot;engravingWaveFrequency&quot;:0.2222222222222222,&quot;crosshatch&quot;:0,&quot;crosshatchSpacing&quot;:0.28,&quot;crosshatchThickness&quot;:0.25,&quot;crosshatchAngle&quot;:0.25,&quot;crosshatchContrast&quot;:0.3333333333333333,&quot;crosshatchEdges&quot;:0.5,&quot;crosshatchLineWeight&quot;:0,&quot;crosshatchWave&quot;:0.33,&quot;crosshatchWaveFrequency&quot;:0.2222222222222222,&quot;kuwahara&quot;:0,&quot;kuwaharaRadius&quot;:0.14285714285714285,&quot;kuwaharaSharpness&quot;:0.3125,&quot;kuwaharaSaturation&quot;:0.5},&quot;lut&quot;:null,&quot;colorSpace&quot;:&quot;rec709&quot;}" data-hf-id="hf-shxx" id="m-ledger" class="media" src="assets/stills/ledger-night.jpg" alt="">
       </div>
 
       <!-- ===== "Every visit. Every purchase. Every preference." ===== -->
-      <div id="s10" class="scene clip" data-start="8.2" data-duration="1.0" data-track-index="1">
-        <div class="fph"><span>FOOTAGE · a customer walks into the café</span></div>
-        <div class="label">Visit</div>
+      <div data-hf-id="hf-onzq" id="s10" class="scene clip" data-start="8.2" data-duration="1.0" data-track-index="1">
+        <img data-color-grading="{&quot;preset&quot;:&quot;muted-editorial&quot;,&quot;intensity&quot;:0.85,&quot;adjust&quot;:{&quot;exposure&quot;:-0.02,&quot;contrast&quot;:0.08,&quot;highlights&quot;:-0.08,&quot;shadows&quot;:0.06,&quot;whites&quot;:0,&quot;blacks&quot;:-0.05,&quot;temperature&quot;:-0.03,&quot;tint&quot;:0,&quot;vibrance&quot;:0,&quot;saturation&quot;:-0.12},&quot;details&quot;:{&quot;vignette&quot;:0.12,&quot;vignetteMidpoint&quot;:0.5,&quot;vignetteRoundness&quot;:0,&quot;vignetteFeather&quot;:0.65,&quot;grain&quot;:0.06,&quot;grainSize&quot;:0.2,&quot;grainRoughness&quot;:0.6},&quot;effects&quot;:{&quot;blur&quot;:0,&quot;pixelate&quot;:0,&quot;chromaBleed&quot;:0,&quot;tapeDamage&quot;:0,&quot;tapeTracking&quot;:0,&quot;tapeNoise&quot;:1,&quot;tapeSpeed&quot;:0.5,&quot;filmArtifacts&quot;:0,&quot;halftone&quot;:0,&quot;halftoneSize&quot;:0,&quot;twoInkPrint&quot;:0,&quot;twoInkPrintSize&quot;:0,&quot;ascii&quot;:0,&quot;asciiSize&quot;:0.06578947368421052,&quot;asciiInvert&quot;:0,&quot;asciiStyle&quot;:0,&quot;asciiColor&quot;:1,&quot;asciiRotation&quot;:0,&quot;dither&quot;:0,&quot;ditherSize&quot;:0,&quot;bloom&quot;:0,&quot;bloomRadius&quot;:8,&quot;monoScreen&quot;:0,&quot;monoScreenSize&quot;:0,&quot;monoScreenAngle&quot;:0,&quot;monoScreenSpread&quot;:0,&quot;monoScreenShape&quot;:0,&quot;monoScreenInvert&quot;:0,&quot;scanlines&quot;:0,&quot;scanlineCount&quot;:0,&quot;scanlineSoftness&quot;:0,&quot;chromaticAberration&quot;:0,&quot;chromaticAngle&quot;:0,&quot;crtCurvature&quot;:0,&quot;digitalGlitch&quot;:0,&quot;digitalGlitchColorSplit&quot;:0,&quot;digitalGlitchLineTear&quot;:0,&quot;digitalGlitchPixelate&quot;:0,&quot;digitalGlitchBlockAmount&quot;:0,&quot;digitalGlitchBlockDisplacement&quot;:0,&quot;digitalGlitchBlockOpacity&quot;:0,&quot;digitalGlitchSpeed&quot;:0,&quot;engraving&quot;:0,&quot;engravingSpacing&quot;:0.4117647058823529,&quot;engravingMinThickness&quot;:0.2,&quot;engravingMaxThickness&quot;:0.4571428571428572,&quot;engravingAngle&quot;:0.25,&quot;engravingContrast&quot;:0.4666666666666667,&quot;engravingSharpness&quot;:0.59,&quot;engravingWave&quot;:0.2,&quot;engravingWaveFrequency&quot;:0.2222222222222222,&quot;crosshatch&quot;:0,&quot;crosshatchSpacing&quot;:0.28,&quot;crosshatchThickness&quot;:0.25,&quot;crosshatchAngle&quot;:0.25,&quot;crosshatchContrast&quot;:0.3333333333333333,&quot;crosshatchEdges&quot;:0.5,&quot;crosshatchLineWeight&quot;:0,&quot;crosshatchWave&quot;:0.33,&quot;crosshatchWaveFrequency&quot;:0.2222222222222222,&quot;kuwahara&quot;:0,&quot;kuwaharaRadius&quot;:0.14285714285714285,&quot;kuwaharaSharpness&quot;:0.3125,&quot;kuwaharaSaturation&quot;:0.5},&quot;lut&quot;:null,&quot;colorSpace&quot;:&quot;rec709&quot;}" data-hf-id="hf-kd29" id="m-entering" class="media" src="assets/stills/entering-shop.jpg" alt="">
+        <div class="scrim"></div>
+        <div data-hf-id="hf-hpcp" class="label">Visit</div>
       </div>
-      <div id="s11" class="scene clip" data-start="9.2" data-duration="1.2" data-track-index="1">
-        <div class="fph"><span>FOOTAGE · paying at the counter</span></div>
-        <div class="label">Purchase</div>
+      <div data-hf-id="hf-93js" id="s11" class="scene clip" data-start="9.2" data-duration="1.2" data-track-index="1">
+        <img data-color-grading="{&quot;preset&quot;:&quot;muted-editorial&quot;,&quot;intensity&quot;:1,&quot;adjust&quot;:{&quot;exposure&quot;:-0.02,&quot;contrast&quot;:0.08,&quot;highlights&quot;:-0.08,&quot;shadows&quot;:0.06,&quot;whites&quot;:0,&quot;blacks&quot;:-0.05,&quot;temperature&quot;:-0.03,&quot;tint&quot;:0,&quot;vibrance&quot;:0,&quot;saturation&quot;:-0.12},&quot;details&quot;:{&quot;vignette&quot;:0.12,&quot;vignetteMidpoint&quot;:0.5,&quot;vignetteRoundness&quot;:0,&quot;vignetteFeather&quot;:0.65,&quot;grain&quot;:0.06,&quot;grainSize&quot;:0.2,&quot;grainRoughness&quot;:0.6},&quot;effects&quot;:{&quot;blur&quot;:0,&quot;pixelate&quot;:0,&quot;chromaBleed&quot;:0,&quot;tapeDamage&quot;:0,&quot;tapeTracking&quot;:0,&quot;tapeNoise&quot;:1,&quot;tapeSpeed&quot;:0.5,&quot;filmArtifacts&quot;:0,&quot;halftone&quot;:0,&quot;halftoneSize&quot;:0,&quot;twoInkPrint&quot;:0,&quot;twoInkPrintSize&quot;:0,&quot;ascii&quot;:0,&quot;asciiSize&quot;:0.06578947368421052,&quot;asciiInvert&quot;:0,&quot;asciiStyle&quot;:0,&quot;asciiColor&quot;:1,&quot;asciiRotation&quot;:0,&quot;dither&quot;:0,&quot;ditherSize&quot;:0,&quot;bloom&quot;:0,&quot;bloomRadius&quot;:8,&quot;monoScreen&quot;:0,&quot;monoScreenSize&quot;:0,&quot;monoScreenAngle&quot;:0,&quot;monoScreenSpread&quot;:0,&quot;monoScreenShape&quot;:0,&quot;monoScreenInvert&quot;:0,&quot;scanlines&quot;:0,&quot;scanlineCount&quot;:0,&quot;scanlineSoftness&quot;:0,&quot;chromaticAberration&quot;:0,&quot;chromaticAngle&quot;:0,&quot;crtCurvature&quot;:0,&quot;digitalGlitch&quot;:0,&quot;digitalGlitchColorSplit&quot;:0,&quot;digitalGlitchLineTear&quot;:0,&quot;digitalGlitchPixelate&quot;:0,&quot;digitalGlitchBlockAmount&quot;:0,&quot;digitalGlitchBlockDisplacement&quot;:0,&quot;digitalGlitchBlockOpacity&quot;:0,&quot;digitalGlitchSpeed&quot;:0,&quot;engraving&quot;:0,&quot;engravingSpacing&quot;:0.4117647058823529,&quot;engravingMinThickness&quot;:0.2,&quot;engravingMaxThickness&quot;:0.4571428571428572,&quot;engravingAngle&quot;:0.25,&quot;engravingContrast&quot;:0.4666666666666667,&quot;engravingSharpness&quot;:0.59,&quot;engravingWave&quot;:0.2,&quot;engravingWaveFrequency&quot;:0.2222222222222222,&quot;crosshatch&quot;:0,&quot;crosshatchSpacing&quot;:0.28,&quot;crosshatchThickness&quot;:0.25,&quot;crosshatchAngle&quot;:0.25,&quot;crosshatchContrast&quot;:0.3333333333333333,&quot;crosshatchEdges&quot;:0.5,&quot;crosshatchLineWeight&quot;:0,&quot;crosshatchWave&quot;:0.33,&quot;crosshatchWaveFrequency&quot;:0.2222222222222222,&quot;kuwahara&quot;:0,&quot;kuwaharaRadius&quot;:0.14285714285714285,&quot;kuwaharaSharpness&quot;:0.3125,&quot;kuwaharaSaturation&quot;:0.5},&quot;lut&quot;:null,&quot;colorSpace&quot;:&quot;rec709&quot;}" data-hf-id="hf-xnl6" id="m-cash" class="media" src="assets/stills/cash-handover.jpg" alt="">
+        <div class="scrim"></div>
+        <div data-hf-id="hf-3xo9" class="label">Purchase</div>
       </div>
-      <div id="s12" class="scene clip" data-start="10.4" data-duration="1.3" data-track-index="1">
-        <div class="fph"><span>FOOTAGE · the usual being made: coffee or chai</span></div>
-        <div class="label">Preference</div>
+      <div data-hf-id="hf-n6lc" id="s12" class="scene clip" data-start="10.4" data-duration="1.3" data-track-index="1">
+        <img data-color-grading="{&quot;preset&quot;:&quot;muted-editorial&quot;,&quot;intensity&quot;:0.6,&quot;adjust&quot;:{&quot;exposure&quot;:-0.02,&quot;contrast&quot;:0.08,&quot;highlights&quot;:-0.08,&quot;shadows&quot;:0.06,&quot;whites&quot;:0,&quot;blacks&quot;:-0.05,&quot;temperature&quot;:-0.03,&quot;tint&quot;:0,&quot;vibrance&quot;:0,&quot;saturation&quot;:-0.12},&quot;details&quot;:{&quot;vignette&quot;:0.12,&quot;vignetteMidpoint&quot;:0.5,&quot;vignetteRoundness&quot;:0,&quot;vignetteFeather&quot;:0.65,&quot;grain&quot;:0.06,&quot;grainSize&quot;:0.2,&quot;grainRoughness&quot;:0.6},&quot;effects&quot;:{&quot;blur&quot;:0,&quot;pixelate&quot;:0,&quot;chromaBleed&quot;:0,&quot;tapeDamage&quot;:0,&quot;tapeTracking&quot;:0,&quot;tapeNoise&quot;:1,&quot;tapeSpeed&quot;:0.5,&quot;filmArtifacts&quot;:0,&quot;halftone&quot;:0,&quot;halftoneSize&quot;:0,&quot;twoInkPrint&quot;:0,&quot;twoInkPrintSize&quot;:0,&quot;ascii&quot;:0,&quot;asciiSize&quot;:0.06578947368421052,&quot;asciiInvert&quot;:0,&quot;asciiStyle&quot;:0,&quot;asciiColor&quot;:1,&quot;asciiRotation&quot;:0,&quot;dither&quot;:0,&quot;ditherSize&quot;:0,&quot;bloom&quot;:0,&quot;bloomRadius&quot;:8,&quot;monoScreen&quot;:0,&quot;monoScreenSize&quot;:0,&quot;monoScreenAngle&quot;:0,&quot;monoScreenSpread&quot;:0,&quot;monoScreenShape&quot;:0,&quot;monoScreenInvert&quot;:0,&quot;scanlines&quot;:0,&quot;scanlineCount&quot;:0,&quot;scanlineSoftness&quot;:0,&quot;chromaticAberration&quot;:0,&quot;chromaticAngle&quot;:0,&quot;crtCurvature&quot;:0,&quot;digitalGlitch&quot;:0,&quot;digitalGlitchColorSplit&quot;:0,&quot;digitalGlitchLineTear&quot;:0,&quot;digitalGlitchPixelate&quot;:0,&quot;digitalGlitchBlockAmount&quot;:0,&quot;digitalGlitchBlockDisplacement&quot;:0,&quot;digitalGlitchBlockOpacity&quot;:0,&quot;digitalGlitchSpeed&quot;:0,&quot;engraving&quot;:0,&quot;engravingSpacing&quot;:0.4117647058823529,&quot;engravingMinThickness&quot;:0.2,&quot;engravingMaxThickness&quot;:0.4571428571428572,&quot;engravingAngle&quot;:0.25,&quot;engravingContrast&quot;:0.4666666666666667,&quot;engravingSharpness&quot;:0.59,&quot;engravingWave&quot;:0.2,&quot;engravingWaveFrequency&quot;:0.2222222222222222,&quot;crosshatch&quot;:0,&quot;crosshatchSpacing&quot;:0.28,&quot;crosshatchThickness&quot;:0.25,&quot;crosshatchAngle&quot;:0.25,&quot;crosshatchContrast&quot;:0.3333333333333333,&quot;crosshatchEdges&quot;:0.5,&quot;crosshatchLineWeight&quot;:0,&quot;crosshatchWave&quot;:0.33,&quot;crosshatchWaveFrequency&quot;:0.2222222222222222,&quot;kuwahara&quot;:0,&quot;kuwaharaRadius&quot;:0.14285714285714285,&quot;kuwaharaSharpness&quot;:0.3125,&quot;kuwaharaSaturation&quot;:0.5},&quot;lut&quot;:null,&quot;colorSpace&quot;:&quot;rec709&quot;}" data-hf-id="hf-xf26" id="m-chai" class="media" src="assets/stills/chai-rusk.jpg" alt="">
+        <div class="scrim"></div>
+        <div data-hf-id="hf-fqz7" class="label">Preference</div>
       </div>
 
       <!-- ===== "And WhatsApp made staying connected effortless." ===== -->
-      <div id="s13" class="scene clip ground-void" data-start="11.7" data-duration="1.4" data-track-index="1">
-        <div class="cam" style="transform: scale(1.3); transform-origin: 540px 1200px">
-        <div class="phone"><div class="screen chat">
-          <div class="island"></div>
-          <div class="hd"><div class="back">‹</div><div class="av" style="background: var(--crane)">P</div><div><div class="nm">Paper Crane Coffee</div><div class="sb">Café · Indiranagar</div></div></div>
+      <div data-hf-id="hf-6ktw" id="s13" class="scene clip ground-void" data-start="11.7" data-duration="1.4" data-track-index="1">
+        <div data-hf-id="hf-dbty" class="cam" style="transform: scale(1.3); transform-origin: 540px 1200px">
+        <div data-hf-id="hf-2dm5" class="phone"><div data-hf-id="hf-zip2" class="screen chat">
+          <div data-hf-id="hf-am2y" class="island"></div>
+          <div data-hf-id="hf-0hws" class="hd"><div data-hf-id="hf-sm20" class="back">‹</div><div data-hf-id="hf-f2qi" class="av" style="background: var(--crane)">P</div><div data-hf-id="hf-yeow"><div data-hf-id="hf-b6p6" class="nm">Paper Crane Coffee</div><div data-hf-id="hf-e35d" class="sb">Café · Indiranagar</div></div></div>
         </div>
-          <div class="chip-date" style="top: 190px">Last month</div>
-          <div class="bubble old" style="top: 240px">Thanks for coming in today! See you soon.<span class="tm">6:40 pm</span></div>
-          <div class="chip-date" style="top: 420px">Today</div>
-          <div class="bubble" style="top: 470px">Aarav, we haven't seen you in a while. Your usual is waiting.<span class="tm">10:02 am</span></div>
+          <div data-hf-id="hf-f1es" class="chip-date" style="top: 190px">Last month</div>
+          <div data-hf-id="hf-3rir" class="bubble old" style="top: 240px">Thanks for coming in today! See you soon.<span data-hf-id="hf-nth3" class="tm">6:40 pm</span></div>
+          <div data-hf-id="hf-8ts7" class="chip-date" style="top: 420px">Today</div>
+          <div data-hf-id="hf-ui1b" class="bubble" style="top: 470px">Aarav, we haven't seen you in a while. Your usual is waiting.<span data-hf-id="hf-wfjn" class="tm">10:02 am</span></div>
         </div></div>
-        <div class="label">Message</div>
+        <div data-hf-id="hf-ict5" class="label">Message</div>
       </div>
-      <div id="s14" class="scene clip" data-start="13.1" data-duration="1.55" data-track-index="1">
-        <div class="fph"><span>FOOTAGE · the regular walks back in, greeted at the counter</span></div>
-        <div class="label">Return</div>
+      <video style="position: absolute; left: 0; top: 600px; width: 1080px; height: 608px; object-fit: cover" data-color-grading="{&quot;preset&quot;:&quot;muted-editorial&quot;,&quot;intensity&quot;:0.85,&quot;adjust&quot;:{&quot;exposure&quot;:-0.02,&quot;contrast&quot;:0.08,&quot;highlights&quot;:-0.08,&quot;shadows&quot;:0.06,&quot;whites&quot;:0,&quot;blacks&quot;:-0.05,&quot;temperature&quot;:-0.03,&quot;tint&quot;:0,&quot;vibrance&quot;:0,&quot;saturation&quot;:-0.12},&quot;details&quot;:{&quot;vignette&quot;:0.12,&quot;vignetteMidpoint&quot;:0.5,&quot;vignetteRoundness&quot;:0,&quot;vignetteFeather&quot;:0.65,&quot;grain&quot;:0.06,&quot;grainSize&quot;:0.2,&quot;grainRoughness&quot;:0.6},&quot;effects&quot;:{&quot;blur&quot;:0,&quot;pixelate&quot;:0,&quot;chromaBleed&quot;:0,&quot;tapeDamage&quot;:0,&quot;tapeTracking&quot;:0,&quot;tapeNoise&quot;:1,&quot;tapeSpeed&quot;:0.5,&quot;filmArtifacts&quot;:0,&quot;halftone&quot;:0,&quot;halftoneSize&quot;:0,&quot;twoInkPrint&quot;:0,&quot;twoInkPrintSize&quot;:0,&quot;ascii&quot;:0,&quot;asciiSize&quot;:0.06578947368421052,&quot;asciiInvert&quot;:0,&quot;asciiStyle&quot;:0,&quot;asciiColor&quot;:1,&quot;asciiRotation&quot;:0,&quot;dither&quot;:0,&quot;ditherSize&quot;:0,&quot;bloom&quot;:0,&quot;bloomRadius&quot;:8,&quot;monoScreen&quot;:0,&quot;monoScreenSize&quot;:0,&quot;monoScreenAngle&quot;:0,&quot;monoScreenSpread&quot;:0,&quot;monoScreenShape&quot;:0,&quot;monoScreenInvert&quot;:0,&quot;scanlines&quot;:0,&quot;scanlineCount&quot;:0,&quot;scanlineSoftness&quot;:0,&quot;chromaticAberration&quot;:0,&quot;chromaticAngle&quot;:0,&quot;crtCurvature&quot;:0,&quot;digitalGlitch&quot;:0,&quot;digitalGlitchColorSplit&quot;:0,&quot;digitalGlitchLineTear&quot;:0,&quot;digitalGlitchPixelate&quot;:0,&quot;digitalGlitchBlockAmount&quot;:0,&quot;digitalGlitchBlockDisplacement&quot;:0,&quot;digitalGlitchBlockOpacity&quot;:0,&quot;digitalGlitchSpeed&quot;:0,&quot;engraving&quot;:0,&quot;engravingSpacing&quot;:0.4117647058823529,&quot;engravingMinThickness&quot;:0.2,&quot;engravingMaxThickness&quot;:0.4571428571428572,&quot;engravingAngle&quot;:0.25,&quot;engravingContrast&quot;:0.4666666666666667,&quot;engravingSharpness&quot;:0.59,&quot;engravingWave&quot;:0.2,&quot;engravingWaveFrequency&quot;:0.2222222222222222,&quot;crosshatch&quot;:0,&quot;crosshatchSpacing&quot;:0.28,&quot;crosshatchThickness&quot;:0.25,&quot;crosshatchAngle&quot;:0.25,&quot;crosshatchContrast&quot;:0.3333333333333333,&quot;crosshatchEdges&quot;:0.5,&quot;crosshatchLineWeight&quot;:0,&quot;crosshatchWave&quot;:0.33,&quot;crosshatchWaveFrequency&quot;:0.2222222222222222,&quot;kuwahara&quot;:0,&quot;kuwaharaRadius&quot;:0.14285714285714285,&quot;kuwaharaSharpness&quot;:0.3125,&quot;kuwaharaSaturation&quot;:0.5},&quot;lut&quot;:null,&quot;colorSpace&quot;:&quot;rec709&quot;}" data-hf-id="hf-650h" id="m-walkin" class="clip" src="assets/footage/walk-into-cafe.mp4" data-start="13.1" data-duration="1.55" data-track-index="0" muted playsinline></video>
+      <div data-hf-id="hf-oojf" id="s14" class="scene clip" data-start="13.1" data-duration="1.55" data-track-index="1">
+        <div data-hf-id="hf-lq1o" class="label">Return</div>
       </div>
 
       <!-- ===== "Salons remembered birthdays better than your cousins." ===== -->
-      <div id="s15" class="scene clip" data-start="14.65" data-duration="1.0" data-track-index="1">
-        <div class="fph"><span>FOOTAGE · salon, stylist at work</span></div>
+      <video data-color-grading="{&quot;preset&quot;:&quot;muted-editorial&quot;,&quot;intensity&quot;:0.85,&quot;adjust&quot;:{&quot;exposure&quot;:-0.02,&quot;contrast&quot;:0.08,&quot;highlights&quot;:-0.08,&quot;shadows&quot;:0.06,&quot;whites&quot;:0,&quot;blacks&quot;:-0.05,&quot;temperature&quot;:-0.03,&quot;tint&quot;:0,&quot;vibrance&quot;:0,&quot;saturation&quot;:-0.12},&quot;details&quot;:{&quot;vignette&quot;:0.12,&quot;vignetteMidpoint&quot;:0.5,&quot;vignetteRoundness&quot;:0,&quot;vignetteFeather&quot;:0.65,&quot;grain&quot;:0.06,&quot;grainSize&quot;:0.2,&quot;grainRoughness&quot;:0.6},&quot;effects&quot;:{&quot;blur&quot;:0,&quot;pixelate&quot;:0,&quot;chromaBleed&quot;:0,&quot;tapeDamage&quot;:0,&quot;tapeTracking&quot;:0,&quot;tapeNoise&quot;:1,&quot;tapeSpeed&quot;:0.5,&quot;filmArtifacts&quot;:0,&quot;halftone&quot;:0,&quot;halftoneSize&quot;:0,&quot;twoInkPrint&quot;:0,&quot;twoInkPrintSize&quot;:0,&quot;ascii&quot;:0,&quot;asciiSize&quot;:0.06578947368421052,&quot;asciiInvert&quot;:0,&quot;asciiStyle&quot;:0,&quot;asciiColor&quot;:1,&quot;asciiRotation&quot;:0,&quot;dither&quot;:0,&quot;ditherSize&quot;:0,&quot;bloom&quot;:0,&quot;bloomRadius&quot;:8,&quot;monoScreen&quot;:0,&quot;monoScreenSize&quot;:0,&quot;monoScreenAngle&quot;:0,&quot;monoScreenSpread&quot;:0,&quot;monoScreenShape&quot;:0,&quot;monoScreenInvert&quot;:0,&quot;scanlines&quot;:0,&quot;scanlineCount&quot;:0,&quot;scanlineSoftness&quot;:0,&quot;chromaticAberration&quot;:0,&quot;chromaticAngle&quot;:0,&quot;crtCurvature&quot;:0,&quot;digitalGlitch&quot;:0,&quot;digitalGlitchColorSplit&quot;:0,&quot;digitalGlitchLineTear&quot;:0,&quot;digitalGlitchPixelate&quot;:0,&quot;digitalGlitchBlockAmount&quot;:0,&quot;digitalGlitchBlockDisplacement&quot;:0,&quot;digitalGlitchBlockOpacity&quot;:0,&quot;digitalGlitchSpeed&quot;:0,&quot;engraving&quot;:0,&quot;engravingSpacing&quot;:0.4117647058823529,&quot;engravingMinThickness&quot;:0.2,&quot;engravingMaxThickness&quot;:0.4571428571428572,&quot;engravingAngle&quot;:0.25,&quot;engravingContrast&quot;:0.4666666666666667,&quot;engravingSharpness&quot;:0.59,&quot;engravingWave&quot;:0.2,&quot;engravingWaveFrequency&quot;:0.2222222222222222,&quot;crosshatch&quot;:0,&quot;crosshatchSpacing&quot;:0.28,&quot;crosshatchThickness&quot;:0.25,&quot;crosshatchAngle&quot;:0.25,&quot;crosshatchContrast&quot;:0.3333333333333333,&quot;crosshatchEdges&quot;:0.5,&quot;crosshatchLineWeight&quot;:0,&quot;crosshatchWave&quot;:0.33,&quot;crosshatchWaveFrequency&quot;:0.2222222222222222,&quot;kuwahara&quot;:0,&quot;kuwaharaRadius&quot;:0.14285714285714285,&quot;kuwaharaSharpness&quot;:0.3125,&quot;kuwaharaSaturation&quot;:0.5},&quot;lut&quot;:null,&quot;colorSpace&quot;:&quot;rec709&quot;}" data-hf-id="hf-k8kg" id="m-barber" class="clip media" src="assets/footage/barber.mp4" data-start="14.65" data-duration="1.0" data-track-index="0" muted playsinline></video>
+      <div data-hf-id="hf-x7nf" id="s15" class="scene clip" data-start="14.65" data-duration="1.0" data-track-index="1">
       </div>
-      <div id="s16" class="scene clip ground-void" data-start="15.65" data-duration="2.05" data-track-index="1">
-        <div class="cam" style="transform: scale(1.3); transform-origin: 540px 1200px">
-        <div class="phone"><div class="screen chat">
-          <div class="island"></div>
-          <div class="hd"><div class="back">‹</div><div class="av" style="background:#8a4f6b">S</div><div><div class="nm">The Salon</div><div class="sb">Hair &amp; beauty</div></div></div>
+      <div data-hf-id="hf-unnh" id="s16" class="scene clip ground-void" data-start="15.65" data-duration="2.05" data-track-index="1">
+        <div data-hf-id="hf-5nl6" class="cam" style="transform: scale(1.3); transform-origin: 540px 1200px">
+        <div data-hf-id="hf-2rx6" class="phone"><div data-hf-id="hf-bx7u" class="screen chat">
+          <div data-hf-id="hf-a7rx" class="island"></div>
+          <div data-hf-id="hf-okzo" class="hd"><div data-hf-id="hf-m7j4" class="back">‹</div><div data-hf-id="hf-x2wu" class="av" style="background:#8a4f6b">S</div><div data-hf-id="hf-y7yw"><div data-hf-id="hf-z2m3" class="nm">The Salon</div><div data-hf-id="hf-h1in" class="sb">Hair &amp; beauty</div></div></div>
         </div>
-          <div class="chip-date" style="top: 190px">Today</div>
-          <div class="bubble" style="top: 240px">Happy birthday, Aarav! Your next blow-dry is on us this week.<span class="tm">12:00 am</span></div>
+          <div data-hf-id="hf-oecj" class="chip-date" style="top: 190px">Today</div>
+          <div data-hf-id="hf-uo43" class="bubble" style="top: 240px">Happy birthday, Aarav! Your next blow-dry is on us this week.<span data-hf-id="hf-csm3" class="tm">12:00 am</span></div>
         </div></div>
       </div>
 
       <!-- ===== "But loyalty started living everywhere." ===== -->
-      <div id="s17" class="scene clip ground-void" data-start="17.7" data-duration="1.55" data-track-index="1">
-        <div class="phone"><div class="screen lock">
-          <div class="island"></div>
-          <div class="date">Wednesday, 7 October</div>
-          <div class="time">9:30</div>
-          <div class="notif" style="top: 300px"><div class="ic" style="background:#06737c">P</div><div class="nb"><div class="t1">Messages <span>now</span></div><div class="t2">VM-PCRANE: You earned 18 pts. Bal 132 pts.</div></div></div>
-          <div class="notif" style="top: 412px"><div class="ic" style="background:#8a4f6b">S</div><div class="nb"><div class="t1">The Salon <span>1m ago</span></div><div class="t2">Monsoon offer inside.</div></div></div>
-          <div class="notif" style="top: 508px"><div class="ic" style="background:#4d6b8a">S</div><div class="nb"><div class="t1">Store <span>3m ago</span></div><div class="t2">Members get early access this Friday.</div></div></div>
-          <div class="notif" style="top: 604px"><div class="ic" style="background:#b4532a">R</div><div class="nb"><div class="t1">Rewards <span>5m ago</span></div><div class="t2">Your points balance has changed.</div></div></div>
-          <div class="notif" style="top: 700px"><div class="ic" style="background:#7a6a2e">F</div><div class="nb"><div class="t1">Food app <span>8m ago</span></div><div class="t2">Rate your last order.</div></div></div>
-          <div class="notif" style="top: 796px"><div class="ic" style="background:#5c4a8a">G</div><div class="nb"><div class="t1">Gym <span>9m ago</span></div><div class="t2">We miss you at the gym!</div></div></div>
-          <div class="bar"></div>
+      <div data-hf-id="hf-pu42" id="s17" class="scene clip ground-void" data-start="17.7" data-duration="1.55" data-track-index="1">
+        <div data-hf-id="hf-4rgb" class="phone"><div data-hf-id="hf-c6hw" class="screen lock">
+          <div data-hf-id="hf-czx4" class="island"></div>
+          <div data-hf-id="hf-6l3k" class="date">Wednesday, 7 October</div>
+          <div data-hf-id="hf-kbqv" class="time">9:30</div>
+          <div data-hf-id="hf-48qo" class="notif" style="top: 300px"><div data-hf-id="hf-kj2d" class="ic" style="background:#06737c">P</div><div data-hf-id="hf-kfl3" class="nb"><div data-hf-id="hf-24l1" class="t1">Messages <span data-hf-id="hf-diva">now</span></div><div data-hf-id="hf-u0mp" class="t2">VM-PCRANE: You earned 18 pts. Bal 132 pts.</div></div></div>
+          <div data-hf-id="hf-9ppy" class="notif" style="top: 412px"><div data-hf-id="hf-mnxz" class="ic" style="background:#8a4f6b">S</div><div data-hf-id="hf-ktw4" class="nb"><div data-hf-id="hf-n821" class="t1">The Salon <span data-hf-id="hf-zybi">1m ago</span></div><div data-hf-id="hf-sc6r" class="t2">Monsoon offer inside.</div></div></div>
+          <div data-hf-id="hf-p106" class="notif" style="top: 508px"><div data-hf-id="hf-y0i5" class="ic" style="background:#4d6b8a">S</div><div data-hf-id="hf-jmz1" class="nb"><div data-hf-id="hf-hr8y" class="t1">Store <span data-hf-id="hf-ujr8">3m ago</span></div><div data-hf-id="hf-v1ln" class="t2">Members get early access this Friday.</div></div></div>
+          <div data-hf-id="hf-dd7d" class="notif" style="top: 604px"><div data-hf-id="hf-6nsb" class="ic" style="background:#b4532a">R</div><div data-hf-id="hf-k1a2" class="nb"><div data-hf-id="hf-fsam" class="t1">Rewards <span data-hf-id="hf-5kfq">5m ago</span></div><div data-hf-id="hf-f8pe" class="t2">Your points balance has changed.</div></div></div>
+          <div data-hf-id="hf-5084" class="notif" style="top: 700px"><div data-hf-id="hf-bnlx" class="ic" style="background:#7a6a2e">F</div><div data-hf-id="hf-p79f" class="nb"><div data-hf-id="hf-u6nm" class="t1">Food app <span data-hf-id="hf-bacr">8m ago</span></div><div data-hf-id="hf-n4i5" class="t2">Rate your last order.</div></div></div>
+          <div data-hf-id="hf-8oax" class="notif" style="top: 796px"><div data-hf-id="hf-1j22" class="ic" style="background:#5c4a8a">G</div><div data-hf-id="hf-plkg" class="nb"><div data-hf-id="hf-vh4w" class="t1">Gym <span data-hf-id="hf-mpj6">9m ago</span></div><div data-hf-id="hf-tjhl" class="t2">We miss you at the gym!</div></div></div>
+          <div data-hf-id="hf-bqqa" class="bar"></div>
         </div></div>
       </div>
-      <div id="s18" class="scene clip" data-start="19.25" data-duration="1.15" data-track-index="1">
-        <div class="fph"><span>FOOTAGE · train rushing past, black and white</span></div>
-        <div class="hero" style="top: 700px; font-size: 262px; line-height: 0.86"><span style="display: block">Every</span><span style="display: block">where</span></div>
+      <video data-color-grading="{&quot;preset&quot;:&quot;mono-clean&quot;,&quot;intensity&quot;:1,&quot;adjust&quot;:{&quot;exposure&quot;:0,&quot;contrast&quot;:0.12,&quot;highlights&quot;:-0.04,&quot;shadows&quot;:0.04,&quot;whites&quot;:0,&quot;blacks&quot;:-0.08,&quot;temperature&quot;:0,&quot;tint&quot;:0,&quot;vibrance&quot;:0,&quot;saturation&quot;:-1},&quot;details&quot;:{&quot;vignette&quot;:0.12,&quot;vignetteMidpoint&quot;:0.5,&quot;vignetteRoundness&quot;:0,&quot;vignetteFeather&quot;:0.65,&quot;grain&quot;:0.06,&quot;grainSize&quot;:0.2,&quot;grainRoughness&quot;:0.6},&quot;effects&quot;:{&quot;blur&quot;:0,&quot;pixelate&quot;:0,&quot;chromaBleed&quot;:0,&quot;tapeDamage&quot;:0,&quot;tapeTracking&quot;:0,&quot;tapeNoise&quot;:1,&quot;tapeSpeed&quot;:0.5,&quot;filmArtifacts&quot;:0,&quot;halftone&quot;:0,&quot;halftoneSize&quot;:0,&quot;twoInkPrint&quot;:0,&quot;twoInkPrintSize&quot;:0,&quot;ascii&quot;:0,&quot;asciiSize&quot;:0.06578947368421052,&quot;asciiInvert&quot;:0,&quot;asciiStyle&quot;:0,&quot;asciiColor&quot;:1,&quot;asciiRotation&quot;:0,&quot;dither&quot;:0,&quot;ditherSize&quot;:0,&quot;bloom&quot;:0,&quot;bloomRadius&quot;:8,&quot;monoScreen&quot;:0,&quot;monoScreenSize&quot;:0,&quot;monoScreenAngle&quot;:0,&quot;monoScreenSpread&quot;:0,&quot;monoScreenShape&quot;:0,&quot;monoScreenInvert&quot;:0,&quot;scanlines&quot;:0,&quot;scanlineCount&quot;:0,&quot;scanlineSoftness&quot;:0,&quot;chromaticAberration&quot;:0,&quot;chromaticAngle&quot;:0,&quot;crtCurvature&quot;:0,&quot;digitalGlitch&quot;:0,&quot;digitalGlitchColorSplit&quot;:0,&quot;digitalGlitchLineTear&quot;:0,&quot;digitalGlitchPixelate&quot;:0,&quot;digitalGlitchBlockAmount&quot;:0,&quot;digitalGlitchBlockDisplacement&quot;:0,&quot;digitalGlitchBlockOpacity&quot;:0,&quot;digitalGlitchSpeed&quot;:0,&quot;engraving&quot;:0,&quot;engravingSpacing&quot;:0.4117647058823529,&quot;engravingMinThickness&quot;:0.2,&quot;engravingMaxThickness&quot;:0.4571428571428572,&quot;engravingAngle&quot;:0.25,&quot;engravingContrast&quot;:0.4666666666666667,&quot;engravingSharpness&quot;:0.59,&quot;engravingWave&quot;:0.2,&quot;engravingWaveFrequency&quot;:0.2222222222222222,&quot;crosshatch&quot;:0,&quot;crosshatchSpacing&quot;:0.28,&quot;crosshatchThickness&quot;:0.25,&quot;crosshatchAngle&quot;:0.25,&quot;crosshatchContrast&quot;:0.3333333333333333,&quot;crosshatchEdges&quot;:0.5,&quot;crosshatchLineWeight&quot;:0,&quot;crosshatchWave&quot;:0.33,&quot;crosshatchWaveFrequency&quot;:0.2222222222222222,&quot;kuwahara&quot;:0,&quot;kuwaharaRadius&quot;:0.14285714285714285,&quot;kuwaharaSharpness&quot;:0.3125,&quot;kuwaharaSaturation&quot;:0.5},&quot;lut&quot;:null,&quot;colorSpace&quot;:&quot;rec709&quot;}" data-hf-id="hf-m2cb" id="m-train" class="clip media" src="assets/footage/train-pass.mp4" data-start="19.25" data-duration="1.15" data-track-index="0" muted playsinline></video>
+      <div data-hf-id="hf-yynd" id="s18" class="scene clip" data-start="19.25" data-duration="1.15" data-track-index="1">
+        <div data-hf-id="hf-j0o9" class="hero" style="top: 700px; font-size: 262px; line-height: 0.86"><span data-hf-id="hf-kmse" style="display: block">Every</span><span data-hf-id="hf-dtpe" style="display: block">where</span></div>
       </div>
 
       <!-- ===== "An SMS. A chat. An app they deleted." ===== -->
-      <div id="s19" class="scene clip ground-void" data-start="20.4" data-duration="1.05" data-track-index="1">
-        <div class="obj-label" style="top: 650px">VM-PCRANE · SMS</div>
-        <div class="sms" style="top: 720px">You earned 18 pts at Paper Crane Coffee. Bal 132 pts. T&amp;C apply.</div>
+      <div data-hf-id="hf-27ti" id="s19" class="scene clip ground-void" data-start="20.4" data-duration="1.05" data-track-index="1">
+        <div data-hf-id="hf-elov" class="obj-label" style="top: 650px">VM-PCRANE · SMS</div>
+        <div data-hf-id="hf-oruq" class="sms" style="top: 720px">You earned 18 pts at Paper Crane Coffee. Bal 132 pts. T&amp;C apply.</div>
       </div>
-      <div id="s20" class="scene clip ground-void" data-start="21.45" data-duration="0.75" data-track-index="1">
-        <div class="bigbubble" style="top: 720px"><div class="from">The Salon</div>Monsoon offer: a free head massage with every haircut this week.<span class="tm">11:15 am</span></div>
+      <div data-hf-id="hf-nvwm" id="s20" class="scene clip ground-void" data-start="21.45" data-duration="0.75" data-track-index="1">
+        <div data-hf-id="hf-ka4k" class="bigbubble" style="top: 720px"><div data-hf-id="hf-zm72" class="from">The Salon</div>Monsoon offer: a free head massage with every haircut this week.<span data-hf-id="hf-tvqg" class="tm">11:15 am</span></div>
       </div>
-      <div id="s21" class="scene clip ground-void" data-start="22.2" data-duration="1.25" data-track-index="1">
-        <div class="appicon" style="left: 425px; top: 520px; background: linear-gradient(150deg, #e0794a, #a8431f);">
-          <svg width="120" height="120" viewBox="0 0 120 120"><circle cx="60" cy="60" r="44" fill="none" stroke="#fff" stroke-width="10"/><path d="M60 30 L68 52 L92 52 L72 66 L80 90 L60 75 L40 90 L48 66 L28 52 L52 52 Z" fill="#fff"/></svg>
+      <div data-hf-id="hf-h1vl" id="s21" class="scene clip ground-void" data-start="22.2" data-duration="1.25" data-track-index="1">
+        <div data-hf-id="hf-q3q5" class="appicon" style="left: 425px; top: 520px; background: linear-gradient(150deg, #e0794a, #a8431f);">
+          <svg data-hf-id="hf-ajxe" width="120" height="120" viewBox="0 0 120 120"><circle data-hf-id="hf-rei7" cx="60" cy="60" r="44" fill="none" stroke="#fff" stroke-width="10" /><path data-hf-id="hf-q1ug" d="M60 30 L68 52 L92 52 L72 66 L80 90 L60 75 L40 90 L48 66 L28 52 L52 52 Z" fill="#fff" /></svg>
         </div>
-        <div class="obj-label" style="top: 772px; color: var(--paper); font-family: Manrope, sans-serif; letter-spacing: 0; font-size: 30px; font-weight: 600">Rewards</div>
-        <div class="menu" style="left: 305px; top: 850px"><div>Share app <span>↗</span></div><div>Edit Home Screen <span>⋯</span></div><div class="del">Delete App <span>⌫</span></div></div>
+        <div data-hf-id="hf-e2fy" class="obj-label" style="top: 772px; color: var(--paper); font-family: Manrope, sans-serif; letter-spacing: 0; font-size: 30px; font-weight: 600">Rewards</div>
+        <div data-hf-id="hf-844r" class="menu" style="left: 305px; top: 850px"><div data-hf-id="hf-2q0g">Share app <span data-hf-id="hf-o03m">↗</span></div><div data-hf-id="hf-2egl">Edit Home Screen <span data-hf-id="hf-gocq">⋯</span></div><div data-hf-id="hf-c5ov" class="del">Delete App <span data-hf-id="hf-stz2">⌫</span></div></div>
       </div>
 
       <!-- ===== "Another app. Another login." ===== -->
-      <div id="s22" class="scene clip ground-void" data-start="23.45" data-duration="1.2" data-track-index="1">
-        <div class="phone"><div class="screen light">
-          <div class="island"></div>
-          <div class="top">Download our app to collect points</div>
-          <div class="appicon" style="left: 30px; top: 230px; width: 150px; height: 150px; border-radius: 34px; background: linear-gradient(150deg, #6aa0c9, #2f5f86);">
-            <svg width="80" height="80" viewBox="0 0 120 120"><rect x="30" y="34" width="60" height="52" rx="8" fill="none" stroke="#fff" stroke-width="9"/><path d="M44 34 V26 a16 16 0 0 1 32 0 V34" fill="none" stroke="#fff" stroke-width="9"/></svg>
+      <div data-hf-id="hf-11af" id="s22" class="scene clip ground-void" data-start="23.45" data-duration="1.2" data-track-index="1">
+        <div data-hf-id="hf-55rc" class="phone"><div data-hf-id="hf-69kg" class="screen light">
+          <div data-hf-id="hf-clm3" class="island"></div>
+          <div data-hf-id="hf-u3w2" class="top">Download our app to collect points</div>
+          <div data-hf-id="hf-x11t" class="appicon" style="left: 30px; top: 230px; width: 150px; height: 150px; border-radius: 34px; background: linear-gradient(150deg, #6aa0c9, #2f5f86);">
+            <svg data-hf-id="hf-hvt6" width="80" height="80" viewBox="0 0 120 120"><rect data-hf-id="hf-hb2f" x="30" y="34" width="60" height="52" rx="8" fill="none" stroke="#fff" stroke-width="9" /><path data-hf-id="hf-eev5" d="M44 34 V26 a16 16 0 0 1 32 0 V34" fill="none" stroke="#fff" stroke-width="9" /></svg>
           </div>
-          <div class="sub" style="top: 262px; left: 204px; right: 10px; white-space: nowrap; color: var(--aub); font-weight: 800; font-size: 28px">Store Rewards</div>
-          <div class="sub" style="top: 304px; left: 204px">Shopping</div>
-          <div class="btn-dark" style="top: 420px">Install</div>
-          <div class="sub" style="top: 530px">Sign up, verify your number, turn on notifications and start earning.</div>
+          <div data-hf-id="hf-e1uh" class="sub" style="top: 262px; left: 204px; right: 10px; white-space: nowrap; color: var(--aub); font-weight: 800; font-size: 28px">Store Rewards</div>
+          <div data-hf-id="hf-x8cm" class="sub" style="top: 304px; left: 204px">Shopping</div>
+          <div data-hf-id="hf-8vvz" class="btn-dark" style="top: 420px">Install</div>
+          <div data-hf-id="hf-x8xt" class="sub" style="top: 530px">Sign up, verify your number, turn on notifications and start earning.</div>
         </div></div>
-        <div class="label">App</div>
+        <div data-hf-id="hf-89g1" class="label">App</div>
       </div>
-      <div id="s23" class="scene clip ground-void" data-start="24.65" data-duration="1.25" data-track-index="1">
-        <div class="phone"><div class="screen light">
-          <div class="island"></div>
-          <div class="top">Verify your number</div>
-          <div class="sub" style="top: 150px">Enter the 6-digit code sent to <span class="mono">+91 98••• •••41</span></div>
-          <div class="otp" style="top: 240px"><div class="on">4</div><div class="on">8</div><div class="on">2</div><div></div><div></div><div></div></div>
-          <div class="sub" style="top: 350px">Resend code in <span class="mono">0:29</span></div>
-          <div class="sub" style="top: 440px; color: var(--aub); font-weight: 700">Create a password</div>
-          <div class="field" style="top: 480px">••••••</div>
-          <div class="btn-dark" style="top: 600px; opacity: 0.35">Continue</div>
+      <div data-hf-id="hf-okva" id="s23" class="scene clip ground-void" data-start="24.65" data-duration="0.95" data-track-index="1">
+        <div data-hf-id="hf-3yu9" class="phone"><div data-hf-id="hf-mls8" class="screen light">
+          <div data-hf-id="hf-c7b2" class="island"></div>
+          <div data-hf-id="hf-5fvg" class="top">Verify your number</div>
+          <div data-hf-id="hf-hbx6" class="sub" style="top: 150px">Enter the 6-digit code sent to <span data-hf-id="hf-jbs7" class="mono">+91 98••• •••41</span></div>
+          <div data-hf-id="hf-yn76" class="otp" style="top: 240px"><div data-hf-id="hf-o46l" class="on">4</div><div data-hf-id="hf-svux" class="on">8</div><div data-hf-id="hf-qi0r" class="on">2</div><div data-hf-id="hf-xfcu"></div><div data-hf-id="hf-w8fr"></div><div data-hf-id="hf-wmqs"></div></div>
+          <div data-hf-id="hf-mdog" class="sub" style="top: 350px">Resend code in <span data-hf-id="hf-yqxj" class="mono">0:29</span></div>
+          <div data-hf-id="hf-pq79" class="sub" style="top: 440px; color: var(--aub); font-weight: 700">Create a password</div>
+          <div data-hf-id="hf-ilwl" class="field" style="top: 480px">••••••</div>
+          <div data-hf-id="hf-v2z9" class="btn-dark" style="top: 600px; opacity: 0.35">Continue</div>
         </div></div>
-        <div class="label">Login</div>
+        <div data-hf-id="hf-1u5z" class="label">Login</div>
+      </div>
+
+      <div data-hf-id="hf-f7qn" id="s23b" class="scene clip" data-start="25.6" data-duration="0.65" data-track-index="1">
+        <img data-color-grading="{&quot;preset&quot;:&quot;muted-editorial&quot;,&quot;intensity&quot;:0.85,&quot;adjust&quot;:{&quot;exposure&quot;:-0.02,&quot;contrast&quot;:0.08,&quot;highlights&quot;:-0.08,&quot;shadows&quot;:0.06,&quot;whites&quot;:0,&quot;blacks&quot;:-0.05,&quot;temperature&quot;:-0.03,&quot;tint&quot;:0,&quot;vibrance&quot;:0,&quot;saturation&quot;:-0.12},&quot;details&quot;:{&quot;vignette&quot;:0.12,&quot;vignetteMidpoint&quot;:0.5,&quot;vignetteRoundness&quot;:0,&quot;vignetteFeather&quot;:0.65,&quot;grain&quot;:0.06,&quot;grainSize&quot;:0.2,&quot;grainRoughness&quot;:0.6},&quot;effects&quot;:{&quot;blur&quot;:0,&quot;pixelate&quot;:0,&quot;chromaBleed&quot;:0,&quot;tapeDamage&quot;:0,&quot;tapeTracking&quot;:0,&quot;tapeNoise&quot;:1,&quot;tapeSpeed&quot;:0.5,&quot;filmArtifacts&quot;:0,&quot;halftone&quot;:0,&quot;halftoneSize&quot;:0,&quot;twoInkPrint&quot;:0,&quot;twoInkPrintSize&quot;:0,&quot;ascii&quot;:0,&quot;asciiSize&quot;:0.06578947368421052,&quot;asciiInvert&quot;:0,&quot;asciiStyle&quot;:0,&quot;asciiColor&quot;:1,&quot;asciiRotation&quot;:0,&quot;dither&quot;:0,&quot;ditherSize&quot;:0,&quot;bloom&quot;:0,&quot;bloomRadius&quot;:8,&quot;monoScreen&quot;:0,&quot;monoScreenSize&quot;:0,&quot;monoScreenAngle&quot;:0,&quot;monoScreenSpread&quot;:0,&quot;monoScreenShape&quot;:0,&quot;monoScreenInvert&quot;:0,&quot;scanlines&quot;:0,&quot;scanlineCount&quot;:0,&quot;scanlineSoftness&quot;:0,&quot;chromaticAberration&quot;:0,&quot;chromaticAngle&quot;:0,&quot;crtCurvature&quot;:0,&quot;digitalGlitch&quot;:0,&quot;digitalGlitchColorSplit&quot;:0,&quot;digitalGlitchLineTear&quot;:0,&quot;digitalGlitchPixelate&quot;:0,&quot;digitalGlitchBlockAmount&quot;:0,&quot;digitalGlitchBlockDisplacement&quot;:0,&quot;digitalGlitchBlockOpacity&quot;:0,&quot;digitalGlitchSpeed&quot;:0,&quot;engraving&quot;:0,&quot;engravingSpacing&quot;:0.4117647058823529,&quot;engravingMinThickness&quot;:0.2,&quot;engravingMaxThickness&quot;:0.4571428571428572,&quot;engravingAngle&quot;:0.25,&quot;engravingContrast&quot;:0.4666666666666667,&quot;engravingSharpness&quot;:0.59,&quot;engravingWave&quot;:0.2,&quot;engravingWaveFrequency&quot;:0.2222222222222222,&quot;crosshatch&quot;:0,&quot;crosshatchSpacing&quot;:0.28,&quot;crosshatchThickness&quot;:0.25,&quot;crosshatchAngle&quot;:0.25,&quot;crosshatchContrast&quot;:0.3333333333333333,&quot;crosshatchEdges&quot;:0.5,&quot;crosshatchLineWeight&quot;:0,&quot;crosshatchWave&quot;:0.33,&quot;crosshatchWaveFrequency&quot;:0.2222222222222222,&quot;kuwahara&quot;:0,&quot;kuwaharaRadius&quot;:0.14285714285714285,&quot;kuwaharaSharpness&quot;:0.3125,&quot;kuwaharaSaturation&quot;:0.5},&quot;lut&quot;:null,&quot;colorSpace&quot;:&quot;rec709&quot;}" data-hf-id="hf-552p" id="m-hesitate" class="media" src="assets/stills/phone-under-lamp.jpg" alt="">
       </div>
 
       <!-- ===== silence · black · one ding ===== -->
-      <div id="s24" class="scene clip ground-void" data-start="25.9" data-duration="1.1" data-track-index="1"></div>
+      <div data-hf-id="hf-hmtp" id="s24" class="scene clip ground-void" data-start="26.25" data-duration="0.75" data-track-index="1"></div>
 
       <!-- ===== "What if loyalty didn't need another place?" ===== -->
-      <div id="s25" class="scene clip ground-void" data-start="27.0" data-duration="2.8" data-track-index="1">
-        <div class="phone"><div class="screen lock">
-          <div class="island"></div>
-          <div class="date">Wednesday, 7 October</div>
-          <div class="time">9:41</div>
-          <div class="bar"></div>
+      <div data-hf-id="hf-a4u8" id="s25" class="scene clip ground-void" data-start="27.0" data-duration="2.8" data-track-index="1">
+        <div data-hf-id="hf-4d5a" class="phone"><div data-hf-id="hf-bs6v" class="screen lock">
+          <div data-hf-id="hf-bt01" class="island"></div>
+          <div data-hf-id="hf-66sj" class="date">Wednesday, 7 October</div>
+          <div data-hf-id="hf-zmej" class="time">9:41</div>
+          <div data-hf-id="hf-bcf9" class="bar"></div>
         </div></div>
       </div>
 
       <!-- ===== "It already has one. The wallet on their phone." ===== -->
-      <div id="s26" class="scene clip ground-void" data-start="29.8" data-duration="2.9" data-track-index="1">
-        <div class="phone"><div class="screen wallet">
-          <div class="island"></div>
-          <div class="wt">Wallet</div>
-          <div class="pass" style="top: 170px; height: 220px; background: #24324f"><div class="phd"><span>BOARDING PASS</span><span class="mono">BLR → DEL</span></div></div>
-          <div class="pass" style="top: 236px; height: 220px; background: #5b2333"><div class="phd"><span>CINEMA</span><span>SCREEN 4</span></div></div>
-          <div class="pass" style="top: 302px; height: 560px; background: var(--crane)">
-            <div class="phd"><span>PAPER CRANE COFFEE</span><span class="mono">132 PTS</span></div>
-            <div class="big">132 / 150</div>
-            <div class="sm">NEXT REWARD · AARAV</div>
-            <div class="qr-box" id="qr-wallet"></div>
+      <div data-hf-id="hf-vw6k" id="s26" class="scene clip ground-void" data-start="29.8" data-duration="2.9" data-track-index="1">
+        <div data-hf-id="hf-6cof" class="phone"><div data-hf-id="hf-zkn7" class="screen wallet">
+          <div data-hf-id="hf-el58" class="island"></div>
+          <div data-hf-id="hf-f9ig" class="wt">Wallet</div>
+          <div data-hf-id="hf-g9w3" class="pass" style="top: 170px; height: 220px; background: #24324f"><div data-hf-id="hf-06h0" class="phd"><span data-hf-id="hf-90ni">BOARDING PASS</span><span data-hf-id="hf-klt3" class="mono">BLR → DEL</span></div></div>
+          <div data-hf-id="hf-zyfb" class="pass" style="top: 236px; height: 220px; background: #5b2333"><div data-hf-id="hf-yccc" class="phd"><span data-hf-id="hf-ody6">CINEMA</span><span data-hf-id="hf-pb8h">SCREEN 4</span></div></div>
+          <div data-hf-id="hf-sa2u" class="pass" style="top: 302px; height: 560px; background: var(--crane)">
+            <div data-hf-id="hf-x5f9" class="phd"><span data-hf-id="hf-d9fg">PAPER CRANE COFFEE</span><span data-hf-id="hf-opan" class="mono">132 PTS</span></div>
+            <div data-hf-id="hf-4g37" class="big">132 / 150</div>
+            <div data-hf-id="hf-tdqi" class="sm">NEXT REWARD · AARAV</div>
+            <div data-hf-id="hf-wik4" class="qr-box" id="qr-wallet"></div>
           </div>
         </div></div>
-        <div class="label">Wallet</div>
+        <div data-hf-id="hf-qesr" class="label">Wallet</div>
       </div>
 
       <!-- ===== "One scan at your counter. No app." ===== -->
-      <div id="s28" class="scene clip" data-start="32.7" data-duration="1.7" data-track-index="1">
-        <div class="fph"><span>FOOTAGE · a phone scans the QR at the counter</span></div>
+      <video data-color-grading="{&quot;preset&quot;:&quot;muted-editorial&quot;,&quot;intensity&quot;:0.5,&quot;adjust&quot;:{&quot;exposure&quot;:-0.02,&quot;contrast&quot;:0.08,&quot;highlights&quot;:-0.08,&quot;shadows&quot;:0.06,&quot;whites&quot;:0,&quot;blacks&quot;:-0.05,&quot;temperature&quot;:-0.03,&quot;tint&quot;:0,&quot;vibrance&quot;:0,&quot;saturation&quot;:-0.12},&quot;details&quot;:{&quot;vignette&quot;:0.12,&quot;vignetteMidpoint&quot;:0.5,&quot;vignetteRoundness&quot;:0,&quot;vignetteFeather&quot;:0.65,&quot;grain&quot;:0.06,&quot;grainSize&quot;:0.2,&quot;grainRoughness&quot;:0.6},&quot;effects&quot;:{&quot;blur&quot;:0,&quot;pixelate&quot;:0,&quot;chromaBleed&quot;:0,&quot;tapeDamage&quot;:0,&quot;tapeTracking&quot;:0,&quot;tapeNoise&quot;:1,&quot;tapeSpeed&quot;:0.5,&quot;filmArtifacts&quot;:0,&quot;halftone&quot;:0,&quot;halftoneSize&quot;:0,&quot;twoInkPrint&quot;:0,&quot;twoInkPrintSize&quot;:0,&quot;ascii&quot;:0,&quot;asciiSize&quot;:0.06578947368421052,&quot;asciiInvert&quot;:0,&quot;asciiStyle&quot;:0,&quot;asciiColor&quot;:1,&quot;asciiRotation&quot;:0,&quot;dither&quot;:0,&quot;ditherSize&quot;:0,&quot;bloom&quot;:0,&quot;bloomRadius&quot;:8,&quot;monoScreen&quot;:0,&quot;monoScreenSize&quot;:0,&quot;monoScreenAngle&quot;:0,&quot;monoScreenSpread&quot;:0,&quot;monoScreenShape&quot;:0,&quot;monoScreenInvert&quot;:0,&quot;scanlines&quot;:0,&quot;scanlineCount&quot;:0,&quot;scanlineSoftness&quot;:0,&quot;chromaticAberration&quot;:0,&quot;chromaticAngle&quot;:0,&quot;crtCurvature&quot;:0,&quot;digitalGlitch&quot;:0,&quot;digitalGlitchColorSplit&quot;:0,&quot;digitalGlitchLineTear&quot;:0,&quot;digitalGlitchPixelate&quot;:0,&quot;digitalGlitchBlockAmount&quot;:0,&quot;digitalGlitchBlockDisplacement&quot;:0,&quot;digitalGlitchBlockOpacity&quot;:0,&quot;digitalGlitchSpeed&quot;:0,&quot;engraving&quot;:0,&quot;engravingSpacing&quot;:0.4117647058823529,&quot;engravingMinThickness&quot;:0.2,&quot;engravingMaxThickness&quot;:0.4571428571428572,&quot;engravingAngle&quot;:0.25,&quot;engravingContrast&quot;:0.4666666666666667,&quot;engravingSharpness&quot;:0.59,&quot;engravingWave&quot;:0.2,&quot;engravingWaveFrequency&quot;:0.2222222222222222,&quot;crosshatch&quot;:0,&quot;crosshatchSpacing&quot;:0.28,&quot;crosshatchThickness&quot;:0.25,&quot;crosshatchAngle&quot;:0.25,&quot;crosshatchContrast&quot;:0.3333333333333333,&quot;crosshatchEdges&quot;:0.5,&quot;crosshatchLineWeight&quot;:0,&quot;crosshatchWave&quot;:0.33,&quot;crosshatchWaveFrequency&quot;:0.2222222222222222,&quot;kuwahara&quot;:0,&quot;kuwaharaRadius&quot;:0.14285714285714285,&quot;kuwaharaSharpness&quot;:0.3125,&quot;kuwaharaSaturation&quot;:0.5},&quot;lut&quot;:null,&quot;colorSpace&quot;:&quot;rec709&quot;}" data-hf-id="hf-f2rg" id="m-scan" class="clip media" src="assets/footage/scan-at-counter.mp4" data-start="32.7" data-duration="1.7" data-track-index="0" muted playsinline></video>
+      <div data-hf-id="hf-3xlc" id="s28" class="scene clip" data-start="32.7" data-duration="1.7" data-track-index="1">
       </div>
-      <div id="s29" class="scene clip ground-void" data-start="34.4" data-duration="0.85" data-track-index="1">
-        <div class="phone"><div class="screen lock" style="filter: none">
-          <div class="island"></div>
-          <div class="sheet">
-            <div style="position:absolute; left: 30px; right: 30px; top: 34px; text-align:center; font-weight: 800; font-size: 26px; color: var(--aub)">Add this pass to your wallet?</div>
-            <div class="pass" style="top: 96px; height: 250px; left: 30px; right: 30px; background: var(--crane)"><div class="phd"><span>PAPER CRANE COFFEE</span><span class="mono">0 PTS</span></div><div class="big" style="font-size: 46px">0 / 150</div><div class="sm">WELCOME · AARAV</div></div>
-            <div class="btn-violet" style="top: 380px">Add</div>
-            <div style="position:absolute; left:0; right:0; top: 484px; text-align:center; font-weight: 600; font-size: 20px; color: var(--muted-l)">Phone number and first name only</div>
+      <div data-hf-id="hf-i3uf" id="s29" class="scene clip ground-void" data-start="34.4" data-duration="0.85" data-track-index="1">
+        <div data-hf-id="hf-6qzg" class="phone"><div data-hf-id="hf-kjgd" class="screen lock" style="filter: none">
+          <div data-hf-id="hf-e6u7" class="island"></div>
+          <div data-hf-id="hf-cr6h" class="sheet">
+            <div data-hf-id="hf-8sad" style="position:absolute; left: 30px; right: 30px; top: 34px; text-align:center; font-weight: 800; font-size: 26px; color: var(--aub)">Add this pass to your wallet?</div>
+            <div data-hf-id="hf-sqxt" class="pass" style="top: 96px; height: 250px; left: 30px; right: 30px; background: var(--crane)"><div data-hf-id="hf-xjqa" class="phd"><span data-hf-id="hf-d08k">PAPER CRANE COFFEE</span><span data-hf-id="hf-rqy5" class="mono">0 PTS</span></div><div data-hf-id="hf-mavk" class="big" style="font-size: 46px">0 / 150</div><div data-hf-id="hf-p54a" class="sm">WELCOME · AARAV</div></div>
+            <div data-hf-id="hf-mvwh" class="btn-violet" style="top: 380px">Add</div>
+            <div data-hf-id="hf-g1qd" style="position:absolute; left:0; right:0; top: 484px; text-align:center; font-weight: 600; font-size: 20px; color: var(--muted-l)">Phone number and first name only</div>
           </div>
         </div></div>
-        <div class="label">No app</div>
+        <div data-hf-id="hf-aifa" class="label">No app</div>
       </div>
 
       <!-- ===== "Seconds after they pay, points land on their lock screen." ===== -->
-      <div id="s30" class="scene clip" data-start="35.25" data-duration="1.5" data-track-index="1">
-        <div class="fph"><span>FOOTAGE · they pay at the counter</span></div>
+      <video data-color-grading="{&quot;preset&quot;:&quot;muted-editorial&quot;,&quot;intensity&quot;:0.5,&quot;adjust&quot;:{&quot;exposure&quot;:-0.02,&quot;contrast&quot;:0.08,&quot;highlights&quot;:-0.08,&quot;shadows&quot;:0.06,&quot;whites&quot;:0,&quot;blacks&quot;:-0.05,&quot;temperature&quot;:-0.03,&quot;tint&quot;:0,&quot;vibrance&quot;:0,&quot;saturation&quot;:-0.12},&quot;details&quot;:{&quot;vignette&quot;:0.12,&quot;vignetteMidpoint&quot;:0.5,&quot;vignetteRoundness&quot;:0,&quot;vignetteFeather&quot;:0.65,&quot;grain&quot;:0.06,&quot;grainSize&quot;:0.2,&quot;grainRoughness&quot;:0.6},&quot;effects&quot;:{&quot;blur&quot;:0,&quot;pixelate&quot;:0,&quot;chromaBleed&quot;:0,&quot;tapeDamage&quot;:0,&quot;tapeTracking&quot;:0,&quot;tapeNoise&quot;:1,&quot;tapeSpeed&quot;:0.5,&quot;filmArtifacts&quot;:0,&quot;halftone&quot;:0,&quot;halftoneSize&quot;:0,&quot;twoInkPrint&quot;:0,&quot;twoInkPrintSize&quot;:0,&quot;ascii&quot;:0,&quot;asciiSize&quot;:0.06578947368421052,&quot;asciiInvert&quot;:0,&quot;asciiStyle&quot;:0,&quot;asciiColor&quot;:1,&quot;asciiRotation&quot;:0,&quot;dither&quot;:0,&quot;ditherSize&quot;:0,&quot;bloom&quot;:0,&quot;bloomRadius&quot;:8,&quot;monoScreen&quot;:0,&quot;monoScreenSize&quot;:0,&quot;monoScreenAngle&quot;:0,&quot;monoScreenSpread&quot;:0,&quot;monoScreenShape&quot;:0,&quot;monoScreenInvert&quot;:0,&quot;scanlines&quot;:0,&quot;scanlineCount&quot;:0,&quot;scanlineSoftness&quot;:0,&quot;chromaticAberration&quot;:0,&quot;chromaticAngle&quot;:0,&quot;crtCurvature&quot;:0,&quot;digitalGlitch&quot;:0,&quot;digitalGlitchColorSplit&quot;:0,&quot;digitalGlitchLineTear&quot;:0,&quot;digitalGlitchPixelate&quot;:0,&quot;digitalGlitchBlockAmount&quot;:0,&quot;digitalGlitchBlockDisplacement&quot;:0,&quot;digitalGlitchBlockOpacity&quot;:0,&quot;digitalGlitchSpeed&quot;:0,&quot;engraving&quot;:0,&quot;engravingSpacing&quot;:0.4117647058823529,&quot;engravingMinThickness&quot;:0.2,&quot;engravingMaxThickness&quot;:0.4571428571428572,&quot;engravingAngle&quot;:0.25,&quot;engravingContrast&quot;:0.4666666666666667,&quot;engravingSharpness&quot;:0.59,&quot;engravingWave&quot;:0.2,&quot;engravingWaveFrequency&quot;:0.2222222222222222,&quot;crosshatch&quot;:0,&quot;crosshatchSpacing&quot;:0.28,&quot;crosshatchThickness&quot;:0.25,&quot;crosshatchAngle&quot;:0.25,&quot;crosshatchContrast&quot;:0.3333333333333333,&quot;crosshatchEdges&quot;:0.5,&quot;crosshatchLineWeight&quot;:0,&quot;crosshatchWave&quot;:0.33,&quot;crosshatchWaveFrequency&quot;:0.2222222222222222,&quot;kuwahara&quot;:0,&quot;kuwaharaRadius&quot;:0.14285714285714285,&quot;kuwaharaSharpness&quot;:0.3125,&quot;kuwaharaSaturation&quot;:0.5},&quot;lut&quot;:null,&quot;colorSpace&quot;:&quot;rec709&quot;}" data-hf-id="hf-1oax" id="m-pay" class="clip media" src="assets/footage/pay-at-counter.mp4" data-start="35.25" data-duration="1.5" data-track-index="0" muted playsinline></video>
+      <div data-hf-id="hf-klja" id="s30" class="scene clip" data-start="35.25" data-duration="1.5" data-track-index="1">
       </div>
-      <div id="s31" class="scene clip ground-void" data-start="36.75" data-duration="1.9" data-track-index="1">
-        <div class="cam" style="transform: scale(1.6); transform-origin: 540px 760px">
-        <div class="phone"><div class="screen lock">
-          <div class="island"></div>
-          <div class="date">Wednesday, 7 October</div>
-          <div class="time">9:42</div>
-          <div class="notif hero-push" style="top: 330px">
-            <div class="ic" style="background: var(--crane)">P</div>
-            <div class="nb"><div class="t1">Wallet <span>now</span></div><div class="tt">+18 points at Paper Crane Coffee</div><div class="t2">You're at 132 of 150. One more and the next one is on the house.</div></div>
+      <div data-hf-id="hf-dosd" id="s31" class="scene clip ground-void" data-start="36.75" data-duration="1.9" data-track-index="1">
+        <div data-hf-id="hf-vrft" class="cam" style="transform: scale(1.6); transform-origin: 540px 760px">
+        <div data-hf-id="hf-lfik" class="phone"><div data-hf-id="hf-cz3y" class="screen lock">
+          <div data-hf-id="hf-tpc5" class="island"></div>
+          <div data-hf-id="hf-479e" class="date">Wednesday, 7 October</div>
+          <div data-hf-id="hf-z83i" class="time">9:42</div>
+          <div data-hf-id="hf-ehqq" class="notif hero-push" style="top: 330px">
+            <div data-hf-id="hf-a8bv" class="ic" style="background: var(--crane)">P</div>
+            <div data-hf-id="hf-9xyg" class="nb"><div data-hf-id="hf-rq24" class="t1">Wallet <span data-hf-id="hf-d4k9">now</span></div><div data-hf-id="hf-8x1p" class="tt">+18 points at Paper Crane Coffee</div><div data-hf-id="hf-8jm3" class="t2">You're at 132 of 150. One more and the next one is on the house.</div></div>
         </div>
           </div>
-          <div class="bar"></div>
+          <div data-hf-id="hf-e4kg" class="bar"></div>
         </div></div>
       </div>
 
       <!-- ===== "Now they notice." · different phones, same pass ===== -->
-      <div id="s32" class="scene clip ground-void" data-start="38.65" data-duration="1.35" data-track-index="1">
-        <div class="phone small" style="left: 100px; top: 380px"><div class="screen lock">
-          <div class="island"></div>
-          <div class="date" style="top: 76px; font-size: 19px">Wednesday, 7 October</div>
-          <div class="time" style="top: 98px; font-size: 92px">9:42</div>
-          <div class="notif hero-push" style="top: 250px; left: 10px; right: 10px; padding: 14px 14px; gap: 10px; border-radius: 22px">
-            <div class="ic" style="background: var(--crane); width: 40px; height: 40px; font-size: 18px; border-radius: 10px">P</div>
-            <div class="nb"><div class="t1" style="font-size: 14px">Wallet <span>now</span></div><div class="tt" style="font-size: 19px">+18 points at Paper Crane Coffee</div><div class="t2" style="font-size: 15px">You're at 132 of 150.</div></div>
+      <div data-hf-id="hf-7e36" id="s32" class="scene clip ground-void" data-start="38.65" data-duration="1.35" data-track-index="1">
+        <div data-hf-id="hf-mdjc" class="phone small" style="left: 100px; top: 380px"><div data-hf-id="hf-cksx" class="screen lock">
+          <div data-hf-id="hf-u3n6" class="island"></div>
+          <div data-hf-id="hf-w48h" class="date" style="top: 76px; font-size: 19px">Wednesday, 7 October</div>
+          <div data-hf-id="hf-14tf" class="time" style="top: 98px; font-size: 92px">9:42</div>
+          <div data-hf-id="hf-nggc" class="notif hero-push" style="top: 250px; left: 10px; right: 10px; padding: 14px 14px; gap: 10px; border-radius: 22px">
+            <div data-hf-id="hf-0e08" class="ic" style="background: var(--crane); width: 40px; height: 40px; font-size: 18px; border-radius: 10px">P</div>
+            <div data-hf-id="hf-9jnf" class="nb"><div data-hf-id="hf-kzmm" class="t1" style="font-size: 14px">Wallet <span data-hf-id="hf-cq98">now</span></div><div data-hf-id="hf-4uia" class="tt" style="font-size: 19px">+18 points at Paper Crane Coffee</div><div data-hf-id="hf-gct0" class="t2" style="font-size: 15px">You're at 132 of 150.</div></div>
           </div>
-          <div class="bar" style="width: 110px; margin-left: -55px"></div>
+          <div data-hf-id="hf-h2dd" class="bar" style="width: 110px; margin-left: -55px"></div>
         </div></div>
-        <div class="phone small android" style="left: 500px; top: 380px"><div class="screen lock">
-          <div class="island"></div>
-          <div class="time" style="top: 86px; font-size: 92px; text-align: left; padding-left: 30px">9:42</div>
-          <div class="date" style="top: 192px; font-size: 19px; text-align: left; padding-left: 32px">Wed, 7 Oct</div>
-          <div class="notif hero-push" style="top: 250px; left: 10px; right: 10px; padding: 14px 14px; gap: 10px; border-radius: 18px">
-            <div class="ic" style="background: var(--crane); width: 40px; height: 40px; font-size: 18px; border-radius: 50%">P</div>
-            <div class="nb"><div class="t1" style="font-size: 14px">Wallet <span>now</span></div><div class="tt" style="font-size: 19px">+18 points at Paper Crane Coffee</div><div class="t2" style="font-size: 15px">You're at 132 of 150.</div></div>
+        <div data-hf-id="hf-qrwt" class="phone small android" style="left: 500px; top: 380px"><div data-hf-id="hf-drq0" class="screen lock">
+          <div data-hf-id="hf-uhy7" class="island"></div>
+          <div data-hf-id="hf-f78k" class="time" style="top: 86px; font-size: 92px; text-align: left; padding-left: 30px">9:42</div>
+          <div data-hf-id="hf-5k8e" class="date" style="top: 192px; font-size: 19px; text-align: left; padding-left: 32px">Wed, 7 Oct</div>
+          <div data-hf-id="hf-er7v" class="notif hero-push" style="top: 250px; left: 10px; right: 10px; padding: 14px 14px; gap: 10px; border-radius: 18px">
+            <div data-hf-id="hf-j6mr" class="ic" style="background: var(--crane); width: 40px; height: 40px; font-size: 18px; border-radius: 50%">P</div>
+            <div data-hf-id="hf-95ce" class="nb"><div data-hf-id="hf-3h36" class="t1" style="font-size: 14px">Wallet <span data-hf-id="hf-cby7">now</span></div><div data-hf-id="hf-7ghi" class="tt" style="font-size: 19px">+18 points at Paper Crane Coffee</div><div data-hf-id="hf-0ezw" class="t2" style="font-size: 15px">You're at 132 of 150.</div></div>
           </div>
         </div></div>
-        <div class="chips" style="top: 1150px"><div class="chip">Apple Wallet</div><div class="chip">Google Wallet</div></div>
+        <div data-hf-id="hf-cvu7" class="chips" style="top: 1150px"><div data-hf-id="hf-9o7z" class="chip">Apple Wallet</div><div data-hf-id="hf-fewa" class="chip">Google Wallet</div></div>
       </div>
 
       <!-- ===== recap · PAYMENT → REWARD → MESSAGE → WALLET ===== -->
-      <div id="s33a" class="scene clip ground-void" data-start="40.0" data-duration="0.16" data-track-index="1">
-        <div style="position:absolute; left: 340px; top: 560px; width: 400px; height: 400px; border-radius: 30px; background: var(--paper); padding: 28px" id="qr-recap"></div>
-        <div class="label">Payment</div>
+      <div data-hf-id="hf-4krc" id="s33a" class="scene clip ground-void" data-start="40.0" data-duration="0.16" data-track-index="1">
+        <img data-hf-id="hf-sqqy" id="m-coin2" src="assets/stills/coin-quarter-anna-1862.png" alt="" style="position: absolute; left: 270px; top: 690px; width: 540px; height: 540px">
+        <div data-hf-id="hf-sfko" class="label">Payment</div>
       </div>
-      <div id="s33b" class="scene clip ground-void" data-start="40.16" data-duration="0.16" data-track-index="1">
-        <div class="notif hero-push" style="left: 150px; right: 150px; top: 660px; padding: 26px 28px"><div class="ic" style="background: var(--crane); width: 64px; height: 64px">P</div><div class="nb"><div class="t1">Wallet <span>now</span></div><div class="tt" style="font-size: 30px">+18 points</div></div></div>
-        <div class="label">Reward</div>
+      <div data-hf-id="hf-ray2" id="s33b" class="scene clip ground-void" data-start="40.16" data-duration="0.16" data-track-index="1">
+        <div data-hf-id="hf-ix9d" class="notif hero-push" style="left: 150px; right: 150px; top: 660px; padding: 26px 28px"><div data-hf-id="hf-is9s" class="ic" style="background: var(--crane); width: 64px; height: 64px">P</div><div data-hf-id="hf-8r1d" class="nb"><div data-hf-id="hf-q6o4" class="t1">Wallet <span data-hf-id="hf-bxn6">now</span></div><div data-hf-id="hf-dksb" class="tt" style="font-size: 30px">+18 points</div></div></div>
+        <div data-hf-id="hf-e1ld" class="label">Reward</div>
       </div>
-      <div id="s33c" class="scene clip ground-void" data-start="40.32" data-duration="0.16" data-track-index="1">
-        <div class="bigbubble" style="top: 680px">We haven't seen you in a while.</div>
-        <div class="label">Message</div>
+      <div data-hf-id="hf-dwt5" id="s33c" class="scene clip ground-void" data-start="40.32" data-duration="0.16" data-track-index="1">
+        <div data-hf-id="hf-kjqh" class="bigbubble" style="top: 680px">We haven't seen you in a while.</div>
+        <div data-hf-id="hf-q8ml" class="label">Message</div>
       </div>
-      <div id="s33d" class="scene clip ground-void" data-start="40.48" data-duration="0.16" data-track-index="1">
-        <div class="pass" style="left: 240px; right: 240px; top: 560px; height: 380px; background: var(--crane)"><div class="phd"><span>PAPER CRANE COFFEE</span></div><div class="big">132 / 150</div><div class="sm">AARAV</div></div>
-        <div class="label">Wallet</div>
+      <div data-hf-id="hf-yf5b" id="s33d" class="scene clip ground-void" data-start="40.48" data-duration="0.16" data-track-index="1">
+        <div data-hf-id="hf-bacj" class="pass" style="left: 240px; right: 240px; top: 560px; height: 380px; background: var(--crane)"><div data-hf-id="hf-zj9f" class="phd"><span data-hf-id="hf-btbh">PAPER CRANE COFFEE</span></div><div data-hf-id="hf-8u6r" class="big">132 / 150</div><div data-hf-id="hf-s3vr" class="sm">AARAV</div></div>
+        <div data-hf-id="hf-bkuj" class="label">Wallet</div>
       </div>
-      <div id="s33e" class="scene clip ground-void" data-start="40.64" data-duration="0.1" data-track-index="1"></div>
+      <div data-hf-id="hf-pe2g" id="s33e" class="scene clip ground-void" data-start="40.64" data-duration="0.1" data-track-index="1"></div>
 
       <!-- ===== end card · "Whys-tak. The next place for loyalty." ===== -->
-      <div id="s34" class="scene clip ground-paper" data-start="40.74" data-duration="3.28" data-track-index="1">
-        <div class="end-mark"><img src="assets/brand/logo-mark.png" alt="" style="width: 600px; height: 390px; display: block" /></div>
-        <div class="end-word"><img src="assets/brand/logo-wordmark.png" alt="WYSTAK" style="width: 620px; height: 75px; display: block" /></div>
-        <div class="end-line">THE NEXT PLACE FOR LOYALTY.</div>
+      <div data-hf-id="hf-rhz5" id="s34" class="scene clip ground-paper" data-start="40.74" data-duration="3.28" data-track-index="1">
+        <div data-hf-id="hf-s07n" class="end-mark"><img data-hf-id="hf-6xa8" src="assets/brand/logo-mark.png" alt="" style="width: 600px; height: 390px; display: block"></div>
+        <div data-hf-id="hf-xfkg" class="end-word"><img data-hf-id="hf-2rd3" src="assets/brand/logo-wordmark.png" alt="WYSTAK" style="width: 620px; height: 75px; display: block"></div>
+        <div data-hf-id="hf-3viu" class="end-line">THE NEXT PLACE FOR LOYALTY.</div>
       </div>
 
-      <audio id="vo" src="assets/voiceover.wav" data-start="0" data-duration="44.02" data-track-index="20" data-volume="1"></audio>
+      <audio data-hf-id="hf-trjt" id="vo" src="assets/voiceover.wav" data-start="0" data-duration="44.02" data-track-index="20" data-volume="1"></audio>
 
-      <div id="grain-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 100; overflow: hidden">
-        <div class="grain-texture"></div>
+      <div data-hf-id="hf-jptm" id="grain-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 100; overflow: hidden">
+        <div data-hf-id="hf-0qtj" class="grain-texture"></div>
       </div>
       <style>
         @keyframes hf-grain-noise {
@@ -483,7 +506,7 @@
           return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" fill="${color}" style="display:block">${rects}${fp(0, 0)}${fp(N - 7, 0)}${fp(0, N - 7)}</svg>`;
         }
         document.getElementById("qr-wallet").innerHTML = qrSVG(126, 17, "#1a0b2e");
-        document.getElementById("qr-recap").innerHTML = qrSVG(344, 41, "#1a0b2e");
+        document.getElementById("qr-standee").innerHTML = qrSVG(330, 41, "#1a0b2e");
 
         const tl = gsap.timeline({ paused: true });
         window.__timelines["main"] = tl;
