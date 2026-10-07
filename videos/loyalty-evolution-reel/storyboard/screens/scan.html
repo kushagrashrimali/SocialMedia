@@ -1,22 +1,23 @@
-<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="_base.css"><style>
-body{background:linear-gradient(170deg,#8a7563 0%,#5d4a3b 45%,#3a2d23 100%);position:relative}
-.top{position:absolute;left:0;right:0;top:120px;text-align:center;font-weight:700;font-size:30px;color:#f7f5fa;opacity:.9}
-.qr{position:absolute;left:150px;top:400px;width:300px;height:300px;background:#fff;border-radius:18px;padding:22px}
-.br{position:absolute;width:70px;height:70px;border-color:#fff;border-style:solid}
-.chip{position:absolute;left:60px;right:60px;top:860px;height:100px;border-radius:50px;background:#f7f5fa;display:flex;align-items:center;justify-content:center;gap:14px;font-weight:800;font-size:28px;color:#1a0b2e}
-.dot{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#3b2417,#140b07);color:#e9c98b;font-family:Georgia,serif;font-style:italic;display:flex;align-items:center;justify-content:center;font-size:22px}
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:"Inter Tight";src:url("../../assets/vendor/fonts/inter-tight-latin-500-normal.woff2");font-weight:500}
+@font-face{font-family:"Inter Tight";src:url("../../assets/vendor/fonts/inter-tight-latin-600-normal.woff2");font-weight:600}
+@font-face{font-family:"Inter Tight";src:url("../../assets/vendor/fonts/inter-tight-latin-700-normal.woff2");font-weight:700}
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:600px;height:1300px;background:#f6f4f1;font-family:"Inter Tight",sans-serif;color:#1a120c;position:relative;overflow:hidden;-webkit-font-smoothing:antialiased}
+.url{position:absolute;left:60px;right:60px;top:96px;height:54px;border-radius:16px;background:#e9e6e2;display:flex;align-items:center;justify-content:center;gap:10px;font:500 21px "Inter Tight";color:#5d5650}
+.lock{width:14px;height:16px;border:2.5px solid #5d5650;border-radius:3px;position:relative;top:2px}
+.h{position:absolute;left:64px;right:64px;top:200px;font:700 44px/1.08 "Inter Tight";letter-spacing:-.03em}
+.s{position:absolute;left:64px;right:64px;top:310px;font:500 24px/1.3 "Inter Tight";color:#6f665e}
+.pass{position:absolute;left:64px;right:64px;top:388px;height:420px;border-radius:20px;overflow:hidden;box-shadow:0 26px 40px -22px rgba(40,20,10,.55)}
+.pass img{width:100%;display:block}
+.b{position:absolute;left:64px;right:64px;height:96px;border-radius:20px;background:#000;border:2px solid #9a9a9a;display:flex;align-items:center;justify-content:center;gap:14px;color:#fff}
+.b .t{font:600 30px/1.02 "Inter Tight";letter-spacing:-.015em}
+.b .t span{display:block;font:500 17px "Inter Tight";opacity:.9}
 </style></head><body>
-<div class="top">QR code</div>
-<div class="br" style="left:110px;top:360px;border-width:8px 0 0 8px;border-radius:22px 0 0 0"></div>
-<div class="br" style="left:420px;top:360px;border-width:8px 8px 0 0;border-radius:0 22px 0 0"></div>
-<div class="br" style="left:110px;top:670px;border-width:0 0 8px 8px;border-radius:0 0 0 22px"></div>
-<div class="br" style="left:420px;top:670px;border-width:0 8px 8px 0;border-radius:0 0 22px 0"></div>
-<div class="qr" id="q"></div>
-<div class="chip"><div class="dot">a</div>Add Cafe Aroma to Wallet</div>
-<script>
-function rng(s){return function(){s=(s*1664525+1013904223)>>>0;return s/4294967296}}
-const N=25,size=256,m=size/N,r=rng(23);let rects="";const f=(x,y)=>x>=0&&x<8&&y>=0&&y<8;
-for(let y=0;y<N;y++)for(let x=0;x<N;x++){if(f(x,y)||f(x-(N-8),y)||f(x,y-(N-8)))continue;if(r()>.52)rects+=`<rect x="${x*m}" y="${y*m}" width="${m+.4}" height="${m+.4}"/>`}
-const fp=(x,y)=>`<rect x="${x*m}" y="${y*m}" width="${7*m}" height="${7*m}"/><rect x="${(x+1)*m}" y="${(y+1)*m}" width="${5*m}" height="${5*m}" fill="#fff"/><rect x="${(x+2)*m}" y="${(y+2)*m}" width="${3*m}" height="${3*m}"/>`;
-document.getElementById('q').innerHTML=`<svg width="${size}" height="${size}" fill="#1a0b2e">${rects}${fp(0,0)}${fp(N-7,0)}${fp(0,N-7)}</svg>`;
-</script></body></html>
+<div class="url"><div class="lock"></div>cafearoma · rewards</div>
+<div class="h">Your Cafe Aroma card</div>
+<div class="s">No app needed. Add it to your phone's wallet.</div>
+<div class="pass"><img src="../../assets/ui/pass-apple.png"></div>
+<div class="b" style="top:850px"><svg width="34" height="40" viewBox="0 0 24 24" fill="#fff"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg><svg width="40" height="32" viewBox="0 0 46 38"><rect x="1" y="1" width="44" height="36" rx="7" fill="#fff"/><rect x="5" y="6" width="36" height="8" rx="3" fill="#3d8bfd"/><rect x="5" y="11" width="36" height="8" rx="3" fill="#ffb300"/><rect x="5" y="16" width="36" height="8" rx="3" fill="#ef4444"/><rect x="5" y="21" width="36" height="12" rx="3" fill="#22c55e"/></svg><div class="t"><span>Add to</span>Apple Wallet</div></div>
+<div class="b" style="top:966px"><svg width="40" height="32" viewBox="0 0 46 38"><path d="M4 10 Q4 4 10 4 H36 Q42 4 42 10 V12 H4Z" fill="#4285f4"/><path d="M4 12 H42 V18 H4Z" fill="#ea4335"/><path d="M4 18 H42 V24 H4Z" fill="#fbbc04"/><path d="M4 24 H42 V28 Q42 34 36 34 H10 Q4 34 4 28Z" fill="#34a853"/></svg><div class="t"><span>Add to</span>Google Wallet</div></div>
+</body></html>

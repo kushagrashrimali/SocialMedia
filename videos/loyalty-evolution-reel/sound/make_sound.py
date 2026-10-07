@@ -296,86 +296,83 @@ bed = reverb(bed, 2.6, 0.32)
 bed[int(29.66 * SR):int(30.12 * SR)] *= 0.0  # keep the silence clean after the reverb tail
 bed *= fade(N, 0.02, 1.6)[:, None]
 
-# ================================================================== SFX
+# ================================================================== SFX (v4: tuned to the bed's E minor; E G A B D)
 sfx = np.zeros((N, 2))
-place(sfx, swell(1.0), 0.0, 0.14)
-place(sfx, ping(hz(74), 2.0, 0.2), 0.35, 0.14)
-place(sfx, chime_two(hz(83), hz(88)), 1.15, 0.22)                 # "rewarding"
-place(sfx, whoosh(0.3, 500, 3000), 2.66, 0.2)                     # phone rises
-for t, n, p in ((3.05, 84, -0.3), (3.42, 81, 0.25), (3.78, 86, -0.1)):
-    place(sfx, ping(hz(n)), t, 0.28, p)                           # unread notifications
-place(sfx, lock_click(), 4.5, 0.5)                                # the screen sleeps
-place(sfx, shutter(), 5.3, 0.42, 0.2)
-place(sfx, card_slide(), 5.7, 0.35, -0.2)                         # data card
+E5, G5, A5, B5, D6, E6, G6, A6, B6 = 76, 79, 81, 83, 86, 88, 91, 93, 95
+place(sfx, swell(1.0), 0.0, 0.12)
+place(sfx, whoosh(0.32, 500, 3000), 2.66, 0.22)                    # phone swings in
+for t, n, p in ((3.05, B5, -0.3), (3.42, G5, 0.25), (3.78, E6, -0.1)):
+    place(sfx, ping(hz(n)), t, 0.26, p)                            # unread notifications
+place(sfx, lock_click(), 4.5, 0.45)                                # the screen sleeps
+place(sfx, shutter(), 5.3, 0.36, 0.2)
+place(sfx, whoosh(0.3, 600, 3600), 5.6, 0.18)                      # data card swings in
 for i in range(4):
-    place(sfx, keyclick(), 6.45 + i * 0.27, 0.32, 0.15)
-place(sfx, coin()[: int(0.45 * SR)], 7.8, 0.3)                    # "not just cash"
-place(sfx, whoosh(0.3, 500, 2600), 9.08, 0.16)
-place(sfx, ping(hz(79), 0.6), 10.12, 0.16)
+    place(sfx, keyclick(), 6.5 + i * 0.27, 0.3, 0.15)
+place(sfx, coin()[: int(0.45 * SR)], 7.8, 0.26)                    # "not just cash"
+place(sfx, shutter(), 9.1, 0.3)
 for t in (11.28, 12.38, 13.48):
-    place(sfx, shutter(), t, 0.36, 0.2)
-for t in (11.38, 12.45, 13.6):
-    place(sfx, pop(), t, 0.28)                                    # visit / purchase / preference logged
-place(sfx, whoosh(0.3, 500, 3000), 14.84, 0.2)
+    place(sfx, shutter(), t, 0.3, 0.2)
+for t, n in ((11.6, E6), (12.6, G6), (13.78, B6)):
+    place(sfx, pop(), t, 0.26); place(sfx, ping(hz(n), 0.35), t + 0.02, 0.12)     # chips land
+place(sfx, whoosh(0.32, 500, 3000), 14.86, 0.22)
 for i in range(12):
-    place(sfx, pop(), 15.02 + i * 0.075, 0.18, ((i % 4) - 1.5) * 0.4)   # apps pop in
-notes = [84, 79, 86, 81, 88, 83]
-for i in range(6):
-    place(sfx, ping(hz(notes[i]), 0.5), 16.3 + i * 0.11, 0.2, ((i * 0.37) % 1.4) - 0.7)
-place(sfx, chime_two(hz(86), hz(93), 0.09), 17.15, 0.3)           # message from the café
-place(sfx, shutter(), 18.18, 0.32)
-place(sfx, chime_two(hz(86), hz(93), 0.09), 18.8, 0.32)           # birthday
-place(sfx, ping(hz(74), 0.4, 0.1), 20.4, 0.2)                     # the cousins, late
-place(sfx, whoosh(0.3, 500, 3000), 21.38, 0.2)
-casc = [21.72, 21.95, 22.08, 22.26, 22.38, 22.52, 22.63, 22.74, 22.84, 22.94, 23.02, 23.1, 23.18]
-cn = [84, 79, 86, 81, 88, 83, 76, 91, 85, 80, 87, 82, 89]
-for i, (t, n) in enumerate(zip(casc, cn)):
-    place(sfx, ping(hz(n), 0.5), t, 0.2 + 0.013 * i, pan=((i * 0.37) % 1.4) - 0.7)
-place(sfx, impact(), 23.1, 0.58)                                  # "everywhere"
-place(sfx, impact(), 23.42, 0.4)
-place(sfx, train_rush(1.0), 23.0, 0.22)
-place(sfx, ping(hz(84)), 24.22, 0.3)                              # SMS
-place(sfx, whoosh(0.28, 700, 3600), 25.16, 0.18)
-place(sfx, ping(hz(88), 0.5), 25.32, 0.28, 0.3)                   # chat
+    place(sfx, pop(), 15.05 + i * 0.07, 0.17, ((i % 4) - 1.5) * 0.4)    # apps pop out
+for i, n in enumerate((E6, B5, G6, D6, A6, E6)):
+    place(sfx, ping(hz(n), 0.45), 16.3 + i * 0.1, 0.18, ((i * 0.37) % 1.4) - 0.7)
+place(sfx, chime_two(hz(B5), hz(E6), 0.09), 17.15, 0.28)          # the café's message
+place(sfx, shutter(), 18.18, 0.3)
+place(sfx, chime_two(hz(B5), hz(E6), 0.09), 18.8, 0.3)            # birthday
+place(sfx, ping(hz(E5), 0.4, 0.1), 20.38, 0.18)                   # the cousins, late
+place(sfx, whoosh(0.32, 500, 3000), 21.4, 0.2)
+for i, (t, n) in enumerate(zip([21.72, 22.0, 22.25, 22.46, 22.64, 22.8, 22.94], [B5, E6, G5, D6, A5, G6, B6])):
+    place(sfx, ping(hz(n), 0.5), t, 0.2 + 0.015 * i, pan=((i * 0.37) % 1.4) - 0.7)
+place(sfx, impact(), 23.1, 0.5)                                    # "everywhere": the stack bursts
+place(sfx, whoosh(0.6, 300, 6000), 23.08, 0.3)
+place(sfx, whoosh(0.3, 500, 3000), 24.1, 0.18)
+place(sfx, ping(hz(B5)), 24.24, 0.28)                              # SMS
+place(sfx, whoosh(0.28, 700, 3600), 25.16, 0.16)
+place(sfx, ping(hz(E6), 0.5), 25.32, 0.26, 0.3)                    # chat
 for t in (26.12, 26.32, 26.52):
-    place(sfx, tick(bright=4000), t, 0.16)                        # jiggle
-place(sfx, pop(), 26.2, 0.26)
-place(sfx, pop(up=False), 26.74, 0.42)                            # app removed
-place(sfx, whoosh(0.28, 700, 3600), 27.38, 0.18)
-place(sfx, tick(bright=3000), 27.92, 0.3)                         # GET
-place(sfx, whoosh(0.28, 700, 3600), 28.36, 0.18)
+    place(sfx, tick(bright=4000), t, 0.14)
+place(sfx, pop(), 26.2, 0.24)
+place(sfx, pop(up=False), 26.74, 0.4)                              # app removed
+place(sfx, whoosh(0.28, 700, 3600), 27.38, 0.16)
+place(sfx, tick(bright=3000), 27.92, 0.28)                         # GET
+place(sfx, whoosh(0.28, 700, 3600), 28.36, 0.16)
 for i in range(4):
-    place(sfx, keyclick(), 28.95 + i * 0.14, 0.34)                # OTP
-place(sfx, lock_click(), 29.62, 0.9)
-place(sfx, ding(), 30.12, 0.5)
-place(sfx, ping(hz(81), 1.2, 0.15), 32.56, 0.12)
-place(sfx, whoosh(0.35, 400, 2600), 33.82, 0.22)
-place(sfx, card_slide(), 33.88, 0.42, -0.2)                       # the passes rise
-place(sfx, card_slide(), 34.04, 0.36, 0.2)
-place(sfx, whoosh(0.3, 500, 3000), 35.3, 0.2)                     # phones rise
-place(sfx, card_slide(), 35.48, 0.4, -0.2)                        # passes drop into the wallets
-place(sfx, card_slide(), 35.56, 0.36, 0.2)
-place(sfx, chime_two(hz(83), hz(88)), 36.05, 0.26)
-place(sfx, shutter(), 37.12, 0.32)
-place(sfx, ping(hz(86), 0.5), 37.48, 0.18, -0.4)                  # scan
-place(sfx, ping(hz(90), 0.5), 37.6, 0.18, 0.4)
-place(sfx, pop(), 38.9, 0.28, -0.3)                               # wallet badges
-place(sfx, pop(), 38.98, 0.28, 0.3)
-place(sfx, shutter(), 39.62, 0.3)
-place(sfx, chime_two(hz(83), hz(88)), 39.95, 0.34)                # paid
-place(sfx, whoosh(0.3, 500, 2600), 41.22, 0.16)
-place(sfx, chime_two(hz(86), hz(93), 0.09), 41.5, 0.42)           # the Wallet push: a warm rising two-note
-place(sfx, swell(0.9), 41.7, 0.12)
-place(sfx, shutter(), 43.42, 0.26)
-place(sfx, ping(hz(88), 0.6), 44.12, 0.16)
-place(sfx, impact(), 45.64, 0.34)                                 # logo
-place(sfx, ping(hz(74), 3.0, 0.2), 45.66, 0.22)
-place(sfx, ping(hz(81), 3.0, 0.2), 45.68, 0.14)
-place(sfx, whoosh(0.5, 400, 2400), 46.06, 0.1)
-place(sfx, ping(hz(86), 1.2, 0.2), 46.8, 0.14)
-place(sfx, ping(hz(90), 1.6, 0.2), 47.98, 0.18)
+    place(sfx, keyclick(), 28.95 + i * 0.14, 0.32)                 # OTP
+place(sfx, lock_click(), 29.58, 0.85)
+place(sfx, ding(), 30.12, 0.5)                                     # E6: wakes the phone
+for i in range(6):
+    place(sfx, whoosh(0.4, 300, 2400, rising=False), 31.0 + i * 0.14, 0.09, (-0.6, 0.6)[i % 2])  # pieces drift in
+place(sfx, riser(0.7), 33.0, 0.2)                                  # pulled into the phone
+for i in range(6):
+    place(sfx, tick(bright=5000), 33.2 + i * 0.05, 0.1, (-0.4, 0.4)[i % 2])
+place(sfx, card_slide(), 33.56, 0.35, -0.2)
+place(sfx, card_slide(), 33.64, 0.4, 0.2)                          # the pass drops into the Wallet
+place(sfx, impact(), 33.87, 0.32)                                  # with the drop
+place(sfx, whoosh(0.4, 400, 2600), 34.88, 0.18)                    # camera pulls back
+place(sfx, card_slide(), 35.02, 0.32, 0.4)                         # the Android phone arrives
+place(sfx, pop(), 35.55, 0.24, -0.3); place(sfx, pop(), 35.63, 0.24, 0.3)
+place(sfx, shutter(), 37.12, 0.28)
+place(sfx, ping(hz(E6), 0.5), 37.48, 0.16, -0.4); place(sfx, ping(hz(B6), 0.5), 37.6, 0.16, 0.4)   # scan
+place(sfx, shutter(), 39.62, 0.26)
+place(sfx, chime_two(hz(B5), hz(E6)), 39.95, 0.32)                 # paid
+place(sfx, whoosh(0.32, 500, 2600), 41.22, 0.16)
+place(sfx, chime_two(hz(E6), hz(B6), 0.09), 41.48, 0.4)            # the Wallet push
+place(sfx, pop(), 41.85, 0.22)
+for i in range(9):
+    place(sfx, tick(bright=6000), 42.1 + i * 0.09, 0.08 + 0.01 * i)   # points counting up
+place(sfx, ping(hz(E6), 1.2, 0.2), 42.9, 0.22); place(sfx, ping(hz(B6), 1.2, 0.2), 42.92, 0.14)
+place(sfx, shutter(), 43.42, 0.24)
+place(sfx, chime_two(hz(B5), hz(E6), 0.09), 43.62, 0.26)
+place(sfx, impact(), 45.64, 0.32)                                  # logo
+place(sfx, ping(hz(E5), 3.0, 0.2), 45.66, 0.2); place(sfx, ping(hz(B5), 3.0, 0.2), 45.68, 0.13)
+place(sfx, whoosh(0.5, 400, 2400), 46.04, 0.1)
+place(sfx, pop(), 46.78, 0.22); place(sfx, ping(hz(E6), 1.2, 0.2), 46.8, 0.12)
+place(sfx, pop(), 47.96, 0.22); place(sfx, ping(hz(B6), 1.6, 0.2), 47.98, 0.15)
 sfx = reverb(sfx, 1.3, 0.22, seed=9)
-sfx[int(29.72 * SR):int(30.1 * SR)] *= 0.0   # true silence before the ding
+sfx[int(29.7 * SR):int(30.1 * SR)] *= 0.0   # true silence before the ding
 
 def write(path, x, peak_db=-3.0):
     x = x / max(1e-9, np.abs(x).max()) * 10 ** (peak_db / 20)
@@ -384,6 +381,6 @@ def write(path, x, peak_db=-3.0):
         w.writeframes((np.clip(x, -1, 1) * 32767).astype("<i2").tobytes())
 
 
-write(ROOT / "assets/music-bed.wav", bed, -4.0)
+# the music bed is the licensed track, edited by sound/make_music.py
 write(ROOT / "assets/sfx.wav", sfx, -3.0)
-print("wrote assets/music-bed.wav, assets/sfx.wav", f"{N / SR:.2f}s")
+print("wrote assets/sfx.wav", f"{N / SR:.2f}s")
