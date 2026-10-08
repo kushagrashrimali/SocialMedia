@@ -1,9 +1,10 @@
-"""Build index.html for the loyalty reel, v11 (40.0s): the final script.
+"""Build index.html for the loyalty reel (39.8s): the final script.
 
 v11: the user's final script and recording, cut to 40.0s (storyboard/edit_vo_v11.py). v9's scenes are kept in order and
 moved onto the new voice by one time map (storyboard/tmap_v11.py); the page is still authored in v9 time and a proxy
-timeline maps every position. The introduction now sits on "Introducing Why-stack." as its own scene, with the supplied
-horizontal lockup (assets/brand/logo-lockup-horizontal.jpg); the end card keeps the stacked logo and the tagline.
+timeline maps every position. The introduction sits on "Introducing Why-stack.", straight after the question, as its own
+scene with the supplied horizontal lockup animated in layers; it zooms forward into the phone, where the Wallet opens on
+"Bringing loyalty...". The end card keeps the stacked logo and the tagline.
 
 v10: a black pause after the lock click and a slower Wystak introduction (the voice's later silences are trimmed to pay
 for it, see tmap_v10.py: every time after the click is written in v9 time and mapped with M), one type family (Poppins)
@@ -18,7 +19,7 @@ v4: Indian Gen-Z photography, one caption family (Inter Tight) with per-word pop
 voice, 3D phones and notifications on brand grounds, the question -> answer turn as one continuous
 move (the scattered pieces collapse into the Wallet as the frame floods Wystak violet), Wallet
 names with their icons under each phone, Add-to-Wallet badges inside the scanned page.
-usage (from the project folder): python3 -I storyboard/edit_vo_v11.py (once), then python3 -I storyboard/build_v11.py
+usage (from the project folder): python3 -I storyboard/edit_vo.py (once), then python3 -I storyboard/build_v11.py
 then re-apply the voice carve on the bed (hyperframes-audio carve.mjs --bed bed --voice vo --strength 0.6).
 """
 import json, pathlib, re, subprocess, sys
@@ -33,13 +34,13 @@ W = W["words"] if isinstance(W, dict) else W
 WT = [(w.get("text") or w.get("word"), w["start"], w["end"]) for w in W]
 
 # ------------------------------------------------------------------ captions (exact words, short groups)
-GROUPS = [  # (first word, last word, accent word indices), v11 words
+GROUPS = [  # (first word, last word, accent word indices)
     (0, 6, [6]), (7, 11, [11]), (12, 15, [15]),
     (16, 20, [20]), (21, 23, []), (24, 27, [27]), (28, 29, [29]), (30, 31, [31]), (32, 33, [33]), (34, 37, []), (38, 40, [40]),
     (41, 43, []), (44, 47, [47]), (48, 52, [52]), (53, 54, [54]), (55, 56, [56]), (57, 60, [60]), (61, 62, []), (63, 64, [64]),
-    (65, 69, []), (70, 73, [73]), (74, 76, [76]),
-    (77, 80, []), (81, 83, [82, 83]), (84, 87, [87]), (88, 92, [89]),
-    (95, 99, []), (100, 101, [100, 101]), (102, 105, []), (106, 111, [110, 111]), (112, 114, [114]),
+    (65, 68, []), (69, 71, [70, 71]),
+    (74, 76, [75]), (77, 81, [80, 81]), (82, 86, [83]),
+    (87, 91, []), (92, 93, [92, 93]), (94, 97, []), (98, 103, [102, 103]), (104, 106, [106]),
 ]
 # caption theme by time: light grounds use navy + violet accent; footage / violet grounds use white + mint accent
 LIGHT = [(round(M(2.72), 3), round(M(5.32), 3)), (round(M(14.88), 3), round(M(18.18), 3)), (round(M(21.42), 3), round(M(34.87), 3))]
@@ -54,8 +55,8 @@ for gi, (a, b, acc) in enumerate(GROUPS):
         e = min(e, M(9.05))
     if WT[b][0] == "login.":   # clear the frame as the next phone rises
         e = min(e, M(29.62))
-    if WT[b][0] == "phone.":   # clear the frame before the introduction
-        e = min(e, INTRO[0] + 0.02)
+    if WT[b][0] == "place?":   # clear the frame before the introduction
+        e = min(e, INTRO[0] - 0.08)
     # kinetic layout: the accent word(s) get their own big line; the rest sit small above / below
     lines, cur, cur_big = [], [], None
     for i in range(a, b + 1):
@@ -241,7 +242,7 @@ SHOTS = [
     ("vE2", "v5-boutique-browse", 12.38, 13.48, "zoom", "zoom"),  # "Every purchase": the boutique
     ("vE3", "v5-pour", 13.48, 14.88, "zoom", "zoom"),           # "Every preference": the café
     ("vG", "v5-birthday", 17.86, 21.42, "under", "zoom"),       # "Cafés remembered birthdays" (v8: the camera pushes through the banner into it)
-    ("vL", "scan-at-counter", 38.08, 40.62, "push", "zoom"),   # v11: arrives out of the introduction's forward zoom
+    ("vL", "scan-at-counter", 38.08, 40.62, "under", "zoom"),
     ("vM", "pay-at-counter", 40.62, 42.24, "zoom", "zoom"),
     ("vO1", "v5-concert", 44.3, 45.17, "under", "zoom"),        # "Now they notice": a concert,
     ("vO2", "v5-club", 45.17, 45.9, "zoom", "zoom"),            # a club,
@@ -270,7 +271,7 @@ TPL = (HERE / "v11_template.html").read_text()
 rep = {
     "%%DUR%%": str(DUR), "%%TMAP%%": tmap_js(),
     "%%X0%%": str(round(INTRO[0] - 0.12, 3)), "%%XD%%": str(round(INTRO[1] + 0.5 - (INTRO[0] - 0.12), 3)),
-    "%%XJS%%": json.dumps({"in": round(INTRO[0] - 0.1, 3), "word": WT[93][1], "name": WT[94][1], "out": round(INTRO[1] + 0.1, 3)}),
+    "%%XJS%%": json.dumps({"in": round(INTRO[0] - 0.1, 3), "word": WT[72][1], "name": WT[73][1], "out": round(INTRO[1] + 0.1, 3)}),
     "%%PH_B%%": phone3d("pwB", lock_screen("sleepB"), "".join(notif(*n, "onlock") for n in NB)),
     "%%PH_F%%": phone3d("pwF", homeF, notif("nF", app_icon("whatsapp", 44), "Cafe Aroma", "now", "Your usual cold brew is waiting, Aarav. See you soon!", "banner")),
     "%%PH_H%%": phone3d("pwH", lock_screen(), "".join(notif(*n, "onlock") for n in NH)),
@@ -290,9 +291,6 @@ html = TPL
 # every scene's start and length in the template are v9 time
 html = re.sub(r'(class="scene clip" data-start=")([\d.]+)(" data-duration=")([\d.]+)"',
               lambda m: f'{m[1]}{round(M(float(m[2])), 3)}{m[3]}{round(M(float(m[2]) + float(m[4])) - M(float(m[2])), 3)}"', html)
-# the Wallet scene ends once the introduction fully covers it, so the push out of the introduction reveals the counter
-html = html.replace(f'id="sJ" class="scene clip" data-start="{round(M(29.66), 3)}" data-duration="{round(M(38.52) - M(29.66), 3)}"',
-                    f'id="sJ" class="scene clip" data-start="{round(M(29.66), 3)}" data-duration="{round(INTRO[0] + 0.66 - M(29.66), 3)}"')
 for k, v in rep.items():
     html = html.replace(k, v)
 for k, v in S.items():

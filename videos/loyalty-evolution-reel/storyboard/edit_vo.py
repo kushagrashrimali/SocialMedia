@@ -1,32 +1,32 @@
-"""v11 voiceover: the final script (ElevenLabs, Kendra), cut to 40.0s.
+"""Voiceover: the final script (ElevenLabs, Kendra), cut to 39.8s.
 
 The take has 44.9s of speech, so it is sped up (Rubber Band, pitch and formants kept) and its pauses are tightened.
 Pauses that carry the story are set after the speed-up, by hand:
-  before "It already has one."   the turn from the problem to the answer
-  before "Introducing Why-stack." the breath before the name (the glass logo reveal)
-  after the name, before the end card's "Why-stack.", and the end hold.
-Inputs: assets/voiceover-v11-src.mp3 and its word alignment assets/words-v11-src.json (pocketsphinx, see BRIEF.md).
-Outputs: assets/voiceover.wav, assets/words.json (40.0s).
+  after "...another place?"   the breath before "Introducing Why-stack." (the turn from the problem to the answer)
+  after the name             the logo finishes building
+  before the end card's "Why-stack.", and the end hold.
+Inputs: assets/voiceover-src.mp3 and its word alignment assets/words-src.json (pocketsphinx, see BRIEF.md).
+Outputs: assets/voiceover.wav, assets/words.json.
 usage (from the project folder): python3 -I storyboard/edit_vo_v11.py
 """
 import json, pathlib, re, subprocess, wave
 import numpy as np
 
 P = pathlib.Path(__file__).resolve().parent.parent
-DUR = 40.0
+DUR = 39.8
 SR = 48000
 GAP = {"comma": 0.09, "list": 0.10, "sentence": 0.13}          # before the speed-up
-SPECIAL = {"place?": 0.36, "phone.": 0.72, "Why-stack.#1": 0.36, "notice.": 0.26}   # after the speed-up (seconds of silence)
-END_HOLD = 0.42
+SPECIAL = {"place?": 0.55, "Why-stack.#1": 0.42, "notice.": 0.26}   # after the speed-up (seconds of silence)
+END_HOLD = 0.40
 
-raw = subprocess.run(["ffmpeg", "-v", "error", "-i", str(P / "assets/voiceover-v11-src.mp3"), "-ac", "1", "-ar", str(SR), "-f", "f32le", "-"],
+raw = subprocess.run(["ffmpeg", "-v", "error", "-i", str(P / "assets/voiceover-src.mp3"), "-ac", "1", "-ar", str(SR), "-f", "f32le", "-"],
                      capture_output=True, check=True).stdout
 x = np.frombuffer(raw, np.float32).astype(np.float64)
-W = json.loads((P / "assets/words-v11-src.json").read_text())
+W = json.loads((P / "assets/words-src.json").read_text())
 END = len(x) / SR
 
 # every pause in the take (below -40 dBFS for 0.1s or more), from ffmpeg silencedetect
-log = subprocess.run(["ffmpeg", "-i", str(P / "assets/voiceover-v11-src.mp3"), "-af", "silencedetect=noise=-40dB:d=0.1", "-f", "null", "-"],
+log = subprocess.run(["ffmpeg", "-i", str(P / "assets/voiceover-src.mp3"), "-af", "silencedetect=noise=-40dB:d=0.1", "-f", "null", "-"],
                      capture_output=True, text=True).stderr
 st = [float(v) for v in re.findall(r"silence_start: ([\d.]+)", log)]
 en = [float(v) for v in re.findall(r"silence_end: ([\d.]+)", log)]

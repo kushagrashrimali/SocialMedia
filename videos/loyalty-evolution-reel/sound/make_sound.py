@@ -173,9 +173,9 @@ P(AIR(), M(31.84), 0.035)
 P(set_down(0.8), M(34.6) + 0.25, 0.07)
 # the introduction: light comes up, the name lands on one soft chime, the passes settle, we push through to the counter
 P(BREATH()[: int(1.6 * SR)], INTRO[0] - 0.15, 0.04)
-P(wystak_chime(), word(94) - 0.45, 0.06)                           # the chime's bell lands on "Why-stack."
-P(settle(), word(94) + 0.15, 0.05)
-P(AIR(), INTRO[1] + 0.05, 0.03)
+P(wystak_chime(), word(73) - 0.45, 0.06)                           # the chime's bell lands on "Why-stack."
+P(settle(), word(73) + 0.15, 0.05)
+P(AIR(), INTRO[1] + 0.1, 0.03)                                    # the push into the phone
 # the payoff
 P(DING(), M(40.95), 0.09)                                          # paid
 P(NOTIF(), M(42.48), 0.17)                                         # the Wallet push: the one that matters

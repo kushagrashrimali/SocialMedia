@@ -1,10 +1,10 @@
-"""Edit the licensed music bed for the reel, v11 (40.0s): Mixkit "A New Life" (track 543, Mixkit Stock Music Free License).
+"""Edit the licensed music bed for the reel, (39.8s): Mixkit "A New Life" (track 543, Mixkit Stock Music Free License).
 
-A calm, cinematic track: sustained chords that swell, no kick drum. Cut to the v11 voice (times from assets/words.json):
+A calm, cinematic track: sustained chords that swell, no kick drum. Cut to the voice (times from assets/words.json):
   0 - "login."           a later phrase of the track (from 39.64), softened (gentle low-pass, -3 dB): the problem
-  the two questions      the track's quiet build (ending at 24.64) rises under "What if..."
-  "It already has one."  its first full entry (24.64) lands on the answer and runs to the end
-  the introduction       the bed eases down 4 dB to give the Wystak chime room, then comes back
+  the question           the track's quiet build (ending at 24.64) rises under "What if..."
+  "Introducing"          its first full entry (24.64) opens with the logo and runs to the end
+  the name               the bed eases down 3 dB to give the Wystak chime room, then comes back
   the last 1.2s          fade out under the logo
 The bed is levelled to -21 LUFS integrated; index.html plays it at 0.5 and the voice carve ducks it further.
 usage (from the project folder): python3 -I sound/make_music.py assets/music-src/mixkit-543-a-new-life.mp3
@@ -19,7 +19,7 @@ sys.path.insert(0, str(ROOT / "storyboard"))
 from tmap_v11 import DUR, INTRO, V11
 
 ENTRY = 24.64                    # the track's first full entry (source time)
-ENTRY_AT = V11[84]["start"]      # "It already has one."
+ENTRY_AT = V11[72]["start"]      # "Introducing Why-stack."
 PROBLEM_END = V11[64]["end"] + 0.05   # "login."
 PROBLEM_SRC = 39.64              # a phrase start, 7.5s phrases from the entry
 TARGET_LUFS = -21.0
@@ -48,11 +48,11 @@ put(0.0, PROBLEM_SRC, PROBLEM_END, fin=0.35, fout=0.6, gain=10 ** (-3 / 20), low
 # 2 · the quiet build rises under the questions (lifted: it is very soft in the source)
 pre = ENTRY_AT - PROBLEM_END + 0.3
 put(ENTRY_AT - pre, ENTRY - pre, pre + 0.01, fin=0.9, fout=0.0, gain=10 ** (8 / 20))
-# 3 · the first full entry on "It already has one", running to the end
+# 3 · the first full entry on "Introducing", running to the end
 put(ENTRY_AT, ENTRY, DUR - ENTRY_AT, fin=0.004, fout=1.2)
-# 4 · room for the chime: ease down 4 dB under the introduction
-g = np.ones(N); a0, a1 = S(INTRO[0] - 0.1), S(INTRO[1] + 0.2); r = S(0.35)
-g[a0:a1] = 10 ** (-4 / 20); g[a0:a0 + r] = np.linspace(1, 10 ** (-4 / 20), r); g[a1 - r:a1] = np.linspace(10 ** (-4 / 20), 1, r)
+# 4 · room for the chime: ease down 3 dB under the name
+g = np.ones(N); a0, a1 = S(V11[73]["start"] - 0.5), S(INTRO[1] + 0.2); r = S(0.35)
+g[a0:a1] = 10 ** (-3 / 20); g[a0:a0 + r] = np.linspace(1, 10 ** (-3 / 20), r); g[a1 - r:a1] = np.linspace(10 ** (-3 / 20), 1, r)
 out *= g[:, None]
 
 

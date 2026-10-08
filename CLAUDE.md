@@ -19,7 +19,7 @@ This repo holds WYSTAK's marketing reels: scripts and brand files in `wystak/`, 
 
 Posts reuse the system in `wystak/carousels/launch/` (`build.py`: HTML slides rendered by headless Chromium, alternating navy and light slides, logo badge top-left, one accent word per headline).
 
-Commit and push work without asking.
+Commit and push without asking, but only what is worth keeping: reusable scripts, templates and the lessons below. Do not commit every reel render, draft, voice take or intermediate media; send those to the user as files instead.
 
 ## LinkedIn process (posts for Wystak's company page)
 
@@ -52,3 +52,15 @@ The user drops reference videos, ElevenLabs audio, reference screenshots/PDFs an
   - force-align words with pocketsphinx (pip; the model is bundled) instead of Whisper;
   - draw objects in code.
 - Storyboard stills: `npx hyperframes snapshot --at <times> --no-end --describe false` gives per-scene frames and a contact sheet.
+
+## Lessons from the loyalty reel (keep applying these)
+
+- Type: one family (Poppins) for everything laid over the film, one weight in captions; the key word is set apart by colour (Wystak violet #6b2ba6, a light tint on dark grounds) and size, never by a second font. Phone screens keep their iOS-like UI type.
+- Motion: no hand cursor and no sparkle bursts. Glass, focus pulls and zoom-through seams; the scale direction must match across a cut (motion-doctrine skill).
+- Sound: minimal, Apple-style. Only story moments make a sound (alerts, the pass landing, the brand chime, payment, the logo); nothing on cuts, no taps or ticks; low-pass the SFX bus (~8.5 kHz), effects ~-37 LUFS against the voice. Notifications: a soft two-note bubble pop (Mixkit 2357). Real Apple sounds are copyrighted.
+- Music: calm, cinematic, no kick drum (Mixkit 543 "A New Life"); bed levelled to -21 LUFS, played at 0.5 and carved under the voice. Softened under the problem, quiet build under the question, full entry on the brand.
+- Voice: when a take is longer than the slot, `storyboard/edit_vo.py` (loyalty reel) tightens pauses and speeds it up with Rubber Band (pitch and formants kept), then opens the story pauses by hand. Up to ~1.25x stays natural.
+- Alignment: pocketsphinx `Decoder.set_align_text()`, decode, then read word timings from `dec.seg()` (`get_alignment()` returns None). Add "Why-stack" as `W AY S T AE K`; map "é" to "e".
+- Re-cutting to a new voice: keep the old film's times and map them with one piecewise time table anchored on the words the scripts share (`tmap_v11.py`); a proxy timeline maps every GSAP position and scales durations. New scenes are written in real time on the raw timeline.
+- Logos: never redraw. To animate the supplied logo, cut out only the white connected to the border, then split it into layers by colour (`storyboard/split_lockup_v11.py`); stacked unmoved the layers must equal the file.
+- HyperFrames gotchas: never set `visibility` on a `.clip` element (lint error; end the clip with its data-duration instead); clips stretched by a time map must not run past their footage.

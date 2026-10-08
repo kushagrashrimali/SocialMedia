@@ -692,7 +692,7 @@
         const X = %%XJS%%;      // { in, word, name, out }
         // seam in (Z, pulling back = arrival): the Wallet pulls away from camera and the glass pass settles down out of an
         // oversized, soft-focus frame, both shrinking, so the eye's motion carries across
-        TL.to("#sJ .stage, #lbA, #lbG", { scale: 0.88, duration: 0.5, ease: "power2.in", transformOrigin: "50% 45%" }, X.in - 0.12);
+        TL.to("#stJ", { scale: 0.88, duration: 0.5, ease: "power2.in", transformOrigin: "50% 45%" }, X.in - 0.12);
         TL.fromTo("#xIntro", { opacity: 0, scale: 1.2, filter: "blur(16px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.7, ease: "power3.out" }, X.in);
         TL.set("#xIntro", { filter: "none" }, X.in + 0.71);
         TL.fromTo("#xcard .sw", { xPercent: -180 }, { xPercent: 460, duration: 1.1, ease: "power2.inOut" }, X.in + 0.15);
@@ -711,9 +711,10 @@
         TL.fromTo("#xGlint i", { xPercent: -140 }, { xPercent: 560, duration: 0.75, ease: "power2.inOut" }, X.name + 0.32);
         TL.fromTo("#xlogo", { scale: 1 }, { scale: 1.025, duration: X.out - X.word, ease: "none", transformOrigin: "50% 50%" }, X.word);
         TL.fromTo("#sX .orb", { x: 0, y: 0 }, { x: 60, y: -80, duration: X.out - X.in + 0.5, ease: "none" }, X.in);
-        // seam out (Z, pushing forward): the whole pass zooms past camera and defocuses into the counter, which is itself
-        // still growing as it arrives (see the "push" entry of the scan shot)
+        // seam out (Z, pushing forward): the whole pass zooms past camera and defocuses into the phone
         TL.fromTo("#xIntro", { opacity: 1, scale: 1, filter: "blur(0px)" }, { opacity: 0, scale: 1.3, filter: "blur(12px)", duration: 0.42, ease: "power2.in", immediateRender: false }, X.out);
+        // ...into the phone, which is itself still coming toward camera as it is revealed (same scale direction)
+        TL.fromTo("#stJ", { scale: 0.88 }, { scale: 1, duration: 0.75, ease: "power3.out", transformOrigin: "50% 45%", immediateRender: false }, X.out);
 
         // ================= v8 · the hand that drives the UI (McDonald's-style) and its touch rings =================
         // Targets are measured from the live layout at the moment of each touch (seek, read the rect, move on), so the

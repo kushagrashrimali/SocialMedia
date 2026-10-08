@@ -1,33 +1,35 @@
-"""v11 time map: v9 time -> v11 time (the final script, 40.0s).
+"""Time map: v9 time -> the current cut (the final script, 39.8s).
 
-The v11 film keeps v9's scenes in order and moves them to the new voice. Anchors are the start of every word the two
-scripts share (v9 words 10-58 are v11 words 16-64, v9 59-74 are v11 77-92, v9 75-100 are v11 95-120), plus:
-  the new hook ("Want to know something about your customers? They never stopped being rewarded.") plays over v9's
-  opening montage, and v9's phone of unread notifications lands on "They just stopped noticing.";
-  v9's introduction gap (29.62-31.84) collapses; the phone rising out of it is slowed across the new first question
-  ("What if you met them where they already look, every single day?");
-  after "The wallet on their phone." the Wallet scene holds under the new introduction (its own scene, written in
-  v11 time) and the scan footage starts as the introduction leaves.
+The film keeps v9's scenes in order and moves them onto the new voice. Anchors are the start of every word the two
+scripts share (v9 words 10-65 are words 16-71 now, v9 70-100 are 82-112), plus:
+  the hook ("Want to know something about your customers? They never stopped being rewarded.") plays over v9's opening
+  montage; v9's phone of unread alerts lands on "They just stopped noticing.";
+  v9's old introduction gap collapses; the phone rises on "What if loyalty didn't need another place?";
+  the new introduction ("Introducing Why-stack.") is its own scene, written in current time (INTRO); v9 holds still
+  under it, and the Wallet opens on "Bringing loyalty to where your customers already are." ("It already has one." is gone).
 M(t) maps a v9 time to v11 time.
 """
 import json, pathlib
 
 HERE = pathlib.Path(__file__).resolve().parent
-DUR = 40.0
+DUR = 39.8
 V9 = json.loads((HERE.parent / "assets/words-v9.json").read_text())
 V11 = json.loads((HERE.parent / "assets/words.json").read_text())
 
-PAIRS = [(i, i + 6) for i in range(10, 59)] + [(i, i + 18) for i in range(59, 75)] + [(i, i + 20) for i in range(75, 101)]
+PAIRS = [(i, i + 6) for i in range(10, 66)] + [(i, i + 12) for i in range(70, 101)]
 for a, b in PAIRS:
     assert V9[a]["text"].strip(".,?").lower() == V11[b]["text"].strip(".,?").lower(), (V9[a]["text"], V11[b]["text"])
 KNOTS = [(0.0, 0.0), (2.72, V11[12]["start"] - 0.05)]                       # the unread phone lands on "They just stopped noticing."
 KNOTS += [(V9[a]["start"], V11[b]["start"]) for a, b in PAIRS if a < 59]
-KNOTS += [(V9[58]["end"], V11[64]["end"]), (29.62, V11[64]["end"] + 0.03), (31.84, V11[65]["start"])]
-KNOTS += [(V9[a]["start"], V11[b]["start"]) for a, b in PAIRS if 59 <= a < 75]
-INTRO = (V11[92]["end"] + 0.05, V11[95]["start"] - 0.28)                    # the introduction overlay, v11 time
-KNOTS += [(V9[74]["end"], V11[92]["end"]), (37.80, INTRO[0]), (38.03, INTRO[1])]
-KNOTS += [(V9[a]["start"], V11[b]["start"]) for a, b in PAIRS if a >= 75]
-KNOTS += [(V9[100]["end"], V11[120]["end"]), (51.0, DUR)]
+KNOTS += [(V9[58]["end"], V11[64]["end"]), (29.62, V11[64]["end"] + 0.03), (31.84, V11[65]["start"] - 0.05)]
+KNOTS += [(V9[a]["start"], V11[b]["start"]) for a, b in PAIRS if 59 <= a < 66]
+# the introduction (its own scene, v11 time) sits between the question and "Bringing loyalty...": v9's timeline holds
+# still under it (the pieces have just been pulled into the phone), then the Wallet opens on "Bringing loyalty"
+INTRO = (V11[71]["end"] + 0.15, V11[74]["start"] - 0.45)
+KNOTS += [(34.50, V11[71]["end"]), (34.51, INTRO[0] + 0.1), (34.53, INTRO[1] + 0.1),
+          (34.60, V11[74]["start"]), (34.87, V11[75]["start"])]
+KNOTS += [(V9[a]["start"], V11[b]["start"]) for a, b in PAIRS if a >= 70]
+KNOTS += [(V9[100]["end"], V11[112]["end"]), (51.0, DUR)]
 KNOTS.sort()
 for (a, A), (b, B) in zip(KNOTS, KNOTS[1:]):
     assert b > a and B >= A, ((a, A), (b, B))
