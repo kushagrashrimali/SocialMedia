@@ -241,7 +241,7 @@ SHOTS = [
     ("vE2", "v5-boutique-browse", 12.38, 13.48, "zoom", "zoom"),  # "Every purchase": the boutique
     ("vE3", "v5-pour", 13.48, 14.88, "zoom", "zoom"),           # "Every preference": the café
     ("vG", "v5-birthday", 17.86, 21.42, "under", "zoom"),       # "Cafés remembered birthdays" (v8: the camera pushes through the banner into it)
-    ("vL", "scan-at-counter", 38.08, 40.62, "under", "zoom"),
+    ("vL", "scan-at-counter", 38.08, 40.62, "push", "zoom"),   # v11: arrives out of the introduction's forward zoom
     ("vM", "pay-at-counter", 40.62, 42.24, "zoom", "zoom"),
     ("vO1", "v5-concert", 44.3, 45.17, "under", "zoom"),        # "Now they notice": a concert,
     ("vO2", "v5-club", 45.17, 45.9, "zoom", "zoom"),            # a club,
@@ -290,6 +290,9 @@ html = TPL
 # every scene's start and length in the template are v9 time
 html = re.sub(r'(class="scene clip" data-start=")([\d.]+)(" data-duration=")([\d.]+)"',
               lambda m: f'{m[1]}{round(M(float(m[2])), 3)}{m[3]}{round(M(float(m[2]) + float(m[4])) - M(float(m[2])), 3)}"', html)
+# the Wallet scene ends once the introduction fully covers it, so the push out of the introduction reveals the counter
+html = html.replace(f'id="sJ" class="scene clip" data-start="{round(M(29.66), 3)}" data-duration="{round(M(38.52) - M(29.66), 3)}"',
+                    f'id="sJ" class="scene clip" data-start="{round(M(29.66), 3)}" data-duration="{round(INTRO[0] + 0.66 - M(29.66), 3)}"')
 for k, v in rep.items():
     html = html.replace(k, v)
 for k, v in S.items():

@@ -174,25 +174,25 @@ Moves: Phones turn slowly in the light.
 
 ## Frame 16 — 0:29.4–0:30.2
 
-- scene: Light comes up: violet dissolves into frosted glass over the Wystak lockup.
+- scene: The Wallet pulls back; a frosted glass pass settles down out of soft focus. The W mark rises onto it.
 - duration: 0.77s
-- poster: 29.70
+- poster: 29.85
 - transition_in: cut
 - status: built
 - voiceover: (pause)
 
-Moves: A held breath. Voice and effects silent; music eases down.
+Moves: Camera pulls back (Wallet and glass card both shrinking, so the move carries across). Voice silent, music eases down: the turn from problem to solution.
 
 ## Frame 17 — 0:30.2–0:31.6
 
-- scene: Your horizontal logo (mark + WYSTAK); INTRODUCING above it.
+- scene: Your horizontal logo, built in motion on the glass pass; INTRODUCING above.
 - duration: 1.38s
-- poster: 30.90
+- poster: 30.95
 - transition_in: cut
 - status: built
 - voiceover: Introducing Why-stack.
 
-Moves: The frosted pass lifts away, four glass passes deal in and stack behind the logo; one soft chime on the name.
+Moves: On “Introducing” the purple and teal passes fan out from behind the navy pass into one stack; a beat; on “Why-stack” the letters W-Y-S-T-A-K cascade in with one soft chime; light runs across the logo.
 
 ## Frame 18 — 0:31.6–0:33.4
 
@@ -203,7 +203,7 @@ Moves: The frosted pass lifts away, four glass passes deal in and stack behind t
 - status: built
 - voiceover: One scan at your counter. No app.
 
-Moves: The whole intro pushes through into the counter footage.
+Moves: The glass pass zooms forward past camera into the counter footage, which is still pushing in as it arrives.
 
 ## Frame 19 — 0:33.4–0:34.4
 

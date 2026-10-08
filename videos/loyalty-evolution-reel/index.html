@@ -242,17 +242,22 @@
       .tapRing { position: absolute; left: 0; top: 0; width: 96px; height: 96px; margin: -48px 0 0 -48px; border-radius: 50%; z-index: 85; pointer-events: none; opacity: 0;
         background: rgba(255, 255, 255, 0.32); border: 2px solid rgba(255, 255, 255, 0.85); box-shadow: 0 0 0 1px rgba(107, 43, 166, 0.25); }
 
-      /* ---------- v11 · the introduction on "Introducing Why-stack.": the supplied horizontal lockup behind a frosted pass,
-         four landscape glass passes deal in and stack behind it; the whole scene pushes through into the counter ---------- */
+      /* ---------- v11 · the introduction on "Introducing Why-stack.": the supplied horizontal lockup, built in motion on a
+         frosted glass pass. The lockup is the user's file split into layers (assets/brand/lockup-parts/: the mark, the purple
+         and teal passes, the wordmark); stacked unmoved they are pixel-identical to the supplied logo. ---------- */
       #sX { z-index: 60; }
       #xIntro { position: absolute; inset: 0; transform-origin: 50% 47%; overflow: hidden; }
-      #xIntro .xk { position: absolute; left: 0; right: 0; top: 470px; text-align: center; font: 600 24px/1 "Poppins"; letter-spacing: 0.34em; color: #6b2ba6; padding-left: 0.34em; }
-      #xdeck { position: absolute; left: 70px; top: 620px; width: 940px; height: 560px; transform-style: preserve-3d; }
-      #xdeck .gpass { left: 0; top: 0; width: 940px; height: 560px; opacity: 0; border-radius: 48px; }
-      #xpane { left: 70px; top: 620px; width: 940px; height: 560px; border-radius: 48px; --frost: 10px; }
-      #xlock { position: absolute; inset: 0; }
-      #xLogo { position: absolute; left: 110px; top: 780px; width: 860px; height: 235px; display: block; }
-      #xlock .xshadow { position: absolute; left: 190px; top: 1010px; width: 700px; height: 70px; border-radius: 50%; background: radial-gradient(closest-side, rgba(26, 11, 46, 0.12), rgba(26, 11, 46, 0)); }
+      #xIntro .xk { position: absolute; left: 0; right: 0; top: 500px; text-align: center; font: 600 24px/1 "Poppins"; letter-spacing: 0.34em; color: #6b2ba6; padding-left: 0.34em; }
+      #xcard { left: 70px; top: 620px; width: 940px; height: 560px; border-radius: 48px; --frost: 14px; }
+      #xcard .sw { opacity: 0.8; }
+      #xlogo { position: absolute; left: 110px; top: 780px; width: 860px; height: 235px; }
+      #xlogo img, #xlogo .xl { position: absolute; left: 0; top: 0; width: 860px; height: 235px; display: block; }
+      #xlogo .xs { position: absolute; left: 60px; top: 196px; width: 300px; height: 44px; border-radius: 50%; background: radial-gradient(closest-side, rgba(26, 11, 46, 0.2), rgba(26, 11, 46, 0)); }
+      #xPurple { transform-origin: 25.3% 86.1%; opacity: 0; }
+      #xTeal { transform-origin: 27.25% 87.9%; opacity: 0; }
+      /* light across the logo, masked to the logo's own shape */
+      #xGlint { -webkit-mask: url("assets/brand/logo-lockup-horizontal.png") 0 0 / 100% 100% no-repeat; mask: url("assets/brand/logo-lockup-horizontal.png") 0 0 / 100% 100% no-repeat; overflow: hidden; }
+      #xGlint i { position: absolute; top: -20%; bottom: -20%; left: 0; width: 22%; background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.55) 50%, rgba(255, 255, 255, 0) 100%); transform: translateX(-140%) skewX(-18deg); }
       /* ---------- captions: one family, words pop on their spoken time ---------- */
       #caps { position: absolute; inset: 0; z-index: 80; pointer-events: none; }
       .cap { position: absolute; left: 50px; right: 50px; top: 1300px; text-align: center; opacity: 0; perspective: 900px; }
@@ -358,7 +363,7 @@
       </div>
 
       <!-- J/K · the question, then the answer: the pieces collapse into one stack in the Wallet -->
-      <div id="sJ" class="scene clip" data-start="22.076" data-duration="9.944" data-track-index="1">
+      <div id="sJ" class="scene clip" data-start="22.076" data-duration="8.005" data-track-index="1">
         <div class="bg-light"></div><div class="orb oJ"></div>
         <div class="flood" id="flood"><div class="bg-violet"></div></div>
         <div class="glow" id="glJ"></div>
@@ -410,9 +415,14 @@
       <div id="sX" class="scene clip" data-start="29.301" data-duration="2.648" data-track-index="4">
         <div id="xIntro">
           <div class="bg-light"></div><div class="orb oX"></div>
-          <div class="ist"><div id="xdeck"><div class="gpass"><i class="tint" style="background:linear-gradient(160deg,rgb(15,143,138),rgba(255,255,255,0))"></i><i class="sw"></i></div><div class="gpass"><i class="tint" style="background:linear-gradient(160deg,rgb(107,43,166),rgba(255,255,255,0))"></i><i class="sw"></i></div><div class="gpass"><i class="tint" style="background:linear-gradient(160deg,rgb(31,47,117),rgba(255,255,255,0))"></i><i class="sw"></i></div><div class="gpass"><i class="sw"></i></div></div></div>
-          <div id="xlock"><div class="xshadow"></div><img id="xLogo" src="assets/brand/logo-lockup-horizontal.png" alt="WYSTAK"></div>
-          <div class="ist"><div class="gpass" id="xpane"><i class="sw"></i></div></div>
+          <div class="ist"><div class="gpass" id="xcard"><i class="sw"></i></div></div>
+          <div id="xlogo"><div class="xs"></div>
+            <img id="xTeal" src="assets/brand/lockup-parts/card-teal.png" alt="">
+            <img id="xPurple" src="assets/brand/lockup-parts/card-purple.png" alt="">
+            <img id="xBase" src="assets/brand/lockup-parts/mark-base.png" alt="WYSTAK">
+            <img class="xw" src="assets/brand/lockup-parts/wordmark.png" alt="" style="clip-path:inset(0 47.80% 0 40.65%)"><img class="xw" src="assets/brand/lockup-parts/wordmark.png" alt="" style="clip-path:inset(0 38.55% 0 54.65%)"><img class="xw" src="assets/brand/lockup-parts/wordmark.png" alt="" style="clip-path:inset(0 30.10% 0 64.10%)"><img class="xw" src="assets/brand/lockup-parts/wordmark.png" alt="" style="clip-path:inset(0 21.20% 0 72.80%)"><img class="xw" src="assets/brand/lockup-parts/wordmark.png" alt="" style="clip-path:inset(0 11.90% 0 80.65%)"><img class="xw" src="assets/brand/lockup-parts/wordmark.png" alt="" style="clip-path:inset(0 -0.30% 0 90.90%)">
+            <div class="xl" id="xGlint"><i></i></div>
+          </div>
           <div class="xk" id="xK">INTRODUCING</div>
         </div>
       </div>
@@ -543,7 +553,7 @@
         // ---------- v5 transitions ----------
         // footage: every clip enters and leaves on a soft zoom-through (scale + focus), overlapping its neighbour,
         // so the cut is a dissolve of motion, never a jump
-        const FOOT = [["vX1", 0, 1.35, "black", "zoom"], ["vX2", 0.95, 2.2, "zoom", "zoom"], ["vA", 1.8, 3.12, "zoom", "zoom"], ["vC1", 5.12, 6.95, "under", "zoom"], ["vC2", 6.55, 8.15, "zoom", "zoom"], ["vC", 7.75, 9.52, "zoom", "zoom"], ["vD", 9.12, 11.68, "zoom", "zoom"], ["vE1", 11.28, 12.78, "zoom", "zoom"], ["vE2", 12.38, 13.88, "zoom", "zoom"], ["vE3", 13.48, 15.28, "zoom", "zoom"], ["vG", 17.86, 21.82, "under", "zoom"], ["vL", 38.08, 41.02, "under", "zoom"], ["vM", 40.62, 42.64, "zoom", "zoom"], ["vO1", 44.3, 45.473, "under", "zoom"], ["vO2", 45.073, 46.247, "zoom", "zoom"], ["vO", 45.847, 46.62, "zoom", "burn"]];
+        const FOOT = [["vX1", 0, 1.35, "black", "zoom"], ["vX2", 0.95, 2.2, "zoom", "zoom"], ["vA", 1.8, 3.12, "zoom", "zoom"], ["vC1", 5.12, 6.95, "under", "zoom"], ["vC2", 6.55, 8.15, "zoom", "zoom"], ["vC", 7.75, 9.52, "zoom", "zoom"], ["vD", 9.12, 11.68, "zoom", "zoom"], ["vE1", 11.28, 12.78, "zoom", "zoom"], ["vE2", 12.38, 13.88, "zoom", "zoom"], ["vE3", 13.48, 15.28, "zoom", "zoom"], ["vG", 17.86, 21.82, "under", "zoom"], ["vL", 38.08, 41.02, "push", "zoom"], ["vM", 40.62, 42.64, "zoom", "zoom"], ["vO1", 44.3, 45.473, "under", "zoom"], ["vO2", 45.073, 46.247, "zoom", "zoom"], ["vO", 45.847, 46.62, "zoom", "burn"]];
         FOOT.forEach(([id, t0, t1, cin, cout]) => {
           const v = `#${id}`, ein = 0.45, eout = 0.4;
           let b0 = t0 + ein;
@@ -552,6 +562,9 @@
             tl.fromTo(v, { opacity: 0 }, { opacity: 1, duration: 0.28, ease: "power1.inOut" }, t0);
             tl.fromTo(v, { scale: 1.18 }, { scale: 1.04, duration: ein, ease: "power3.out" }, t0);
             focus(v, t0, 16, ein);
+          } else if (cin === "push") {  // v11: still growing as it arrives, matching a forward zoom out of the scene above
+            tl.fromTo(v, { scale: 0.92 }, { scale: 1.04, duration: ein + 0.15, ease: "power3.out" }, t0);
+            focus(v, t0, 12, ein + 0.1); b0 = t0 + ein + 0.15;
           } else {  // "under": revealed as the scene above it dissolves away
             tl.fromTo(v, { scale: 1.14 }, { scale: 1.04, duration: ein + 0.1, ease: "power2.out" }, t0);
             focus(v, t0, 12, ein + 0.1); b0 = t0 + ein + 0.1;
@@ -722,27 +735,30 @@
         // ---------- X · the introduction, v11 time: the light comes up over the Wallet, the frosted pass lifts off the
         // lockup as she says "Introducing", glass passes deal in and close into one stack behind it, then we push through ----------
         const X = {"in": 29.321, "word": 30.17, "name": 30.674, "out": 31.549};      // { in, word, name, out }
-        TL.fromTo("#xIntro", { opacity: 0, scale: 1.05, filter: "blur(18px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.62, ease: "power2.out" }, X.in);
-        TL.set("#xIntro", { filter: "none" }, X.in + 0.63);
-        TL.set("#sJ", { visibility: "hidden" }, X.in + 0.65);          // the Wallet is fully covered: let the push reveal the counter, not the phones
-        TL.fromTo("#xlock", { scale: 1.02 }, { scale: 1, duration: 1.6, ease: "power2.out", transformOrigin: "50% 47%" }, X.in);
+        // seam in (Z, pulling back = arrival): the Wallet pulls away from camera and the glass pass settles down out of an
+        // oversized, soft-focus frame, both shrinking, so the eye's motion carries across
+        TL.to("#sJ .stage, #lbA, #lbG", { scale: 0.88, duration: 0.5, ease: "power2.in", transformOrigin: "50% 45%" }, X.in - 0.12);
+        TL.fromTo("#xIntro", { opacity: 0, scale: 1.2, filter: "blur(16px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.7, ease: "power3.out" }, X.in);
+        TL.set("#xIntro", { filter: "none" }, X.in + 0.71);
+        TL.fromTo("#xcard .sw", { xPercent: -180 }, { xPercent: 460, duration: 1.1, ease: "power2.inOut" }, X.in + 0.15);
+        // 1 · the mark rises into focus on its own shadow
+        TL.fromTo("#xBase", { opacity: 0, y: 46, scale: 0.9, filter: "blur(10px)" }, { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.6, ease: "power3.out", transformOrigin: "30% 90%" }, X.in + 0.36);
+        TL.fromTo("#xlogo .xs", { opacity: 0, scaleX: 0.6 }, { opacity: 1, scaleX: 1, duration: 0.6, ease: "power3.out" }, X.in + 0.36);
         TL.fromTo("#xK", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, X.word - 0.08);
-        TL.fromTo("#xpane", { y: 0, z: 0, rotationX: 0, rotationY: 0 }, { y: -170, z: -320, rotationX: 18, rotationY: -6, duration: 0.95, ease: "power2.inOut" }, X.word - 0.1);
-        TL.fromTo("#xpane", { "--frost": "10px" }, { "--frost": "0px", duration: 0.75, ease: "power1.inOut" }, X.word - 0.1);
-        TL.fromTo("#xpane", { opacity: 1 }, { opacity: 0, duration: 0.5, ease: "power1.in" }, X.word + 0.3);
-        TL.fromTo("#xpane .sw", { xPercent: -180 }, { xPercent: 460, duration: 0.8, ease: "power2.inOut" }, X.word);
-        const XFAN = [{ x: -130, y: 30, r: -8 }, { x: -46, y: 8, r: -3 }, { x: 46, y: 8, r: 3 }, { x: 130, y: 30, r: 8 }];
-        const XSTACK = [{ y: -60, s: 0.92 }, { y: -40, s: 0.947 }, { y: -20, s: 0.973 }, { y: 0, s: 1 }];
-        document.querySelectorAll("#xdeck .gpass").forEach((c, i) => {
-          const f = XFAN[i], k = XSTACK[i], t = X.word + 0.12 + i * 0.08;
-          TL.fromTo(c, { opacity: 0, x: f.x + (i < 2 ? -300 : 300), y: f.y + 380, z: -480, rotation: f.r * 2.4, rotationX: 26 },
-            { opacity: 1, x: f.x, y: f.y, z: 0, rotation: f.r, rotationX: 0, duration: 0.7, ease: "expo.out" }, t);
-          TL.to(c, { x: 0, y: k.y, rotation: 0, scale: k.s, z: -(3 - i) * 18, duration: 0.45, ease: "power3.inOut" }, X.name + 0.1 + (3 - i) * 0.03);
-          TL.fromTo(c.querySelector(".sw"), { xPercent: -180 }, { xPercent: 460, duration: 0.55, ease: "power2.inOut" }, X.name + 0.35 + i * 0.04);
-        });
+        // 2 · the passes file out from behind the navy pass, one after the other, into one stack (launched as the mark lands)
+        TL.fromTo("#xPurple", { rotation: -18 }, { rotation: 0, duration: 0.56, ease: "back.out(1.5)" }, X.word + 0.02);
+        TL.fromTo("#xTeal", { rotation: -32 }, { rotation: 0, duration: 0.62, ease: "back.out(1.5)" }, X.word + 0.12);
+        TL.fromTo("#xPurple", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "none", immediateRender: false }, X.word + 0.02);
+        TL.fromTo("#xTeal", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "none", immediateRender: false }, X.word + 0.12);
+        // 3 · a beat, then the name: the wordmark cascades in letter by letter on "Why-stack", with the chime
+        TL.fromTo("#xlogo .xw", { opacity: 0, y: 28, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.42, ease: "power3.out", stagger: 0.05 }, X.name - 0.04);
+        // 4 · light runs across the finished logo, masked to its own shape
+        TL.fromTo("#xGlint i", { xPercent: -140 }, { xPercent: 560, duration: 0.75, ease: "power2.inOut" }, X.name + 0.32);
+        TL.fromTo("#xlogo", { scale: 1 }, { scale: 1.025, duration: X.out - X.word, ease: "none", transformOrigin: "50% 50%" }, X.word);
         TL.fromTo("#sX .orb", { x: 0, y: 0 }, { x: 60, y: -80, duration: X.out - X.in + 0.5, ease: "none" }, X.in);
-        // the push through: the whole card zooms past camera and defocuses into the counter
-        TL.fromTo("#xIntro", { opacity: 1, scale: 1, filter: "blur(0px)" }, { opacity: 0, scale: 1.16, filter: "blur(12px)", duration: 0.42, ease: "power2.in", immediateRender: false }, X.out);
+        // seam out (Z, pushing forward): the whole pass zooms past camera and defocuses into the counter, which is itself
+        // still growing as it arrives (see the "push" entry of the scan shot)
+        TL.fromTo("#xIntro", { opacity: 1, scale: 1, filter: "blur(0px)" }, { opacity: 0, scale: 1.3, filter: "blur(12px)", duration: 0.42, ease: "power2.in", immediateRender: false }, X.out);
 
         // ================= v8 · the hand that drives the UI (McDonald's-style) and its touch rings =================
         // Targets are measured from the live layout at the moment of each touch (seek, read the rect, move on), so the
