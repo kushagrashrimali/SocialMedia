@@ -67,3 +67,21 @@ The user drops reference videos, ElevenLabs audio, reference screenshots/PDFs an
 - Brand reveal that worked: no glass card. Every kind of loyalty pass flies in from the frame edges and fans out, snaps into one stack, then shrinks and turns into the passes of the mark; the W rises to catch it with a soft light bloom, the purple and teal passes flick out, the wordmark cascades in on the name with the chime (`v11_template.html`, scene X).
 - Logos: never redraw. To animate the supplied logo, cut out only the white connected to the border, then split it into layers by colour (`storyboard/split_lockup_v11.py`); stacked unmoved the layers must equal the file.
 - HyperFrames gotchas: never set `visibility` on a `.clip` element (lint error; end the clip with its data-duration instead); clips stretched by a time map must not run past their footage.
+
+## Lessons from the hype reel (launch film, no voiceover)
+
+- Project: `videos/wystak-hype-reel/`. The phone and passes are modelled in Three.js (vendored, no CDN) in `src/phone.js` and `src/passes.js`. Screens are canvas textures in `src/screens.js`. `renderAt(t)` is a pure function of time driven by `hf-seek`; register it in `window.__hf.buildReady`. Software WebGL renders at about 3-4 s per frame, so snapshot a few times before a full render.
+- Never put the phone on a dark ground. Product shots sit on a bright lilac set:
+  - backdrop: a gradient from #d8ccf8 to #b9a5ee with a white light pool behind the product;
+  - reflections: the environment matches the set (a lilac room at low intensity with white strip lights), so the titanium and glass pick up the set's colour;
+  - shadow: a soft violet `drop-shadow` on the WebGL canvas;
+  - fill light: keep it low (hemisphere 0.3 or less) and keep the pass faces' clearcoat soft, or dark passes look milky.
+- Type cards stay paper (#f3f1f6), so they stand apart from the lilac set.
+- When passes stack, space them apart (z of 0.3 or more) and square each one to the stack before it lands, so they never cut through each other.
+- Music for a film with no voiceover: re-cut one track on its own grid (`sound/make_sound.py`), with every scene change on a downbeat. The build should match the picture:
+  - the filter opens and hits get closer together as the cuts speed up;
+  - stop the music before the reveal;
+  - the drop lands on the mark;
+  - step up to a fuller section on the key action;
+  - a snare roll or stutter leads into the climax;
+  - the end card sits on the start of the track's last phrase and finishes on the track's own ending.
