@@ -46,6 +46,7 @@ The user drops reference videos, ElevenLabs audio, reference screenshots/PDFs an
 
 ## Build notes (this cloud environment)
 
+- Skills: see `.claude/skills/SOURCES.md`. For 3D product shots, load the `threejs-*` skills (lighting, materials, textures, post-processing). For timelines and type motion, load `gsap-core` and `gsap-timeline`.
 - Video engine: HyperFrames (`/hyperframes` skill). The first reel is `videos/wystak-launch-reel/`; reuse its structure, fonts (`assets/vendor/`) and its synthesised bed and SFX approach.
 - CDN, Hugging Face and image hosts are blocked by the network policy, so:
   - vendor GSAP and fonts locally from npm;
