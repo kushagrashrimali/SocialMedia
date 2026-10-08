@@ -32,13 +32,13 @@
       /* ---------- brand grounds: light lilac for the problem, Wystak violet for the answer ---------- */
       .bg-light { position: absolute; inset: 0; background: radial-gradient(70% 42% at 50% 40%, #ffffff 0%, rgba(255, 255, 255, 0) 72%), linear-gradient(172deg, #f7f4fc 0%, #ece5f8 50%, #e2f1ee 100%); }
       .bg-violet { position: absolute; inset: 0; background: radial-gradient(85% 55% at 50% 36%, #9a6cff 0%, #6b2ba6 46%, #32106a 100%); }
-      .glow { position: absolute; left: 190px; top: 380px; width: 700px; height: 820px; border-radius: 50%; background: radial-gradient(closest-side, rgba(139, 92, 246, 0.32), rgba(139, 92, 246, 0)); }
+      .glow { position: absolute; left: 190px; top: 470px; width: 700px; height: 820px; border-radius: 50%; background: radial-gradient(closest-side, rgba(139, 92, 246, 0.32), rgba(139, 92, 246, 0)); }
       .glow.mint { background: radial-gradient(closest-side, rgba(0, 224, 163, 0.28), rgba(0, 224, 163, 0)); }
-      .fshadow { position: absolute; left: 330px; top: 1238px; width: 420px; height: 64px; border-radius: 50%; background: radial-gradient(closest-side, rgba(40, 20, 70, 0.42), rgba(40, 20, 70, 0)); }
+      .fshadow { position: absolute; left: 330px; top: 1328px; width: 420px; height: 64px; border-radius: 50%; background: radial-gradient(closest-side, rgba(40, 20, 70, 0.42), rgba(40, 20, 70, 0)); }
       .stage { position: absolute; inset: 0; perspective: 2400px; perspective-origin: 50% 42%; }
 
       /* ---------- 3D phones ---------- */
-      .pw { position: absolute; left: 300px; top: 290px; width: 480px; height: 990px; transform-style: preserve-3d; }
+      .pw { position: absolute; left: 300px; top: 380px; width: 480px; height: 990px; transform-style: preserve-3d; }
       .phone { position: absolute; left: 0; top: 0; width: 480px; height: 990px; border-radius: 76px; padding: 11px; transform-style: preserve-3d;
         background: linear-gradient(140deg, #e3ded7 0%, #a39d96 14%, #5a5652 48%, #96908a 84%, #e0d9d0 100%);
         box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.5), 0 0 0 1px rgba(0, 0, 0, 0.3), 0 80px 100px -40px rgba(40, 18, 70, 0.55), 0 30px 40px -18px rgba(40, 18, 70, 0.35); }
@@ -167,11 +167,11 @@
       #ilock .mshadow { position: absolute; left: 300px; top: 940px; width: 480px; height: 90px; border-radius: 50%; background: radial-gradient(closest-side, rgba(26, 11, 46, 0.16), rgba(26, 11, 46, 0)); }
       #introMark { position: absolute; left: 260px; top: 618px; width: 560px; height: 364px; display: block; }
       #introWord { position: absolute; left: 240px; top: 1078px; width: 600px; height: 72px; display: block; }
-      .wl { position: absolute; top: 1040px; width: 330px; display: flex; align-items: center; justify-content: center; gap: 16px; }
+      .wl { position: absolute; top: 1130px; width: 330px; display: flex; align-items: center; justify-content: center; gap: 16px; }
       .wl b { font: 600 32px/1 "Poppins"; letter-spacing: -0.01em; color: #fff; }
 
       /* question beat: the scattered places, in 3D */
-      .frag { position: absolute; left: 540px; top: 780px; transform-style: preserve-3d; }
+      .frag { position: absolute; left: 540px; top: 870px; transform-style: preserve-3d; }
       .frag > * { transform: translate(-50%, -50%); }
       .frag .nt { position: relative; left: auto; right: auto; width: 420px; }
       .otpcard { width: 300px; padding: 22px 28px; border-radius: 30px; font: 600 46px/1 "Poppins"; letter-spacing: 0.08em; color: #fff; text-align: center; background: linear-gradient(145deg, rgba(255,255,255,0.3), rgba(255,255,255,0.1)), rgba(26,18,52,0.42); -webkit-backdrop-filter: blur(26px) saturate(190%); backdrop-filter: blur(26px) saturate(190%); border: 1px solid rgba(255,255,255,0.42); box-shadow: inset 0 1.5px 0 rgba(255,255,255,0.78), 0 30px 46px -20px rgba(10,4,30,0.6); }
@@ -190,7 +190,7 @@
       .chip3 { position: absolute; left: 110px; width: 560px; padding: 24px 30px; border-radius: 32px; display: flex; align-items: center; justify-content: space-between; overflow: hidden; background: linear-gradient(150deg, rgba(255,255,255,0.8), rgba(255,255,255,0.56)); -webkit-backdrop-filter: blur(28px) saturate(180%); backdrop-filter: blur(28px) saturate(180%); border: 1px solid rgba(255,255,255,0.7); box-shadow: inset 0 2px 0 rgba(255,255,255,0.9), 0 36px 60px -26px rgba(0, 0, 0, 0.6); }
       .chip3 span { font: 700 20px "Poppins"; letter-spacing: 0.16em; text-transform: uppercase; color: #6b2ba6; }
       .chip3 b { font: 700 36px "Poppins"; letter-spacing: -0.02em; color: #0b2a63; }
-      .ring3d { position: absolute; left: 650px; top: 880px; width: 330px; height: 330px; border-radius: 40px; background: rgba(252, 251, 255, 0.97); box-shadow: 0 40px 70px -26px rgba(20, 6, 50, 0.6); display: flex; flex-direction: column; align-items: center; justify-content: center; }
+      .ring3d { position: absolute; left: 650px; top: 970px; width: 330px; height: 330px; border-radius: 40px; background: rgba(252, 251, 255, 0.97); box-shadow: 0 40px 70px -26px rgba(20, 6, 50, 0.6); display: flex; flex-direction: column; align-items: center; justify-content: center; }
       .ring3d svg { position: absolute; left: 35px; top: 26px; }
       .ring3d .num { font: 700 64px/1 "Poppins"; letter-spacing: -0.04em; color: #0b2a63; margin-top: -24px; }
       .ring3d .of { font: 600 20px "Poppins"; color: #6b2ba6; margin-top: 4px; }
@@ -220,7 +220,7 @@
       .g-card b { font: 600 17px/1 "Inter Tight"; letter-spacing: 0.01em; }
       /* the "now they notice" stack: one pile of passes, growing across categories */
       /* the ending: no more notifications, just the Wallet stack itself, floating */
-      #wst { position: absolute; left: 300px; top: 190px; width: 480px; height: 880px; transform-style: preserve-3d; }
+      #wst { position: absolute; left: 300px; top: 280px; width: 480px; height: 880px; transform-style: preserve-3d; }
       .ws-card { position: absolute; left: 0; width: 480px; height: 300px; border-radius: 22px; padding: 18px 22px; color: #fff;
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 -6px 18px rgba(0, 0, 0, 0.18), 0 24px 40px -18px rgba(0, 0, 0, 0.5); }
       .ws-card b { font: 700 17px/1 "Inter Tight"; letter-spacing: 0.12em; }
@@ -229,7 +229,7 @@
         box-shadow: 0 -8px 22px rgba(0, 0, 0, 0.22), 0 50px 80px -30px rgba(0, 0, 0, 0.65); }
       #wsPass img { width: 100%; display: block; }
       #wsPass .gs { position: absolute; top: -40%; bottom: -40%; left: 0; width: 34%; background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.45) 50%, rgba(255, 255, 255, 0) 100%); transform: translateX(-160%) skewX(-16deg); }
-      .wsl { position: absolute; top: 1110px; display: flex; align-items: center; gap: 16px; }
+      .wsl { position: absolute; top: 1200px; display: flex; align-items: center; gap: 16px; }
       .wsl b { font: 600 32px/1 "Poppins"; letter-spacing: -0.01em; color: #fff; text-shadow: 0 2px 16px rgba(0, 0, 0, 0.45); }
 
       /* ---------- v8: the hand that drives the UI and its touch ring ---------- */
@@ -268,12 +268,12 @@
       #xGlint i { position: absolute; top: -20%; bottom: -20%; left: 0; width: 22%; background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.55) 50%, rgba(255, 255, 255, 0) 100%); transform: translateX(-140%) skewX(-18deg); }
       /* ---------- captions: one family, words pop on their spoken time ---------- */
       #caps { position: absolute; inset: 0; z-index: 80; pointer-events: none; }
-      .cap { position: absolute; left: 50px; right: 50px; top: 1300px; text-align: center; opacity: 0; perspective: 900px; }
+      .cap { position: absolute; left: 50px; right: 50px; top: 1420px; text-align: center; opacity: 0; perspective: 900px; }
       .ci { font: 600 60px/1.12 "Poppins"; letter-spacing: -0.02em; }
       .cl { display: block; }
       .cl.big { font-size: 104px; line-height: 1.04; letter-spacing: -0.035em; margin: 2px 0 6px; }
       .cw { display: inline-block; opacity: 0; transform-origin: 50% 80%; }
-      .cap.top { top: 300px; }
+      .cap.top { top: 470px; }
       .cap.dark .ci { color: #fff; text-shadow: 0 2px 22px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.25); }
       .cap.dark .acc { color: #ffffff; }
       .cap.light .ci { color: var(--navy); }
