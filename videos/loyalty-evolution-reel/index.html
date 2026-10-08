@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=1080, height=1920">
     <script src="assets/vendor/gsap.min.js"></script>
+    <script src="assets/vendor/gsap-plugins/CustomEase.min.js"></script>
+    <script src="assets/vendor/gsap-plugins/CustomBounce.min.js"></script>
+    <script src="assets/vendor/gsap-plugins/CustomWiggle.min.js"></script>
+    <script src="assets/vendor/gsap-plugins/Physics2DPlugin.min.js"></script>
+    <script src="assets/vendor/gsap-plugins/SplitText.min.js"></script>
     <style>
       @font-face { font-family: "Inter Tight"; src: url("assets/vendor/fonts/inter-tight-latin-400-normal.woff2") format("woff2"); font-weight: 400; }
       @font-face { font-family: "Inter Tight"; src: url("assets/vendor/fonts/inter-tight-latin-500-normal.woff2") format("woff2"); font-weight: 500; }
@@ -207,6 +212,17 @@
       .wsl { position: absolute; top: 1110px; display: flex; align-items: center; gap: 16px; }
       .wsl b { font: 700 34px/1 "Inter Tight"; letter-spacing: -0.02em; color: #fff; text-shadow: 0 2px 16px rgba(0, 0, 0, 0.45); }
 
+      /* ---------- v8: the hand that drives the UI, its touch ring, and sparkle bursts ---------- */
+      #hand { position: absolute; left: 0; top: 0; width: 132px; height: 132px; z-index: 86; pointer-events: none; transform: translate(0px, 2400px);
+        filter: drop-shadow(0 10px 14px rgba(10, 4, 30, 0.35)) drop-shadow(0 2px 3px rgba(10, 4, 30, 0.25)); will-change: transform; }
+      #hand svg { width: 100%; height: 100%; display: block; overflow: visible; }
+      #taps { position: absolute; inset: 0; z-index: 85; pointer-events: none; }
+      .tapRing { position: absolute; left: 0; top: 0; width: 96px; height: 96px; margin: -48px 0 0 -48px; border-radius: 50%; z-index: 85; pointer-events: none; opacity: 0;
+        background: rgba(255, 255, 255, 0.32); border: 2px solid rgba(255, 255, 255, 0.85); box-shadow: 0 0 0 1px rgba(107, 43, 166, 0.25); }
+      #fx { position: absolute; inset: 0; z-index: 79; pointer-events: none; overflow: hidden; }
+      .spk { position: absolute; left: 0; top: 0; width: 34px; height: 34px; margin: -17px 0 0 -17px; opacity: 0; }
+      .spk svg { width: 100%; height: 100%; display: block; }
+
       /* ---------- captions: one family, words pop on their spoken time ---------- */
       #caps { position: absolute; inset: 0; z-index: 80; pointer-events: none; }
       .cap { position: absolute; left: 50px; right: 50px; top: 1300px; text-align: center; opacity: 0; perspective: 900px; }
@@ -242,7 +258,7 @@
       <video id="vE1" class="clip media" src="assets/footage/v5-cinema.mp4" data-start="11.28" data-duration="1.5" data-track-index="3" muted playsinline></video>
       <video id="vE2" class="clip media" src="assets/footage/v5-boutique-browse.mp4" data-start="12.38" data-duration="1.5" data-track-index="0" muted playsinline></video>
       <video id="vE3" class="clip media" src="assets/footage/v5-pour.mp4" data-start="13.48" data-duration="1.8" data-track-index="3" muted playsinline></video>
-      <video id="vG" class="clip media" src="assets/footage/v5-birthday.mp4" data-start="18.1" data-duration="3.72" data-track-index="0" muted playsinline></video>
+      <video id="vG" class="clip media" src="assets/footage/v5-birthday.mp4" data-start="17.86" data-duration="3.96" data-track-index="0" muted playsinline></video>
       <video id="vL" class="clip media" src="assets/footage/scan-at-counter.mp4" data-start="38.08" data-duration="2.94" data-track-index="3" muted playsinline></video>
       <video id="vM" class="clip media" src="assets/footage/pay-at-counter.mp4" data-start="40.62" data-duration="2.02" data-track-index="0" muted playsinline></video>
       <video id="vO1" class="clip media" src="assets/footage/v5-concert.mp4" data-start="44.3" data-duration="1.27" data-track-index="3" muted playsinline></video>
@@ -368,6 +384,10 @@
         <div id="fadeP" class="fade" style="background:#fff"></div>
       </div>
 
+      <div id="fx"></div>
+      <div id="taps"></div>
+      <div id="hand"><svg viewBox="0 0 32 32"><path d="M13 2.6c1.4 0 2.5 1.1 2.5 2.5v8.1c.5-.4 1.1-.6 1.8-.6 1.3 0 2.4.9 2.6 2.1.5-.4 1.1-.6 1.8-.6 1.4 0 2.5 1 2.6 2.3.4-.2.9-.3 1.4-.3 1.5 0 2.6 1.2 2.6 2.6v5.6c0 4.5-3.6 8.1-8.1 8.1h-3.1c-2.4 0-4.7-1.1-6.2-3l-5.1-6.4c-.9-1.1-.7-2.7.4-3.6 1-.8 2.5-.7 3.4.2l1.4 1.4V5.1c0-1.4 1.1-2.5 2.5-2.5z" fill="#ffffff" stroke="#141414" stroke-width="1.3" stroke-linejoin="round"/><path d="M15.5 13.2v5.2M19.9 14.8v4.1M24.3 16.6v3.4" fill="none" stroke="#141414" stroke-width="1.1" stroke-linecap="round"/></svg></div>
+
       <div id="leak"><i class="lw"></i><i class="l1"></i><i class="l2"></i></div>
 
       <div id="caps">
@@ -415,6 +435,11 @@
 
     <script>
       (function () {
+        gsap.registerPlugin(CustomEase, CustomBounce, CustomWiggle, Physics2DPlugin, SplitText);
+        // physical eases: a pass that drops and settles with a squash, a press that wobbles once
+        CustomBounce.create("passDrop", { strength: 0.32, squash: 1.6, squashID: "passDrop-squash", endAtStart: false });
+        CustomWiggle.create("pressWiggle", { wiggles: 3, type: "easeOut" });
+        CustomEase.create("glide", "M0,0 C0.16,0.84 0.3,1 1,1");
         const tl = gsap.timeline({ paused: true });
         const push = (t, t0, d, a, b, o) => tl.fromTo(t, { scale: a }, { scale: b, duration: d, ease: "none", transformOrigin: o || "50% 50%" }, t0);
         // a phone enters on a 3D camera move, then keeps orbiting slowly
@@ -458,7 +483,7 @@
         // ---------- v5 transitions ----------
         // footage: every clip enters and leaves on a soft zoom-through (scale + focus), overlapping its neighbour,
         // so the cut is a dissolve of motion, never a jump
-        const FOOT = [["vX1", 0, 1.35, "black", "zoom"], ["vX2", 0.95, 2.2, "zoom", "zoom"], ["vA", 1.8, 3.12, "zoom", "zoom"], ["vC1", 5.12, 6.95, "under", "zoom"], ["vC2", 6.55, 8.15, "zoom", "zoom"], ["vC", 7.75, 9.52, "zoom", "zoom"], ["vD", 9.12, 11.68, "zoom", "zoom"], ["vE1", 11.28, 12.78, "zoom", "zoom"], ["vE2", 12.38, 13.88, "zoom", "zoom"], ["vE3", 13.48, 15.28, "zoom", "zoom"], ["vG", 18.1, 21.82, "under", "zoom"], ["vL", 38.08, 41.02, "under", "zoom"], ["vM", 40.62, 42.64, "zoom", "zoom"], ["vO1", 44.3, 45.57, "under", "zoom"], ["vO2", 45.17, 46.3, "zoom", "zoom"], ["vO", 45.9, 46.62, "zoom", "burn"]];
+        const FOOT = [["vX1", 0, 1.35, "black", "zoom"], ["vX2", 0.95, 2.2, "zoom", "zoom"], ["vA", 1.8, 3.12, "zoom", "zoom"], ["vC1", 5.12, 6.95, "under", "zoom"], ["vC2", 6.55, 8.15, "zoom", "zoom"], ["vC", 7.75, 9.52, "zoom", "zoom"], ["vD", 9.12, 11.68, "zoom", "zoom"], ["vE1", 11.28, 12.78, "zoom", "zoom"], ["vE2", 12.38, 13.88, "zoom", "zoom"], ["vE3", 13.48, 15.28, "zoom", "zoom"], ["vG", 17.86, 21.82, "under", "zoom"], ["vL", 38.08, 41.02, "under", "zoom"], ["vM", 40.62, 42.64, "zoom", "zoom"], ["vO1", 44.3, 45.57, "under", "zoom"], ["vO2", 45.17, 46.3, "zoom", "zoom"], ["vO", 45.9, 46.62, "zoom", "burn"]];
         FOOT.forEach(([id, t0, t1, cin, cout]) => {
           const v = `#${id}`, ein = 0.45, eout = 0.4;
           let b0 = t0 + ein;
@@ -495,7 +520,7 @@
           tl.fromTo("#leak .l2", { opacity: 0, x: 320 }, { opacity: 0.55, x: 0, duration: 0.45, ease: "sine.inOut", immediateRender: false }, t - 0.17);
           tl.to("#leak .l2", { opacity: 0, x: -320, duration: 0.6, ease: "power1.out" }, t + 0.26);
         }
-        leak(9.12); leak(18.2); leak(44.36);
+        leak(9.12); leak(44.36);
         // bokeh drifts slowly behind every phone
         [["#sB", 2.62, 3.1], ["#sF", 14.78, 3.8], ["#sH", 21.32, 3.3], ["#sI", 24.12, 5.54], ["#sJ", 29.66, 8.86]].forEach(([sc, t, d]) => {
           tl.fromTo(`${sc} .orb`, { x: 0, y: 0, rotation: 0 }, { x: 90, y: -110, rotation: 6, duration: d, ease: "none" }, t);
@@ -531,7 +556,6 @@
         focus("#nF", 17.15, 10, 0.4);
         tl.fromTo("#nF .gs", { xPercent: -160 }, { xPercent: 360, duration: 0.85, ease: "power2.inOut" }, 17.45);
         sceneIn("#sF", 14.78, 0.5);
-        sceneOut("#sF", 18.13, 0.45);
 
         // ---------- G · birthdays ----------
         materialise("#gG1", 18.8, { rotationY: -10 });
@@ -567,7 +591,6 @@
         tl.to("#delMenu .red", { backgroundColor: "#e3e3e8", duration: 0.1 }, 26.58);
         tl.to("#delMenu", { opacity: 0, duration: 0.2 }, 26.7);
         tl.to("#delIcon", { scale: 0, opacity: 0, duration: 0.36, ease: "back.in(1.8)" }, 26.74);
-        tl.to("#getBtn", { scale: 0.9, duration: 0.09, yoyo: true, repeat: 1 }, 27.92);
         tl.to("#getBtn", { backgroundColor: "#e5e5ea", color: "#0a84ff", duration: 0.15 }, 28.1);
         tl.fromTo("#iS5 .dg", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.12, stagger: 0.14 }, 28.95);
         tl.to("#pwI", { rotationY: 0, rotationX: 0, duration: 0.4, ease: "power2.inOut" }, 29.2);
@@ -605,7 +628,9 @@
         tl.fromTo("#jWallet", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 34.55);
         tl.set("#pwJ .scr.lock", { opacity: 0 }, 34.8);
         tl.fromTo("#jWallet .w-card", { y: 140, opacity: 0 }, { y: 0, opacity: 1, duration: 0.38, ease: "power3.out", stagger: 0.05 }, 34.56);
-        tl.fromTo("#jPass", { y: -520, opacity: 0, rotationX: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "back.out(1.5)" }, 34.62);
+        // the pass drops into the Wallet and lands with real weight: a bounce, a squash, a settle
+        tl.fromTo("#jPass", { y: -560, opacity: 0, rotationX: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "passDrop" }, 34.6);
+        tl.fromTo("#jPass", { scaleX: 1, scaleY: 1 }, { scaleX: 1.04, scaleY: 0.94, duration: 0.7, ease: "passDrop-squash", transformOrigin: "50% 100%" }, 34.6);
         tl.fromTo("#flood", { clipPath: "circle(0% at 50% 42%)" }, { clipPath: "circle(150% at 50% 42%)", duration: 0.75, ease: "power3.inOut" }, 34.82);
         tl.fromTo("#pwJ", { scale: 1 }, { scale: 1.04, duration: 0.18, yoyo: true, repeat: 1, ease: "power2.out" }, 34.87);
         // ---------- K · the wallet on their phone: iPhone and Android, equal ----------
@@ -622,7 +647,6 @@
         // ---------- N · +18 points: the push lands in front of the phone, the ring fills ----------
         phoneIn("#pwN", 42.24, 2.18, [-26, 12, 140, -300], [-12, 6], [-4, 3]);
         island("nN", 42.48, 90);
-        tl.fromTo("#ringN", { opacity: 0, z: 300, rotationY: -24, scale: 0.8 }, { opacity: 1, z: 160, rotationY: -12, scale: 1, duration: 0.6, ease: "back.out(1.3)" }, 42.85);
         const pts = { v: 132 };
         tl.to(pts, { v: 150, duration: 0.8, ease: "power2.out", onUpdate: () => { document.getElementById("ringNum").textContent = Math.round(pts.v); } }, 43.1);
         tl.fromTo("#ringArc", { attr: { "stroke-dashoffset": 83.6 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.8, ease: "power2.out" }, 43.1);
@@ -643,9 +667,135 @@
         tl.fromTo("#eMark", { opacity: 0, scale: 0.86 }, { opacity: 1, scale: 1, duration: 0.9, ease: "back.out(1.4)" }, 46.66);
         focus("#eMark", 46.66, 16, 0.6);
         tl.fromTo("#eWord", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.7, ease: "power3.inOut" }, 47.05);
-        tl.fromTo("#eT1", { opacity: 0, y: 18, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.3, ease: "back.out(2)" }, 47.78);
-        tl.fromTo("#eT2", { opacity: 0, y: 18, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.3, ease: "back.out(2)" }, 48.96);
+        // the tagline rises letter by letter, each one tipping up into place (SplitText)
+        [["#eT1", 47.78], ["#eT2", 48.96]].forEach(([sel, t]) => {
+          const chars = new SplitText(sel, { type: "chars" }).chars;
+          gsap.set(sel, { perspective: 400 });
+          tl.fromTo(chars, { opacity: 0, y: 26, rotationX: -80 }, { opacity: 1, y: 0, rotationX: 0, duration: 0.42, ease: "back.out(2.2)", stagger: 0.022, transformOrigin: "50% 100%" }, t - 0.04);
+        });
         push("#eGroup", 46.62, 5.77, 0.985, 1.02, "50% 40%");
+
+
+        // ================= v8 · the hand that drives the UI (McDonald's-style), touch rings, sparkle bursts =================
+        // Targets are measured from the live layout at the moment of each touch (seek, read the rect, move on), so the
+        // fingertip lands exactly on 3D-rotated phone UI. Measured once at load; the render is still fully deterministic.
+        const ROOT = document.getElementById("root"), FXR = document.getElementById("taps");
+        const measure = (sel, t, fx, fy) => {
+          tl.seek(t, false);
+          const r = document.querySelector(sel).getBoundingClientRect(), rr = ROOT.getBoundingClientRect(), k = rr.width / 1080;
+          return [(r.left - rr.left + r.width * (fx == null ? 0.5 : fx)) / k, (r.top - rr.top + r.height * (fy == null ? 0.5 : fy)) / k];
+        };
+        const TIPX = (13 / 32) * 132, TIPY = (2.6 / 32) * 132;          // the fingertip inside the 132px hand
+        let hx = 0, hy = 2400;                                           // where the hand currently is (box origin)
+        const hmove = (x, y, t, d, ease, extra) => {
+          const nx = x - TIPX, ny = y - TIPY;
+          tl.fromTo("#hand", { x: hx, y: hy }, Object.assign({ x: nx, y: ny, duration: d, ease: ease || "power3.out", immediateRender: false }, extra || {}), t);
+          hx = nx; hy = ny;
+        };
+        const henter = (x, y, t, d) => { hx = x - TIPX + 160; hy = 2100; tl.set("#hand", { rotation: -10 }, t); hmove(x, y, t, d || 0.6, "power3.out"); tl.to("#hand", { rotation: 0, duration: d || 0.6, ease: "power3.out" }, t); };
+        const hexit = (t, d) => { hmove(hx + TIPX + 120, 2200, t, d || 0.45, "power2.in"); };
+        // every touch gets its own ring element, so no two tweens ever fight over one ring
+        const newRing = () => { const el = document.createElement("div"); el.className = "tapRing"; FXR.appendChild(el); return el; };
+        const ring = (x, y, t) => tl.fromTo(newRing(), { x: x, y: y, scale: 0.35, opacity: 0.9 }, { x: x, y: y, scale: 1.5, opacity: 0, duration: 0.42, ease: "power2.out", immediateRender: false }, t);
+        // a tap: the hand compresses on its fingertip, a touch ring blooms, the target dips and springs back
+        const tap = (t, target, x, y) => {
+          tl.to("#hand", { scale: 0.86, duration: 0.08, ease: "power2.in", transformOrigin: "40% 8%" }, t);
+          tl.to("#hand", { scale: 1, duration: 0.22, ease: "power2.out", transformOrigin: "40% 8%" }, t + 0.08);
+          ring(x, y, t + 0.05);
+          if (target) {
+            tl.to(target, { scale: 0.92, duration: 0.08, ease: "power2.in" }, t);
+            tl.to(target, { scale: 1, duration: 0.45, ease: "pressWiggle" }, t + 0.08);
+          }
+        };
+        const press = (t, hold, x, y) => {                              // a long press: compress and hold
+          tl.to("#hand", { scale: 0.86, duration: 0.1, ease: "power2.in", transformOrigin: "40% 8%" }, t);
+          tl.to("#hand", { scale: 1, duration: 0.2, ease: "power2.out", transformOrigin: "40% 8%" }, t + hold);
+          const el = newRing();
+          tl.fromTo(el, { x: x, y: y, scale: 0.35, opacity: 0.9 }, { x: x, y: y, scale: 1.1, opacity: 0.5, duration: hold, ease: "power1.out", immediateRender: false }, t);
+          tl.fromTo(el, { scale: 1.1, opacity: 0.5 }, { scale: 1.5, opacity: 0, duration: 0.3, ease: "power2.out", immediateRender: false }, t + hold);
+        };
+        const swipe = (t, x0, y0, x1, y1, d) => {                       // a swipe: touch down, drag, lift
+          hmove(x0, y0, t - 0.32, 0.3, "power2.out");
+          tl.to("#hand", { scale: 0.9, duration: 0.07, ease: "power2.in", transformOrigin: "40% 8%" }, t);
+          hmove(x1, y1, t + 0.05, d, "power2.inOut");
+          tl.to("#hand", { scale: 1, duration: 0.18, ease: "power2.out", transformOrigin: "40% 8%" }, t + 0.05 + d);
+        };
+
+        // sparkle bursts: four-point stars thrown out on Physics2D arcs (seeded, so every render is identical)
+        const FX = document.getElementById("fx");
+        let seed = 7;
+        const rnd = () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; };
+        const STAR = '<svg viewBox="0 0 24 24"><path d="M12 0C13 8 16 11 24 12C16 13 13 16 12 24C11 16 8 13 0 12C8 11 11 8 12 0Z" fill="currentColor"/></svg>';
+        function sparkle(t, cx, cy, n, spread, palette, size) {
+          for (let i = 0; i < n; i++) {
+            const el = document.createElement("div"); el.className = "spk"; el.innerHTML = STAR;
+            el.style.color = palette[i % palette.length];
+            const sz = (size || 1) * (0.55 + rnd() * 0.75); FX.appendChild(el);
+            const ang = -90 + (rnd() - 0.5) * 300, vel = spread * (0.6 + rnd() * 0.7), dl = rnd() * 0.12, life = 0.75 + rnd() * 0.45;
+            tl.fromTo(el, { x: cx, y: cy, opacity: 0, scale: 0, rotation: rnd() * 90 },
+              { physics2D: { velocity: vel, angle: ang, gravity: 520 }, duration: life, ease: "none", immediateRender: false }, t + dl);
+            tl.fromTo(el, { opacity: 0, scale: 0 }, { opacity: 1, scale: sz, duration: 0.14, ease: "back.out(3)", immediateRender: false }, t + dl);
+            tl.to(el, { opacity: 0, scale: 0, rotation: "+=120", duration: life * 0.55, ease: "power2.in" }, t + dl + life * 0.45);
+          }
+        }
+        const GOLD = ["#ffd166", "#ffffff", "#ffe8a3", "#00e0a3"], BRAND = ["#6b2ba6", "#ffc23d", "#0f9f8f", "#8b5cf6"];
+
+        // --- F · the hand taps the café's banner; the camera pushes through it into the café ---
+        const [bx, by] = measure("#nF", 17.8);
+        henter(bx + 30, by + 10, 17.18, 0.55);
+        tap(17.78, "#nF", bx + 30, by + 10);
+        tl.to("#sF", { scale: 3.2, duration: 0.5, ease: "power3.in", transformOrigin: `${bx}px ${by}px` }, 17.86);
+        tl.to("#sF", { opacity: 0, duration: 0.2, ease: "power1.in" }, 18.16);
+        hmove(bx + 260, by + 1400, 17.9, 0.42, "power2.in", { scale: 1.6 });
+        tl.set("#hand", { scale: 1 }, 18.4);
+
+        // --- I · one phone, five places: swipe, long-press, remove, swipe, GET, swipe, type, Verify ---
+        const [g0x, g0y] = measure("#pwI .glass", 25.0, 0.5, 0.5);
+        const [gwx] = measure("#pwI .glass", 25.0, 1, 0.5);
+        const gw = (gwx - g0x) * 2;
+        henter(g0x + gw * 0.3, g0y + 60, 24.45, 0.5);
+        swipe(25.04, g0x + gw * 0.3, g0y + 60, g0x - gw * 0.3, g0y + 40, 0.3);             // SMS -> chat
+        const [ix, iy] = measure("#delIcon .ai", 26.05);
+        hmove(ix + 6, iy + 8, 25.6, 0.4, "power3.out");
+        press(26.04, 0.42, ix + 6, iy + 8);                                                     // long-press the app
+        const [rx, ry] = measure("#delMenu .red", 26.56);
+        hmove(rx - 40, ry + 4, 26.48, 0.12, "power2.out");
+        tap(26.6, null, rx - 40, ry + 4);                                                       // Remove App
+        const [s1x, s1y] = measure("#pwI .glass", 27.2, 0.5, 0.5);
+        swipe(27.28, s1x + gw * 0.3, s1y + 40, s1x - gw * 0.3, s1y + 20, 0.28);              // -> another app
+        const [gx, gy] = measure("#getBtn", 27.9);
+        hmove(gx, gy + 6, 27.62, 0.26, "power3.out");
+        tap(27.92, "#getBtn", gx, gy + 6);                                                      // GET
+        const [s2x, s2y] = measure("#pwI .glass", 28.2, 0.5, 0.5);
+        swipe(28.3, s2x + gw * 0.3, s2y + 120, s2x - gw * 0.3, s2y + 100, 0.26);             // -> another login
+        hmove(s2x + gw * 0.42, s2y + 300, 28.66, 0.32, "power2.out");                         // drift aside while the code types itself
+        const [vx, vy] = measure("#iS5 .lg-b", 29.35);
+        hmove(vx + 30, vy + 4, 29.12, 0.22, "power3.out");
+        tap(29.36, "#iS5 .lg-b", vx + 30, vy + 4);                                              // Verify
+        hexit(29.44, 0.3);
+
+        // --- N · the hand taps the Wallet notification and it opens into the points ring ---
+        const [nx, ny] = measure("#nN", 42.95);
+        henter(nx + 40, ny + 6, 42.5, 0.45);
+        tap(42.96, "#nN", nx + 40, ny + 6);
+        const [rcx, rcy] = measure("#ringN", 43.6);
+        tl.fromTo("#ringN", { opacity: 0, x: nx - rcx, y: ny - rcy, z: 160, rotationY: -12, scale: 0.18 },
+          { opacity: 1, x: 0, y: 0, z: 160, rotationY: -12, scale: 1, duration: 0.6, ease: "back.out(1.35)" }, 43.02);
+        hexit(43.12, 0.42);
+
+        // --- sparkle bursts on the payoffs ---
+        const [w3x, w3y] = measure("#w3", 1.7);
+        sparkle(1.3, w3x, w3y, 14, 520, GOLD, 1.0);                                             // "rewarding"
+        const [px, py] = measure("#jPass", 34.95, 0.5, 0.18);
+        sparkle(34.86, px, py, 16, 600, GOLD, 1.1);                                             // the pass lands in the Wallet
+        const [qx, qy] = measure("#ringN", 44.0, 0.5, 0.42);
+        sparkle(43.9, qx, qy, 18, 640, GOLD, 1.2);                                              // 150 of 150: the free cappuccino
+        tl.fromTo("#ringNum", { scale: 1 }, { scale: 1.16, duration: 0.6, ease: "pressWiggle", immediateRender: false }, 43.9);
+        const [mx, my] = measure("#eMark", 47.4, 0.5, 0.45);
+        sparkle(46.72, mx, my, 16, 700, BRAND, 1.3);                                            // the logo
+        const [tx, ty] = measure("#eT2", 49.3, 0.5, 0.5);
+        sparkle(49.02, tx, ty, 12, 480, BRAND, 1.0);                                            // "ONE STACK."
+        tl.seek(0, false);
 
         // ---------- captions: each word pops on its spoken time (launch-reel language) ----------
         const CAPS = [[0, 0.0, 2.73, [[0, 0.0, 0], [1, 0.42, 0], [2, 0.79, 0], [3, 1.25, 1], [4, 1.68, 0]], "#00e0a3"], [1, 2.77, 5.36, [[5, 2.77, 0], [6, 2.91, 0], [7, 3.67, 0], [8, 3.89, 0], [9, 4.18, 1]], "#6b2ba6"], [2, 5.4, 7.76, [[10, 5.4, 0], [11, 5.67, 0], [12, 6.13, 0], [13, 6.51, 0], [14, 7.04, 1]], "#00e0a3"], [3, 7.8, 9.05, [[15, 7.8, 0], [16, 8.07, 0], [17, 8.26, 0]], "#00e0a3"], [4, 9.2, 11.28, [[18, 9.2, 0], [19, 9.81, 0], [20, 10.16, 0], [21, 10.29, 1]], "#00e0a3"], [5, 11.32, 12.29, [[22, 11.32, 0], [23, 11.63, 1]], "#00e0a3"], [6, 12.33, 13.48, [[24, 12.33, 0], [25, 12.59, 1]], "#00e0a3"], [7, 13.52, 14.87, [[26, 13.52, 0], [27, 13.78, 1]], "#00e0a3"], [8, 14.91, 16.09, [[28, 14.91, 0], [29, 15.07, 0], [30, 15.4, 0], [31, 15.88, 0]], "#6b2ba6"], [9, 16.13, 18.21, [[32, 16.13, 0], [33, 16.5, 0], [34, 17.17, 1]], "#6b2ba6"], [10, 18.25, 19.85, [[35, 18.25, 0], [36, 18.8, 0], [37, 19.24, 0]], "#00e0a3"], [11, 19.89, 21.5, [[38, 19.89, 0], [39, 20.18, 0], [40, 20.33, 0], [41, 20.45, 1]], "#00e0a3"], [12, 21.54, 24.14, [[42, 21.54, 0], [43, 21.7, 0], [44, 22.27, 0], [45, 22.67, 0], [46, 23.15, 1]], "#6b2ba6"], [13, 24.18, 25.21, [[47, 24.18, 0], [48, 24.33, 1]], "#6b2ba6"], [14, 25.25, 26.05, [[49, 25.25, 0], [50, 25.32, 1]], "#6b2ba6"], [15, 26.09, 27.45, [[51, 26.09, 0], [52, 26.22, 0], [53, 26.53, 0], [54, 26.66, 1]], "#6b2ba6"], [16, 27.49, 28.4, [[55, 27.49, 0], [56, 27.91, 0]], "#6b2ba6"], [17, 28.44, 29.62, [[57, 28.44, 0], [58, 28.91, 1]], "#6b2ba6"], [18, 32.01, 33.31, [[59, 32.01, 0], [60, 32.19, 0], [61, 32.38, 0], [62, 32.95, 0]], "#6b2ba6"], [19, 33.35, 34.83, [[63, 33.35, 0], [64, 33.64, 1], [65, 33.97, 1]], "#6b2ba6"], [20, 34.87, 36.25, [[66, 34.87, 0], [67, 35.0, 0], [68, 35.29, 0], [69, 35.62, 1]], "#00e0a3"], [21, 36.29, 38.12, [[70, 36.29, 0], [71, 36.38, 1], [72, 36.87, 0], [73, 37.05, 0], [74, 37.18, 0]], "#00e0a3"], [22, 38.16, 39.83, [[75, 38.16, 0], [76, 38.41, 0], [77, 38.79, 0], [78, 38.88, 0], [79, 39.0, 0]], "#00e0a3"], [23, 39.87, 40.83, [[80, 39.87, 1], [81, 40.19, 1]], "#00e0a3"], [24, 40.87, 42.38, [[82, 40.87, 0], [83, 41.39, 0], [84, 41.64, 0], [85, 41.81, 0]], "#00e0a3"], [25, 42.42, 44.48, [[86, 42.42, 0], [87, 42.83, 0], [88, 43.17, 0], [89, 43.27, 0], [90, 43.39, 1], [91, 43.68, 1]], "#00e0a3"], [26, 44.52, 46.34, [[92, 44.52, 0], [93, 44.99, 0], [94, 45.14, 1]], "#00e0a3"]];

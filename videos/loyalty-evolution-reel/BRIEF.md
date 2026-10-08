@@ -24,7 +24,16 @@ The full creative brief from the user is in the conversation that made `wystak/s
 - assets/footage/, assets/stills/ — licensed stock and archival media; every file is listed in `assets/MANIFEST.md` with source, URL and licence.
 - assets/music-bed.wav, assets/sfx.wav — synthesised locally (`sound/make_sound.py`); the bed is carved under the voice (hyperframes-audio carve, strength 0.6).
 
-## Customizations (v6, current)
+## Customizations (v8, current: v6 plus McDonald's-reel motion)
+
+- Motion studied from the McDonald's app reel the user supplied (Video-92092): an oversized hand drives the UI, taps cause the next beat, UI cards open into the next scene, sparkle bursts mark the payoffs, physical springs everywhere.
+- The hand: taps the café's WhatsApp banner and the camera pushes through it into the birthday shot; swipes SMS → chat, long-presses the café app and taps Remove App, swipes to the store, taps GET, swipes to the login, drifts aside while the code types, taps Verify; on the lock screen it taps the Wallet push, which opens into the points ring. Every touch has its own touch ring, a press on the fingertip and a wobble on the target (`CustomWiggle`). Targets are measured from the live layout at each touch, so the fingertip lands on 3D-rotated phone UI.
+- The pass drops into the Wallet with weight (`CustomBounce` bounce and squash). Sparkle bursts (seeded `Physics2DPlugin` arcs) on "rewarding", the pass landing, 150/150, the logo and "ONE STACK."; the tagline rises letter by letter (`SplitText`).
+- Libraries: GSAP 3.15 with its full plugin set (CustomEase, CustomBounce, CustomWiggle, Physics2DPlugin, SplitText; free under GSAP's standard licence since 3.13), vendored from npm into `assets/vendor/gsap-plugins/`; HyperFrames registry components installed for reference in `compositions/components/` (oversized-cursor, press-ripple, touch-indicator, confetti, success-check, zoom-through-transition, card-resize, parallax-zoom, spring-pop, logo-sting).
+- Sound: taps on every touch, an air-zoom on the push into the banner, very quiet E-minor glints under each sparkle.
+- Build: `python3 storyboard/build_v8.py`, then the carve, then render.
+
+## Customizations (v6)
 
 - "Businesses learned to remember" is now a wide salon setup (round mirror, stylist blow-drying, shelves) in the rounded window, instead of a face close-up.
 - Notifications use a quick three-note ascending chime (Mixkit "Alert quick chime"); Apple's own iOS sounds are Apple's copyrighted assets and are not licensed for use in ads, so they are not used.

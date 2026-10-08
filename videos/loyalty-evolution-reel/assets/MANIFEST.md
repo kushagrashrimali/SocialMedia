@@ -63,6 +63,11 @@ Previews from https://assets.mixkit.co/active_storage/sfx/<id>/<id>-preview.mp3,
 | stills/cafe-india.jpg | pay composite ground | https://unsplash.com/photos/81LMj3heZEs | https://images.unsplash.com/photo-1753541042293-5cbd98583db0 | Ashwin N | Unsplash |
 | ui/aroma-strip.jpg, ui/aroma-hero.jpg | Cafe Aroma pass strip | https://unsplash.com/photos/LI8inyHnm_A | https://images.unsplash.com/photo-1611564494260-6f21b80af7ea | Robbie Down | Unsplash |
 
+## Code libraries
+
+- GSAP 3.15.0 core and plugins (CustomEase, CustomBounce, CustomWiggle, Physics2DPlugin, SplitText), from npm `gsap`, GSAP standard "no charge" licence (https://gsap.com/standard-license): `vendor/gsap.min.js`, `vendor/gsap-plugins/`.
+- HyperFrames registry components (installed with `hyperframes add`, used as references for the hand, touch rings, bursts and morphs): `compositions/components/`.
+
 ## Drawn for this reel
 
 - `ui/pass-apple.png`, `ui/pass-google.png`: the Cafe Aroma Wallet passes (`storyboard/card/cards.html`, `render.sh`).

@@ -111,6 +111,21 @@ def wystak_chime():
     return out + wet
 
 
+def glints(n=7, seed=3):
+    """sparkle: a few tiny, high, glassy pings scattered over ~0.4s (very quiet)"""
+    r = np.random.default_rng(seed)
+    out = np.zeros((int(0.9 * SR), 2))
+    for i in range(n):
+        f = r.choice([2637.0, 3135.96, 3520.0, 3951.07, 4698.63])         # E7 G7 A7 B7 D8: the E minor of the bed
+        t = T(0.35)
+        g = np.sin(2 * np.pi * f * t) * np.exp(-t / 0.07) * (1 - np.exp(-t / 0.002)) * (0.5 + 0.5 * r.random())
+        i0 = int(r.random() * 0.45 * SR)
+        pan = r.uniform(-0.7, 0.7)
+        out[i0:i0 + len(t), 0] += g * np.cos((pan + 1) * np.pi / 4)
+        out[i0:i0 + len(t), 1] += g * np.sin((pan + 1) * np.pi / 4)
+    return out
+
+
 def thump():
     t = T(1.2)
     f = 38 + 42 * np.exp(-t / 0.07)
@@ -155,7 +170,8 @@ P(AIR(), 14.7, 0.13)                                               # the home sc
 for i in range(12):
     P(TICK(), 15.05 + i * 0.07, 0.035, ((i % 4) - 1.5) * 0.35)     # apps settle in, barely there
 P(NOTIF(), 17.15, 0.34, 0.1)                                       # the café's message
-P(WIND(), 17.95, 0.10)                                             # leak into the café
+P(TAP(), 17.78, 0.15)                                              # v8: the hand taps the banner
+P(ZOOM(), 17.82, 0.13)                                             # and the camera pushes through it into the café
 P(NOTIF(), 18.8, 0.36, -0.15)                                      # birthday
 P(NOTIF(), 20.38, 0.22, 0.25)                                      # the cousins, late
 P(AIR(), 21.25, 0.13)
@@ -172,6 +188,7 @@ P(TAP(), 27.92, 0.15)                                              # GET
 P(SWEEP(), 28.32, 0.08, -0.3)                                      # login
 for i in range(4):
     P(TICK(), 28.95 + i * 0.14, 0.14)                              # OTP
+P(TAP(), 29.36, 0.13)                                              # v8: Verify
 P(LOCK(), 29.58, 0.5)                                              # click. silence.
 # the introduction: one bell, low room tone, the light across the mark
 P(wystak_chime(), 30.12 - 0.45, 0.10)                              # the Wystak chime lands with the mark
@@ -191,7 +208,8 @@ P(ZOOM(), 40.53, 0.09)
 P(DING(), 40.95, 0.30)                                             # paid
 P(AIR(), 42.07, 0.12)
 P(NOTIF(), 42.48, 0.42)                                            # the Wallet push: the one that matters
-P(SWEEP(), 42.85, 0.07, 0.3)
+P(TAP(), 42.96, 0.14)                                              # v8: the hand taps the Wallet push
+P(SWEEP(), 43.0, 0.08, 0.3)                                        # and it opens into the points ring
 for i in range(9):
     P(TICK(), 43.1 + i * 0.09, 0.05 + 0.006 * i)                    # points counting up
 P(DING(), 43.9, 0.2)                                               # free cappuccino
@@ -205,6 +223,8 @@ P(BREATH()[: int(0.9 * SR)], 45.9, 0.10)                           # the frame b
 P(BELL(), 46.64, 0.30); P(thump(), 46.64, 0.16)                    # the logo
 P(SWEEP(), 47.02, 0.05)
 P(TAP(), 47.78, 0.10, -0.2); P(TAP(), 48.96, 0.10, 0.2)            # the tagline, word by word
+for k, (t, g) in enumerate(((1.3, 0.05), (34.86, 0.06), (43.9, 0.06), (46.72, 0.06), (49.02, 0.05))):
+    P(glints(seed=11 + k), t, g)                                   # v8: sparkle bursts
 sfx = reverb(sfx, 1.2, 0.16)
 sfx[int(29.72 * SR):int(30.08 * SR)] *= 0.0                        # true silence after the click
 
