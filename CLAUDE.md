@@ -86,3 +86,22 @@ The user drops reference videos, ElevenLabs audio, reference screenshots/PDFs an
   - step up to a fuller section on the key action;
   - a snare roll or stutter leads into the climax;
   - the end card sits on the start of the track's last phrase and finishes on the track's own ending.
+
+## Lessons from the iPhone reel (McDonald's-style, user's 3D model)
+
+- Project: `videos/wystak-iphone-reel/` (30 s, no voiceover). It follows the McDonald's app reel's rhythm:
+  - a new beat every 1.5-2.5 s;
+  - white UI cards on a bold brand ground (violet), alternating with paper;
+  - two-size Poppins captions ("Your / regulars.");
+  - the mark alone mid-film, the end card on paper;
+  - product shots of the phone in between.
+- The user's iPhone 17 Pro model (FBX plus PBR maps) is git-ignored in `assets/model/`. Rebuild it from the two uploads with `tools/prep_model.py`, which paints the Apple logo out of every map.
+- In three.js:
+  - load the model with the vendored `FBXLoader` (it needs `fflate` and `NURBSCurve` next to it);
+  - assign one `MeshPhysicalMaterial` with the maps;
+  - lay our own screen over the display: measure its rectangle in the BaseColor atlas, then least-squares-fit atlas UV to model position on the front face (`src/phone.js`).
+- The model's lenses render as flat grey. Lay a coated glass disc with a drawn lens texture over each one; don't split the mesh.
+- GSAP: a `fromTo` placed later on an element that already has tweens needs `immediateRender: false`, or its start state shows early.
+- GSAP: don't put a degenerate CSS transform such as `scaleX(0) rotate()` inline; set it with `gsap.set`.
+- Card flips read better flat (`scaleX`) than with a strong `rotationY` perspective.
+- Pushes that stack, iOS-style: each new one lands in the bottom slot and lifts the earlier ones. Don't let rising cards cross each other.

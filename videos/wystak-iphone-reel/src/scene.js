@@ -143,13 +143,15 @@ export async function buildStage(canvas) {
     if (n) {
       if (info) {
         n.style.display = "block";
-        n.style.transformOrigin = "0px -510px";
+        n.style.transformOrigin = "0px -110px";   // the zoom-through goes into the newest push
         n.style.transform = `translate(${info.anchor.x}px, ${info.anchor.y}px) scale(${1 + info.push * 2.4})`;
         n.style.opacity = String(1 - clamp((info.push - 0.7) / 0.3));
-        [...n.children].forEach((el, i) => {
-          const p = clamp((t - T.notifs[i]) / 0.5), e = 1 - Math.pow(1 - p, 3);
-          el.style.opacity = String(clamp(p * 2.5));
-          el.style.transform = `translate(-50%, ${lerp(60, -170 - i * 170, e)}px) scale(${lerp(0.55, 1, e)})`;
+        // iOS-style: each new push lands in the bottom slot and lifts the earlier ones by one slot
+        const kids = [...n.children], E = kids.map((_, i) => 1 - Math.pow(1 - clamp((t - T.notifs[i]) / 0.42), 3));
+        kids.forEach((el, i) => {
+          const lift = E.slice(i + 1).reduce((a, b) => a + b, 0);
+          el.style.opacity = String(clamp(E[i] * 2.5));
+          el.style.transform = `translate(-50%, ${-190 - 178 * lift + (1 - E[i]) * 90}px) scale(${lerp(0.6, 1, E[i])})`;
         });
       } else n.style.display = "none";
     }

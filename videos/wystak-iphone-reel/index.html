@@ -111,7 +111,7 @@
         <div style="position:absolute; left:0; right:0; top:350px; text-align:center; font:700 50px 'UI'; color:var(--ink)">Download our app</div>
         <div style="position:absolute; left:0; right:0; top:420px; text-align:center; font:500 34px 'UI'; color:var(--muted)">Sign up · verify · allow notifications</div>
         <div class="pill" style="left:200px; top:540px; width:400px; height:120px; background:#ece6f7; color:#9c8fb3; font-size:46px">Install</div>
-        <div id="s6strike" style="position:absolute; left:150px; top:596px; width:500px; height:10px; border-radius:5px; background:var(--rose); transform-origin:0 50%; transform:scaleX(0) rotate(-8deg)"></div>
+        <div id="s6strike" style="position:absolute; left:150px; top:596px; width:500px; height:10px; border-radius:5px; background:var(--rose)"></div>
       </div>
       <div id="s6wal" style="opacity:0">
         <div style="position:absolute; left:0; right:0; top:110px; text-align:center; font:700 50px 'UI'; color:var(--ink)">Add to</div>
@@ -278,10 +278,11 @@
     show("#s6", T.s6_noapp[0], T.s6_noapp[1]);
     enterLeft(["#cap6a", "#s6card"], T.s6_noapp[0]);
     caption("#cap6a", T.s6_noapp[0] + 0.05, 0.04);
+    tl.set("#s6strike", { scaleX: 0, rotation: -8, transformOrigin: "0% 50%" }, 0);
     tl.to("#s6strike", { scaleX: 1, duration: 0.22, ease: "power3.out" }, T.s6_noapp[0] + 0.5);
-    tl.to("#s6card", { rotationY: 90, transformPerspective: 1400, duration: 0.18, ease: "power2.in" }, T.wallet - 0.18);
+    tl.to("#s6card", { scaleX: 0, duration: 0.16, ease: "power2.in" }, T.wallet - 0.16);              // a card turn, flat
     tl.set("#s6app", { opacity: 0 }, T.wallet); tl.set("#s6wal", { opacity: 1 }, T.wallet);
-    tl.fromTo("#s6card", { rotationY: -90, transformPerspective: 1400 }, { rotationY: 0, transformPerspective: 1400, duration: 0.3, ease: "back.out(1.4)", immediateRender: false }, T.wallet);
+    tl.fromTo("#s6card", { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: "back.out(1.4)", immediateRender: false }, T.wallet);
     tl.to("#cap6a", { opacity: 0, y: -30, duration: 0.18, ease: "power2.in" }, T.wallet - 0.18);
     caption("#cap6b", T.wallet + 0.02, 0.025);
     tl.fromTo("#s6wal .pill", { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(1.6)", stagger: 0.1 }, T.wallet + 0.15);
