@@ -208,7 +208,7 @@ FRAGS = [  # the scattered places loyalty lived, floating round the phone in the
 frag_html = "".join(f'<div class="frag" id="{i}" data-x="{x}" data-y="{y}" data-z="{z}" data-r="{r}">{inner}</div>' for i, inner, x, y, z, r in FRAGS)
 frag_js = json.dumps([[i, x, y, z, r] for i, _, x, y, z, r in FRAGS])
 
-CHIPS = [("ch1", "Visit", "No. 12", 880), ("ch2", "Bought", "Silk saree", 1020), ("ch3", "Prefers", "Oat milk, extra hot", 1160)]
+CHIPS = [("ch1", "Visit", "No. 12", 880), ("ch2", "Bought", "Silk gown", 1020), ("ch3", "Prefers", "Oat milk, extra hot", 1160)]
 chips_html = "".join(f'<div class="chip3" id="{i}" style="top:{t}px"><span>{k}</span><b>{v}</b></div>' for i, k, v, t in CHIPS)
 
 # ------------------------------------------------------------------ footage (v5: every category)
@@ -220,14 +220,14 @@ SHOTS = [
     ("vX1", "v5-club-open", 0, 0.95, "black", "zoom"),          # club
     ("vX2", "v5-salon-open", 0.95, 1.8, "zoom", "zoom"),        # salon
     ("vA", "v5-cafe-open", 1.8, 2.72, "zoom", "zoom"),          # café, into the lock screen
-    ("vC1", "v7-saree-counter", 5.12, 6.55, "under", "zoom"),  # "Every counter": a saree showroom,
-    ("vC2", "v7-jewellery", 6.55, 7.75, "zoom", "zoom"),        # a jewellery counter,
+    ("vC1", "v5-boutique", 5.12, 6.55, "under", "zoom"),        # "Every counter": a boutique,
+    ("vC2", "v5-bar", 6.55, 7.75, "zoom", "zoom"),              # a bar,
     ("vC", "v4-counter", 7.75, 9.12, "zoom", "zoom"),           # a café
-    ("vD", "v7-salon", 9.12, 11.28, "zoom", "zoom"),            # "Businesses learned to remember": the salon
-    ("vE1", "v7-mall", 11.28, 12.38, "zoom", "zoom"),           # "Every visit": the mall
-    ("vE2", "v7-saree", 12.38, 13.48, "zoom", "zoom"),          # "Every purchase": the saree shop
+    ("vD", "v5-salon", 9.12, 11.28, "zoom", "zoom"),            # "Businesses learned to remember": the salon
+    ("vE1", "v5-cinema", 11.28, 12.38, "zoom", "zoom"),         # "Every visit": the cinema
+    ("vE2", "v5-boutique-browse", 12.38, 13.48, "zoom", "zoom"),  # "Every purchase": the boutique
     ("vE3", "v5-pour", 13.48, 14.88, "zoom", "zoom"),           # "Every preference": the café
-    ("vG", "v7-celebration", 18.1, 21.42, "under", "zoom"),     # "Cafés remembered birthdays": a family celebration
+    ("vG", "v5-birthday", 18.1, 21.42, "under", "zoom"),        # "Cafés remembered birthdays"
     ("vL", "scan-at-counter", 38.08, 40.62, "under", "zoom"),
     ("vM", "pay-at-counter", 40.62, 42.24, "zoom", "zoom"),
     ("vO1", "v5-concert", 44.3, 45.17, "under", "zoom"),        # "Now they notice": a concert,

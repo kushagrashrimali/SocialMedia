@@ -1,11 +1,10 @@
 # Asset manifest: loyalty evolution reel
 
-Every third-party file in this reel (v7), with its source and licence. All allow commercial use: Mixkit Stock Video / Music / Sound Effects Free License, Pexels License, Unsplash License or CC0.
+Every third-party file in this reel (v5), with its source and licence. All allow commercial use: Mixkit Stock Video / Music / Sound Effects Free License, Unsplash License or CC0.
 
 Licences:
 - Mixkit Stock Video Free License: https://mixkit.co/license/#videoFree (commercial use, no attribution required)
 - Mixkit Sound Effects Free License: https://mixkit.co/license/#sfxFree (commercial use, no attribution required)
-- Pexels License: https://www.pexels.com/license/ (free for commercial use, no attribution required)
 - Unsplash License: https://unsplash.com/license (commercial use, no attribution required)
 - CC0 1.0: https://creativecommons.org/publicdomain/zero/1.0/
 
@@ -24,14 +23,14 @@ Times include the overlap with the next shot (every cut is a zoom-through dissol
 | footage/v5-club-open.mp4 | 0–1.35s | Mixkit 343 "Night club dancing", https://assets.mixkit.co/videos/343/343-2160.mp4 | Mixkit Free | source 0.2s +1.4s, crop 0.45 |
 | footage/v5-salon-open.mp4 | 0.95–2.2s | Mixkit 43235 "Barber combing his male client" (blow-dry), https://assets.mixkit.co/videos/43235/43235-2160.mp4 | Mixkit Free | source 1.2s +1.3s, crop 0.52 |
 | footage/v5-cafe-open.mp4 | 1.8–3.12s | Mixkit 222 "Waiter pouring a cup of coffee" (cup handed across), https://assets.mixkit.co/videos/222/222-2160.mp4 | Mixkit Free | source 1.4s +1.4s, crop 0.57 |
-| footage/v7-saree-counter.mp4 | 5.12–6.95s | Pexels 40080138 "group shopping at colorful saree shop" by Enoch Samuel, https://www.pexels.com/video/group-shopping-at-colorful-saree-shop-40080138/ | Pexels License | 1080x1920; source 0.4s +1.85s; the store's hanging sign blurred; warm red grade (`storyboard/prep_v5.py`) |
-| footage/v7-jewellery.mp4 | 6.55–8.15s | Pexels 36338911 "luxurious gold jewelry showcase display" by Sururi Ballıdağ, https://www.pexels.com/video/luxurious-gold-jewelry-showcase-display-36338911/ | Pexels License | 4K; source 1.5s +1.65s, crop 0.5; warm red grade (`storyboard/prep_v5.py`) |
-| footage/v7-salon.mp4 | 9.12–11.68s | Pexels 7754526 "woman blow drying client s hair" by RDNE Stock project, https://www.pexels.com/video/woman-blow-drying-client-s-hair-7754526/ | Pexels License | 1920x1080 in the rounded 4:3 window; source 3.0s +2.6s; warm red grade (`storyboard/prep_v5.py`) |
-| footage/v7-mall.mp4 | 11.28–12.78s | Pexels 35046665 "bustling shopping mall with escalators" by Samar Layek, https://www.pexels.com/video/bustling-shopping-mall-with-escalators-35046665/ | Pexels License | 4K; source 3.0s +1.55s, crop 0.42 (clear of store signs); warm red grade (`storyboard/prep_v5.py`) |
-| footage/v7-saree.mp4 | 12.38–13.88s | Pexels 40080132 "elegant woman in traditional saree at fabric store" by Enoch Samuel, https://www.pexels.com/video/elegant-woman-in-traditional-saree-at-fabric-store-40080132/ | Pexels License | 1080x1920; source 3.2s +1.55s; warm red grade (`storyboard/prep_v5.py`) |
-| footage/v7-celebration.mp4 | 18.1–21.82s | Pexels 7685150 "a family celebrating diwali" by RDNE Stock project, https://www.pexels.com/video/a-family-celebrating-diwali-7685150/ | Pexels License | 1080x1920; source 2.5s +3.75s; warm red grade (`storyboard/prep_v5.py`) |
+| footage/v5-boutique.mp4 | 5.12–6.95s | Mixkit 51217 "A young sales woman shows bride dresses to a bride to be", https://assets.mixkit.co/videos/51217/51217-2160.mp4 | Mixkit Free | source 7.4s +1.85s, crop 0.52 |
+| footage/v5-bar.mp4 | 6.55–8.15s | Mixkit 4295 "Barmaid preparing a cocktail in the bar", https://assets.mixkit.co/videos/4295/4295-1080.mp4 | Mixkit Free | source 0.5s +1.65s, crop 0.48, light sharpen |
 | footage/v4-counter.mp4 | 7.75–9.52s | Mixkit 3574 "Serving coffee in a cup at a coffee shop", https://assets.mixkit.co/videos/3574/3574-2160.mp4 | Mixkit Free | source 1.0s +3.85s, crop 0.45 |
+| footage/v5-salon.mp4 | 9.12–11.68s | Mixkit 49556 "Slow motion hairdresser blow drying young woman's long blonde hair" (720p only), https://assets.mixkit.co/videos/49556/49556-720.mp4 | Mixkit Free | source 5.0s +2.6s; the whole salon setup (round mirror, stylist at work, product shelves) in a 4:3 rounded window over a dimmed enlargement |
+| footage/v5-cinema.mp4 | 11.28–12.78s | Mixkit 33312 cinema audience with popcorn (720p only), https://assets.mixkit.co/videos/33312/33312-720.mp4 | Mixkit Free | source 1.4s +1.55s; 4:3 rounded window over a blurred enlargement of the seats, so the low-res source is never upscaled |
+| footage/v5-boutique-browse.mp4 | 12.38–13.88s | Mixkit 51228 "A young woman browse trough the wedding dresses at the store" (vertical), https://assets.mixkit.co/videos/51228/51228-1080.mp4 | Mixkit Free | source 2.2s +1.55s |
 | footage/v5-pour.mp4 | 13.48–15.28s | Mixkit 41859 "Serving a sparkling cappuccino in a cup", https://assets.mixkit.co/videos/41859/41859-2160.mp4 | Mixkit Free | source 2.6s +1.9s, crop 0.45 |
+| footage/v5-birthday.mp4 | 18.1–21.82s | Mixkit 41860 "Employee serving a cup of coffee from a machine", https://assets.mixkit.co/videos/41860/41860-2160.mp4 | Mixkit Free | source 0.95s +3.75s, crop 0.24 |
 | footage/v5-concert.mp4 | 44.3–45.57s | Mixkit 4188 "Stage of an electronic music festival", https://assets.mixkit.co/videos/4188/4188-1080.mp4 | Mixkit Free | source 11.4s +1.35s, crop 0.45, light sharpen |
 | footage/v5-club.mp4 | 45.17–46.3s | Mixkit 343 "Night club dancing" (second angle), https://assets.mixkit.co/videos/343/343-2160.mp4 | Mixkit Free | source 4.55s +1.25s, crop 0.45 |
 | footage/v4-notice.mp4 | 45.9–46.62s | Mixkit 4919 "Person on social media while serving coffee", https://assets.mixkit.co/videos/4919/4919-2160.mp4 | Mixkit Free | source 1.8s +2.25s, crop 0.42 |
