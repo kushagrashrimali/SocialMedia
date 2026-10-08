@@ -1,1 +1,607 @@
-[{"text": "India", "start": 0.0, "end": 0.42}, {"text": "didn't", "start": 0.42, "end": 0.79}, {"text": "stop", "start": 0.79, "end": 1.25}, {"text": "rewarding", "start": 1.25, "end": 1.68}, {"text": "customers.", "start": 1.68, "end": 2.49}, {"text": "Your", "start": 2.77, "end": 2.91}, {"text": "customers", "start": 2.91, "end": 3.67}, {"text": "just", "start": 3.67, "end": 3.89}, {"text": "stopped", "start": 3.89, "end": 4.18}, {"text": "noticing.", "start": 4.18, "end": 4.89}, {"text": "Every", "start": 5.4, "end": 5.67}, {"text": "counter", "start": 5.67, "end": 6.13}, {"text": "started", "start": 6.13, "end": 6.51}, {"text": "collecting", "start": 6.51, "end": 7.04}, {"text": "data,", "start": 7.04, "end": 7.54}, {"text": "not", "start": 7.8, "end": 8.07}, {"text": "just", "start": 8.07, "end": 8.26}, {"text": "cash.", "start": 8.26, "end": 8.87}, {"text": "Businesses", "start": 9.2, "end": 9.81}, {"text": "learned", "start": 9.81, "end": 10.16}, {"text": "to", "start": 10.16, "end": 10.29}, {"text": "remember.", "start": 10.29, "end": 11.04}, {"text": "Every", "start": 11.32, "end": 11.63}, {"text": "visit.", "start": 11.63, "end": 12.33}, {"text": "Every", "start": 12.33, "end": 12.59}, {"text": "purchase.", "start": 12.59, "end": 13.32}, {"text": "Every", "start": 13.52, "end": 13.78}, {"text": "preference.", "start": 13.78, "end": 14.6}, {"text": "And", "start": 14.91, "end": 15.07}, {"text": "social", "start": 15.07, "end": 15.4}, {"text": "media", "start": 15.4, "end": 15.88}, {"text": "made", "start": 15.88, "end": 16.13}, {"text": "staying", "start": 16.13, "end": 16.5}, {"text": "connected", "start": 16.5, "end": 17.17}, {"text": "effortless.", "start": 17.17, "end": 17.9}, {"text": "Caf\u00e9s", "start": 18.25, "end": 18.8}, {"text": "remembered", "start": 18.8, "end": 19.24}, {"text": "birthdays", "start": 19.24, "end": 19.89}, {"text": "better", "start": 19.89, "end": 20.18}, {"text": "than", "start": 20.18, "end": 20.33}, {"text": "your", "start": 20.33, "end": 20.45}, {"text": "cousins.", "start": 20.45, "end": 21.17}, {"text": "But", "start": 21.54, "end": 21.7}, {"text": "loyalty", "start": 21.7, "end": 22.27}, {"text": "started", "start": 22.27, "end": 22.67}, {"text": "living", "start": 22.67, "end": 23.02}, {"text": "everywhere.", "start": 23.15, "end": 23.92}, {"text": "An", "start": 24.18, "end": 24.33}, {"text": "SMS.", "start": 24.33, "end": 25.13}, {"text": "A", "start": 25.25, "end": 25.32}, {"text": "chat.", "start": 25.32, "end": 26.09}, {"text": "An", "start": 26.09, "end": 26.22}, {"text": "app", "start": 26.22, "end": 26.53}, {"text": "they", "start": 26.53, "end": 26.66}, {"text": "deleted.", "start": 26.66, "end": 27.29}, {"text": "Another", "start": 27.49, "end": 27.91}, {"text": "app.", "start": 27.91, "end": 28.44}, {"text": "Another", "start": 28.44, "end": 28.91}, {"text": "login.", "start": 28.91, "end": 29.56}, {"text": "What", "start": 31.01, "end": 31.19}, {"text": "if", "start": 31.19, "end": 31.38}, {"text": "loyalty", "start": 31.38, "end": 31.95}, {"text": "didn't", "start": 31.95, "end": 32.35}, {"text": "need", "start": 32.35, "end": 32.64}, {"text": "another", "start": 32.64, "end": 32.97}, {"text": "place?", "start": 32.97, "end": 33.57}, {"text": "It", "start": 33.87, "end": 34.0}, {"text": "already", "start": 34.0, "end": 34.29}, {"text": "has", "start": 34.29, "end": 34.62}, {"text": "one.", "start": 34.62, "end": 34.98}, {"text": "The", "start": 35.29, "end": 35.38}, {"text": "wallet", "start": 35.38, "end": 35.87}, {"text": "on", "start": 35.87, "end": 36.05}, {"text": "their", "start": 36.05, "end": 36.18}, {"text": "phone.", "start": 36.18, "end": 36.75}, {"text": "One", "start": 37.16, "end": 37.41}, {"text": "scan", "start": 37.41, "end": 37.79}, {"text": "at", "start": 37.79, "end": 37.88}, {"text": "your", "start": 37.88, "end": 38.0}, {"text": "counter.", "start": 38.0, "end": 38.62}, {"text": "No", "start": 38.87, "end": 39.19}, {"text": "app.", "start": 39.19, "end": 39.54}, {"text": "Seconds", "start": 39.87, "end": 40.39}, {"text": "after", "start": 40.39, "end": 40.64}, {"text": "they", "start": 40.64, "end": 40.81}, {"text": "pay,", "start": 40.81, "end": 41.24}, {"text": "points", "start": 41.42, "end": 41.83}, {"text": "land", "start": 41.83, "end": 42.17}, {"text": "on", "start": 42.17, "end": 42.27}, {"text": "their", "start": 42.27, "end": 42.39}, {"text": "lock", "start": 42.39, "end": 42.68}, {"text": "screen.", "start": 42.68, "end": 43.16}, {"text": "Now", "start": 43.52, "end": 43.99}, {"text": "they", "start": 43.99, "end": 44.14}, {"text": "notice.", "start": 44.14, "end": 44.79}, {"text": "Why-stack.", "start": 45.69, "end": 46.5}, {"text": "All", "start": 46.8, "end": 46.99}, {"text": "your", "start": 46.99, "end": 47.14}, {"text": "passes.", "start": 47.14, "end": 47.8}, {"text": "One", "start": 47.98, "end": 48.31}, {"text": "stack.", "start": 48.31, "end": 48.99}]
+[
+ {
+  "text": "Want",
+  "start": 0.0,
+  "end": 0.189
+ },
+ {
+  "text": "to",
+  "start": 0.189,
+  "end": 0.26
+ },
+ {
+  "text": "know",
+  "start": 0.26,
+  "end": 0.378
+ },
+ {
+  "text": "something",
+  "start": 0.378,
+  "end": 0.757
+ },
+ {
+  "text": "about",
+  "start": 0.757,
+  "end": 0.93
+ },
+ {
+  "text": "your",
+  "start": 0.93,
+  "end": 1.017
+ },
+ {
+  "text": "customers?",
+  "start": 1.017,
+  "end": 1.645
+ },
+ {
+  "text": "They",
+  "start": 1.726,
+  "end": 1.82
+ },
+ {
+  "text": "never",
+  "start": 1.82,
+  "end": 2.19
+ },
+ {
+  "text": "stopped",
+  "start": 2.19,
+  "end": 2.616
+ },
+ {
+  "text": "being",
+  "start": 2.616,
+  "end": 2.805
+ },
+ {
+  "text": "rewarded.",
+  "start": 2.805,
+  "end": 3.322
+ },
+ {
+  "text": "They",
+  "start": 3.41,
+  "end": 3.493
+ },
+ {
+  "text": "just",
+  "start": 3.493,
+  "end": 3.682
+ },
+ {
+  "text": "stopped",
+  "start": 3.682,
+  "end": 3.958
+ },
+ {
+  "text": "noticing.",
+  "start": 3.958,
+  "end": 4.487
+ },
+ {
+  "text": "Every",
+  "start": 4.605,
+  "end": 4.794
+ },
+ {
+  "text": "counter",
+  "start": 4.794,
+  "end": 5.149
+ },
+ {
+  "text": "started",
+  "start": 5.149,
+  "end": 5.456
+ },
+ {
+  "text": "collecting",
+  "start": 5.456,
+  "end": 5.858
+ },
+ {
+  "text": "data,",
+  "start": 5.858,
+  "end": 6.333
+ },
+ {
+  "text": "not",
+  "start": 6.333,
+  "end": 6.515
+ },
+ {
+  "text": "just",
+  "start": 6.515,
+  "end": 6.697
+ },
+ {
+  "text": "cash.",
+  "start": 6.697,
+  "end": 7.135
+ },
+ {
+  "text": "Businesses",
+  "start": 7.219,
+  "end": 7.667
+ },
+ {
+  "text": "learned",
+  "start": 7.667,
+  "end": 8.037
+ },
+ {
+  "text": "to",
+  "start": 8.037,
+  "end": 8.195
+ },
+ {
+  "text": "remember.",
+  "start": 8.195,
+  "end": 8.749
+ },
+ {
+  "text": "Every",
+  "start": 8.821,
+  "end": 9.034
+ },
+ {
+  "text": "visit.",
+  "start": 9.034,
+  "end": 9.467
+ },
+ {
+  "text": "Every",
+  "start": 9.528,
+  "end": 9.718
+ },
+ {
+  "text": "purchase.",
+  "start": 9.718,
+  "end": 10.301
+ },
+ {
+  "text": "Every",
+  "start": 10.394,
+  "end": 10.591
+ },
+ {
+  "text": "preference.",
+  "start": 10.591,
+  "end": 11.246
+ },
+ {
+  "text": "And",
+  "start": 11.334,
+  "end": 11.451
+ },
+ {
+  "text": "social",
+  "start": 11.451,
+  "end": 11.727
+ },
+ {
+  "text": "media",
+  "start": 11.727,
+  "end": 12.105
+ },
+ {
+  "text": "made",
+  "start": 12.105,
+  "end": 12.302
+ },
+ {
+  "text": "staying",
+  "start": 12.302,
+  "end": 12.578
+ },
+ {
+  "text": "connected",
+  "start": 12.578,
+  "end": 13.004
+ },
+ {
+  "text": "effortless.",
+  "start": 13.163,
+  "end": 13.703
+ },
+ {
+  "text": "Caf\u00e9s",
+  "start": 13.789,
+  "end": 14.229
+ },
+ {
+  "text": "remembered",
+  "start": 14.229,
+  "end": 14.608
+ },
+ {
+  "text": "birthdays",
+  "start": 14.608,
+  "end": 15.083
+ },
+ {
+  "text": "better",
+  "start": 15.083,
+  "end": 15.383
+ },
+ {
+  "text": "than",
+  "start": 15.383,
+  "end": 15.501
+ },
+ {
+  "text": "your",
+  "start": 15.501,
+  "end": 15.604
+ },
+ {
+  "text": "cousins.",
+  "start": 15.604,
+  "end": 16.149
+ },
+ {
+  "text": "But",
+  "start": 16.223,
+  "end": 16.329
+ },
+ {
+  "text": "loyalty",
+  "start": 16.329,
+  "end": 16.857
+ },
+ {
+  "text": "started",
+  "start": 16.857,
+  "end": 17.165
+ },
+ {
+  "text": "living",
+  "start": 17.165,
+  "end": 17.441
+ },
+ {
+  "text": "everywhere.",
+  "start": 17.441,
+  "end": 18.104
+ },
+ {
+  "text": "An",
+  "start": 18.184,
+  "end": 18.277
+ },
+ {
+  "text": "SMS.",
+  "start": 18.277,
+  "end": 18.971
+ },
+ {
+  "text": "A",
+  "start": 18.971,
+  "end": 19.018
+ },
+ {
+  "text": "chat.",
+  "start": 19.018,
+  "end": 19.594
+ },
+ {
+  "text": "An",
+  "start": 19.594,
+  "end": 19.68
+ },
+ {
+  "text": "app",
+  "start": 19.68,
+  "end": 19.917
+ },
+ {
+  "text": "they",
+  "start": 19.917,
+  "end": 20.019
+ },
+ {
+  "text": "deleted.",
+  "start": 20.019,
+  "end": 20.554
+ },
+ {
+  "text": "Another",
+  "start": 20.554,
+  "end": 20.864
+ },
+ {
+  "text": "app.",
+  "start": 20.864,
+  "end": 21.266
+ },
+ {
+  "text": "Another",
+  "start": 21.266,
+  "end": 21.574
+ },
+ {
+  "text": "login.",
+  "start": 21.574,
+  "end": 22.045
+ },
+ {
+  "text": "What",
+  "start": 22.149,
+  "end": 22.283
+ },
+ {
+  "text": "if",
+  "start": 22.283,
+  "end": 22.386
+ },
+ {
+  "text": "you",
+  "start": 22.386,
+  "end": 22.496
+ },
+ {
+  "text": "met",
+  "start": 22.496,
+  "end": 22.669
+ },
+ {
+  "text": "them",
+  "start": 22.669,
+  "end": 22.851
+ },
+ {
+  "text": "where",
+  "start": 22.851,
+  "end": 22.945
+ },
+ {
+  "text": "they",
+  "start": 22.945,
+  "end": 23.079
+ },
+ {
+  "text": "already",
+  "start": 23.079,
+  "end": 23.465
+ },
+ {
+  "text": "look,",
+  "start": 23.465,
+  "end": 23.811
+ },
+ {
+  "text": "every",
+  "start": 23.868,
+  "end": 24.203
+ },
+ {
+  "text": "single",
+  "start": 24.203,
+  "end": 24.526
+ },
+ {
+  "text": "day?",
+  "start": 24.526,
+  "end": 24.868
+ },
+ {
+  "text": "What",
+  "start": 24.966,
+  "end": 25.067
+ },
+ {
+  "text": "if",
+  "start": 25.067,
+  "end": 25.193
+ },
+ {
+  "text": "loyalty",
+  "start": 25.193,
+  "end": 25.642
+ },
+ {
+  "text": "didn't",
+  "start": 25.642,
+  "end": 25.941
+ },
+ {
+  "text": "need",
+  "start": 25.941,
+  "end": 26.201
+ },
+ {
+  "text": "another",
+  "start": 26.201,
+  "end": 26.454
+ },
+ {
+  "text": "place?",
+  "start": 26.454,
+  "end": 26.891
+ },
+ {
+  "text": "It",
+  "start": 27.31,
+  "end": 27.404
+ },
+ {
+  "text": "already",
+  "start": 27.404,
+  "end": 27.633
+ },
+ {
+  "text": "has",
+  "start": 27.633,
+  "end": 27.909
+ },
+ {
+  "text": "one.",
+  "start": 27.909,
+  "end": 28.156
+ },
+ {
+  "text": "The",
+  "start": 28.243,
+  "end": 28.302
+ },
+ {
+  "text": "wallet",
+  "start": 28.302,
+  "end": 28.688
+ },
+ {
+  "text": "on",
+  "start": 28.688,
+  "end": 28.83
+ },
+ {
+  "text": "their",
+  "start": 28.83,
+  "end": 28.94
+ },
+ {
+  "text": "phone.",
+  "start": 28.94,
+  "end": 29.371
+ },
+ {
+  "text": "Introducing",
+  "start": 30.17,
+  "end": 30.674
+ },
+ {
+  "text": "Why-stack.",
+  "start": 30.674,
+  "end": 31.332
+ },
+ {
+  "text": "One",
+  "start": 31.729,
+  "end": 31.947
+ },
+ {
+  "text": "scan",
+  "start": 31.947,
+  "end": 32.199
+ },
+ {
+  "text": "at",
+  "start": 32.199,
+  "end": 32.278
+ },
+ {
+  "text": "your",
+  "start": 32.278,
+  "end": 32.372
+ },
+ {
+  "text": "counter.",
+  "start": 32.372,
+  "end": 32.84
+ },
+ {
+  "text": "No",
+  "start": 32.92,
+  "end": 33.14
+ },
+ {
+  "text": "app.",
+  "start": 33.14,
+  "end": 33.408
+ },
+ {
+  "text": "Seconds",
+  "start": 33.523,
+  "end": 33.886
+ },
+ {
+  "text": "after",
+  "start": 33.886,
+  "end": 34.083
+ },
+ {
+  "text": "they",
+  "start": 34.083,
+  "end": 34.217
+ },
+ {
+  "text": "pay,",
+  "start": 34.217,
+  "end": 34.548
+ },
+ {
+  "text": "points",
+  "start": 34.598,
+  "end": 34.913
+ },
+ {
+  "text": "land",
+  "start": 34.913,
+  "end": 35.165
+ },
+ {
+  "text": "on",
+  "start": 35.165,
+  "end": 35.244
+ },
+ {
+  "text": "their",
+  "start": 35.244,
+  "end": 35.347
+ },
+ {
+  "text": "lock",
+  "start": 35.347,
+  "end": 35.559
+ },
+ {
+  "text": "screen.",
+  "start": 35.559,
+  "end": 35.905
+ },
+ {
+  "text": "Now",
+  "start": 36.025,
+  "end": 36.411
+ },
+ {
+  "text": "they",
+  "start": 36.411,
+  "end": 36.572
+ },
+ {
+  "text": "notice.",
+  "start": 36.572,
+  "end": 37.073
+ },
+ {
+  "text": "Why-stack.",
+  "start": 37.374,
+  "end": 37.902
+ },
+ {
+  "text": "All",
+  "start": 37.982,
+  "end": 38.108
+ },
+ {
+  "text": "your",
+  "start": 38.108,
+  "end": 38.242
+ },
+ {
+  "text": "passes.",
+  "start": 38.242,
+  "end": 38.761
+ },
+ {
+  "text": "One",
+  "start": 38.831,
+  "end": 39.079
+ },
+ {
+  "text": "stack.",
+  "start": 39.079,
+  "end": 39.58
+ }
+]

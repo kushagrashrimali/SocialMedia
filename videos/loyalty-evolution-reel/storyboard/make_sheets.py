@@ -4,7 +4,7 @@ Reads storyboard/shots.json, snapshots every shot at its poster time with the
 HyperFrames CLI, and lays the stills out as labelled sheets (time range, the
 line spoken, what we see, what moves), rendered with headless Chromium.
 
-usage (from the project folder):  python3 storyboard/make_sheets.py
+usage (from the project folder):  python3 storyboard/make_sheets.py [shots.json] [duration] [title]
 """
 import glob, json, os, pathlib, shutil, subprocess, sys
 
@@ -33,9 +33,8 @@ def tc(t):
 
 def write_storyboard_md(shots):
     """Mirror shots.json into the project's STORYBOARD.md (HyperFrames storyboard format)."""
-    lines = ["---", "format: 1080x1920", "duration: 44s",
-             'message: "India already went digital on loyalty. Wystak gives it a place to live: the wallet."',
-             "arc: Hook → Recognition → Data → WhatsApp → Everywhere → App fatigue → Silence → Wallet → Wystak",
+    lines = ["---", "format: 1080x1920", f"duration: {DUR:g}s",
+             f'message: "{MESSAGE}"', f"arc: {ARC}",
              "audience: Indian café, restaurant, salon and shop owners", "mode: collaborative", "---", ""]
     for s in shots:
         lines += [f"## Frame {s['id']} — {tc(s['start'])}–{tc(s['end'])}", "",
@@ -45,8 +44,17 @@ def write_storyboard_md(shots):
     (PROJECT / "STORYBOARD.md").write_text("\n".join(lines))
 
 
+SHOTS = pathlib.Path(sys.argv[1]) if len(sys.argv) > 1 else HERE / "shots.json"
+DUR = float(sys.argv[2]) if len(sys.argv) > 2 else 44.0
+TITLE = sys.argv[3] if len(sys.argv) > 3 else "The next place for loyalty"
+MESSAGE = ("Your customers never stopped being rewarded; loyalty got scattered. The wallet on their phone is the one place. Wystak."
+           if len(sys.argv) > 1 else "India already went digital on loyalty. Wystak gives it a place to live: the wallet.")
+ARC = ("Hook → Data → WhatsApp → Everywhere → App fatigue → The question → Wallet → Pause → Introducing Wystak → Scan → Points → Logo"
+       if len(sys.argv) > 1 else "Hook → Recognition → Data → WhatsApp → Everywhere → App fatigue → Silence → Wallet → Wystak")
+
+
 def main():
-    shots = json.load(open(HERE / "shots.json"))
+    shots = json.load(open(SHOTS))
     write_storyboard_md(shots)
     frames = HERE / "frames"
     if frames.exists():
@@ -93,8 +101,8 @@ h1{{font-family:AB;font-size:44px;letter-spacing:-.02em}}
 <div class="k">On screen</div><div class="d">{s['see']}</div>
 <div class="k">Moves</div><div class="d">{s['moves']}</div></div>""")
         html = f"""<!doctype html><html><head><meta charset="utf-8"><style>{css}</style></head><body>
-<h1>The next place for loyalty · storyboard</h1>
-<div class="meta">Wystak reel · 1080×1920 · 44.0s · sheet {pi} of {len(pages)} · shots {page[0]['id']}–{page[-1]['id']}</div>
+<h1>{TITLE} · storyboard</h1>
+<div class="meta">Wystak reel · 1080×1920 · {DUR:.1f}s · sheet {pi} of {len(pages)} · shots {page[0]['id']}–{page[-1]['id']}</div>
 <div class="grid">{''.join(cells)}</div></body></html>"""
         src = HERE / f"sheet-{pi}.html"
         src.write_text(html)

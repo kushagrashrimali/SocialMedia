@@ -1,426 +1,250 @@
 ---
 format: 1080x1920
-duration: 44s
-message: "India already went digital on loyalty. Wystak gives it a place to live: the wallet."
-arc: Hook → Recognition → Data → WhatsApp → Everywhere → App fatigue → Silence → Wallet → Wystak
+duration: 40s
+message: "Your customers never stopped being rewarded; loyalty got scattered. The wallet on their phone is the one place. Wystak."
+arc: Hook → Data → WhatsApp → Everywhere → App fatigue → The question → Wallet → Pause → Introducing Wystak → Scan → Points → Logo
 audience: Indian café, restaurant, salon and shop owners
 mode: collaborative
 ---
 
-## Frame 01 — 0:00.0–0:00.4
+## Frame 01 — 0:00.0–0:01.2
 
-- scene: An 1862 quarter-anna coin, cut out on black (archive scan).
-- duration: 0.42s
-- poster: 0.20
+- scene: Club footage, warm red light. Caption in Poppins.
+- duration: 1.17s
+- poster: 0.60
 - transition_in: cut
 - status: built
-- voiceover: India…
+- voiceover: Want to know something…
 
-Moves: Cold open on the first word, the reference's coin. Soundbox chime under it.
+Moves: Rises from black on a slow push; the words pop in on the voice.
 
-## Frame 02 — 0:00.4–0:01.1
+## Frame 02 — 0:01.2–0:02.2
 
-- scene: A plain QR standee (no brand) on off-white. PAY.
-- duration: 0.66s
-- poster: 0.75
+- scene: Salon footage; “customers?” big in Wystak violet.
+- duration: 1.05s
+- poster: 1.70
 - transition_in: cut
 - status: built
-- voiceover: …didn't stop…
+- voiceover: …about your customers?
 
-Moves: Hard cut; the standee settles with a small drop.
+Moves: Soft zoom-through dissolve from the club.
 
-## Frame 03 — 0:01.1–0:01.6
+## Frame 03 — 0:02.2–0:03.4
 
-- scene: Real photo, Indian café: a hand photographs the table with a phone. PHONE.
-- duration: 0.47s
-- poster: 1.30
-- transition_in: cut
-- status: built
-- voiceover: …rewarding…
-
-Moves: Quick push in toward the phone.
-
-## Frame 04 — 0:01.6–0:02.5
-
-- scene: Phone on black; a reward notification lands. REWARD.
-- duration: 0.95s
-- poster: 2.10
-- transition_in: cut
-- status: built
-- voiceover: …customers.
-
-Moves: The notification drops in with one soft ping.
-
-## Frame 05 — 0:02.5–0:03.4
-
-- scene: Archive: a crowded Indian bazaar street, c. 1900 (black and white).
-- duration: 0.85s
+- scene: Café: a cup handed across the counter.
+- duration: 1.14s
 - poster: 2.90
 - transition_in: cut
 - status: built
-- voiceover: Your customers…
+- voiceover: They never stopped being rewarded.
 
-Moves: Slow drift across the crowd.
+Moves: Zoom-through; “rewarded.” lands in violet.
 
-## Frame 06 — 0:03.4–0:04.7
+## Frame 04 — 0:03.4–0:04.6
 
-- scene: Phone on black: new notifications pile on; the reward one slides away unread.
-- duration: 1.35s
-- poster: 4.30
+- scene: Lock screen, three unread alerts (Brew Club, AX-CAROMA, Gmail).
+- duration: 1.21s
+- poster: 4.00
 - transition_in: cut
 - status: built
-- voiceover: …just stopped noticing.
+- voiceover: They just stopped noticing.
 
-Moves: Camera eases in; the reward card is swiped off on "noticing".
+Moves: Phone swings in on a 3D move, alerts pop in with soft bubble pops, the screen dims and sleeps.
 
-## Frame 07 — 0:04.7–0:05.4
+## Frame 05 — 0:04.6–0:07.2
 
-- scene: Real kirana shopkeeper behind his glass counter; the question in Archivo italic.
-- duration: 0.70s
-- poster: 5.20
+- scene: Boutique, bar and café counters; a frosted customer profile card.
+- duration: 2.60s
+- poster: 6.00
 - transition_in: cut
 - status: built
-- voiceover: "Sir, mobile number?"
+- voiceover: Every counter started collecting data, not just cash.
 
-Moves: The quote types on word by word.
+Moves: Profile card swings in, its rows fill one by one.
 
-## Frame 08 — 0:05.4–0:06.2
+## Frame 06 — 0:07.2–0:08.8
 
-- scene: Real footage: fingers press keypad digits; 98••• •••41 in mono.
-- duration: 0.80s
-- poster: 5.90
+- scene: Wide salon interior.
+- duration: 1.63s
+- poster: 8.00
 - transition_in: cut
 - status: built
-- voiceover: …mobile number?
+- voiceover: Businesses learned to remember.
 
-Moves: Digits fill in with each press; key clicks.
+Moves: Warm light leak on the cut.
 
-## Frame 09 — 0:06.2–0:07.1
+## Frame 07 — 0:08.8–0:11.2
 
-- scene: Archive: "Baniyas of Delhi", 1862, a merchant at his shop front.
+- scene: Cinema, boutique, latte pour; glass chips (Visit No. 12, Silk gown, Oat milk).
+- duration: 2.45s
+- poster: 10.00
+- transition_in: cut
+- status: built
+- voiceover: Every visit. Every purchase. Every preference.
+
+Moves: A chip lands on each word; the key word in violet.
+
+## Frame 08 — 0:11.2–0:13.6
+
+- scene: Home screen of app icons; the café’s WhatsApp banner.
+- duration: 2.31s
+- poster: 12.40
+- transition_in: cut
+- status: built
+- voiceover: And social media made staying connected effortless.
+
+Moves: Icons pop in, the banner drops, the camera pushes through it.
+
+## Frame 09 — 0:13.6–0:16.1
+
+- scene: Birthday footage, two floating WhatsApp messages.
+- duration: 2.54s
+- poster: 15.00
+- transition_in: cut
+- status: built
+- voiceover: Cafés remembered birthdays better than your cousins.
+
+Moves: Messages materialise out of blur, one after the other.
+
+## Frame 10 — 0:16.1–0:18.1
+
+- scene: Lock screen flooding with alerts.
+- duration: 2.04s
+- poster: 17.40
+- transition_in: cut
+- status: built
+- voiceover: But loyalty started living everywhere.
+
+Moves: Seven alerts stack up, then burst out around the phone.
+
+## Frame 11 — 0:18.1–0:22.1
+
+- scene: One phone: SMS, chat, deleting the app, the store, a login.
+- duration: 3.94s
+- poster: 20.50
+- transition_in: cut
+- status: built
+- voiceover: An SMS. A chat. An app they deleted. Another app. Another login.
+
+Moves: Each screen slides in on its word (no hand).
+
+## Frame 12 — 0:22.1–0:24.9
+
+- scene: The lock screen, alone and quiet.
+- duration: 2.82s
+- poster: 23.60
+- transition_in: cut
+- status: built
+- voiceover: What if you met them where they already look, every single day?
+
+Moves: The phone rises slowly into frame; music drops to its quiet build.
+
+## Frame 13 — 0:24.9–0:27.3
+
+- scene: The scattered places float round the phone.
+- duration: 2.40s
+- poster: 26.00
+- transition_in: cut
+- status: built
+- voiceover: What if loyalty didn’t need another place?
+
+Moves: Pieces drift in, then get pulled into the phone.
+
+## Frame 14 — 0:27.3–0:28.2
+
+- scene: Wallet: the Cafe Aroma pass drops onto the stack.
 - duration: 0.90s
-- poster: 6.70
+- poster: 27.90
 - transition_in: cut
 - status: built
-- voiceover: Businesses learned…
+- voiceover: It already has one.
 
-Moves: Slow push into the photograph.
+Moves: Pass lands with weight, the frame floods violet. The music opens up (the problem-to-solution turn).
 
-## Frame 10 — 0:07.1–0:08.2
+## Frame 15 — 0:28.2–0:29.4
 
-- scene: Real photo: a cloth merchant writing his ledger at night.
-- duration: 1.10s
-- poster: 7.70
-- transition_in: cut
-- status: built
-- voiceover: …to remember.
-
-Moves: Match cut from the 1862 merchant to today's; slow push on the pen.
-
-## Frame 11 — 0:08.2–0:09.2
-
-- scene: Real photo, Old Delhi: a man steps into a shop between blue shutters. VISIT.
-- duration: 1.00s
-- poster: 8.70
-- transition_in: cut
-- status: built
-- voiceover: Every visit.
-
-Moves: Push in; the word cuts in on "visit".
-
-## Frame 12 — 0:09.2–0:10.4
-
-- scene: Real photo: cash changing hands at a stall. PURCHASE.
+- scene: iPhone and Android side by side, Apple Wallet and Google Wallet, equal size.
 - duration: 1.20s
-- poster: 9.80
+- poster: 28.90
 - transition_in: cut
 - status: built
-- voiceover: Every purchase.
+- voiceover: The wallet on their phone.
 
-Moves: Slow slide toward the hand-off.
+Moves: Phones turn slowly in the light.
 
-## Frame 13 — 0:10.4–0:11.7
+## Frame 16 — 0:29.4–0:30.2
 
-- scene: Real photo: two cutting chais and rusks on black, the usual. PREFERENCE.
-- duration: 1.30s
-- poster: 11.10
+- scene: The Wallet pulls back; a frosted glass pass settles down out of soft focus. The W mark rises onto it.
+- duration: 0.77s
+- poster: 29.85
 - transition_in: cut
 - status: built
-- voiceover: Every preference.
+- voiceover: (pause)
 
-Moves: Slow push; steam-warm grade.
+Moves: Camera pulls back (Wallet and glass card both shrinking, so the move carries across). Voice silent, music eases down: the turn from problem to solution.
 
-## Frame 14 — 0:11.7–0:13.1
+## Frame 17 — 0:30.2–0:31.6
 
-- scene: Phone: a plain chat from Paper Crane Coffee: "Aarav, we haven't seen you in a while. Your usual is waiting." MESSAGE.
-- duration: 1.40s
-- poster: 12.60
+- scene: Your horizontal logo, built in motion on the glass pass; INTRODUCING above.
+- duration: 1.38s
+- poster: 30.95
 - transition_in: cut
 - status: built
-- voiceover: And WhatsApp made staying…
+- voiceover: Introducing Why-stack.
 
-Moves: The bubble pops in with a message sound; the camera eases in to read it.
+Moves: On “Introducing” the purple and teal passes fan out from behind the navy pass into one stack; a beat; on “Why-stack” the letters W-Y-S-T-A-K cascade in with one soft chime; light runs across the logo.
 
-## Frame 15 — 0:13.1–0:14.7
+## Frame 18 — 0:31.6–0:33.4
 
-- scene: Real footage: a couple walks into a café. RETURN.
-- duration: 1.55s
-- poster: 13.90
+- scene: Hand-held phone at the counter: the Cafe Aroma card with Add to Apple Wallet / Google Wallet.
+- duration: 1.83s
+- poster: 32.40
 - transition_in: cut
 - status: built
-- voiceover: …connected effortless.
+- voiceover: One scan at your counter. No app.
 
-Moves: They walk in, away from camera.
+Moves: The glass pass zooms forward past camera into the counter footage, which is still pushing in as it arrives.
 
-## Frame 16 — 0:14.7–0:15.7
+## Frame 19 — 0:33.4–0:34.4
 
-- scene: Real footage: a barber combs a client's hair.
-- duration: 1.00s
-- poster: 15.10
-- transition_in: cut
-- status: built
-- voiceover: Salons remembered…
-
-Moves: Natural motion, close.
-
-## Frame 17 — 0:15.7–0:17.7
-
-- scene: Phone: The Salon at 12:00 am: "Happy birthday, Aarav! Your next blow-dry is on us this week."
-- duration: 2.05s
-- poster: 16.70
-- transition_in: cut
-- status: built
-- voiceover: …birthdays better than your cousins.
-
-Moves: Bubble arrives at midnight; hold for the joke.
-
-## Frame 18 — 0:17.7–0:19.2
-
-- scene: Lock screen flooding: SMS, salon, store, rewards, food app, gym.
-- duration: 1.55s
-- poster: 18.90
-- transition_in: cut
-- status: built
-- voiceover: But loyalty started living…
-
-Moves: Cards cascade in; pings layer faster and faster.
-
-## Frame 19 — 0:19.2–0:20.4
-
-- scene: Real footage: a train rushes past in black and white; EVERY / WHERE, huge.
-- duration: 1.15s
-- poster: 19.80
-- transition_in: cut
-- status: built
-- voiceover: …everywhere.
-
-Moves: The word slams in on the beat (the reference's RIDICULOUS moment).
-
-## Frame 20 — 0:20.4–0:21.4
-
-- scene: An SMS on black: "VM-PCRANE: You earned 18 pts… T&C apply."
-- duration: 1.05s
-- poster: 21.00
-- transition_in: cut
-- status: built
-- voiceover: An SMS.
-
-Moves: One object per phrase, hard cuts, same position.
-
-## Frame 21 — 0:21.4–0:22.2
-
-- scene: A chat bubble on black: The Salon's monsoon offer.
-- duration: 0.75s
-- poster: 21.90
-- transition_in: cut
-- status: built
-- voiceover: A chat.
-
-Moves: Hard cut.
-
-## Frame 22 — 0:22.2–0:23.4
-
-- scene: A Rewards app icon with "Delete App" in red.
-- duration: 1.25s
-- poster: 23.00
-- transition_in: cut
-- status: built
-- voiceover: An app they deleted.
-
-Moves: Icon jiggles, menu pops, delete.
-
-## Frame 23 — 0:23.4–0:24.6
-
-- scene: "Download our app to collect points" + Install. APP.
-- duration: 1.20s
-- poster: 24.10
-- transition_in: cut
-- status: built
-- voiceover: Another app.
-
-Moves: Screen slides up, flat and tired.
-
-## Frame 24 — 0:24.6–0:25.6
-
-- scene: Verify your number: OTP boxes, create a password. LOGIN.
-- duration: 0.95s
-- poster: 25.20
-- transition_in: cut
-- status: built
-- voiceover: Another login.
-
-Moves: Digits fill… the cursor blinks.
-
-## Frame 25 — 0:25.6–0:26.2
-
-- scene: Real photo: a young man stares at his phone under a single lamp.
-- duration: 0.65s
-- poster: 25.90
-- transition_in: cut
-- status: built
-- voiceover: (silence)
-
-Moves: He hesitates; lock click at 26.25 and every sound cuts.
-
-## Frame 26 — 0:26.2–0:27.0
-
-- scene: Black. Silence.
-- duration: 0.75s
-- poster: 26.60
-- transition_in: cut
-- status: built
-- voiceover: (silence)
-
-Moves: No music. One clean DING at 26.55.
-
-## Frame 27 — 0:27.0–0:29.8
-
-- scene: One clean phone on black, an empty lock screen.
-- duration: 2.80s
-- poster: 28.40
-- transition_in: cut
-- status: built
-- voiceover: What if loyalty didn't need another place?
-
-Moves: Fades up after the ding; holds a beat longer; very slow push.
-
-## Frame 28 — 0:29.8–0:32.7
-
-- scene: The wallet: a boarding pass, a cinema ticket and the Paper Crane Coffee pass (132 / 150). WALLET.
-- duration: 2.90s
-- poster: 31.60
-- transition_in: cut
-- status: built
-- voiceover: It already has one. The wallet on their phone.
-
-Moves: Passes file in one by one; the café pass lifts to the front.
-
-## Frame 29 — 0:32.7–0:34.4
-
-- scene: Real hand and phone at an Indian café counter: the camera reads a QR and offers "Add Paper Crane Coffee pass".
-- duration: 1.70s
-- poster: 33.50
-- transition_in: cut
-- status: built
-- voiceover: One scan at your counter.
-
-Moves: Live hand motion; the chip pops on "counter".
-
-## Frame 30 — 0:34.4–0:35.2
-
-- scene: "Add this pass to your wallet?" with the pass and one violet Add button. NO APP.
-- duration: 0.85s
-- poster: 34.90
-- transition_in: cut
-- status: built
-- voiceover: No app.
-
-Moves: Sheet slides up; Add pressed.
-
-## Frame 31 — 0:35.2–0:36.8
-
-- scene: Real hand and phone at a café hatch: "Paid to Paper Crane Coffee".
-- duration: 1.50s
-- poster: 36.00
+- scene: Payment done on the phone.
+- duration: 1.04s
+- poster: 34.00
 - transition_in: cut
 - status: built
 - voiceover: Seconds after they pay,
 
-Moves: Live hand motion; soundbox chime.
+Moves: A soft confirmation ding.
 
-## Frame 32 — 0:36.8–0:38.6
+## Frame 20 — 0:34.4–0:36.0
 
-- scene: Lock screen: "+18 points at Paper Crane Coffee" / "You're at 132 of 150. One more and the next one is on the house."
-- duration: 1.90s
-- poster: 37.90
+- scene: Lock screen: the Wallet push and the points ring 132 → 150.
+- duration: 1.55s
+- poster: 35.30
 - transition_in: cut
 - status: built
 - voiceover: points land on their lock screen.
 
-Moves: The push drops in; the camera pushes in to read it.
+Moves: Push drops in, opens into the ring, the ring fills.
 
-## Frame 33 — 0:38.6–0:40.0
+## Frame 21 — 0:36.0–0:37.3
 
-- scene: An iPhone-style and an Android-style phone with the same push. Apple Wallet · Google Wallet, equal chips.
-- duration: 1.35s
-- poster: 39.40
+- scene: Every category’s pass in one Wallet stack over concert, club and café footage.
+- duration: 1.37s
+- poster: 36.70
 - transition_in: cut
 - status: built
 - voiceover: Now they notice.
 
-Moves: Match cut from one phone to two; chips fade in.
+Moves: Passes deal into one stack; the last shot blows out to white.
 
-## Frame 34 — 0:40.0–0:40.2
+## Frame 22 — 0:37.3–0:40.0
 
-- scene: Recap: the same coin. PAYMENT.
-- duration: 0.16s
-- poster: 40.08
+- scene: End card: the stacked logo, ALL YOUR PASSES. ONE STACK.
+- duration: 2.66s
+- poster: 39.60
 - transition_in: cut
 - status: built
-- voiceover: (silence)
+- voiceover: Why-stack. All your passes. One stack.
 
-Moves: Four flashes, 0.16s each (the reference's "coin to cash" move).
-
-## Frame 35 — 0:40.2–0:40.3
-
-- scene: Recap: the +18 points push. REWARD.
-- duration: 0.16s
-- poster: 40.24
-- transition_in: cut
-- status: built
-- voiceover: (silence)
-
-Moves: Hard cut.
-
-## Frame 36 — 0:40.3–0:40.5
-
-- scene: Recap: "We haven't seen you in a while." MESSAGE.
-- duration: 0.16s
-- poster: 40.40
-- transition_in: cut
-- status: built
-- voiceover: (silence)
-
-Moves: Hard cut.
-
-## Frame 37 — 0:40.5–0:40.7
-
-- scene: Recap: the pass. WALLET. Then black.
-- duration: 0.26s
-- poster: 40.56
-- transition_in: cut
-- status: built
-- voiceover: (silence)
-
-Moves: Everything drops to black for a breath.
-
-## Frame 38 — 0:40.7–0:44.0
-
-- scene: End card on off-white: the Wystak logo, THE NEXT PLACE FOR LOYALTY.
-- duration: 3.28s
-- poster: 42.90
-- transition_in: cut
-- status: built
-- voiceover: Whys-tak. The next place for loyalty.
-
-Moves: Mark settles, wordmark wipes in on the name, the line on "next place"; calm bed; hold.
+Moves: Logo settles in, wordmark wipes on, tagline rises letter by letter; held 0.4s.

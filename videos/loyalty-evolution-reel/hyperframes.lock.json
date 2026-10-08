@@ -1,3 +1,13 @@
 {
-  "compositions/components/grain-overlay.html": "97a0da8f26feca9574abcf08b8186cef10ea4819b2aeabc30547ae16ed9ae80d"
+  "compositions/components/card-resize.html": "7786d2dd9f42ad955eebf2d2f0e65d4b397144c23c0d8cc0648aed11c1c2065d",
+  "compositions/components/confetti.html": "e1aab1fba4eac8fcbed7367d94a262c41b08dc26cd723a3a0cde51158f7c864f",
+  "compositions/components/grain-overlay.html": "97a0da8f26feca9574abcf08b8186cef10ea4819b2aeabc30547ae16ed9ae80d",
+  "compositions/components/logo-sting.html": "d120e9f7f8e76fc609d3413b94459f64e2112bc2504a8cb71fcfca72e32a99da",
+  "compositions/components/oversized-cursor.html": "1b1b53ee1c8b3dda9104c6909c762cda026175a3236fbd05ccc38f7fd03af4db",
+  "compositions/components/parallax-zoom.html": "330c37d5acc6bac8c48dc8e38d2dde7d8804a8dc2353bbe0fd6b66b13db65656",
+  "compositions/components/press-ripple.html": "db9edeff080d126609c103d880c166b7aafa5bbb9f0d92fc52c6aa72407d6104",
+  "compositions/components/spring-pop.html": "528a81454e7d4dc939c132627ceaa106f4fec093a433942bc93821db41d8e3bb",
+  "compositions/components/success-check.html": "49f306892b85ecdbe9510593b8dc8d76b2e3c7becfff06726d967407ff01c393",
+  "compositions/components/touch-indicator.html": "6f6b5f227203427b5cad0ed2af1bd740bb45f72aff0c133430de260433b5534a",
+  "compositions/components/zoom-through-transition.html": "8201b6de2c2908e3c8d9ca8d36d1b55b8093484ec40bd37bdf7754ae7b61d97d"
 }

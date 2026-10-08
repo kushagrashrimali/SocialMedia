@@ -1,0 +1,14 @@
+node_modules/
+snapshots/
+.hyperframes/
+renders/work-*/
+renders/.*
+renders/*.mp4
+storyboard/frames/
+renders/*.log
+node_modules
+assets/music-src/
+assets/sfx-src/
+assets/audio/
+sound/out/
+__pycache__/

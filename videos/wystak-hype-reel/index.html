@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080, height=1920">
+<title>WYSTAK · launch hype</title>
+<style>
+  @font-face { font-family: "UI"; src: url("assets/vendor/fonts/inter-tight-latin-500-normal.woff2") format("woff2"); font-weight: 500; }
+  @font-face { font-family: "UI"; src: url("assets/vendor/fonts/inter-tight-latin-600-normal.woff2") format("woff2"); font-weight: 600; }
+  @font-face { font-family: "UI"; src: url("assets/vendor/fonts/inter-tight-latin-700-normal.woff2") format("woff2"); font-weight: 700; }
+  @font-face { font-family: "Manrope"; src: url("assets/vendor/fonts/manrope-latin-600-normal.woff2") format("woff2"); font-weight: 600; }
+  @font-face { font-family: "Manrope"; src: url("assets/vendor/fonts/manrope-latin-700-normal.woff2") format("woff2"); font-weight: 700; }
+  :root { --void: #050307; --paper: #f3f1f6; --ink: #1a0b2e; --accent: #6b2ba6; --muted: #6b5d82; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--void); }
+  #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--void); font-family: "Manrope", sans-serif; -webkit-font-smoothing: antialiased; }
+  .layer { position: absolute; inset: 0; pointer-events: none; }
+  #void { background: #b9a5ee; }
+  /* the studio: a bright lilac seamless, a near-white light pool behind the product and a deeper violet floor
+     (the brand's violet, lit high-key like a product set; never dark behind the phone) */
+  #studio { background:
+      radial-gradient(52% 34% at 50% 45%, rgba(255, 255, 255, 0.85) 0%, rgba(246, 241, 255, 0.55) 40%, rgba(246, 241, 255, 0) 80%),
+      radial-gradient(120% 40% at 50% 104%, rgba(139, 92, 246, 0.38), rgba(139, 92, 246, 0) 70%),
+      linear-gradient(180deg, #d8ccf8 0%, #e6ddfb 38%, #d3c4f6 70%, #b9a5ee 100%); }
+  /* the product sits on the set: a soft violet contact shadow that follows its silhouette */
+  #gl { position: absolute; inset: 0; width: 1080px; height: 1920px; display: block; filter: drop-shadow(0 46px 60px rgba(58, 28, 120, 0.32)); }
+  #vignette { background: radial-gradient(95% 70% at 50% 46%, rgba(0,0,0,0) 62%, rgba(92, 58, 168, 0.22) 100%); }
+  #paper { background: var(--paper); opacity: 0; }
+  /* captions: small, centred, one family (Manrope 600), the key word in the mark's purple */
+  .line { position: absolute; left: 0; right: 0; top: 920px; text-align: center; font: 600 66px/1 "Manrope"; letter-spacing: -0.01em; color: var(--ink); opacity: 0; white-space: nowrap; }
+  .line .acc { color: var(--accent); }
+  .line .ch { display: inline-block; }
+  #oneScan { top: 1560px; color: #fff; text-shadow: 0 2px 30px rgba(0,0,0,0.5); }
+  /* the W mark, built from the supplied logo's own layers (purple and teal passes can fan) */
+  .mark { position: absolute; width: 700px; height: 546px; }
+  .mark img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .mark .p { transform-origin: 66.6% 86.1%; }
+  .mark .t { transform-origin: 72.1% 87.9%; }
+  #wwrap { position: absolute; left: 190px; top: 627px; width: 700px; height: 546px; opacity: 0; }
+  #wbloom { position: absolute; left: 40px; top: 400px; width: 1000px; height: 1000px; border-radius: 50%; opacity: 0;
+    background: radial-gradient(closest-side, rgba(150, 110, 255, 0.35), rgba(150, 110, 255, 0)); }
+  #end { opacity: 0; }
+  #ewrap { position: absolute; left: 190px; top: 560px; width: 700px; height: 546px; }
+  #eword { position: absolute; left: 240px; top: 1100px; width: 600px; height: 72px; display: block; }
+  #etag { position: absolute; left: 0; right: 0; top: 1236px; text-align: center; font: 700 30px/1 "Manrope"; letter-spacing: 0.2em; color: var(--ink); padding-left: 0.2em; white-space: nowrap; }
+  #etag span { display: inline-block; opacity: 0; }
+  #etag .acc { color: var(--accent); }
+  #ewal { position: absolute; left: 0; right: 0; top: 1690px; text-align: center; font: 600 26px/1 "Manrope"; letter-spacing: 0.04em; color: var(--muted); opacity: 0; }
+  #grain { opacity: 0.05; background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+</style>
+<script src="assets/vendor/gsap.min.js"></script>
+<script src="src/timing.js"></script>
+<script type="importmap">{ "imports": { "three": "./assets/vendor/three/three.module.min.js"} }</script>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="23" data-width="1080" data-height="1920">
+  <div class="layer" id="void"></div>
+  <div class="layer" id="studio"></div>
+  <canvas id="gl" width="1080" height="1920"></canvas>
+  <div class="layer" id="vignette"></div>
+  <div class="layer" id="paper"></div>
+
+  <div class="line" id="w1">Not an <span class="acc">app.</span></div>
+  <div class="line" id="w2">Not a <span class="acc">card.</span></div>
+  <div class="line" id="w3">Not a <span class="acc">coupon.</span></div>
+  <div class="line" id="intro">Introducing</div>
+  <div class="line" id="oneScan">One scan.</div>
+  <div class="line" id="w4">All your <span class="acc">passes.</span></div>
+  <div class="line" id="w5">One <span class="acc">stack.</span></div>
+
+  <div class="layer" id="reveal">
+    <div id="wbloom"></div>
+    <div id="wwrap"><div class="mark" id="wmark">
+      <img class="t" src="assets/brand/w-teal.png" alt=""><img class="p" src="assets/brand/w-purple.png" alt=""><img class="b" src="assets/brand/w-base.png" alt="WYSTAK">
+    </div></div>
+  </div>
+
+  <div class="layer" id="end">
+    <div id="ewrap"><div class="mark" id="emark">
+      <img class="t" src="assets/brand/w-teal.png" alt=""><img class="p" src="assets/brand/w-purple.png" alt=""><img class="b" src="assets/brand/w-base.png" alt="">
+    </div></div>
+    <img id="eword" src="assets/brand/logo-wordmark.png" alt="WYSTAK">
+    <div id="etag"><span>ALL</span> <span>YOUR</span> <span>PASSES.</span> <span class="acc">ONE</span> <span class="acc">STACK.</span></div>
+    <div id="ewal">Apple Wallet · Google Wallet</div>
+  </div>
+
+  <div class="layer" id="grain"></div>
+  <audio id="mix" src="assets/audio/hype-mix.wav" data-start="0" data-duration="23" data-track-index="20" data-volume="1"></audio>
+</div>
+
+<script>
+  (function () {
+    const T = window.HYPE;
+    const tl = gsap.timeline({ paused: true });
+    // split a caption into characters (words stay whole for wrapping), for the Visa-style blur-in
+    function chars(sel) {
+      const el = document.querySelector(sel), out = [];
+      const walk = (node, parent) => {
+        [...node.childNodes].forEach((n) => {
+          if (n.nodeType === 3) {
+            const frag = document.createDocumentFragment();
+            [...n.textContent].forEach((ch) => { const s = document.createElement("span"); s.className = "ch"; s.textContent = ch === " " ? " " : ch; frag.appendChild(s); out.push(s); });
+            parent.replaceChild(frag, n);
+          } else walk(n, n);
+        });
+      };
+      walk(el, el);
+      return out;
+    }
+    // a caption arrives letter by letter out of a soft blur, then leaves on the cut
+    function caption(sel, tin, tout, speed) {
+      const cs = chars(sel);
+      tl.set(sel, { opacity: 1 }, tin);
+      tl.fromTo(cs, { opacity: 0, filter: "blur(10px)", x: -8 }, { opacity: 1, filter: "blur(0px)", x: 0, duration: 0.22, ease: "power2.out", stagger: speed || 0.022 }, tin);
+      tl.set(sel, { opacity: 0 }, tout);
+    }
+    const paper = (a, b) => { tl.set("#paper", { opacity: 1 }, a); tl.set("#paper", { opacity: 0 }, b); };
+
+    // ---- type 1: the teaser, on paper, quickening
+    paper(T.type1[0], T.type1[1]);
+    caption("#w1", T.words1[0], T.words1[1]);
+    caption("#w2", T.words1[1], T.words1[2], 0.016);
+    caption("#w3", T.words1[2], T.type1[1], 0.014);
+
+    // ---- "Introducing" in the silence, then the W mark sweeps in on the drop (mark only, no name)
+    paper(T.intro[0], T.reveal[1]);
+    caption("#intro", T.intro[0] + 0.02, T.reveal[0], 0.028);
+    tl.set("#wwrap", { opacity: 1 }, T.reveal[0]);
+    tl.fromTo("#wwrap", { scale: 11, x: -1496, y: 110, rotation: -16, filter: "blur(16px)" },
+      { scale: 1, x: 0, y: 0, rotation: 0, filter: "blur(0px)", duration: 0.75, ease: "expo.out" }, T.reveal[0]);
+    tl.fromTo("#wmark .p", { rotation: -18 }, { rotation: 0, duration: 0.45, ease: "back.out(1.8)" }, T.fan);
+    tl.fromTo("#wmark .t", { rotation: -32 }, { rotation: 0, duration: 0.5, ease: "back.out(1.8)" }, T.fan + 0.06);
+    tl.fromTo("#wbloom", { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1.1, duration: 0.35, ease: "power2.out" }, T.reveal[0] + 0.3);
+    tl.to("#wbloom", { opacity: 0.35, duration: 0.6 }, T.reveal[0] + 0.7);
+    tl.to("#wwrap", { scale: 1.07, duration: 0.09, ease: "power2.out", yoyo: true, repeat: 1 }, T.pop);
+    // seam out: the mark rushes toward camera into the phone (the next shot is still pushing in)
+    tl.to("#wwrap", { scale: 5, opacity: 0, filter: "blur(14px)", duration: 0.25, ease: "power2.in" }, T.revealOut);
+    tl.to("#wbloom", { opacity: 0, duration: 0.2 }, T.revealOut);
+
+    // ---- a caption over the scan
+    caption("#oneScan", T.scanWord, T.scan[1]);
+
+    // ---- type 2: the promise, on paper
+    paper(T.type2[0], T.dur + 1);   // paper holds through the silence into the end card
+    caption("#w4", T.words2[0], T.words2[1], 0.016);
+    caption("#w5", T.words2[1], T.type2[1], 0.02);
+
+    // ---- end: the mark appears small, pops to size on the beat, then the name, the tagline, the wallets
+    tl.set("#end", { opacity: 1 }, T.end[0]);
+    tl.fromTo("#ewrap", { scale: 0.5, opacity: 0 }, { scale: 0.56, opacity: 1, duration: 0.3, ease: "power2.out" }, T.end[0]);
+    tl.fromTo("#emark .p", { rotation: -18 }, { rotation: 0, duration: 0.5, ease: "back.out(1.8)" }, T.endPop);
+    tl.fromTo("#emark .t", { rotation: -32 }, { rotation: 0, duration: 0.55, ease: "back.out(1.8)" }, T.endPop + 0.06);
+    tl.to("#ewrap", { scale: 0.8, duration: 0.5, ease: "back.out(1.7)" }, T.endPop);
+    tl.fromTo("#eword", { clipPath: "inset(0 100% 0 0)", filter: "blur(8px)", opacity: 0 }, { clipPath: "inset(0 0% 0 0)", filter: "blur(0px)", opacity: 1, duration: 0.55, ease: "power3.out" }, T.wordmark);
+    tl.fromTo("#etag span", { opacity: 0, y: 14, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.35, ease: "power2.out", stagger: 0.25 }, T.tagline);
+    tl.fromTo("#ewal", { opacity: 0 }, { opacity: 1, duration: 0.5 }, T.wallets);
+    tl.fromTo("#end", { scale: 1 }, { scale: 1.03, duration: T.dur - T.end[0], ease: "none", transformOrigin: "50% 45%" }, T.end[0]);
+
+    tl.set({}, {}, T.dur);
+    window.__timelines = window.__timelines || {};
+    window.__timelines["main"] = tl;
+  })();
+</script>
+<script type="module">
+  import { buildStage } from "./src/scene.js";
+  window.__hf = window.__hf || {};
+  window.__hf.buildReady = window.__hf.buildReady || {};
+  let stage = null;
+  const ready = buildStage(document.getElementById("gl")).then((s) => { stage = s; stage.renderAt(window.__hfThreeTime || 0); });
+  window.__hf.buildReady["stage"] = ready;
+  window.addEventListener("hf-seek", (e) => { if (stage) stage.renderAt(e.detail.time); });
+</script>
+</body>
+</html>

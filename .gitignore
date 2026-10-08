@@ -1,2 +1,10 @@
 inbox/*
 !inbox/README.md
+__pycache__/
+# reel media and iterations stay local (send files to the user instead)
+videos/*/renders/
+videos/*/snapshots/
+videos/*/assets/voiceover-src.mp3
+videos/*/assets/words-src.json
+videos/*/storyboard/frames/
+videos/*/assets/music-src/

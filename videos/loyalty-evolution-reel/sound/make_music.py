@@ -1,21 +1,31 @@
-"""Edit the licensed music bed for the reel: Mixkit "Cat Walk" (track 371, Mixkit Stock Music Free License).
+"""Edit the licensed music bed for the reel (50.5s): Mixkit "Motivating Mornings" (track 33, Mixkit Stock Music Free License).
 
-Structure, cut to the voice:
-  0.00-29.62  the track's own intro and build (its drop sits at 29.66, so the build stops just short of it)
-  29.62-30.95 silence (the ding lands at 30.12)
-  30.95-33.87 the bar before the drop, low-passed and opening up ("What if loyalty didn't need another place?")
-  33.87       the drop lands on "It already has one."
-  45.37-51.39 the track's own ending, beat-aligned, under the logo
-usage (from the project folder): python3 -I sound/make_music.py /path/to/371.mp3
+Why this track: product intro and launch films use clean, mid-tempo electronic with no vocals, a steady light pulse and a
+gradual build (research notes in CLAUDE.md). This one is 120 BPM, soft intro, a light groove from 12s, lifts later: not a
+club kick (Cat Walk was rejected as too dancy) and not cinematic swells (A New Life was rejected as too operatic).
+Cut to the voice (times from assets/words.json), bars of 2.0s starting at 12.0s in the source:
+  0 - "login."          the track as written: its soft intro under the hook, the groove from "Every visit"
+  the question          the bars before the entry, low-passed and opening up: a filter build into the name
+  "Introducing"         the entry (source 44.0, a downbeat) lands on the name and runs to the end
+  the name              the bed eases down 3 dB to give the Wystak chime room, then comes back
+  the last 1.5s         fade out under the logo
+The bed is levelled to -21 LUFS integrated; index.html plays it at 0.5 and the voice carve ducks it further.
+usage (from the project folder): python3 -I sound/make_music.py assets/music-src/mixkit-33-motivating-mornings.mp3
 """
-import pathlib, subprocess, sys, wave
+import json, pathlib, re, subprocess, sys, wave
 import numpy as np
+from scipy.signal import butter, sosfilt
 
 SR = 48000
-DUR = 51.39
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-DROP = 29.66          # first kick of the drop in the source
-BEAT = 0.46           # ~130 BPM
+sys.path.insert(0, str(ROOT / "storyboard"))
+from tmap_v11 import DUR, INTRO, V11
+
+ENTRY = 44.0                     # a downbeat at the start of a 16-beat phrase (source time)
+ENTRY_AT = V11[72]["start"]      # "Introducing Why-stack."
+PROBLEM_END = V11[64]["end"] + 0.05   # "login."
+PROBLEM_SRC = 0.0
+TARGET_LUFS = -21.0
 SRC = sys.argv[1]
 
 raw = subprocess.run(["ffmpeg", "-v", "error", "-i", SRC, "-ac", "2", "-ar", str(SR), "-f", "f32le", "-"], capture_output=True, check=True).stdout
@@ -25,22 +35,19 @@ out = np.zeros((N, 2))
 S = lambda t: int(round(t * SR))
 
 
-def fade(n, a, r):
-    e = np.ones(n)
-    if a: e[:a] = np.linspace(0, 1, a)
-    if r: e[-r:] *= np.linspace(1, 0, r)
-    return e[:, None]
-
-
-def put(t_out, t_src, dur, fin=0.004, fout=0.004, gain=1.0):
+def put(t_out, t_src, dur, fin=0.01, fout=0.01, gain=1.0, lowpass=None):
     seg = x[S(t_src):S(t_src) + S(dur)].copy()
-    seg *= fade(len(seg), S(fin), S(fout)) * gain
+    if lowpass:
+        seg = sosfilt(butter(2, lowpass / (SR / 2), "low", output="sos"), seg, axis=0)
+    e = np.ones(len(seg))
+    if fin: e[:S(fin)] = np.linspace(0, 1, S(fin)) ** 2
+    if fout: e[-S(fout):] *= np.linspace(1, 0, S(fout)) ** 1.5
     a = S(t_out)
-    out[a:a + len(seg)] += seg[: N - a]
+    out[a:a + len(seg)] += (seg * e[:, None] * gain)[: N - a]
 
 
 def lowpass_sweep(sig, f0, f1):
-    """one-pole low-pass whose cutoff glides exponentially from f0 to f1 over the segment"""
+    """one-pole low-pass whose cutoff glides exponentially from f0 to f1"""
     n = len(sig); y = np.zeros_like(sig); fc = f0 * (f1 / f0) ** (np.arange(n) / n)
     a = np.exp(-2 * np.pi * fc / SR); s = np.zeros(2)
     for i in range(n):
@@ -49,28 +56,33 @@ def lowpass_sweep(sig, f0, f1):
     return y
 
 
-# 1 · intro and build, stopping a hair before the drop
-put(0.0, 0.0, 29.62, fin=0.02, fout=0.03)
-# 2 · silence 29.62-30.95, then the bar before the drop under the question, filter opening up
-pre = 33.87 - 30.95
-seg = x[S(DROP - pre):S(DROP)].copy()
-seg = lowpass_sweep(seg, 260.0, 9000.0) * np.linspace(0.55, 1.0, len(seg))[:, None]
-seg *= fade(len(seg), S(0.35), 0)
-out[S(30.95):S(30.95) + len(seg)] += seg
-# 3 · the drop on "It already has one", running to the switch point on a beat
-sw = 33.87 + 25 * BEAT                                   # 45.37
-put(33.87, DROP, sw - 33.87 + 0.01, fin=0.002, fout=0.02)
-# 4 · the track's ending, entered on a beat, under the logo
-end_src = DROP + round((111.5 - DROP) / BEAT) * BEAT
-put(sw, end_src, DUR - sw, fin=0.02, fout=0.6)
-
-# lift the quiet intro so the film starts with energy, easing back to unity as the track builds
-g = np.ones(N); g[:S(13.0)] = 2.0; g[S(13.0):S(16.0)] = np.linspace(2.0, 1.0, S(16.0) - S(13.0))
+# 1 · the problem: the track as written, easing out on "login."
+put(0.0, PROBLEM_SRC, PROBLEM_END, fin=0.02, fout=0.45)
+# 2 · the question: the bars just before the entry, filtered down and opening up, rising in level
+pre = ENTRY_AT - PROBLEM_END + 0.25
+seg = x[S(ENTRY - pre):S(ENTRY)].copy()
+seg = lowpass_sweep(seg, 260.0, 7000.0) * (np.linspace(0, 1, len(seg)) ** 1.2 * 0.75 + 0.25)[:, None]
+seg[:S(0.4)] *= np.linspace(0, 1, S(0.4))[:, None]
+a0 = S(ENTRY_AT - pre); out[a0:a0 + len(seg)] += seg[: N - a0]
+# 3 · the entry on "Introducing", running to the end
+put(ENTRY_AT, ENTRY, DUR - ENTRY_AT, fin=0.004, fout=1.5)
+# 4 · room for the chime: ease down 3 dB under the name
+g = np.ones(N); a0, a1 = S(V11[73]["start"] - 0.5), S(INTRO[1] + 0.2); r = S(0.35)
+g[a0:a1] = 10 ** (-3 / 20); g[a0:a0 + r] = np.linspace(1, 10 ** (-3 / 20), r); g[a1 - r:a1] = np.linspace(10 ** (-3 / 20), 1, r)
 out *= g[:, None]
-out *= fade(N, 0, S(0.4))
-pk = np.abs(out).max()
-out = out / pk * 10 ** (-1.0 / 20)
-with wave.open(str(ROOT / "assets/music-bed.wav"), "wb") as w:
-    w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR)
-    w.writeframes((np.clip(out, -1, 1) * 32767).astype("<i2").tobytes())
-print("wrote assets/music-bed.wav", f"{N / SR:.2f}s", "switch", round(sw, 2), "ending from", round(end_src, 2))
+
+
+def write(path, y):
+    with wave.open(str(path), "wb") as w:
+        w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR)
+        w.writeframes((np.clip(y, -1, 1) * 32767).astype("<i2").tobytes())
+
+
+dst = ROOT / "assets/music-bed.wav"
+write(dst, out)
+log = subprocess.run(["ffmpeg", "-i", str(dst), "-af", "ebur128", "-f", "null", "-"], capture_output=True, text=True).stderr
+lufs = float(re.findall(r"I:\s+(-?[\d.]+) LUFS", log)[-1])
+g = 10 ** ((TARGET_LUFS - lufs) / 20)
+g = min(g, 10 ** (-1.0 / 20) / np.abs(out).max())          # never above -1 dBFS peak
+write(dst, out * g)
+print("wrote assets/music-bed.wav", f"{N / SR:.2f}s", f"measured {lufs:.1f} LUFS, gain {20 * np.log10(g):+.1f} dB")

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080, height=1920">
+<title>WYSTAK · iPhone reel</title>
+<style>
+  @font-face { font-family: "UI"; src: url("assets/vendor/fonts/inter-tight-latin-500-normal.woff2") format("woff2"); font-weight: 500; }
+  @font-face { font-family: "UI"; src: url("assets/vendor/fonts/inter-tight-latin-600-normal.woff2") format("woff2"); font-weight: 600; }
+  @font-face { font-family: "UI"; src: url("assets/vendor/fonts/inter-tight-latin-700-normal.woff2") format("woff2"); font-weight: 700; }
+  @font-face { font-family: "Poppins"; src: url("assets/vendor/fonts/poppins-latin-600-normal.woff2") format("woff2"); font-weight: 600; }
+  @font-face { font-family: "Poppins"; src: url("assets/vendor/fonts/poppins-latin-700-normal.woff2") format("woff2"); font-weight: 700; }
+  :root { --ink: #1a0b2e; --violet: #6b2ba6; --tint: #e3d5ff; --paper: #f7f4fc; --muted: #6b5d82; --teal: #0f8f8a; --rose: #d9466f; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--paper); }
+  #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--paper); font-family: "UI", sans-serif; -webkit-font-smoothing: antialiased; }
+  .scene { position: absolute; inset: 0; opacity: 0; overflow: hidden; }
+  .lilac { background: radial-gradient(60% 40% at 50% 44%, #ffffff 0%, rgba(255,255,255,0) 75%), linear-gradient(180deg, #e2d8fb 0%, #ece5fc 45%, #d3c4f6 80%, #bfa9ef 100%); }
+  .violet { background: radial-gradient(70% 45% at 50% 42%, #a47cff 0%, #8655f1 45%, #6c3cdc 100%); }
+  .paper { background: radial-gradient(70% 45% at 50% 45%, #ffffff 0%, #f7f4fc 60%, #efe8fb 100%); }
+  #gl { position: absolute; inset: 0; width: 1080px; height: 1920px; display: block; filter: drop-shadow(0 40px 50px rgba(40, 12, 100, 0.35)); }
+  /* captions: Poppins, one weight per line, the key word set apart by size and colour */
+  .cap { position: absolute; left: 90px; font-family: "Poppins"; font-weight: 600; line-height: 0.98; letter-spacing: -0.02em; white-space: nowrap; }
+  .cap .sm { display: block; font-size: 72px; }
+  .cap .big { display: block; font-size: 158px; letter-spacing: -0.035em; }
+  .on-v { color: #fff; text-shadow: 0 6px 34px rgba(40, 0, 90, 0.35); } .on-v .big { color: var(--tint); }
+  .on-p { color: var(--ink); } .on-p .big { color: var(--violet); }
+  .card { position: absolute; background: #fff; border-radius: 48px; box-shadow: 0 40px 90px rgba(45, 15, 110, 0.26); overflow: hidden; }
+  .pass { position: absolute; border-radius: 34px; box-shadow: 0 30px 70px rgba(30, 8, 70, 0.35); display: block; }
+  .pill { position: absolute; border-radius: 999px; font: 600 40px/1 "UI"; display: flex; align-items: center; justify-content: center; }
+  .ch { display: inline-block; }
+  /* S1 pushes rising out of the phone */
+  #notifs { position: absolute; left: 0; top: 0; width: 0; height: 0; display: none; }
+  .ncard { position: absolute; left: 0; top: 0; width: 840px; height: 160px; border-radius: 48px; background: rgba(255,255,255,0.95); box-shadow: 0 24px 60px rgba(50, 20, 120, 0.22); display: flex; align-items: center; gap: 30px; padding: 0 36px; opacity: 0; }
+  .ncard .tile { width: 96px; height: 96px; border-radius: 24px; flex: none; display: flex; align-items: center; justify-content: center; font: 700 52px "UI"; }
+  .ncard b { display: block; font: 700 40px/1.15 "UI"; color: var(--ink); }
+  .ncard span { display: block; font: 500 32px/1.3 "UI"; color: var(--muted); }
+  .ncard i { position: absolute; right: 38px; top: 34px; font: 500 28px "UI"; color: #9c8fb3; font-style: normal; }
+  /* the mark, from the supplied logo's own layers */
+  .mark { position: absolute; width: 700px; height: 546px; }
+  .mark img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .mark .p { transform-origin: 66.6% 86.1%; } .mark .t { transform-origin: 72.1% 87.9%; }
+  .row { position: absolute; left: 56px; right: 56px; height: 150px; display: flex; align-items: center; gap: 28px; border-bottom: 2px solid #f0ebf8; }
+  .av { width: 96px; height: 96px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font: 700 38px "UI"; color: #fff; flex: none; }
+  .row b { font: 700 42px "UI"; color: var(--ink); flex: 1; }
+  .tag { padding: 14px 26px; border-radius: 999px; font: 600 32px "UI"; }
+  #grain { position: absolute; inset: 0; pointer-events: none; opacity: 0.045; background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+</style>
+<script src="assets/vendor/gsap.min.js"></script>
+<script src="src/timing.js"></script>
+<script type="importmap">{ "imports": { "three": "./assets/vendor/three/three.module.min.js", "three/addons/": "./assets/vendor/three/addons/" } }</script>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="30" data-width="1080" data-height="1920">
+
+  <!-- grounds of the 3D scenes -->
+  <div class="scene lilac" id="s1"></div>
+  <div class="scene violet" id="s5"></div>
+  <div class="scene violet" id="s10"></div>
+  <div class="scene violet" id="s12"></div>
+  <canvas id="gl" width="1080" height="1920"></canvas>
+  <div id="notifs">
+    <div class="ncard"><div class="tile" style="background:linear-gradient(135deg,#7c2a54,#2a0b1d);color:#ff9cc8">L</div><div><b>Lumen Salon</b><span>Your pass is in your Wallet</span></div><i>now</i></div>
+    <div class="ncard"><div class="tile" style="background:linear-gradient(135deg,#1d2b22,#070d09);color:#b6f36a">I</div><div><b>Ironfold Gym</b><span>Reward unlocked · Guest pass</span></div><i>now</i></div>
+    <div class="ncard"><div class="tile" style="background:linear-gradient(135deg,#3a2418,#130905);color:#e8b77a">P</div><div><b>+18 points</b><span>Paper Crane Coffee · 132 of 150</span></div><i>now</i></div>
+  </div>
+  <div class="cap on-v" id="cap5" style="top:150px; opacity:0"><span class="sm">Points on the</span><span class="big">lock screen.</span></div>
+  <div class="cap on-v" id="cap12" style="top:150px; opacity:0"><span class="sm">All your</span><span class="big">passes.</span></div>
+
+  <!-- S2 · Your regulars. -->
+  <div class="scene paper" id="s2">
+    <div class="card" id="s2card" style="left:140px; top:360px; width:800px; height:1140px;">
+      <div class="cap on-p" id="cap2" style="left:64px; top:70px;"><span class="sm" style="font-size:64px">Your</span><span class="big" style="font-size:132px">regulars.</span></div>
+      <canvas class="pass" data-m="0" width="1000" height="631" id="s2pass" style="left:64px; top:390px; width:672px; height:424px;"></canvas>
+      <div class="pill" id="s2add" style="left:64px; top:900px; width:672px; height:112px; background:#14082a; color:#fff;">Add to Wallet</div>
+      <div id="s2note" style="position:absolute; left:64px; right:64px; top:1040px; text-align:center; font:500 32px 'UI'; color:var(--muted)">Scan at the counter · no app to install</div>
+    </div>
+  </div>
+
+  <!-- S3 · One scan. -->
+  <div class="scene violet" id="s3">
+    <div class="cap on-v" id="cap3" style="top:190px"><span class="sm">One</span><span class="big">scan.</span></div>
+    <div id="s3grp" style="position:absolute; left:0; top:0; width:1080px; height:1920px;">
+      <canvas class="pass" data-m="0" width="1000" height="631" id="s3pass" style="left:110px; top:720px; width:820px; height:517px; transform:rotate(-4deg)"></canvas>
+      <div class="card" id="s3qr" style="left:460px; top:1060px; width:440px; height:500px; border-radius:40px; transform:rotate(5deg)">
+        <canvas id="s3code" width="360" height="360" style="position:absolute; left:40px; top:40px; width:360px; height:360px"></canvas>
+        <div style="position:absolute; left:0; right:0; top:420px; text-align:center; font:600 30px 'UI'; color:var(--ink)">PCC 0042 7781</div>
+        <div id="s3beam" style="position:absolute; left:20px; right:20px; top:40px; height:10px; border-radius:6px; background:#7ff0dc; box-shadow:0 0 30px 10px rgba(80,230,205,0.55); opacity:0"></div>
+      </div>
+      <div class="pill" id="s3plus" style="left:120px; top:1300px; width:300px; height:120px; background:#fff; color:var(--violet); font-size:56px; font-weight:700; opacity:0">+18</div>
+      <div class="pill" id="s3pts" style="left:120px; top:1450px; width:300px; height:96px; background:rgba(255,255,255,0.18); color:#fff; font-size:40px; opacity:0"><span id="s3num">114</span>&nbsp;points</div>
+    </div>
+    <div id="s3wipe" style="position:absolute; inset:0; background:var(--paper); clip-path:circle(0px at 520px 980px)"></div>
+  </div>
+
+  <!-- S4 · the mark, alone (no name yet) -->
+  <div class="scene paper" id="s4">
+    <div id="s4pass" class="card" style="left:150px; top:720px; width:780px; height:480px; border-radius:44px; opacity:0"><div style="position:absolute; left:0; right:0; bottom:0; height:64px; background:linear-gradient(90deg,#6b2ba6,#0f8f8a)"></div></div>
+    <div id="s4wrap" style="position:absolute; left:190px; top:687px; width:700px; height:546px;">
+      <div class="mark" id="s4mark"><img class="t" src="assets/brand/w-teal.png" alt=""><img class="p" src="assets/brand/w-purple.png" alt=""><img class="b" src="assets/brand/w-base.png" alt="WYSTAK"></div>
+    </div>
+  </div>
+
+  <!-- S6 · No app. -->
+  <div class="scene paper" id="s6">
+    <div class="cap on-p" id="cap6a" style="top:200px"><span class="sm">No</span><span class="big">app.</span></div>
+    <div class="cap on-p" id="cap6b" style="top:200px; opacity:0"><span class="sm">Just their</span><span class="big">wallet.</span></div>
+    <div class="card" id="s6card" style="left:140px; top:640px; width:800px; height:820px;">
+      <div id="s6app">
+        <div style="position:absolute; left:290px; top:90px; width:220px; height:220px; border-radius:52px; background:#ece6f7"></div>
+        <div style="position:absolute; left:0; right:0; top:350px; text-align:center; font:700 50px 'UI'; color:var(--ink)">Download our app</div>
+        <div style="position:absolute; left:0; right:0; top:420px; text-align:center; font:500 34px 'UI'; color:var(--muted)">Sign up · verify · allow notifications</div>
+        <div class="pill" style="left:200px; top:540px; width:400px; height:120px; background:#ece6f7; color:#9c8fb3; font-size:46px">Install</div>
+        <div id="s6strike" style="position:absolute; left:150px; top:596px; width:500px; height:10px; border-radius:5px; background:var(--rose)"></div>
+      </div>
+      <div id="s6wal" style="opacity:0">
+        <div style="position:absolute; left:0; right:0; top:110px; text-align:center; font:700 50px 'UI'; color:var(--ink)">Add to</div>
+        <div class="pill w1" style="left:110px; top:230px; width:580px; height:130px; background:#14082a; color:#fff; font-size:46px">Apple Wallet</div>
+        <div class="pill w2" style="left:110px; top:400px; width:580px; height:130px; background:#14082a; color:#fff; font-size:46px">Google Wallet</div>
+        <div style="position:absolute; left:0; right:0; top:600px; text-align:center; font:500 34px 'UI'; color:var(--muted)">One scan at the counter. Done.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S7 · Every pass. -->
+  <div class="scene violet" id="s7">
+    <div class="cap on-v" id="cap7" style="top:190px"><span class="sm">Every</span><span class="big">pass.</span></div>
+    <div id="s7deck" style="position:absolute; left:0; top:0; width:1080px; height:1920px;">
+      <canvas class="pass s7p" data-m="4" width="1000" height="631" style="left:190px; top:880px; width:700px; height:442px"></canvas>
+      <canvas class="pass s7p" data-m="3" width="1000" height="631" style="left:190px; top:880px; width:700px; height:442px"></canvas>
+      <canvas class="pass s7p" data-m="2" width="1000" height="631" style="left:190px; top:880px; width:700px; height:442px"></canvas>
+      <canvas class="pass s7p" data-m="1" width="1000" height="631" style="left:190px; top:880px; width:700px; height:442px"></canvas>
+      <canvas class="pass s7p" data-m="0" width="1000" height="631" style="left:190px; top:880px; width:700px; height:442px"></canvas>
+    </div>
+  </div>
+
+  <!-- S8 · the reward fills up -->
+  <div class="scene paper" id="s8">
+    <div class="card" id="s8card" style="left:140px; top:430px; width:800px; height:1060px;">
+      <div style="position:absolute; left:64px; top:64px; font:700 44px 'UI'; color:var(--ink)">Paper Crane Coffee</div>
+      <div style="position:absolute; left:64px; top:122px; font:500 32px 'UI'; color:var(--muted)">Aarav M.</div>
+      <svg width="560" height="560" viewBox="0 0 560 560" style="position:absolute; left:120px; top:210px">
+        <circle cx="280" cy="280" r="236" fill="none" stroke="#efe9f8" stroke-width="40"/>
+        <circle id="s8ring" cx="280" cy="280" r="236" fill="none" stroke="#6b2ba6" stroke-width="40" stroke-linecap="round" transform="rotate(-90 280 280)" stroke-dasharray="1482.8" stroke-dashoffset="356"/>
+      </svg>
+      <div style="position:absolute; left:0; right:0; top:385px; text-align:center; font:700 150px/1 'UI'; color:var(--ink); letter-spacing:-0.03em"><span id="s8num">114</span></div>
+      <div style="position:absolute; left:0; right:0; top:550px; text-align:center; font:600 36px 'UI'; color:var(--muted)">of 150 points</div>
+      <div id="s8label" style="position:absolute; left:0; right:0; top:820px; text-align:center; font:700 48px 'UI'; color:var(--ink)">Free cappuccino</div>
+      <div id="s8sub" style="position:absolute; left:0; right:0; top:885px; text-align:center; font:500 34px 'UI'; color:var(--muted)">36 points to go</div>
+      <div id="s8check" style="position:absolute; left:340px; top:150px; width:120px; height:120px; border-radius:50%; background:var(--teal); opacity:0; display:flex; align-items:center; justify-content:center">
+        <svg width="64" height="64" viewBox="0 0 64 64"><path d="M14 33 L27 46 L51 19" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    </div>
+  </div>
+
+  <!-- S9 · See who comes back. -->
+  <div class="scene violet" id="s9">
+    <div class="cap on-v" id="cap9" style="top:180px"><span class="sm">See who</span><span class="big" style="font-size:134px">comes back.</span></div>
+    <div class="card" id="s9card" style="left:110px; top:640px; width:860px; height:820px;">
+      <div style="position:absolute; left:56px; top:56px; font:700 44px 'UI'; color:var(--ink)">Your regulars</div>
+      <div style="position:absolute; left:56px; top:114px; font:500 32px 'UI'; color:var(--muted)">Paper Crane Coffee · this week</div>
+      <div class="row r9" style="top:200px"><div class="av" style="background:#6b2ba6">AM</div><b>Aarav M.</b><span class="tag" style="background:#dff5f1; color:#0b6f6b">Came back</span></div>
+      <div class="row r9" style="top:350px"><div class="av" style="background:#0f8f8a">DS</div><b>Diya S.</b><span class="tag" style="background:#dff5f1; color:#0b6f6b">Came back</span></div>
+      <div class="row r9" style="top:500px; border-bottom:none"><div class="av" style="background:#1f2f75">KR</div><b>Kabir R.</b><span class="tag" style="background:#fde6ec; color:#b8325a">Stopped coming</span></div>
+      <div class="pill" id="s9send" style="left:56px; top:670px; width:748px; height:104px; background:var(--violet); color:#fff; font-size:38px">Send Kabir an offer</div>
+      <div class="pill" id="s9sent" style="left:56px; top:670px; width:748px; height:104px; background:#dff5f1; color:#0b6f6b; font-size:38px; opacity:0">Offer sent to Kabir's pass ✓</div>
+    </div>
+  </div>
+
+  <!-- S11 · Every visit counts. -->
+  <div class="scene violet" id="s11">
+    <div id="s11wall" style="position:absolute; left:0; top:0; width:1080px; height:1920px;">
+      <canvas class="pass m11" data-m="0" width="1000" height="631" style="left:70px; top:300px; width:480px; height:303px"></canvas>
+      <div class="ncard m11" style="left:590px; top:330px; width:430px; height:120px; opacity:1; padding:0 22px; gap:16px"><div class="tile" style="width:70px;height:70px;font-size:36px;background:linear-gradient(135deg,#3a2418,#130905);color:#e8b77a">P</div><div><b style="font-size:30px">+18 points</b><span style="font-size:24px">Paper Crane Coffee</span></div></div>
+      <div class="card m11" style="left:590px; top:490px; width:430px; height:300px; border-radius:36px"><div style="position:absolute;left:0;right:0;top:70px;text-align:center;font:700 96px 'UI';color:var(--ink)">150</div><div style="position:absolute;left:0;right:0;top:190px;text-align:center;font:600 30px 'UI';color:var(--teal)">Reward unlocked</div></div>
+      <div class="card m11" style="left:70px; top:640px; width:480px; height:200px; border-radius:36px"><div class="av" style="position:absolute;left:30px;top:52px;background:#0f8f8a">DS</div><div style="position:absolute;left:150px;top:62px;font:700 34px 'UI';color:var(--ink)">Diya S.</div><div class="tag" style="position:absolute;left:150px;top:112px;background:#dff5f1;color:#0b6f6b;font-size:24px;padding:8px 18px">Came back</div></div>
+      <canvas class="pass m11" data-m="2" width="1000" height="631" style="left:590px; top:830px; width:430px; height:271px"></canvas>
+      <canvas class="pass m11" data-m="1" width="1000" height="631" style="left:70px; top:880px; width:480px; height:303px"></canvas>
+      <div class="pill m11" style="left:590px; top:1140px; width:430px; height:100px; background:#14082a; color:#fff; font-size:34px">Add to Wallet</div>
+      <canvas class="pass m11" data-m="3" width="1000" height="631" style="left:70px; top:1220px; width:480px; height:303px"></canvas>
+      <div class="card m11" style="left:590px; top:1280px; width:430px; height:260px; border-radius:36px"><div style="position:absolute;left:0;right:0;top:60px;text-align:center;font:700 40px 'UI';color:var(--ink)">Offer sent</div><div style="position:absolute;left:0;right:0;top:130px;text-align:center;font:500 28px 'UI';color:var(--muted)">to Kabir's pass</div></div>
+      <canvas class="pass m11" data-m="4" width="1000" height="631" style="left:70px; top:1560px; width:480px; height:303px"></canvas>
+    </div>
+    <div class="cap on-v" id="cap11" style="left:0; right:0; top:760px; text-align:center; opacity:0"><span class="sm" style="font-size:96px">Every visit</span><span class="big" style="font-size:210px">counts.</span></div>
+  </div>
+
+  <!-- S13 · end card -->
+  <div class="scene paper" id="s13">
+    <div id="e13" style="position:absolute; inset:0">
+      <div id="ewrap" style="position:absolute; left:190px; top:560px; width:700px; height:546px;">
+        <div class="mark" id="emark"><img class="t" src="assets/brand/w-teal.png" alt=""><img class="p" src="assets/brand/w-purple.png" alt=""><img class="b" src="assets/brand/w-base.png" alt=""></div>
+      </div>
+      <img id="eword" src="assets/brand/logo-wordmark.png" alt="WYSTAK" style="position:absolute; left:240px; top:1150px; width:600px; height:72px; display:block">
+      <div id="etag" style="position:absolute; left:0; right:0; top:1290px; text-align:center; font:600 36px 'Poppins'; letter-spacing:0.16em; color:var(--ink); padding-left:0.16em; white-space:nowrap"><span>ALL</span> <span>YOUR</span> <span>PASSES.</span> <span style="color:var(--violet)">ONE</span> <span style="color:var(--violet)">STACK.</span></div>
+      <div id="ewal" style="position:absolute; left:0; right:0; top:1660px; text-align:center; font:600 32px 'UI'; letter-spacing:0.02em; color:var(--muted); opacity:0">Apple Wallet · Google Wallet</div>
+    </div>
+  </div>
+
+  <div id="grain"></div>
+  <audio id="mix" src="assets/audio/reel-mix.wav" data-start="0" data-duration="30" data-track-index="20" data-volume="1"></audio>
+</div>
+
+<script>
+  (function () {
+    const T = window.REEL;
+    const tl = gsap.timeline({ paused: true });
+    const show = (sel, a, b) => { tl.set(sel, { opacity: 1 }, a); tl.set(sel, { opacity: 0 }, b); };
+    // split a caption's words into letters for the blur-in
+    function chars(sel) {
+      const el = document.querySelector(sel), out = [];
+      const walk = (node) => [...node.childNodes].forEach((n) => {
+        if (n.nodeType === 3) {
+          const f = document.createDocumentFragment();
+          [...n.textContent].forEach((ch) => { const s = document.createElement("span"); s.className = "ch"; s.textContent = ch === " " ? " " : ch; f.appendChild(s); out.push(s); });
+          n.parentNode.replaceChild(f, n);
+        } else walk(n);
+      });
+      walk(el); return out;
+    }
+    function caption(sel, t, stagger) {
+      const cs = chars(sel);
+      tl.set(sel, { opacity: 1 }, t);
+      tl.fromTo(cs, { opacity: 0, y: 40, filter: "blur(12px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.32, ease: "power3.out", stagger: stagger || 0.02 }, t);
+    }
+    // the seam: cut-the-curve to the LEFT (the film's current) — out with power4.in, in with power4.out, mid-motion
+    const D = 130;
+    function exitLeft(sel, cut, dur = 0.28) { tl.to(sel, { x: -D, filter: "blur(10px)", duration: dur, ease: "power4.in" }, cut - dur); }
+    function enterLeft(sel, cut, dur = 0.36) { tl.fromTo(sel, { x: D, filter: "blur(10px)" }, { x: 0, filter: "blur(0px)", duration: dur, ease: "power4.out" }, cut); }
+
+    // ------------------------------------------------ S1 · the phone wakes on the lilac set (3D; pushes ride on it)
+    show("#s1", T.s1_open[0], T.s1_open[1]);
+
+    // ------------------------------------------------ S2 · Your regulars.  (enters still growing: the zoom-through)
+    show("#s2", T.s2_regular[0], T.s2_regular[1]);
+    tl.fromTo("#s2card", { scale: 0.86, y: 60 }, { scale: 1, y: 0, duration: 0.5, ease: "power3.out" }, T.s2_regular[0]);
+    caption("#cap2", T.s2_regular[0] + 0.12, 0.025);
+    tl.fromTo("#s2pass", { y: 120, rotation: 6, opacity: 0 }, { y: 0, rotation: -2, opacity: 1, duration: 0.55, ease: "back.out(1.5)" }, T.s2_regular[0] + 0.35);
+    tl.fromTo("#s2add", { scale: 0.7, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.35, ease: "back.out(1.6)" }, T.s2_regular[0] + 0.75);
+    tl.fromTo("#s2note", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.3 }, T.s2_regular[0] + 0.95);
+    exitLeft("#s2card", T.s2_regular[1]);
+
+    // ------------------------------------------------ S3 · One scan.  the code is read, +18 lands, the count ticks up
+    show("#s3", T.s3_scan[0], T.s3_scan[1]);
+    enterLeft("#s3grp", T.s3_scan[0]);
+    caption("#cap3", T.s3_scan[0] + 0.05, 0.03);
+    tl.set("#s3beam", { opacity: 1 }, T.scanRun[0]);
+    tl.fromTo("#s3beam", { y: 0 }, { y: 350, duration: T.scanRun[1] - T.scanRun[0], ease: "power2.inOut" }, T.scanRun[0]);
+    tl.set("#s3beam", { opacity: 0 }, T.scanRun[1]);
+    tl.fromTo("#s3qr", { boxShadow: "0 40px 90px rgba(45,15,110,0.26)" }, { boxShadow: "0 0 0 14px rgba(127,240,220,0.9), 0 40px 90px rgba(45,15,110,0.26)", duration: 0.12 }, T.scanRun[1]);
+    tl.to("#s3qr", { boxShadow: "0 0 0 0px rgba(127,240,220,0), 0 40px 90px rgba(45,15,110,0.26)", duration: 0.5 }, T.scanRun[1] + 0.12);
+    tl.fromTo("#s3plus", { scale: 0.3, opacity: 0, y: 60 }, { scale: 1, opacity: 1, y: 0, duration: 0.4, ease: "back.out(1.7)" }, T.plus);
+    tl.fromTo("#s3pts", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, T.plus + 0.08);
+    for (let v = 114; v <= 132; v++) tl.set("#s3num", { textContent: String(v) }, T.count[0] + (v - 114) / 18 * (T.count[1] - T.count[0]));
+    // the morph: the paper ground opens out of the pass as it falls back into the mark
+    tl.to("#s3pass", { scale: 0.5, rotation: 0, x: 0, y: 40, duration: 0.45, ease: "power3.in" }, T.s3_scan[1] - 0.45);
+    tl.to(["#s3qr", "#s3plus", "#s3pts", "#cap3"], { opacity: 0, scale: 0.8, duration: 0.25, ease: "power2.in" }, T.s3_scan[1] - 0.45);
+    tl.to("#s3wipe", { clipPath: "circle(1300px at 520px 980px)", duration: 0.35, ease: "power3.in" }, T.s3_scan[1] - 0.35);
+
+    // ------------------------------------------------ S4 · the mark: W rises, its two passes flick out on the hit
+    show("#s4", T.s4_mark[0], T.s4_mark[1]);
+    tl.fromTo("#s4wrap", { y: 160, scale: 0.6 }, { y: 0, scale: 1.12, duration: 0.5, ease: "power3.out" }, T.s4_mark[0]);
+    tl.fromTo("#s4mark .p", { rotation: -46, opacity: 0 }, { rotation: 0, opacity: 1, duration: 0.42, ease: "back.out(1.7)" }, T.markHit - 0.12);
+    tl.fromTo("#s4mark .t", { rotation: -64, opacity: 0 }, { rotation: 0, opacity: 1, duration: 0.46, ease: "back.out(1.7)" }, T.markHit - 0.06);
+    tl.to("#s4wrap", { scale: 1.0, duration: 0.35, ease: "power2.out" }, T.markHit);
+    // the mark settles onto its own pass, which presses in and carries us into the phone (zoom-through)
+    tl.fromTo("#s4pass", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.5)" }, T.markHit + 0.3);
+    tl.to("#s4wrap", { scale: 0.56, y: -30, duration: 0.35, ease: "back.out(1.5)" }, T.markHit + 0.3);
+    tl.to(["#s4pass", "#s4wrap"], { scale: "-=0.06", duration: 0.09, ease: "power2.out" }, T.press);
+    tl.to(["#s4pass", "#s4wrap"], { scale: 5.5, opacity: 0, filter: "blur(10px)", duration: 0.16, ease: "power4.in" }, T.press + 0.09);
+
+    // ------------------------------------------------ S5 · lock screen (3D), the push lands on the beat
+    show("#s5", T.s5_lock[0], T.s5_lock[1]);
+    tl.set("#cap5", { x: 0 }, T.s5_lock[0]);
+    caption("#cap5", T.notif + 0.05, 0.022);
+    exitLeft("#cap5", T.s5_lock[1]);
+    tl.set("#cap5", { opacity: 0 }, T.s5_lock[1]);
+
+    // ------------------------------------------------ S6 · No app.  The install sheet is struck out; the wallet turns in
+    show("#s6", T.s6_noapp[0], T.s6_noapp[1]);
+    enterLeft(["#cap6a", "#s6card"], T.s6_noapp[0]);
+    caption("#cap6a", T.s6_noapp[0] + 0.05, 0.04);
+    tl.set("#s6strike", { scaleX: 0, rotation: -8, transformOrigin: "0% 50%" }, 0);
+    tl.to("#s6strike", { scaleX: 1, duration: 0.22, ease: "power3.out" }, T.s6_noapp[0] + 0.5);
+    tl.to("#s6card", { scaleX: 0, duration: 0.16, ease: "power2.in" }, T.wallet - 0.16);              // a card turn, flat
+    tl.set("#s6app", { opacity: 0 }, T.wallet); tl.set("#s6wal", { opacity: 1 }, T.wallet);
+    tl.fromTo("#s6card", { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: "back.out(1.4)", immediateRender: false }, T.wallet);
+    tl.to("#cap6a", { opacity: 0, y: -30, duration: 0.18, ease: "power2.in" }, T.wallet - 0.18);
+    caption("#cap6b", T.wallet + 0.02, 0.025);
+    tl.fromTo("#s6wal .pill", { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(1.6)", stagger: 0.1 }, T.wallet + 0.15);
+    exitLeft(["#cap6b", "#s6card"], T.s6_noapp[1]);
+
+    // ------------------------------------------------ S7 · Every pass.  The deck fans out, then cycles faster
+    show("#s7", T.s7_passes[0], T.s7_passes[1]);
+    enterLeft("#s7deck", T.s7_passes[0]);
+    caption("#cap7", T.s7_passes[0] + 0.05, 0.035);
+    const fan = [[-150, -300, -9], [-75, -150, -4.5], [0, 0, 0], [75, 150, 4.5], [150, 300, 9]];
+    gsap.utils.toArray(".s7p").forEach((el, i) => {
+      tl.fromTo(el, { x: 0, y: 0, rotation: 0 }, { x: fan[i][0], y: fan[i][1], rotation: fan[i][2], duration: 0.5, ease: "back.out(1.4)" }, T.s7_passes[0] + 0.3 + (4 - i) * 0.04);
+    });
+    // the front pass slides out and files in at the back, three times, faster each time
+    const deck = gsap.utils.toArray(".s7p");
+    deck.forEach((el, i) => tl.set(el, { zIndex: i }, T.s7_passes[0]));
+    let order = [0, 1, 2, 3, 4];
+    T.cycle.forEach((ct, k) => {
+      const d = 0.34 - k * 0.07, front = order[4];
+      tl.to(deck[front], { x: "-=420", rotation: "-=12", duration: d * 0.5, ease: "power3.in" }, ct);
+      order = [front, ...order.slice(0, 4)];
+      order.forEach((idx, slot) => {
+        tl.set(deck[idx], { zIndex: slot }, ct + d * 0.45);
+        tl.to(deck[idx], { x: fan[slot][0], y: fan[slot][1], rotation: fan[slot][2], duration: d * 0.6, ease: "power3.out" }, ct + d * 0.45);
+      });
+    });
+    exitLeft(["#cap7", "#s7deck"], T.s7_passes[1]);
+
+    // ------------------------------------------------ S8 · the reward fills up; stillness, then the drop pulls back
+    show("#s8", T.s8_ring[0], T.s8_ring[1]);
+    enterLeft("#s8card", T.s8_ring[0]);
+    const C = 1482.8;
+    tl.fromTo("#s8ring", { attr: { "stroke-dashoffset": C * (1 - 114 / 150) } }, { attr: { "stroke-dashoffset": 0 }, duration: T.ring[1] - T.ring[0], ease: "power2.inOut" }, T.ring[0]);
+    // each number appears where the eased ring reaches it
+    const ringEase = gsap.parseEase("power2.inOut");
+    const inv = (y) => { let a = 0, b = 1; for (let n = 0; n < 24; n++) { const m = (a + b) / 2; if (ringEase(m) < y) a = m; else b = m; } return (a + b) / 2; };
+    for (let v = 115; v <= 150; v++) {
+      const at = T.ring[0] + inv((v - 114) / 36) * (T.ring[1] - T.ring[0]);
+      tl.set("#s8num", { textContent: String(v) }, at);
+      tl.set("#s8sub", { textContent: v < 150 ? (150 - v) + " points to go" : "at Paper Crane Coffee" }, at);
+    }
+    tl.set("#s8label", { textContent: "Free cappuccino unlocked" }, T.unlock);
+    tl.fromTo("#s8check", { scale: 0.2, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.35, ease: "back.out(1.8)" }, T.unlock);
+    tl.to("#s8card", { scale: 0.86, duration: 0.3, ease: "power4.in" }, T.s8_ring[1] - 0.3);     // inverse zoom: pull back...
+
+    // ------------------------------------------------ S9 · See who comes back.  ...and the owner's view lands from oversized
+    show("#s9", T.s9_owner[0], T.s9_owner[1]);
+    tl.fromTo("#s9card", { scale: 1.22 }, { scale: 1, duration: 0.45, ease: "power4.out" }, T.s9_owner[0]);
+    caption("#cap9", T.s9_owner[0] + 0.1, 0.025);
+    gsap.utils.toArray(".r9").forEach((el, i) => tl.fromTo(el, { x: 80, opacity: 0 }, { x: 0, opacity: 1, duration: 0.35, ease: "power3.out" }, T.rows[i]));
+    tl.fromTo("#s9send", { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(1.6)" }, T.rows[2] + 0.35);
+    tl.to("#s9send", { scale: 0.95, duration: 0.08, ease: "power2.out" }, T.send - 0.08);
+    tl.set("#s9send", { opacity: 0 }, T.send); tl.fromTo("#s9sent", { scale: 0.95, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(1.6)" }, T.send);
+    tl.to(["#s9card", "#cap9"], { scale: 3.2, opacity: 0, filter: "blur(10px)", duration: 0.3, ease: "power4.in" }, T.s9_owner[1] - 0.3);   // zoom-through into the macro
+
+    // ------------------------------------------------ S10 · macro cuts on the drop (3D)
+    show("#s10", T.s10_macro[0], T.s10_macro[1]);
+
+    // ------------------------------------------------ S11 · the wall of moments, then Every visit counts.
+    show("#s11", T.s11_counts[0], T.s11_counts[1]);
+    enterLeft("#s11wall", T.s11_counts[0]);
+    tl.fromTo("#s11wall", { y: 260 }, { y: -260, duration: T.countsWord - T.s11_counts[0], ease: "power1.inOut" }, T.s11_counts[0]);
+    tl.fromTo(".m11", { scale: 0.85, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(1.5)", stagger: 0.05 }, T.s11_counts[0]);
+    tl.to(".m11", { scale: 1.25, opacity: 0, filter: "blur(8px)", duration: 0.25, ease: "power3.in", stagger: 0.012 }, T.countsWord - 0.22);
+    tl.set("#cap11", { opacity: 1 }, T.countsWord);
+    tl.fromTo("#cap11", { scale: 1.35, filter: "blur(14px)" }, { scale: 1, filter: "blur(0px)", duration: 0.45, ease: "power4.out" }, T.countsWord);
+    exitLeft("#cap11", T.s11_counts[1]);
+
+    // ------------------------------------------------ S12 · All your passes. (3D: the Wallet stack fills; then up and out)
+    show("#s12", T.s12_stack[0], T.s12_stack[1]);
+    caption("#cap12", T.s12_stack[0] + 0.25, 0.03);
+    tl.to("#cap12", { y: -260, opacity: 0, duration: 0.35, ease: "power4.in" }, T.s12_stack[1] - 0.35);
+
+    // ------------------------------------------------ S13 · end: everything rises in (upward seam), the mark fans, the name, the line
+    show("#s13", T.s13_end[0], T.dur + 1);
+    tl.fromTo("#e13", { y: 260 }, { y: 0, duration: 0.45, ease: "power4.out" }, T.s13_end[0]);
+    tl.fromTo("#ewrap", { scale: 0.72 }, { scale: 0.72, duration: 0.01 }, T.s13_end[0]);
+    tl.fromTo("#emark .p", { rotation: -40 }, { rotation: 0, duration: 0.45, ease: "back.out(1.8)" }, T.fan);
+    tl.fromTo("#emark .t", { rotation: -60 }, { rotation: 0, duration: 0.5, ease: "back.out(1.8)" }, T.fan + 0.06);
+    tl.to("#ewrap", { scale: 0.86, duration: 0.45, ease: "back.out(1.7)" }, T.fan);
+    tl.fromTo("#eword", { clipPath: "inset(0 100% 0 0)", filter: "blur(8px)", opacity: 0 }, { clipPath: "inset(0 0% 0 0)", filter: "blur(0px)", opacity: 1, duration: 0.5, ease: "power3.out" }, T.wordmark);
+    tl.fromTo("#etag span", { opacity: 0, y: 18, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.32, ease: "power2.out", stagger: (T.button - T.tagline) / 4 }, T.tagline);
+    tl.fromTo("#etag span:last-child", { scale: 1 }, { scale: 1.12, duration: 0.09, yoyo: true, repeat: 1, ease: "power2.out" }, T.button + 0.05);
+    tl.fromTo("#ewal", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }, T.wallets);
+    tl.fromTo("#e13", { scale: 1 }, { scale: 1.025, duration: T.dur - T.button, ease: "none", transformOrigin: "50% 50%" }, T.button);
+
+    tl.set({}, {}, T.dur);
+    window.__timelines = window.__timelines || {};
+    window.__timelines["main"] = tl;
+  })();
+</script>
+<script type="module">
+  import { buildStage } from "./src/scene.js";
+  import { drawPassFace, drawQR, MERCHANTS } from "./src/passes.js";
+  window.__hf = window.__hf || {};
+  window.__hf.buildReady = window.__hf.buildReady || {};
+  let stage = null;
+  const ready = (async () => {
+    await document.fonts.load("700 40px UI"); await document.fonts.load("600 40px UI"); await document.fonts.load("500 40px UI");
+    document.querySelectorAll("canvas.pass").forEach((cv) => drawPassFace(cv.getContext("2d"), cv.width, cv.height, MERCHANTS[+cv.dataset.m]));
+    const code = document.getElementById("s3code"); drawQR(code.getContext("2d"), 12, 12, 336, 21);
+    stage = await buildStage(document.getElementById("gl"));
+    stage.renderAt(window.__hfThreeTime || 0);
+  })();
+  window.__hf.buildReady["stage"] = ready;
+  window.addEventListener("hf-seek", (e) => { if (stage) stage.renderAt(e.detail.time); });
+</script>
+</body>
+</html>

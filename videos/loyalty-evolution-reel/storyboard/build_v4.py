@@ -30,16 +30,28 @@ GROUPS = [  # (first word, last word, accent word indices)
 LIGHT = [(2.72, 5.32), (14.88, 18.18), (21.42, 33.87)]
 theme = lambda t: "light" if any(a <= t < b for a, b in LIGHT) else "dark"
 cap_html, cap_js = [], []
+ACC = {"light": "#6b2ba6", "dark": "#00e0a3"}
 for gi, (a, b, acc) in enumerate(GROUPS):
-    s = WT[a][1]
+    s0 = WT[a][1]
     nxt = WT[GROUPS[gi + 1][0]][1] if gi + 1 < len(GROUPS) else 45.55
     e = min(nxt - 0.04, WT[b][2] + 0.55)
     if WT[b][0] in ("cash.",):  # hand straight over to the next beat
         e = min(e, 9.05)
-    words = "".join(f'<span class="cw{" acc" if i in acc else ""}" id="w{i}">{WT[i][0]}</span> ' for i in range(a, b + 1))
-    pos = " top" if 37.0 <= s < 41.24 else ""  # over the hand-held phone, captions move up so the screen stays clear
-    cap_html.append(f'<div class="cap {theme(s)}{pos}" id="cg{gi}"><div class="ci">{words.strip()}</div></div>')
-    cap_js.append([gi, round(s, 3), round(e, 3), [[i, round(WT[i][1], 3)] for i in range(a, b + 1)]])
+    if WT[b][0] == "login.":   # clear the frame on the lock click, before Wystak is introduced
+        e = min(e, 29.62)
+    # kinetic layout: the accent word(s) get their own big line; the rest sit small above / below
+    lines, cur, cur_big = [], [], None
+    for i in range(a, b + 1):
+        big = i in acc
+        if cur and big != cur_big:
+            lines.append((cur_big, cur)); cur = []
+        cur.append(i); cur_big = big
+    lines.append((cur_big, cur))
+    th = theme(s0)
+    inner = "".join(f'<div class="cl{" big" if big else ""}">' + " ".join(f'<span class="cw{" acc" if i in acc else ""}" id="w{i}">{WT[i][0]}</span>' for i in ids) + "</div>" for big, ids in lines)
+    pos = " top" if 37.0 <= s0 < 41.24 else ""  # over the hand-held phone, captions move up so the screen stays clear
+    cap_html.append(f'<div class="cap {th}{pos}" id="cg{gi}"><div class="ci">{inner}</div></div>')
+    cap_js.append([gi, round(s0, 3), round(e, 3), [[i, round(WT[i][1], 3), 1 if i in acc else 0] for i in range(a, b + 1)], ACC[th]])
 
 # ------------------------------------------------------------------ drawing helpers
 def glyph(name, fg, size):
@@ -98,7 +110,7 @@ def status_bar(dark_text=False):
 
 
 def notif(id_, icon, title, time, body, cls=""):
-    return (f'<div class="nt {cls}" id="{id_}">{icon}<div class="nb"><div class="nh"><b>{title}</b><span>{time}</span></div>'
+    return (f'<div class="nt {cls}" id="{id_}"><i class="gs"></i>{icon}<div class="nb"><div class="nh"><b>{title}</b><span>{time}</span></div>'
             f'<div class="nx">{body}</div></div></div>')
 
 
@@ -191,10 +203,7 @@ frag_js = json.dumps([[i, x, y, z, r] for i, _, x, y, z, r in FRAGS])
 CHIPS = [("ch1", "Visit", "No. 12", 880), ("ch2", "Order", "Flat white", 1020), ("ch3", "Prefers", "Oat milk, extra hot", 1160)]
 chips_html = "".join(f'<div class="chip3" id="{i}" style="top:{t}px"><span>{k}</span><b>{v}</b></div>' for i, k, v, t in CHIPS)
 
-S = {
-    "open": "assets/stills/in-open.jpg", "counter": "assets/stills/in-counter.jpg", "visit": "assets/stills/in-visit.jpg",
-    "purchase": "assets/stills/in-purchase.jpg", "friends": "assets/stills/in-friends.jpg", "notice": "assets/stills/in-notice.jpg",
-}
+S = {}  # v4.1: the people beats are real footage now (see the <video> elements in v4_template.html)
 TPL = (HERE / "v4_template.html").read_text()
 rep = {
     "%%DUR%%": str(DUR), "%%DUR_END%%": str(round(DUR - 45.62, 2)),

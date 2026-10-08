@@ -1,0 +1,200 @@
+[
+ {
+  "id": "01",
+  "start": 0.0,
+  "end": 1.17,
+  "poster": 0.6,
+  "vo": "Want to know something…",
+  "see": "Club footage, warm red light. Caption in Poppins.",
+  "moves": "Rises from black on a slow push; the words pop in on the voice."
+ },
+ {
+  "id": "02",
+  "start": 1.17,
+  "end": 2.22,
+  "poster": 1.7,
+  "vo": "…about your customers?",
+  "see": "Salon footage; “customers?” big in Wystak violet.",
+  "moves": "Soft zoom-through dissolve from the club."
+ },
+ {
+  "id": "03",
+  "start": 2.22,
+  "end": 3.36,
+  "poster": 2.9,
+  "vo": "They never stopped being rewarded.",
+  "see": "Café: a cup handed across the counter.",
+  "moves": "Zoom-through; “rewarded.” lands in violet."
+ },
+ {
+  "id": "04",
+  "start": 3.36,
+  "end": 4.57,
+  "poster": 4.0,
+  "vo": "They just stopped noticing.",
+  "see": "Lock screen, three unread alerts (Brew Club, AX-CAROMA, Gmail).",
+  "moves": "Phone swings in on a 3D move, alerts pop in with soft bubble pops, the screen dims and sleeps."
+ },
+ {
+  "id": "05",
+  "start": 4.57,
+  "end": 7.17,
+  "poster": 6.0,
+  "vo": "Every counter started collecting data, not just cash.",
+  "see": "Boutique, bar and café counters; a frosted customer profile card.",
+  "moves": "Profile card swings in, its rows fill one by one."
+ },
+ {
+  "id": "06",
+  "start": 7.17,
+  "end": 8.8,
+  "poster": 8.0,
+  "vo": "Businesses learned to remember.",
+  "see": "Wide salon interior.",
+  "moves": "Warm light leak on the cut."
+ },
+ {
+  "id": "07",
+  "start": 8.8,
+  "end": 11.25,
+  "poster": 10.0,
+  "vo": "Every visit. Every purchase. Every preference.",
+  "see": "Cinema, boutique, latte pour; glass chips (Visit No. 12, Silk gown, Oat milk).",
+  "moves": "A chip lands on each word; the key word in violet."
+ },
+ {
+  "id": "08",
+  "start": 11.25,
+  "end": 13.56,
+  "poster": 12.4,
+  "vo": "And social media made staying connected effortless.",
+  "see": "Home screen of app icons; the café’s WhatsApp banner.",
+  "moves": "Icons pop in, the banner drops, the camera pushes through it."
+ },
+ {
+  "id": "09",
+  "start": 13.56,
+  "end": 16.1,
+  "poster": 15.0,
+  "vo": "Cafés remembered birthdays better than your cousins.",
+  "see": "Birthday footage, two floating WhatsApp messages.",
+  "moves": "Messages materialise out of blur, one after the other."
+ },
+ {
+  "id": "10",
+  "start": 16.1,
+  "end": 18.14,
+  "poster": 17.4,
+  "vo": "But loyalty started living everywhere.",
+  "see": "Lock screen flooding with alerts.",
+  "moves": "Seven alerts stack up, then burst out around the phone."
+ },
+ {
+  "id": "11",
+  "start": 18.14,
+  "end": 22.08,
+  "poster": 20.5,
+  "vo": "An SMS. A chat. An app they deleted. Another app. Another login.",
+  "see": "One phone: SMS, chat, deleting the app, the store, a login.",
+  "moves": "Each screen slides in on its word (no hand)."
+ },
+ {
+  "id": "12",
+  "start": 22.08,
+  "end": 24.9,
+  "poster": 23.6,
+  "vo": "What if you met them where they already look, every single day?",
+  "see": "The lock screen, alone and quiet.",
+  "moves": "The phone rises slowly into frame; music drops to its quiet build."
+ },
+ {
+  "id": "13",
+  "start": 24.9,
+  "end": 27.3,
+  "poster": 26.0,
+  "vo": "What if loyalty didn’t need another place?",
+  "see": "The scattered places float round the phone.",
+  "moves": "Pieces drift in, then get pulled into the phone."
+ },
+ {
+  "id": "14",
+  "start": 27.3,
+  "end": 28.2,
+  "poster": 27.9,
+  "vo": "It already has one.",
+  "see": "Wallet: the Cafe Aroma pass drops onto the stack.",
+  "moves": "Pass lands with weight, the frame floods violet. The music opens up (the problem-to-solution turn)."
+ },
+ {
+  "id": "15",
+  "start": 28.2,
+  "end": 29.4,
+  "poster": 28.9,
+  "vo": "The wallet on their phone.",
+  "see": "iPhone and Android side by side, Apple Wallet and Google Wallet, equal size.",
+  "moves": "Phones turn slowly in the light."
+ },
+ {
+  "id": "16",
+  "start": 29.4,
+  "end": 30.17,
+  "poster": 29.85,
+  "vo": "(pause)",
+  "see": "The Wallet pulls back; a frosted glass pass settles down out of soft focus. The W mark rises onto it.",
+  "moves": "Camera pulls back (Wallet and glass card both shrinking, so the move carries across). Voice silent, music eases down: the turn from problem to solution."
+ },
+ {
+  "id": "17",
+  "start": 30.17,
+  "end": 31.55,
+  "poster": 30.95,
+  "vo": "Introducing Why-stack.",
+  "see": "Your horizontal logo, built in motion on the glass pass; INTRODUCING above.",
+  "moves": "On “Introducing” the purple and teal passes fan out from behind the navy pass into one stack; a beat; on “Why-stack” the letters W-Y-S-T-A-K cascade in with one soft chime; light runs across the logo."
+ },
+ {
+  "id": "18",
+  "start": 31.55,
+  "end": 33.38,
+  "poster": 32.4,
+  "vo": "One scan at your counter. No app.",
+  "see": "Hand-held phone at the counter: the Cafe Aroma card with Add to Apple Wallet / Google Wallet.",
+  "moves": "The glass pass zooms forward past camera into the counter footage, which is still pushing in as it arrives."
+ },
+ {
+  "id": "19",
+  "start": 33.38,
+  "end": 34.42,
+  "poster": 34.0,
+  "vo": "Seconds after they pay,",
+  "see": "Payment done on the phone.",
+  "moves": "A soft confirmation ding."
+ },
+ {
+  "id": "20",
+  "start": 34.42,
+  "end": 35.97,
+  "poster": 35.3,
+  "vo": "points land on their lock screen.",
+  "see": "Lock screen: the Wallet push and the points ring 132 → 150.",
+  "moves": "Push drops in, opens into the ring, the ring fills."
+ },
+ {
+  "id": "21",
+  "start": 35.97,
+  "end": 37.34,
+  "poster": 36.7,
+  "vo": "Now they notice.",
+  "see": "Every category’s pass in one Wallet stack over concert, club and café footage.",
+  "moves": "Passes deal into one stack; the last shot blows out to white."
+ },
+ {
+  "id": "22",
+  "start": 37.34,
+  "end": 40.0,
+  "poster": 39.6,
+  "vo": "Why-stack. All your passes. One stack.",
+  "see": "End card: the stacked logo, ALL YOUR PASSES. ONE STACK.",
+  "moves": "Logo settles in, wordmark wipes on, tagline rises letter by letter; held 0.4s."
+ }
+]
