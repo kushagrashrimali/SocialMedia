@@ -1,24 +1,27 @@
-"""Edit the licensed music bed for the reel: Mixkit "Cat Walk" (track 371, Mixkit Stock Music Free License).
+"""Edit the licensed music bed for the reel, v10: Mixkit "A New Life" (track 543, Mixkit Stock Music Free License).
 
-Structure, cut to the voice:
-  0.00-29.62  the track's own intro and build (its drop sits at 29.66, so the build stops just short of it)
-  29.62-31.20 silence under the Wystak introduction (the chime lands at 30.12)
-  31.20-34.87 the bars before the drop, low-passed and opening up under the held lockup and the question
-  34.87       the drop lands on "It already has one."
-  46.37-51.00 the track's own ending, beat-aligned, under the logo, fading out over the last second
-v5: the introduction holds 1.0s longer (voice re-gapped at 30.40), so everything after it moves by 1.0s.
-usage (from the project folder): python3 -I sound/make_music.py /path/to/371.mp3
+v10 replaces the dance track ("Cat Walk") with a calm, cinematic one: sustained chords that swell, no kick drum.
+Structure, cut to the voice (v10 time, see storyboard/tmap_v10.py):
+  0.00-29.62  a later phrase of the track (from 39.64), softened (a gentle low-pass, -3 dB): the problem
+  29.62-30.17 silence: the lock click and the pause
+  30.17-36.29 the track's quiet build (18.52-24.64) rises under the introduction and the question
+  36.29       its first full entry (24.64) lands on "It already has one."
+  36.29-51.00 the track runs on from there, fading out over the last 1.4s
+The bed is levelled to -21 LUFS integrated; index.html plays it at 0.5 and the voice carve ducks it further.
+usage (from the project folder): python3 -I sound/make_music.py assets/music-src/mixkit-543-a-new-life.mp3
 """
-import pathlib, subprocess, sys, wave
+import pathlib, re, subprocess, sys, wave
 import numpy as np
+from scipy.signal import butter, sosfilt
 
 SR = 48000
-DUR = 51.0          # v9: ends one second after "One stack."
-DROP_AT = 34.87     # "It already has one."
-PRE_AT = 31.20      # filtered build starts under the held lockup
+DUR = 51.0
+ENTRY = 24.64          # the track's first full entry (source time)
+ENTRY_AT = 36.29       # "It already has one." (v10 time)
+PAUSE = (29.62, 30.17)
+PROBLEM_SRC = 39.64    # a phrase start, 7.5s phrases from the entry
+TARGET_LUFS = -21.0
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-DROP = 29.66          # first kick of the drop in the source
-BEAT = 0.46           # ~130 BPM
 SRC = sys.argv[1]
 
 raw = subprocess.run(["ffmpeg", "-v", "error", "-i", SRC, "-ac", "2", "-ar", str(SR), "-f", "f32le", "-"], capture_output=True, check=True).stdout
@@ -28,52 +31,37 @@ out = np.zeros((N, 2))
 S = lambda t: int(round(t * SR))
 
 
-def fade(n, a, r):
-    e = np.ones(n)
-    if a: e[:a] = np.linspace(0, 1, a)
-    if r: e[-r:] *= np.linspace(1, 0, r)
-    return e[:, None]
-
-
-def put(t_out, t_src, dur, fin=0.004, fout=0.004, gain=1.0):
+def put(t_out, t_src, dur, fin=0.01, fout=0.01, gain=1.0, lowpass=None):
     seg = x[S(t_src):S(t_src) + S(dur)].copy()
-    seg *= fade(len(seg), S(fin), S(fout)) * gain
+    if lowpass:
+        seg = sosfilt(butter(2, lowpass / (SR / 2), "low", output="sos"), seg, axis=0)
+    e = np.ones(len(seg))
+    if fin: e[:S(fin)] = np.linspace(0, 1, S(fin)) ** 2
+    if fout: e[-S(fout):] *= np.linspace(1, 0, S(fout)) ** 1.5
     a = S(t_out)
-    out[a:a + len(seg)] += seg[: N - a]
+    out[a:a + len(seg)] += (seg * e[:, None] * gain)[: N - a]
 
 
-def lowpass_sweep(sig, f0, f1):
-    """one-pole low-pass whose cutoff glides exponentially from f0 to f1 over the segment"""
-    n = len(sig); y = np.zeros_like(sig); fc = f0 * (f1 / f0) ** (np.arange(n) / n)
-    a = np.exp(-2 * np.pi * fc / SR); s = np.zeros(2)
-    for i in range(n):
-        s = (1 - a[i]) * sig[i] + a[i] * s
-        y[i] = s
-    return y
+# 1 · the problem: a softened later phrase, eased in, gone by the lock click
+put(0.0, PROBLEM_SRC, PAUSE[0], fin=0.35, fout=0.3, gain=10 ** (-3 / 20), lowpass=4200.0)
+# 2 · the pause is silent; 3 · the quiet build rises under the introduction (lifted, it is very soft in the source)
+pre = ENTRY_AT - PAUSE[1]
+put(PAUSE[1], ENTRY - pre, pre + 0.01, fin=0.9, fout=0.0, gain=10 ** (8 / 20))
+# 4 · the first full entry on "It already has one", running to the end
+put(ENTRY_AT, ENTRY, DUR - ENTRY_AT, fin=0.004, fout=1.4)
 
 
-# 1 · intro and build, stopping a hair before the drop
-put(0.0, 0.0, 29.62, fin=0.02, fout=0.03)
-# 2 · silence under the introduction, then the bars before the drop, filter opening up
-pre = DROP_AT - PRE_AT
-seg = x[S(DROP - pre):S(DROP)].copy()
-seg = lowpass_sweep(seg, 220.0, 9000.0) * (np.linspace(0.0, 1.0, len(seg)) ** 0.8 * 0.6 + 0.4)[:, None]
-seg *= fade(len(seg), S(0.9), 0)
-out[S(PRE_AT):S(PRE_AT) + len(seg)] += seg
-# 3 · the drop on "It already has one", running to the switch point on a beat
-sw = DROP_AT + 25 * BEAT                                 # 46.37
-put(DROP_AT, DROP, sw - DROP_AT + 0.01, fin=0.002, fout=0.02)
-# 4 · the track's ending, entered on a beat, under the logo
-end_src = DROP + round((111.5 - DROP) / BEAT) * BEAT
-put(sw, end_src, DUR - sw, fin=0.02, fout=1.1)
+def write(path, y):
+    with wave.open(str(path), "wb") as w:
+        w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR)
+        w.writeframes((np.clip(y, -1, 1) * 32767).astype("<i2").tobytes())
 
-# lift the quiet intro so the film starts with energy, easing back to unity as the track builds
-g = np.ones(N); g[:S(13.0)] = 2.0; g[S(13.0):S(16.0)] = np.linspace(2.0, 1.0, S(16.0) - S(13.0))
-out *= g[:, None]
-out *= fade(N, 0, S(0.4))
-pk = np.abs(out).max()
-out = out / pk * 10 ** (-1.0 / 20)
-with wave.open(str(ROOT / "assets/music-bed.wav"), "wb") as w:
-    w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR)
-    w.writeframes((np.clip(out, -1, 1) * 32767).astype("<i2").tobytes())
-print("wrote assets/music-bed.wav", f"{N / SR:.2f}s", "switch", round(sw, 2), "ending from", round(end_src, 2))
+
+dst = ROOT / "assets/music-bed.wav"
+write(dst, out)
+log = subprocess.run(["ffmpeg", "-i", str(dst), "-af", "ebur128", "-f", "null", "-"], capture_output=True, text=True).stderr
+lufs = float(re.findall(r"I:\s+(-?[\d.]+) LUFS", log)[-1])
+g = 10 ** ((TARGET_LUFS - lufs) / 20)
+g = min(g, 10 ** (-1.0 / 20) / np.abs(out).max())          # never above -1 dBFS peak
+write(dst, out * g)
+print("wrote assets/music-bed.wav", f"{N / SR:.2f}s", f"measured {lufs:.1f} LUFS, gain {20 * np.log10(g):+.1f} dB")

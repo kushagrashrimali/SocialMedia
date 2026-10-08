@@ -13,7 +13,8 @@ Licences:
 ### Music
 | File | Source | Licence | Notes |
 |---|---|---|---|
-| music-src/mixkit-371-cat-walk.mp3 | Mixkit "Cat Walk" (track 371), https://mixkit.co/free-stock-music/ , file https://assets.mixkit.co/music/371/371.mp3 | Mixkit Stock Music Free License (https://mixkit.co/license/#musicFree) | Edited to the voice by `sound/make_music.py` into `music-bed.wav` (build, silence, filtered pre-drop, drop on "It already has one", ending under the logo) |
+| music-src/mixkit-543-a-new-life.mp3 | Mixkit "A New Life" (track 543), https://mixkit.co/free-stock-music/ , file https://assets.mixkit.co/music/543/543.mp3 | Mixkit Stock Music Free License (https://mixkit.co/license/#musicFree) | v10 bed, edited by `sound/make_music.py` into `music-bed.wav` (softened phrase, silent pause, quiet build under the introduction, full entry on "It already has one") |
+| music-src/mixkit-371-cat-walk.mp3 | Mixkit "Cat Walk" (track 371), https://mixkit.co/free-stock-music/ , file https://assets.mixkit.co/music/371/371.mp3 | Mixkit Stock Music Free License (https://mixkit.co/license/#musicFree) | v5-v9 bed; not in the current mix |
 
 ### Video
 Times include the overlap with the next shot (every cut is a zoom-through dissolve). Clips are cut and graded by `storyboard/prep_v5.py` (v4-counter, v4-notice by `storyboard/prep_v3.py`), one shared warm grade.
@@ -42,7 +43,8 @@ Previews from https://assets.mixkit.co/active_storage/sfx/<id>/<id>-preview.mp3,
 
 | File | Mixkit title | Used for |
 |---|---|---|
-| sfx-src/mixkit-766.mp3 | Alert quick chime | every phone notification (quick three-note ascending chime) |
+| sfx-src/mixkit-2357.mp3 | Bubble pop up alert notification | v10: every phone notification (its first two pops) |
+| sfx-src/mixkit-766.mp3 | Alert quick chime | not in the current mix (v6-v9 notification) |
 | sfx-src/mixkit-2867.mp3 | Confirmation tone | not in the current mix (v5 notification) |
 | sfx-src/mixkit-2870.mp3 | Correct answer tone | payment done, reward unlocked |
 | sfx-src/mixkit-2585.mp3 | On or off light switch tap | the lock click |
@@ -65,7 +67,7 @@ Previews from https://assets.mixkit.co/active_storage/sfx/<id>/<id>-preview.mp3,
 
 ## Code libraries
 
-- GSAP 3.15.0 core and plugins (CustomEase, CustomBounce, CustomWiggle, Physics2DPlugin, SplitText), from npm `gsap`, GSAP standard "no charge" licence (https://gsap.com/standard-license): `vendor/gsap.min.js`, `vendor/gsap-plugins/`.
+- GSAP 3.15.0 core and plugins (CustomEase, CustomBounce, CustomWiggle, SplitText; Physics2DPlugin is vendored but unused since v10), from npm `gsap`, GSAP standard "no charge" licence (https://gsap.com/standard-license): `vendor/gsap.min.js`, `vendor/gsap-plugins/`.
 - HyperFrames registry components (installed with `hyperframes add`, used as references for the hand, touch rings, bursts and morphs): `compositions/components/`.
 
 ## Drawn for this reel
@@ -79,6 +81,6 @@ Previews from https://assets.mixkit.co/active_storage/sfx/<id>/<id>-preview.mp3,
 - `ui/wallpaper.jpg`, `ui/screen-scan.png`, `ui/screen-pay.png`: drawn in code (`storyboard/screens/`).
 - Every phone screen, chat, notification, the Cafe Aroma pass, the category pass strips (Movie Club, Salon Club, Style Rewards, Live Pass, Club Night: generic illustrations, not merchants), captions and type card: HTML/CSS generated into `index.html` by `storyboard/build_v5.py`.
 - `brand/logo-mark.png`, `brand/logo-wordmark.png`: crops of WYSTAK's own logo files (`wystak/brand/`).
-- Fonts: Archivo, Archivo Black, Manrope, IBM Plex Mono (SIL Open Font License, via @fontsource on npm). GSAP from npm.
+- Fonts: Poppins (every overlay since v10), Inter Tight (phone interfaces), JetBrains Mono; Archivo, Archivo Black, Manrope, IBM Plex Mono in earlier versions (SIL Open Font License, via @fontsource on npm; Poppins licence in `vendor/fonts/OFL-poppins.txt`). GSAP from npm.
 - `voiceover.wav`: WYSTAK's ElevenLabs recording (Kendra), edited.
 - `music-bed.wav`: the Mixkit track edited by `sound/make_music.py`. `sfx.wav`: the Mixkit sound effects above, placed by `sound/make_sound.py` (synthesised: the futuristic Wystak chime under the introduction and the low logo thump).

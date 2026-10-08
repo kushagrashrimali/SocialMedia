@@ -24,7 +24,17 @@ The full creative brief from the user is in the conversation that made `wystak/s
 - assets/footage/, assets/stills/ — licensed stock and archival media; every file is listed in `assets/MANIFEST.md` with source, URL and licence.
 - assets/music-bed.wav, assets/sfx.wav — synthesised locally (`sound/make_sound.py`); the bed is carved under the voice (hyperframes-audio carve, strength 0.6).
 
-## Customizations (v9, current: v8 with the launch film's introduction, 51.0s)
+## Customizations (v10, current: v9 with a pause before Wystak, one typeface, calmer sound, 51.0s)
+
+- A pause before the introduction: after the lock click the screen stays black and silent for about half a second, then the light comes up on the frosted pass. The introduction itself plays about 1.45x slower (30.17-33.34). The 1.5s this adds comes back from short slices of silence between later lines and from the end hold (now 0.6s), so the reel still ends at 51.0s. Every time after the click is written in v9 time and mapped by one table, `storyboard/tmap_v10.py`; `storyboard/retime_v10.py` re-cuts the voice and word timings to match.
+- One typeface: Poppins (500/600/700) for every overlay: captions, INTRODUCING, both taglines, the Wallet labels, and the floating profile, chip, OTP and points cards. Caption words are all the same weight; the key word sits on its own larger line in Wystak violet (#6b2ba6 on light grounds, a light tint #c3a2ff on footage and violet). Phone screens keep their iOS-like interface type.
+- No sparkle bursts and no glint sounds. No hand cursor: the taps still happen (the UI reacts and a soft touch ring marks each press), but no hand is shown.
+- Notifications: a soft two-note bubble pop (Mixkit 2357, first two pops), quieter than v9's chime.
+- Effects about 3.5 dB quieter overall (sfx at 0.27, individual cues lowered further: lock click, dings, logo bell, thumps).
+- Music: Mixkit "A New Life" (543), a calm cinematic track with no kick drum, levelled to -21 LUFS and played at 0.5 (v9's bed was about 8 dB louder against the voice). Softened under the problem, silent in the pause, its quiet build under the introduction, its first full entry on "It already has one."
+- Build: `python3 -I storyboard/retime_v10.py`, `python3 -I sound/make_music.py assets/music-src/mixkit-543-a-new-life.mp3`, `python3 -I sound/make_sound.py`, `python3 -I storyboard/build_v10.py`, then the carve, then render.
+
+## Customizations (v9: v8 with the launch film's introduction, 51.0s)
 
 - The Wystak introduction (29.66-31.9) is the launch film condensed into the silence: the lockup is first seen through a frosted glass pass; the pass tips back, clears and lifts away under a light sweep while the Wystak chime lands; four glass passes (faint teal, plum and navy tints, then clear) deal in, fan, and close into one stack behind the mark; "ALL YOUR PASSES. ONE STACK." resolves word by word (Archivo SemiBold, 0.16em); then the whole lockup flies into the rising phone as before. Glass set-down and settle sounds come from the launch film.
 - Length 51.0s: the end card now holds one second after "One stack." (was 2.4s); the music's ending fades over the last 1.1s.
