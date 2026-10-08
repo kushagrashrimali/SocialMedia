@@ -5,7 +5,7 @@ Structure, cut to the voice:
   29.62-31.20 silence under the Wystak introduction (the chime lands at 30.12)
   31.20-34.87 the bars before the drop, low-passed and opening up under the held lockup and the question
   34.87       the drop lands on "It already has one."
-  46.37-52.39 the track's own ending, beat-aligned, under the logo
+  46.37-51.00 the track's own ending, beat-aligned, under the logo, fading out over the last second
 v5: the introduction holds 1.0s longer (voice re-gapped at 30.40), so everything after it moves by 1.0s.
 usage (from the project folder): python3 -I sound/make_music.py /path/to/371.mp3
 """
@@ -13,7 +13,7 @@ import pathlib, subprocess, sys, wave
 import numpy as np
 
 SR = 48000
-DUR = 52.39
+DUR = 51.0          # v9: ends one second after "One stack."
 DROP_AT = 34.87     # "It already has one."
 PRE_AT = 31.20      # filtered build starts under the held lockup
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -65,7 +65,7 @@ sw = DROP_AT + 25 * BEAT                                 # 46.37
 put(DROP_AT, DROP, sw - DROP_AT + 0.01, fin=0.002, fout=0.02)
 # 4 · the track's ending, entered on a beat, under the logo
 end_src = DROP + round((111.5 - DROP) / BEAT) * BEAT
-put(sw, end_src, DUR - sw, fin=0.02, fout=0.6)
+put(sw, end_src, DUR - sw, fin=0.02, fout=1.1)
 
 # lift the quiet intro so the film starts with energy, easing back to unity as the track builds
 g = np.ones(N); g[:S(13.0)] = 2.0; g[S(13.0):S(16.0)] = np.linspace(2.0, 1.0, S(16.0) - S(13.0))

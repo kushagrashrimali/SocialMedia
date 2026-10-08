@@ -7,7 +7,7 @@ destination: instagram-reels
 aspect: 1080x1920
 language: en
 audience: Indian merchants of every category (cafés, salons, stores, cinemas, clubs, events)
-length: 52s
+length: 51s
 ---
 
 ## Intent
@@ -24,7 +24,13 @@ The full creative brief from the user is in the conversation that made `wystak/s
 - assets/footage/, assets/stills/ — licensed stock and archival media; every file is listed in `assets/MANIFEST.md` with source, URL and licence.
 - assets/music-bed.wav, assets/sfx.wav — synthesised locally (`sound/make_sound.py`); the bed is carved under the voice (hyperframes-audio carve, strength 0.6).
 
-## Customizations (v8, current: v6 plus McDonald's-reel motion)
+## Customizations (v9, current: v8 with the launch film's introduction, 51.0s)
+
+- The Wystak introduction (29.66-31.9) is the launch film condensed into the silence: the lockup is first seen through a frosted glass pass; the pass tips back, clears and lifts away under a light sweep while the Wystak chime lands; four glass passes (faint teal, plum and navy tints, then clear) deal in, fan, and close into one stack behind the mark; "ALL YOUR PASSES. ONE STACK." resolves word by word (Archivo SemiBold, 0.16em); then the whole lockup flies into the rising phone as before. Glass set-down and settle sounds come from the launch film.
+- Length 51.0s: the end card now holds one second after "One stack." (was 2.4s); the music's ending fades over the last 1.1s.
+- Build: `python3 storyboard/build_v9.py`, then the carve, then render.
+
+## Customizations (v8: v6 plus McDonald's-reel motion)
 
 - Motion studied from the McDonald's app reel the user supplied (Video-92092): an oversized hand drives the UI, taps cause the next beat, UI cards open into the next scene, sparkle bursts mark the payoffs, physical springs everywhere.
 - The hand: taps the café's WhatsApp banner and the camera pushes through it into the birthday shot; swipes SMS → chat, long-presses the café app and taps Remove App, swipes to the store, taps GET, swipes to the login, drifts aside while the code types, taps Verify; on the lock screen it taps the Wallet push, which opens into the points ring. Every touch has its own touch ring, a press on the fingertip and a wobble on the target (`CustomWiggle`). Targets are measured from the live layout at each touch, so the fingertip lands on 3D-rotated phone UI.

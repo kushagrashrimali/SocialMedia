@@ -13,7 +13,7 @@ import numpy as np
 from scipy.signal import butter, sosfilt, fftconvolve
 
 SR = 48000
-DUR = 52.39
+DUR = 51.0
 N = int(round(SR * DUR))
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 rng = np.random.default_rng(1007)
@@ -126,6 +126,25 @@ def glints(n=7, seed=3):
     return out
 
 
+def set_down(weight=1.0):
+    """a glass pass set onto the stack: a muted low touch, a tiny tick, a short ring (from the launch film)"""
+    t = T(0.6)
+    body = np.sin(2 * np.pi * np.cumsum(62 + 30 * np.exp(-t / 0.03)) / SR) * np.exp(-t / 0.09) * (1 - np.exp(-t / 0.004))
+    tick = filt(rng.standard_normal(len(t)), "band", [2500, 7000]) * np.exp(-t / 0.006) * 0.35
+    ring = np.sin(2 * np.pi * 2840 * t) * np.exp(-t / 0.09) * 0.05
+    return body * 0.9 * weight + tick + ring
+
+
+def settle():
+    """the stack aligns: a soft, low settle with two gentle ticks"""
+    t = T(1.2)
+    out = np.sin(2 * np.pi * np.cumsum(50 + 16 * np.exp(-t / 0.08)) / SR) * np.exp(-t / 0.32) * (1 - np.exp(-t / 0.03)) * 0.9
+    for dt in (0.0, 0.05):
+        i = int(dt * SR); tk = filt(rng.standard_normal(1600), "band", [3000, 8000]) * np.exp(-np.arange(1600) / SR / 0.005) * 0.25
+        out[i:i + len(tk)] += tk
+    return out
+
+
 def thump():
     t = T(1.2)
     f = 38 + 42 * np.exp(-t / 0.07)
@@ -193,7 +212,10 @@ P(LOCK(), 29.58, 0.5)                                              # click. sile
 # the introduction: one bell, low room tone, the light across the mark
 P(wystak_chime(), 30.12 - 0.45, 0.10)                              # the Wystak chime lands with the mark
 P(HUM(), 30.15, 0.08)
-P(SWEEP(), 30.3, 0.05)                                             # the wordmark wipes on
+P(AIR(), 29.7, 0.06, -0.3)                                         # v9: the frosted pass lifts off the lockup
+for i in range(4):                                                 # four glass passes set down on the stack
+    P(set_down(0.8 + 0.07 * i), 30.2 + i * 0.11 + 0.22, 0.13, (-0.45, -0.15, 0.15, 0.45)[i])
+P(settle(), 31.42, 0.15)                                           # the fan closes into one stack
 P(BREATH()[: int(1.4 * SR)], 31.78, 0.12)                          # the lockup flies into the rising phone
 for i in range(6):
     P(AIR(), 32.3 + i * 0.11, 0.04, (-0.6, 0.6)[i % 2])            # the scattered places drift in
