@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1080, height=1920">
+    <title>WYSTAK launch intro</title>
+    <style>
+      @font-face { font-family: "Archivo"; src: url("assets/vendor/fonts/archivo-latin-500-normal.woff2") format("woff2"); font-weight: 500; }
+      @font-face { font-family: "Archivo"; src: url("assets/vendor/fonts/archivo-latin-600-normal.woff2") format("woff2"); font-weight: 600; }
+    </style>
+    <link rel="stylesheet" href="src/styles.css">
+    <script src="assets/vendor/gsap.min.js"></script>
+    <!-- components: timing first, then one file per layer -->
+    <script src="src/timing.js"></script>
+    <script src="src/background.js"></script>
+    <script src="src/logo.js"></script>
+    <script src="src/glass.js"></script>
+    <script src="src/stack.js"></script>
+    <script src="src/tagline.js"></script>
+    <script src="src/camera.js"></script>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="10" data-width="1080" data-height="1920">
+
+      <!-- Background (parallax: moves a fraction of the camera) -->
+      <div id="bgwrap" style="position:absolute;inset:0">
+        <div class="bg"></div><div class="bg-key"></div><div class="bg-tint"></div><div class="bg-floor"></div>
+      </div>
+
+      <div id="world">
+        <!-- Glass sheets: thin panels drifting behind everything -->
+        <div class="stage"><div class="sheet" id="sheetA"></div><div class="sheet" id="sheetB"></div></div>
+
+        <!-- Stack: four glass passes, back to front -->
+        <div class="stage">
+          <div id="deck">
+            <div class="glass"><i class="tint" style="background:linear-gradient(160deg,var(--teal),rgba(15,143,138,0))"></i><i class="rim"></i><i class="sw"></i></div>
+            <div class="glass"><i class="tint" style="background:linear-gradient(160deg,var(--plum),rgba(107,43,166,0))"></i><i class="rim"></i><i class="sw"></i></div>
+            <div class="glass"><i class="tint" style="background:linear-gradient(160deg,var(--navy),rgba(31,47,117,0))"></i><i class="rim"></i><i class="sw"></i></div>
+            <div class="glass"><i class="rim"></i><i class="sw"></i></div>
+          </div>
+        </div>
+
+        <!-- Logo: the official mark and wordmark, exactly as supplied; the tagline below -->
+        <div id="lockup">
+          <div class="mark-shadow"></div>
+          <img id="mark" src="assets/brand/logo-mark.png" alt="WYSTAK">
+          <img id="word" src="assets/brand/logo-wordmark.png" alt="WYSTAK">
+          <div id="tagline"><span class="w">Everything</span> <span class="w">that</span> <span class="w">matters.</span> <span class="w accent">One</span> <span class="w accent">place.</span></div>
+        </div>
+
+        <!-- Cover glass: the frosted pass the lockup is first seen through -->
+        <div class="stage"><div class="glass" id="pane"><i class="rim"></i><i class="sw"></i></div></div>
+      </div>
+
+      <div class="grain"></div>
+
+      <audio id="sfx" src="assets/sfx.wav" data-start="0" data-duration="10" data-track-index="20" data-volume="1"></audio>
+    </div>
+
+    <script>
+      (function () {
+        const T = window.WYSTAK_TIMING;
+        const tl = gsap.timeline({ paused: true });
+        // each layer adds itself to the one timeline; order does not matter, times come from src/timing.js
+        WYSTAK.background(tl, T);
+        WYSTAK.glass(tl, T);
+        WYSTAK.logo(tl, T);
+        WYSTAK.stack(tl, T);
+        WYSTAK.tagline(tl, T);
+        WYSTAK.camera(tl, T);
+        window.__timelines = window.__timelines || {};
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>
