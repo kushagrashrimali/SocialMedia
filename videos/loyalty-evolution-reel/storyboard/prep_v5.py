@@ -26,6 +26,16 @@ SHOTS = [
     ("v5-concert", "4188", 11.4, 1.35, 0.45, ",unsharp=5:5:0.5"),  # festival crowd, smoke cannons over the stage
     ("v5-club", "343", 4.55, 1.25, 0.45, ""),              # dancing in red club light, a second angle
 ]
+# v7: Indian upmarket setups (Pexels License), with a warmer, slightly red grade to sit with the club/concert opening and ending
+WARM = ",colorbalance=rs=0.05:gs=0.0:bs=-0.04:rm=0.03:bm=-0.02,eq=saturation=1.06"
+SHOTS += [
+    ("v7-saree-counter", "40080138", 0.4, 1.85, 0.5, WARM + ",split[m][b];[b]crop=230:240:310:575,boxblur=26:3[bl];[m][bl]overlay=310:575"),  # saree showroom: a couple at the counter, walls of silk behind; the store's hanging sign blurred
+    ("v7-jewellery", "36338911", 1.5, 1.65, 0.5, WARM),         # a gold jewellery counter, slow move along the display (4K)
+    ("v7-salon", "7754526", 3.0, 2.6, "window", "brightness=-0.18:saturation=1.1"),  # the pink salon: a stylist blow-drying, the row of chairs, the window (16:9 source in the rounded window)
+    ("v7-mall", "35046665", 3.0, 1.55, 0.42, WARM),             # an Indian mall atrium: shoppers on the escalators (4K; cropped clear of store signs)
+    ("v7-saree", "40080132", 3.2, 1.55, 0.5, WARM),             # choosing a saree in front of the shelves (vertical)
+    ("v7-celebration", "7685150", 2.5, 3.75, 0.5, WARM),        # a family celebrating together at a table (vertical)
+]
 MASK = P / "storyboard/frames/window-mask.png"
 
 

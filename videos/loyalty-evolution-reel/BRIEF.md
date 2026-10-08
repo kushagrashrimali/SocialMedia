@@ -24,7 +24,11 @@ The full creative brief from the user is in the conversation that made `wystak/s
 - assets/footage/, assets/stills/ — licensed stock and archival media; every file is listed in `assets/MANIFEST.md` with source, URL and licence.
 - assets/music-bed.wav, assets/sfx.wav — synthesised locally (`sound/make_sound.py`); the bed is carved under the voice (hyperframes-audio carve, strength 0.6).
 
-## Customizations (v6, current)
+## Customizations (v7, current)
+
+- The middle of the film is Indian and upmarket, shown as setups rather than faces (Pexels, warmer red grade to sit with the club/concert opening and ending): "Every counter" is a saree showroom counter, a gold jewellery counter, then the café; "Businesses learned to remember" is a pink modern salon; "Every visit" is a mall atrium; "Every purchase" is a saree being chosen; "Cafés remembered birthdays" is a family celebrating at a table. The opening and the ending are unchanged.
+
+## Customizations (v6)
 
 - "Businesses learned to remember" is now a wide salon setup (round mirror, stylist blow-drying, shelves) in the rounded window, instead of a face close-up.
 - Notifications use a quick three-note ascending chime (Mixkit "Alert quick chime"); Apple's own iOS sounds are Apple's copyrighted assets and are not licensed for use in ads, so they are not used.
