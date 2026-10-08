@@ -1,14 +1,11 @@
-"""Sound effects for the loyalty reel, v10: real recorded sounds, placed subtly.
+"""Sound effects for the loyalty reel, v11: minimal, in the way Apple and Meta films use sound.
 
-v10: every notification is a soft two-note bubble pop (the short, rounded "bloop" of a phone message alert; Mixkit 2357,
-its first two pops), the effects sit lower in the mix, the sparkle glints are gone, and every cue after the lock click is
-written in v9 time and mapped to v10 time with M() (storyboard/tmap_v10.py): a silent pause, then a slower introduction.
-
-The payment and the free reward are one clean
-confirmation ding, the lock is a real switch click, and transitions are soft air whooshes. All samples are
-Mixkit sound effects (Mixkit Sound Effects Free License), kept in assets/sfx-src/ (see assets/MANIFEST.md).
-Synthesised: the Wystak chime (a soft rising shimmer into a glassy FM bell chord with a ping-pong echo)
-and the low thump under the logo.
+Only the moments that matter make a sound, each one soft and rounded: the unread alerts, the flood of alerts, the screen
+sleeping, the pass landing in the Wallet, the Wystak chime on its name, the payment, the push that matters, the logo.
+No whooshes on cuts, no taps, no ticks. Everything is low-passed (no hard top end) and sits in a small room.
+Cues are written in v9 time and mapped with M (storyboard/tmap_v11.py), except the introduction, which uses the v11 words.
+Samples are Mixkit sound effects (Mixkit Sound Effects Free License) in assets/sfx-src/ (see assets/MANIFEST.md);
+the Wystak chime and the glass settle are synthesised.
 
 usage (from the project folder): python3 -I sound/make_sound.py  -> assets/sfx.wav
 """
@@ -18,7 +15,7 @@ from scipy.signal import butter, sosfilt, fftconvolve
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "storyboard"))
-from tmap_v10 import M, K_INTRO as KI, DUR
+from tmap_v11 import M, DUR, V11, INTRO
 
 SR = 48000
 N = int(round(SR * DUR))
@@ -158,86 +155,34 @@ HUM = lambda: smp(2297, 0.4, 2.2)               # low room tone under the held i
 
 sfx = np.zeros((N, 2))
 P = lambda sig, t, g, pan=0.0: place(sfx, sig, t, g, pan)
+W = {w["text"] + f"#{i}": w for i, w in enumerate(V11)}
+word = lambda i: V11[i]["start"]
 
-# opening montage: club -> salon -> café, each cut breathes
-P(BREATH(), 0.0, 0.08)
-P(ZOOM(), 0.86, 0.07, -0.3); P(ZOOM(), 1.71, 0.07, 0.3)
-P(AIR(), 2.55, 0.10)                                               # into the lock screen
-for t, g, p in ((3.05, 0.26, -0.25), (3.42, 0.23, 0.2), (3.78, 0.20, -0.1)):
-    P(NOTIF(), t, g, p)                                            # unread, unnoticed
-P(LOCK(), 4.5, 0.22)                                               # the screen sleeps
-P(BREATH()[: int(1.0 * SR)], 5.05, 0.08)                           # out to the counters
-P(SWEEP(), 5.56, 0.07, 0.2)                                        # the profile card swings in
-for i in range(4):
-    P(TICK(), 6.5 + i * 0.27, 0.07, 0.15)                          # rows fill in
-P(ZOOM(), 6.46, 0.06, -0.3); P(ZOOM(), 7.66, 0.06, 0.3)
-P(WIND(), 8.85, 0.09)                                              # light leak into the barber's
-for t, p in ((11.19, -0.3), (12.29, 0.3), (13.39, -0.2)):
-    P(ZOOM(), t, 0.06, p)
-for t, p in ((11.6, -0.2), (12.6, 0.0), (13.78, 0.2)):
-    P(TAP(), t, 0.09, p)                                           # chips land
-P(AIR(), 14.7, 0.09)                                               # the home screen
-for i in range(12):
-    P(TICK(), 15.05 + i * 0.07, 0.025, ((i % 4) - 1.5) * 0.35)     # apps settle in, barely there
-P(NOTIF(), 17.15, 0.28, 0.1)                                       # the café's message
-P(TAP(), 17.78, 0.10)                                              # the hand taps the banner
-P(ZOOM(), 17.82, 0.09)                                             # and the camera pushes through it into the café
-P(NOTIF(), 18.8, 0.28, -0.15)                                      # birthday
-P(NOTIF(), 20.38, 0.18, 0.25)                                      # the cousins, late
-P(AIR(), 21.25, 0.09)
+# the problem: alerts nobody reads
+for t, g, p in ((3.05, 0.15, -0.25), (3.42, 0.13, 0.2), (3.78, 0.11, -0.1)):
+    P(NOTIF(), M(t), g, p)
+P(LOCK(), M(4.5), 0.10)                                            # the screen sleeps
+P(NOTIF(), M(17.15), 0.15, 0.1)                                    # the café's message
+P(NOTIF(), M(18.8), 0.15, -0.15)                                   # birthday
+P(NOTIF(), M(20.38), 0.09, 0.25)                                   # the cousins, late
 for i, t in enumerate([21.72, 22.0, 22.25, 22.46, 22.64, 22.8, 22.94]):
-    P(NOTIF(), t, 0.13 + 0.012 * i, ((i * 0.37) % 1.4) - 0.7)      # the flood: one real alert, again and again
-P(WIND(), 22.95, 0.10); P(thump(), 23.1, 0.07)                     # "everywhere": the stack bursts
-P(SWEEP(), 23.95, 0.07, -0.3)                                      # the cloud slides away
-P(TAP(), 24.3, 0.07)                                               # SMS opens
-P(SWEEP(), 25.12, 0.06, 0.3)                                       # chat
-P(TICK(), 26.12, 0.07); P(TAP(), 26.58, 0.09)                      # long-press, Remove App
-P(AIR()[: int(0.4 * SR)], 26.72, 0.06)                             # the app goes
-P(SWEEP(), 27.34, 0.06, 0.3)                                       # store
-P(TAP(), 27.92, 0.10)                                              # GET
-P(SWEEP(), 28.32, 0.06, -0.3)                                      # login
-for i in range(4):
-    P(TICK(), 28.95 + i * 0.14, 0.09)                              # OTP
-P(TAP(), 29.36, 0.09)                                              # Verify
-P(LOCK(), 29.58, 0.30)                                             # click. Then a pause: black and silent.
-# the introduction (v10: ~1.45x slower than v9): one chime, low room tone, the light across the mark
-P(wystak_chime(), M(30.12) - 0.45, 0.075)                          # the Wystak chime lands as the frost clears
-P(HUM(), M(30.15), 0.05)
-P(AIR(), M(29.7), 0.045, -0.3)                                     # the frosted pass lifts off the lockup
-for i in range(4):                                                 # four glass passes set down on the stack
-    P(set_down(0.8 + 0.07 * i), M(30.2) + i * 0.11 * KI + 0.22 * KI, 0.09, (-0.45, -0.15, 0.15, 0.45)[i])
-P(settle(), M(31.42), 0.10)                                        # the fan closes into one stack
-P(BREATH()[: int(1.4 * SR)], M(31.78), 0.08)                       # the lockup flies into the rising phone
-for i in range(6):
-    P(AIR(), M(32.3) + i * 0.11, 0.03, (-0.6, 0.6)[i % 2])         # the scattered places drift in
-P(ZOOM(), M(34.08), 0.09)                                          # pulled into the phone
-P(SWEEP(), M(34.52), 0.06, -0.2); P(TAP(), M(34.66), 0.08)         # the stack fills, the pass lands
-P(BREATH()[: int(1.2 * SR)], M(35.85), 0.07)                       # camera pulls back
-P(SWEEP(), M(36.0), 0.06, 0.4)                                     # the Android phone arrives
-P(TAP(), M(36.55), 0.06, -0.3); P(TAP(), M(36.63), 0.06, 0.3)
-P(WIND(), M(37.85), 0.07)                                          # out to the counter
-P(TAP(), M(38.55), 0.08)                                           # scan
-P(ZOOM(), M(40.53), 0.06)
-P(DING(), M(40.95), 0.18)                                          # paid
-P(AIR(), M(42.07), 0.08)
-P(NOTIF(), M(42.48), 0.32)                                         # the Wallet push: the one that matters
-P(TAP(), M(42.96), 0.09)                                           # the hand taps the Wallet push
-P(SWEEP(), M(43.0), 0.06, 0.3)                                     # and it opens into the points ring
-for i in range(9):
-    P(TICK(), M(43.1) + i * 0.09, 0.035 + 0.004 * i)               # points counting up
-P(DING(), M(43.9), 0.13)                                           # free cappuccino
-P(WIND(), M(44.1), 0.07)                                           # leak into the montage
-P(SWEEP(), M(44.46), 0.06, -0.2)                                   # every category's pass deals into one stack
-for i in range(5):
-    P(TICK(), M(44.62) + i * 0.08, 0.04, (i - 2) * 0.2)
-P(TAP(), M(44.98), 0.08)                                           # the Cafe Aroma pass settles on top
-P(ZOOM(), M(45.08), 0.05, 0.3); P(ZOOM(), M(45.81), 0.05, -0.3)
-P(BREATH()[: int(0.9 * SR)], M(45.9), 0.07)                        # the frame blows out to white
-P(BELL(), M(46.64), 0.18); P(thump(), M(46.64), 0.08)              # the logo
-P(SWEEP(), M(47.02), 0.035)
-P(TAP(), M(47.78), 0.06, -0.2); P(TAP(), M(48.96), 0.06, 0.2)      # the tagline, word by word
-sfx = reverb(sfx, 1.2, 0.16)
-sfx[int(29.74 * SR):int(M(29.70) * SR)] *= 0.0                     # true silence: the pause after the click
+    P(NOTIF(), M(t), 0.07 + 0.008 * i, ((i * 0.37) % 1.4) - 0.7)   # everywhere: the same alert, again and again
+# the question: the phone rises in near silence
+P(AIR(), M(31.84), 0.035)
+# the answer: the pass lands in the Wallet
+P(set_down(0.8), M(34.6) + 0.25, 0.07)
+# the introduction: light comes up, the name lands on one soft chime, the passes settle, we push through to the counter
+P(BREATH()[: int(1.6 * SR)], INTRO[0] - 0.15, 0.04)
+P(wystak_chime(), word(94) - 0.45, 0.06)                           # the chime's bell lands on "Why-stack."
+P(settle(), word(94) + 0.15, 0.05)
+P(AIR(), INTRO[1] + 0.05, 0.03)
+# the payoff
+P(DING(), M(40.95), 0.09)                                          # paid
+P(NOTIF(), M(42.48), 0.17)                                         # the Wallet push: the one that matters
+P(DING(), M(43.9), 0.06, 0.1)                                      # free cappuccino
+P(BELL(), M(46.64), 0.10)                                          # the logo
+sfx = filt(sfx, "low", 8500)                                       # no hard top end
+sfx = reverb(sfx, 1.4, 0.2)
 
 
 def write(path, x, peak_db=-3.0):
