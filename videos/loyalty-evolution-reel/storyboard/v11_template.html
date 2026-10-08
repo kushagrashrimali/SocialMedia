@@ -248,8 +248,16 @@
       #sX { z-index: 60; }
       #xIntro { position: absolute; inset: 0; transform-origin: 50% 47%; overflow: hidden; }
       #xIntro .xk { position: absolute; left: 0; right: 0; top: 500px; text-align: center; font: 600 24px/1 "Poppins"; letter-spacing: 0.34em; color: #6b2ba6; padding-left: 0.34em; }
-      #xcard { left: 70px; top: 620px; width: 940px; height: 560px; border-radius: 48px; --frost: 14px; }
-      #xcard .sw { opacity: 0.8; }
+      /* every kind of pass flies in, fans, stacks and collapses into the passes of the mark */
+      #xpasses { position: absolute; left: 540px; top: 900px; width: 0; height: 0; perspective: 1800px; transform-style: preserve-3d; z-index: 3; }
+      .xp { position: absolute; left: -220px; top: -135px; width: 440px; height: 270px; border-radius: 28px; padding: 22px 26px; color: #fff; overflow: hidden; opacity: 0;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 30px 60px -24px rgba(26, 11, 46, 0.55), 0 8px 18px -8px rgba(26, 11, 46, 0.35); }
+      .xp::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 42%); }
+      .xp b { display: block; font: 600 20px/1 "Poppins"; letter-spacing: 0.1em; }
+      .xp em { position: absolute; right: 26px; top: 24px; font: 500 16px/1 "Poppins"; font-style: normal; opacity: 0.75; }
+      .xp i { position: absolute; left: 26px; right: 26px; bottom: 26px; height: 54px; border-radius: 12px; background: rgba(255, 255, 255, 0.14); }
+      #xBloom { position: absolute; left: 357px; top: 900px; width: 760px; height: 760px; margin: -380px 0 0 -380px; border-radius: 50%; opacity: 0; z-index: 2;
+        background: radial-gradient(closest-side, rgba(255, 255, 255, 0.95) 0%, rgba(214, 196, 255, 0.55) 38%, rgba(139, 92, 246, 0) 72%); }
       #xlogo { position: absolute; left: 110px; top: 780px; width: 860px; height: 235px; }
       #xlogo img, #xlogo .xl { position: absolute; left: 0; top: 0; width: 860px; height: 235px; display: block; }
       #xlogo .xs { position: absolute; left: 60px; top: 196px; width: 300px; height: 44px; border-radius: 50%; background: radial-gradient(closest-side, rgba(26, 11, 46, 0.2), rgba(26, 11, 46, 0)); }
@@ -400,7 +408,7 @@
       <div id="sX" class="scene clip" data-start="%%X0%%" data-duration="%%XD%%" data-track-index="4">
         <div id="xIntro">
           <div class="bg-light"></div><div class="orb oX"></div>
-          <div class="ist"><div class="gpass" id="xcard"><i class="sw"></i></div></div>
+          <div id="xBloom"></div>
           <div id="xlogo"><div class="xs"></div>
             <img id="xTeal" src="assets/brand/lockup-parts/card-teal.png" alt="">
             <img id="xPurple" src="assets/brand/lockup-parts/card-purple.png" alt="">
@@ -409,6 +417,13 @@
             <div class="xl" id="xGlint"><i></i></div>
           </div>
           <div class="xk" id="xK">INTRODUCING</div>
+          <div id="xpasses">
+            <div class="xp" style="background:linear-gradient(135deg,#7a1428,#3d0a16)"><b>MOVIE CLUB</b><em>Cinema</em><i></i></div>
+            <div class="xp" style="background:linear-gradient(135deg,#b04a78,#6d2350)"><b>SALON CLUB</b><em>Salon</em><i></i></div>
+            <div class="xp" style="background:linear-gradient(135deg,#4a2c1c,#1d110a)"><b>CAFE AROMA</b><em>Café</em><i></i></div>
+            <div class="xp" style="background:linear-gradient(135deg,#0f7f7c,#0a4f57)"><b>STYLE REWARDS</b><em>Store</em><i></i></div>
+            <div class="xp" style="background:linear-gradient(135deg,#2b2a6b,#14133a)"><b>LIVE PASS</b><em>Events</em><i></i></div>
+          </div>
         </div>
       </div>
 
@@ -687,31 +702,45 @@
         push("#eGroup", 46.62, 4.38, 0.985, 1.02, "50% 40%");
 
 
-        // ---------- X · the introduction, v11 time: the light comes up over the Wallet, the frosted pass lifts off the
-        // lockup as she says "Introducing", glass passes deal in and close into one stack behind it, then we push through ----------
+        // ---------- X · the introduction ("Introducing Why-stack."): every kind of loyalty pass flies in from the edges of the
+        // frame and fans out; the fan snaps into one stack; the stack shrinks and turns into the passes of the Wystak mark, the
+        // W rises to catch it, light blooms, the purple and teal passes flick out, and the name cascades in with the chime ----------
         const X = %%XJS%%;      // { in, word, name, out }
-        // seam in (Z, pulling back = arrival): the Wallet pulls away from camera and the glass pass settles down out of an
-        // oversized, soft-focus frame, both shrinking, so the eye's motion carries across
+        // seam in (Z, pulling back = arrival): the question's phone pulls away from camera as the light ground settles in
         TL.to("#stJ", { scale: 0.88, duration: 0.5, ease: "power2.in", transformOrigin: "50% 45%" }, X.in - 0.12);
         TL.fromTo("#xIntro", { opacity: 0, scale: 1.2, filter: "blur(16px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.7, ease: "power3.out" }, X.in);
         TL.set("#xIntro", { filter: "none" }, X.in + 0.71);
-        TL.fromTo("#xcard .sw", { xPercent: -180 }, { xPercent: 460, duration: 1.1, ease: "power2.inOut" }, X.in + 0.15);
-        // 1 · the mark rises into focus on its own shadow
-        TL.fromTo("#xBase", { opacity: 0, y: 46, scale: 0.9, filter: "blur(10px)" }, { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.6, ease: "power3.out", transformOrigin: "30% 90%" }, X.in + 0.36);
-        TL.fromTo("#xlogo .xs", { opacity: 0, scaleX: 0.6 }, { opacity: 1, scaleX: 1, duration: 0.6, ease: "power3.out" }, X.in + 0.36);
         TL.fromTo("#xK", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, X.word - 0.08);
-        // 2 · the passes file out from behind the navy pass, one after the other, into one stack (launched as the mark lands)
-        TL.fromTo("#xPurple", { rotation: -18 }, { rotation: 0, duration: 0.56, ease: "back.out(1.5)" }, X.word + 0.02);
-        TL.fromTo("#xTeal", { rotation: -32 }, { rotation: 0, duration: 0.62, ease: "back.out(1.5)" }, X.word + 0.12);
-        TL.fromTo("#xPurple", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "none", immediateRender: false }, X.word + 0.02);
-        TL.fromTo("#xTeal", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "none", immediateRender: false }, X.word + 0.12);
-        // 3 · a beat, then the name: the wordmark cascades in letter by letter on "Why-stack", with the chime
-        TL.fromTo("#xlogo .xw", { opacity: 0, y: 28, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.42, ease: "power3.out", stagger: 0.05 }, X.name - 0.04);
-        // 4 · light runs across the finished logo, masked to its own shape
-        TL.fromTo("#xGlint i", { xPercent: -140 }, { xPercent: 560, duration: 0.75, ease: "power2.inOut" }, X.name + 0.32);
-        TL.fromTo("#xlogo", { scale: 1 }, { scale: 1.025, duration: X.out - X.word, ease: "none", transformOrigin: "50% 50%" }, X.word);
+        const T_COL = X.name - 0.31, T_STACK = T_COL - 0.34, T_LAND = T_COL + 0.36;
+        // 1 · all the passes: in from every side, tumbling, into a loose fan
+        const XFROM = [[-980, -760, -48], [980, -620, 42], [0, -1300, 8], [-980, 760, 34], [980, 880, -38]];
+        const XFAN = [[-200, 46, -16], [-100, 12, -8], [0, 0, 0], [100, 12, 8], [200, 46, 16]];
+        document.querySelectorAll("#xpasses .xp").forEach((c, i) => {
+          const f = XFROM[i], n = XFAN[i];
+          TL.fromTo(c, { opacity: 0, x: f[0], y: f[1], z: -600, rotation: f[2], rotationX: 30 },
+            { opacity: 1, x: n[0], y: n[1], z: 0, rotation: n[2], rotationX: 0, duration: 0.75, ease: "expo.out" }, X.in + 0.12 + i * 0.06);
+          // 2 · the fan snaps into one stack
+          TL.to(c, { x: 0, y: -(4 - i) * 12, rotation: 0, duration: 0.34, ease: "power3.inOut" }, T_STACK + (4 - i) * 0.015);
+          // 3 · the stack shrinks and turns into the passes of the mark
+          TL.to(c, { x: -183, y: 0, rotation: 100, scale: 0.42, duration: 0.36, ease: "power3.in" }, T_COL);
+          TL.to(c, { opacity: 0, duration: 0.1, ease: "none" }, T_LAND - 0.08);
+        });
+        // 4 · the W rises to catch the stack, light blooms where it lands, the passes flick out of the navy pass
+        TL.fromTo("#xBase", { opacity: 0, y: 40, scale: 0.94, filter: "blur(6px)" }, { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.5, ease: "power3.out", transformOrigin: "30% 90%" }, T_LAND - 0.14);
+        TL.fromTo("#xlogo .xs", { opacity: 0, scaleX: 0.6 }, { opacity: 1, scaleX: 1, duration: 0.5, ease: "power3.out" }, T_LAND - 0.1);
+        TL.fromTo("#xBloom", { opacity: 0, scale: 0.25 }, { opacity: 0.9, scale: 0.9, duration: 0.2, ease: "power2.out" }, T_LAND - 0.05);
+        TL.to("#xBloom", { opacity: 0, scale: 1.6, duration: 0.7, ease: "power2.out" }, T_LAND + 0.15);
+        TL.fromTo("#xPurple", { rotation: -18 }, { rotation: 0, duration: 0.5, ease: "back.out(1.6)" }, T_LAND);
+        TL.fromTo("#xTeal", { rotation: -32 }, { rotation: 0, duration: 0.56, ease: "back.out(1.6)" }, T_LAND + 0.07);
+        TL.fromTo("#xPurple", { opacity: 0 }, { opacity: 1, duration: 0.08, ease: "none", immediateRender: false }, T_LAND);
+        TL.fromTo("#xTeal", { opacity: 0 }, { opacity: 1, duration: 0.08, ease: "none", immediateRender: false }, T_LAND + 0.07);
+        // 5 · the name: the wordmark cascades in letter by letter with the chime, then light runs across the whole logo
+        const T_NAME = Math.max(X.name - 0.04, T_LAND + 0.08);
+        TL.fromTo("#xlogo .xw", { opacity: 0, x: -24, filter: "blur(8px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.45, ease: "power3.out", stagger: 0.055 }, T_NAME);
+        TL.fromTo("#xGlint i", { xPercent: -140 }, { xPercent: 560, duration: 0.8, ease: "power2.inOut" }, T_NAME + 0.5);
+        TL.fromTo("#xlogo", { scale: 0.97 }, { scale: 1.02, duration: X.out - T_LAND + 0.1, ease: "power1.out", transformOrigin: "50% 50%" }, T_LAND - 0.1);
         TL.fromTo("#sX .orb", { x: 0, y: 0 }, { x: 60, y: -80, duration: X.out - X.in + 0.5, ease: "none" }, X.in);
-        // seam out (Z, pushing forward): the whole pass zooms past camera and defocuses into the phone
+        // seam out (Z, pushing forward): the logo zooms past camera and defocuses into the phone
         TL.fromTo("#xIntro", { opacity: 1, scale: 1, filter: "blur(0px)" }, { opacity: 0, scale: 1.3, filter: "blur(12px)", duration: 0.42, ease: "power2.in", immediateRender: false }, X.out);
         // ...into the phone, which is itself still coming toward camera as it is revealed (same scale direction)
         TL.fromTo("#stJ", { scale: 0.88 }, { scale: 1, duration: 0.75, ease: "power3.out", transformOrigin: "50% 45%", immediateRender: false }, X.out);

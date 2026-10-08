@@ -1,4 +1,4 @@
-"""Build index.html for the loyalty reel (39.8s): the final script.
+"""Build index.html for the loyalty reel (50.5s): the final script.
 
 v11: the user's final script and recording, cut to 40.0s (storyboard/edit_vo_v11.py). v9's scenes are kept in order and
 moved onto the new voice by one time map (storyboard/tmap_v11.py); the page is still authored in v9 time and a proxy

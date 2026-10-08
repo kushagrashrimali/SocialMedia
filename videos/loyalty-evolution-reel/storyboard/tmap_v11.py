@@ -1,4 +1,4 @@
-"""Time map: v9 time -> the current cut (the final script, 39.8s).
+"""Time map: v9 time -> the current cut (the final script, 50.5s).
 
 The film keeps v9's scenes in order and moves them onto the new voice. Anchors are the start of every word the two
 scripts share (v9 words 10-65 are words 16-71 now, v9 70-100 are 82-112), plus:
@@ -12,7 +12,7 @@ M(t) maps a v9 time to v11 time.
 import json, pathlib
 
 HERE = pathlib.Path(__file__).resolve().parent
-DUR = 39.8
+DUR = 50.5
 V9 = json.loads((HERE.parent / "assets/words-v9.json").read_text())
 V11 = json.loads((HERE.parent / "assets/words.json").read_text())
 

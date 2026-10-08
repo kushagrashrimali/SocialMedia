@@ -1,4 +1,4 @@
-"""Voiceover: the final script (ElevenLabs, Kendra), cut to 39.8s.
+"""Voiceover: the final script (ElevenLabs, Kendra), cut to 50.5s.
 
 The take has 44.9s of speech, so it is sped up (Rubber Band, pitch and formants kept) and its pauses are tightened.
 Pauses that carry the story are set after the speed-up, by hand:
@@ -13,11 +13,11 @@ import json, pathlib, re, subprocess, wave
 import numpy as np
 
 P = pathlib.Path(__file__).resolve().parent.parent
-DUR = 39.8
+DUR = 50.5
 SR = 48000
-GAP = {"comma": 0.09, "list": 0.10, "sentence": 0.13}          # before the speed-up
-SPECIAL = {"place?": 0.55, "Why-stack.#1": 0.42, "notice.": 0.26}   # after the speed-up (seconds of silence)
-END_HOLD = 0.40
+GAP = {"comma": 0.14, "list": 0.20, "sentence": 0.30}          # before the speed-up
+SPECIAL = {"place?": 0.85, "Why-stack.#1": 0.75, "notice.": 0.45}   # after the speed-up (seconds of silence)
+END_HOLD = 0.9
 
 raw = subprocess.run(["ffmpeg", "-v", "error", "-i", str(P / "assets/voiceover-src.mp3"), "-ac", "1", "-ar", str(SR), "-f", "f32le", "-"],
                      capture_output=True, check=True).stdout

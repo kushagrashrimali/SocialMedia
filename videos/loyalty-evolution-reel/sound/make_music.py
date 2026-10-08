@@ -1,4 +1,4 @@
-"""Edit the licensed music bed for the reel, (39.8s): Mixkit "A New Life" (track 543, Mixkit Stock Music Free License).
+"""Edit the licensed music bed for the reel, (50.5s): Mixkit "A New Life" (track 543, Mixkit Stock Music Free License).
 
 A calm, cinematic track: sustained chords that swell, no kick drum. Cut to the voice (times from assets/words.json):
   0 - "login."           a later phrase of the track (from 39.64), softened (gentle low-pass, -3 dB): the problem
