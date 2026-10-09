@@ -29,7 +29,7 @@ If you run one, or build tools for them (POS, billing, payments), we would like 
 
 ## First comment
 
-Learn more or talk to the team: [LINK]. Cafés, grocery stores, salons and POS or payment partners are welcome.
+Learn more or talk to the team: www.wystak.com. Cafés, grocery stores, salons and POS or payment partners are welcome.
 
 ## Image alt text
 
@@ -44,4 +44,4 @@ A stack of wallet passes (a boarding pass, an event ticket, a bank card and a gi
 
 ## Truth check
 
-Claims: no app, tap or scan to join, points on the lock screen within seconds, the owner sees who comes back and who stopped. No traction, customer count or pricing is claimed. Bean Theory is a fictional café. No phone-number collection is mentioned. `[LINK]` is a placeholder until a link is chosen.
+Claims: no app, tap or scan to join, points on the lock screen within seconds, the owner sees who comes back and who stopped. No traction, customer count or pricing is claimed. Bean Theory is a fictional café. No phone-number collection is mentioned. `www.wystak.com` is a placeholder until a link is chosen.

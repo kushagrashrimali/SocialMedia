@@ -4,7 +4,7 @@ Status: draft. Image built by `build.py` into `slides/`.
 
 ## Image
 
-Huge lowercase headline "“apple wallet doesn’t work in india.”" with a tilted violet label "that’s a myth." on a pale lavender ground. Wystak logo and tagline in the footer.
+Soft lilac gradient with a faint grid. Headline "Apple Pay isn't live. Passes still work." with the line "Apple Wallet and Google Wallet. One loyalty pass for every phone." A row of dark wallet passes recedes into the distance, and one white Wystak pass with a teal edge steps out of the line. Wystak logo top-right, www.wystak.com bottom-left, the tagline bottom-right.
 
 ## Post text
 
@@ -29,11 +29,11 @@ If you build for Indian merchants (POS, billing, payments), or you run a counter
 
 ## First comment
 
-Passes work in Apple Wallet and Google Wallet. See how Wystak works or talk to the team: [LINK]
+Passes work in Apple Wallet and Google Wallet. See how Wystak works or talk to the team: www.wystak.com
 
 ## Image alt text
 
-The headline "apple wallet doesn't work in india." in large black type, followed by a violet label reading "that's a myth." Wystak.
+A row of dark wallet passes receding into the distance, with one white Wystak loyalty pass stepping out of the line, under the headline "Apple Pay isn't live. Passes still work." Wystak.
 
 ## Reshare lines
 
@@ -45,7 +45,6 @@ The headline "apple wallet doesn't work in india." in large black type, followed
 ## To confirm before posting
 
 - "Apple Pay is not live in India" comes from the project playbook. Check it is still true on the day of posting.
-- Replace `[LINK]`.
 
 ## Truth check
 
