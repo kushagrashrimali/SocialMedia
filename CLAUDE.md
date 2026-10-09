@@ -40,7 +40,7 @@ The user drops reference videos, ElevenLabs audio, reference screenshots/PDFs an
 - Logo: the navy, purple and teal three-card mark in `wystak/brand/`. Use the supplied files; never redraw it. Tagline: **ALL YOUR PASSES. ONE STACK.**
 - The name is pronounced "WHYS-TAK". Spell it "Whys-tak" in ElevenLabs text.
 - English only. The context is Indian (UPI, WhatsApp, kirana). India has no loyalty-card or stamp-card culture, so never build a story on lost loyalty cards.
-- No invented statistics, prices, customers or traction. The fictional sample merchant is **Paper Crane Coffee**. No real company logos; show Apple Wallet and Google Wallet with equal weight.
+- No invented statistics, prices, customers or traction. The fictional sample merchant is **Bean Theory** (a café). Never use Paper Crane Coffee again; it appears only in older reels. No real company logos; show Apple Wallet and Google Wallet with equal weight.
 - Claims allowed (pitch deck): no app, scan at the counter to add the pass, points on the lock screen within seconds of a scan, and the owner sees who comes back and who stopped.
 - Full context: `wystak/WYSTAK_Project_Context.md`, `wystak/WYSTAK_Pitch_Deck.pdf`.
 
@@ -105,3 +105,15 @@ The user drops reference videos, ElevenLabs audio, reference screenshots/PDFs an
 - GSAP: don't put a degenerate CSS transform such as `scaleX(0) rotate()` inline; set it with `gsap.set`.
 - Card flips read better flat (`scaleX`) than with a strong `rotationY` perspective.
 - Pushes that stack, iOS-style: each new one lands in the bottom slot and lifts the earlier ones. Don't let rising cards cross each other.
+
+## Lessons from the object-style launch post (Instagram design direction)
+
+- Project: `wystak/carousels/launch-objects/` (`build.py`). The user's references were agency posts from Pinterest. This is the design thinking to keep for every Instagram post:
+  - one real-world object carries each slide's idea (a delete dialog, a newspaper, a counter stand, an order pad, an envelope), drawn in code;
+  - huge condensed capitals with one handwritten accent word, plus a small sans for the line under it;
+  - one bold ground per slide, warm paper in between, with grain, real shadows, halftone cut-outs, highlighter tape and hand-drawn arrows or circles;
+  - very few words per slide.
+- Never repeat a post's design pattern. Each new post needs new objects, layouts, grounds and type pairings, with the same level of thinking and craft. The launch post used Anton + Caveat + Poppins on violet, navy and paper; pick a different combination next time.
+- The launch post has no logo badge on the slides (the brand appears in the reveal and the end card). Ask before adding one.
+- Carousels: keep them to 4-5 slides.
+- Wystak also offers NFC: a customer taps the counter stand to become a member (as well as scanning the QR).

@@ -136,7 +136,7 @@ Sources and licences are in `.claude/skills/SOURCES.md`. "Used" means used in bu
 - `manim`, `motion-canvas`, `wgpu-shaders`, `text-to-lottie`
 
 **Brand**
-- `wystak-design:wystak-brand` (plugin skill): logo geometry, colours, type, notification voice, "Paper Crane Coffee" sample merchant. The reels also follow `CLAUDE.md` brand rules: use the supplied logo files only, never redraw; tagline ALL YOUR PASSES. ONE STACK.; merchants as audience; Apple Wallet and Google Wallet with equal weight; no invented stats; no real company logos.
+- `wystak-design:wystak-brand` (plugin skill): logo geometry, colours, type, notification voice, sample merchant (now "Bean Theory"; see `CLAUDE.md`). The reels also follow `CLAUDE.md` brand rules: use the supplied logo files only, never redraw; tagline ALL YOUR PASSES. ONE STACK.; merchants as audience; Apple Wallet and Google Wallet with equal weight; no invented stats; no real company logos.
 
 Skills removed as unused: animate-expo, ask-sonner, break-ui, emil-design-eng, find-animation-opportunities, improve-animations, mobile-native, pick-ui-library, prototype, write-swift, changelog-video, pr-to-video, talking-head-recut, embedded-captions, captions-overlay, faceless-explainer, slideshow, music-to-video, remotion-to-hyperframes, figma, hyperframes-studio, oversized-cursor, pixel2motion, business-motion-film.
 
