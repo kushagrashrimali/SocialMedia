@@ -1,6 +1,6 @@
 # LinkedIn post: Introducing Wystak (single image, 1080×1350)
 
-Status: draft. The image is built by `build.py` into `slides/`. After approval the final PNG is `wystak-introducing-1080x1350.png` in this folder.
+Status: final. Image: `wystak-introducing-1080x1350.png` (rebuild with `python3 build.py`). Upload the PNG, paste the post text, then add the first comment.
 
 ## Image
 
