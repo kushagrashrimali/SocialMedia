@@ -1,6 +1,6 @@
 # LinkedIn post 3: "You can't track your regulars without an app." That's a myth. (two images, 1080×1350)
 
-Status: draft. Images built by `build.py` into `slides/`. After "go" the finals are `wystak-regulars-1-myth-1080x1350.png` and `wystak-regulars-2-answer-1080x1350.png` in this folder. Upload both images in order.
+Status: final. Images: `wystak-regulars-1-myth-1080x1350.png` and `wystak-regulars-2-answer-1080x1350.png` (rebuild with `python3 build.py`). Upload both images in order, paste the post text, then add the first comment.
 
 ## Images
 
