@@ -117,3 +117,9 @@ The user drops reference videos, ElevenLabs audio, reference screenshots/PDFs an
 - The launch post has no logo badge on the slides (the brand appears in the reveal and the end card). Ask before adding one.
 - Carousels: keep them to 4-5 slides.
 - Wystak also offers NFC: a customer taps the counter stand to become a member (as well as scanning the QR).
+
+## Writing rule: no gendered pronouns
+
+- In all copy and in replies, never use gendered pronouns (he, she, his, her, him). Refer to people by role ("the client", "the shopper", "the owner") or in the plural ("customers", "they"). Applies to slide text, captions, alt text, scripts and chat.
+- Headlines must be plain, easy sentences that read clearly on the first look. Avoid clipped or twisted grammar ("Not who.").
+- Different posts must open with different stories. Do not start two posts with the same idea (for example "a best customer quietly left").
