@@ -4,11 +4,11 @@ Status: draft. The image is built by `build.py` into `slides/`. After approval t
 
 ## Image
 
-A stack of wallet passes (boarding pass, event ticket, bank card, gift card) with a teal Bean Theory loyalty pass on top. Headline: "every phone already has a WALLET." Line under it: "is your café in it?" Wystak logo top-left, "Introducing" tag top-right, tagline at the foot.
+A stack of wallet passes (boarding pass, event ticket, bank card, gift card) with a teal Bean Theory loyalty pass on top (132 / 150 points, "200 cashback points" reward). Headline: "every phone already has a WALLET." Line under it: "is your business in it?" Wystak logo top-left, "Introducing" tag top-right, tagline at the foot.
 
 ## Post text
 
-Every phone already has a wallet. Your café is not in it.
+Every phone already has a wallet. Your business is not in it.
 
 Boarding passes and event tickets live there. A neighbourhood loyalty programme does not.
 
@@ -33,7 +33,7 @@ Learn more or talk to the team: [LINK]. Cafés, grocery stores, salons and POS o
 
 ## Image alt text
 
-A stack of wallet passes (a boarding pass, an event ticket, a bank card and a gift card) with a teal Bean Theory loyalty pass on top, under the headline "every phone already has a wallet. is your café in it?" Wystak.
+A stack of wallet passes (a boarding pass, an event ticket, a bank card and a gift card) with a teal Bean Theory loyalty pass on top, under the headline "every phone already has a wallet. is your business in it?" The Bean Theory pass shows 132 of 150 points and a 200 cashback points reward. Wystak.
 
 ## Reshare lines (one per founder, in their own voice; edit freely)
 

@@ -57,13 +57,22 @@ for i, (label, bg, fg, glyph) in enumerate(STACK):
       box-shadow:0 -14px 34px -10px rgba(30,40,90,.22),inset 0 0 0 2px rgba(255,255,255,.18);padding:22px 40px;z-index:{i + 1}">
       <div style="display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:20px;letter-spacing:.2em;opacity:.92"><span>{label}</span>{g}</div></div>'''
 FY = TOP0 + len(STACK) * STEP
-cards += f'''<div class="abs" style="left:96px;top:{FY}px;width:888px;height:274px;border-radius:36px;background:linear-gradient(160deg,#16b0b2,#06737c 60%,#04545b);color:#fff;
-  box-shadow:0 -16px 40px -10px rgba(6,80,90,.38),0 40px 60px -26px rgba(6,60,70,.5),inset 0 0 0 2px rgba(255,255,255,.2);padding:26px 40px;z-index:9">
-  <div style="display:flex;justify-content:space-between;align-items:center"><div style="display:flex;align-items:center;gap:12px;font-weight:600;font-size:21px;letter-spacing:.18em">{CRANE_FREE_BEAN}BEAN THEORY</div>
-    <div style="font-weight:600;font-size:18px;letter-spacing:.2em;opacity:.8">132 PTS</div></div>
-  <div style="margin-top:22px;font-weight:600;font-size:16px;letter-spacing:.22em;opacity:.78">NEXT REWARD</div>
-  <div style="font-weight:800;font-size:68px;letter-spacing:-.03em;margin-top:0;white-space:nowrap">132<span style="font-weight:300;opacity:.75"> / 150</span></div>
-  <div style="position:absolute;right:40px;bottom:26px;font-weight:600;font-size:22px;opacity:.92">Free cold coffee</div></div>'''
+cards += f'''<div class="abs" style="left:96px;top:{FY}px;width:888px;height:274px;border-radius:36px;overflow:hidden;color:#fff;
+  background:radial-gradient(90% 140% at 12% 0%,#27c4c4 0%,#0e9a9f 38%,#06737c 70%,#04484f 100%);
+  box-shadow:0 -16px 40px -10px rgba(6,80,90,.38),0 44px 64px -26px rgba(6,60,70,.55),inset 0 0 0 2px rgba(255,255,255,.22);z-index:9">
+  <!-- watermark bean and arcs -->
+  <svg class="abs" style="right:-30px;top:-70px" width="420" height="420" viewBox="0 0 34 34" fill="none" stroke="#fff" stroke-opacity=".10" stroke-width=".7" stroke-linecap="round"><g transform="rotate(35 17 17)"><ellipse cx="17" cy="17" rx="9.5" ry="14"/><path d="M17 3.5 C11 11 23 23 17 30.5"/></g></svg>
+  <svg class="abs" style="left:0;top:0" width="888" height="274" viewBox="0 0 888 274" fill="none" stroke="#fff" stroke-opacity=".09" stroke-width="1.6"><circle cx="760" cy="300" r="190"/><circle cx="760" cy="300" r="250"/><circle cx="760" cy="300" r="310"/></svg>
+  <div class="abs" style="left:0;top:0;right:0;height:120px;background:linear-gradient(180deg,rgba(255,255,255,.14),transparent)"></div>
+  <div class="abs" style="left:40px;right:40px;top:26px;display:flex;justify-content:space-between;align-items:center">
+    <div style="display:flex;align-items:center;gap:14px;font-weight:600;font-size:21px;letter-spacing:.18em"><span style="width:48px;height:48px;border-radius:15px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center">{CRANE_FREE_BEAN}</span>BEAN THEORY</div>
+    <div style="height:38px;padding:0 18px;border-radius:19px;border:1.5px solid rgba(255,255,255,.5);display:flex;align-items:center;font-weight:600;font-size:15px;letter-spacing:.22em">MEMBER</div></div>
+  <div class="abs" style="left:40px;top:112px">
+    <div style="font-weight:600;font-size:15px;letter-spacing:.24em;opacity:.78">POINTS</div>
+    <div style="font-weight:800;font-size:72px;letter-spacing:-.035em;line-height:1;margin-top:4px;white-space:nowrap">132<span style="font-weight:300;opacity:.7;font-size:46px"> / 150</span></div></div>
+  <div class="abs" style="left:40px;bottom:30px;width:360px;height:10px;border-radius:5px;background:rgba(255,255,255,.22)"><div style="width:88%;height:100%;border-radius:5px;background:#fff"></div></div>
+  <div class="abs" style="right:40px;bottom:26px;height:62px;padding:0 24px 0 18px;border-radius:31px;background:rgba(255,255,255,.96);color:#06545b;display:flex;align-items:center;gap:12px;font-weight:700;font-size:23px;box-shadow:0 12px 24px -10px rgba(0,40,45,.5)">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#06737c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M12 9v12M3 13h18"/><path d="M12 9C9 9 7 7.5 7.5 6s3 0 4.5 3C13.500 6 16 4.500 16.500 6S15 9 12 9z"/></svg>200 cashback points</div></div>'''
 
 slides = []
 slides.append(f'''<!doctype html><html><head><meta charset="utf-8"><style>{CSS}</style></head><body>
@@ -88,7 +97,7 @@ slides.append(f'''<!doctype html><html><head><meta charset="utf-8"><style>{CSS}<
     <div class="h" style="font-size:104px;margin-top:6px">already has a</div>
     <div class="h" style="font-size:104px;margin-top:16px;display:inline-block;padding:6px 26px 14px;border-radius:22px;background:var(--tint);color:var(--violet);margin-left:-26px">WALLET.</div>
   </div>
-  <div class="abs" style="left:96px;top:626px;font-weight:300;font-size:46px;letter-spacing:-.02em;line-height:1.2">is your <b style="font-weight:600;font-style:italic;color:var(--violet)">café</b> in it?</div>
+  <div class="abs" style="left:96px;top:626px;font-weight:300;font-size:46px;letter-spacing:-.02em;line-height:1.2">is your <b style="font-weight:600;font-style:italic;color:var(--violet)">business</b> in it?</div>
 
   <!-- hero: the wallet stack -->
   {cards}
