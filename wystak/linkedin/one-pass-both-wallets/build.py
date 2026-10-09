@@ -1,4 +1,4 @@
-"""WYSTAK LinkedIn post: Apple Pay is not live, wallet passes still work. One image, 1080x1350.
+"""WYSTAK LinkedIn post: iPhone or Android, one loyalty pass works on both. One image, 1080x1350.
 
 Style: a dense field of identical dark, embossed wallet passes (soft depth of field), with one glowing Wystak pass
 standing out in the middle. Almost no text: a three-line headline with one accented word, and the web address.
@@ -71,11 +71,11 @@ slides = [f'''<!doctype html><html><head><meta charset="utf-8"><style>{CSS}</sty
   <svg class="abs" style="left:0;top:0;z-index:310" width="1080" height="1350" viewBox="0 0 1080 1350" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.6"><path d="M0 340 A560 560 0 0 0 470 0"/></svg>
 
   <div class="abs" style="left:96px;top:930px;z-index:320;font-weight:600;font-size:64px;line-height:1.16;letter-spacing:-.015em">
-    Apple Pay isn’t live.<br>Wallet passes<br>still <span style="color:var(--aqua)">work.</span></div>
+    iPhone or Android.<br>One loyalty pass<br>works on <span style="color:var(--aqua)">both.</span></div>
   <div class="abs" style="left:96px;right:96px;bottom:84px;z-index:320;display:flex;justify-content:space-between;align-items:center;font-weight:500;font-size:26px;opacity:.85">
     <span style="display:flex;align-items:center;gap:12px">{GLOBE}www.wystak.com</span></div>
   <div class="grain"></div>
 </div></body></html>''']
 
 if __name__ == "__main__":
-    render(slides, HERE, "wystak-linkedin-myth", sys.argv[1:])
+    render(slides, HERE, "wystak-linkedin-both-wallets", sys.argv[1:])
