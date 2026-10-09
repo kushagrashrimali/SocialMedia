@@ -1,9 +1,9 @@
-"""WYSTAK retail post (navy): 5 slides, 1080x1350.
+"""WYSTAK retail post for grocery stores (navy): 5 slides, 1080x1350.
 
-Story: the paper receipt ends in the bin; the shop knows what sold but not who
-bought it; a tap at the card machine fixes it; the owner sees who stopped; Wystak goes in the shopping bag.
+Story: the shopping list. Customers write items on the list, never a store; the shop knows what sold but not who
+bought it; a tap at the card machine fixes it; the owner sees who stopped; Wystak goes in the grocery bag.
 Type: Archivo Black capitals + Permanent Marker accent word + Poppins. Grounds: navy and cream.
-Objects: a receipt and a bin of crumpled receipts, a swing tag, a card machine, a khata ledger with a rubber stamp, a kraft bag.
+Objects: a shopping list on a fridge door, a swing tag, a card machine, a khata ledger with a rubber stamp, a grocery bag.
 """
 import sys, pathlib
 HERE = pathlib.Path(__file__).resolve().parent
@@ -45,34 +45,29 @@ def frame(cls, body):
 
 slides = []
 
-# 01 cover: every receipt ends in the bin
-ZIG = "polygon(0 0,100% 0,100% 100%,95% 100%,90% 97%,85% 100%,80% 97%,75% 100%,70% 97%,65% 100%,60% 97%,55% 100%,50% 97%,45% 100%,40% 97%,35% 100%,30% 97%,25% 100%,20% 97%,15% 100%,10% 97%,5% 100%,0% 97%)"
-CLIP = ["polygon(98.4% 50.0%,94.0% 68.2%,81.3% 81.3%,66.3% 89.3%,50.0% 95.1%,33.1% 90.7%,16.2% 83.8%,10.2% 66.5%,5.2% 50.0%,7.7% 32.5%,15.3% 15.3%,32.8% 8.4%,50.0% 7.2%,68.2% 6.1%,82.7% 17.3%,89.3% 33.7%)","polygon(91.3% 50.0%,94.8% 68.6%,83.7% 83.7%,66.3% 89.3%,50.0% 95.0%,33.0% 91.1%,17.1% 82.9%,5.8% 68.3%,9.1% 50.0%,12.8% 34.6%,15.8% 15.8%,33.0% 9.0%,50.0% 2.4%,65.3% 13.0%,81.4% 18.6%,93.6% 31.9%)","polygon(99.6% 50.0%,95.7% 68.9%,78.7% 78.7%,65.6% 87.7%,50.0% 98.4%,31.9% 93.8%,17.0% 83.0%,10.2% 66.5%,3.9% 50.0%,7.4% 32.4%,17.6% 17.6%,34.1% 11.6%,50.0% 5.7%,66.8% 9.4%,83.4% 16.6%,96.1% 30.9%)","polygon(92.4% 50.0%,92.0% 67.4%,80.9% 80.9%,67.6% 92.5%,50.0% 96.3%,34.4% 87.6%,21.6% 78.4%,5.3% 68.5%,7.4% 50.0%,10.9% 33.8%,14.7% 14.7%,32.9% 8.7%,50.0% 1.6%,67.1% 8.6%,82.8% 17.2%,88.3% 34.1%)"]
-CRUMPLE = lambda d, x, y, rot: (f'<div class="abs" style="left:{x}px;top:{y}px;width:{d}px;height:{d}px;transform:rotate({rot}deg);z-index:4;filter:drop-shadow(0 16px 14px rgba(0,0,0,.45))">'
-    f'<div style="position:absolute;inset:0;clip-path:{CLIP[(x + y) % 4]};background:radial-gradient(circle at 28% 28%,#fff 0 18%,transparent 19%),radial-gradient(circle at 72% 36%,#d9d3c2 0 16%,transparent 17%),radial-gradient(circle at 40% 74%,#c4bda8 0 20%,transparent 21%),radial-gradient(circle at 82% 78%,#fffef8 0 14%,transparent 15%),radial-gradient(circle at 55% 52%,#e9e5d6 0 30%,transparent 31%),#d3ccb8"></div></div>')
+# 01 cover: the shopping list on the fridge
+LIST_ROWS = ["MILK", "EGGS", "ATTA", "TOMATOES", "ONIONS"]
+rows1 = ''.join(f'''<div style="display:flex;align-items:center;gap:22px;height:78px;border-bottom:2px solid rgba(40,70,140,.28)">
+  <svg width="46" height="46" viewBox="0 0 46 46" fill="none" stroke="#1c3f9a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="38" height="38" rx="7"/><path d="M12 24 L20 32 L36 12"/></svg>
+  <span class="s" style="font-size:54px;color:#1c2f6b">{t}</span></div>''' for t in LIST_ROWS)
 slides.append(frame("n", f'''
   <div class="abs" style="left:84px;top:170px">
-    <div class="d" style="font-size:94px">Every receipt<br>ends in the</div>
-    <div class="s" style="font-size:250px;margin-top:-10px;margin-left:10px;transform:rotate(-4deg)">bin.</div>
+    <div class="d" style="font-size:98px">Your store is<br>not on their</div>
+    <div class="s" style="font-size:250px;margin-top:-10px;margin-left:10px;transform:rotate(-4deg)">list.</div>
   </div>
-  <div class="sub abs" style="left:560px;top:690px;width:440px;font-size:34px;text-align:right">Your shop should not.</div>
-  <!-- the receipt -->
-  <div class="abs" style="left:84px;top:760px;width:400px;height:640px;transform:rotate(-7deg);filter:drop-shadow(0 34px 30px rgba(0,0,0,.5))">
-    <div style="position:absolute;inset:0;background:#fbfaf2;clip-path:{ZIG};padding:36px 32px;color:#26262c;font-weight:600;letter-spacing:.06em">
-      <div style="text-align:center;display:flex;gap:10px;align-items:center;justify-content:center;font-weight:700;font-size:25px;letter-spacing:.14em">{FLOWER(32, "#26262c")}MARIGOLD LANE</div>
-      <div style="border-top:3px dashed #9a9aa4;margin:20px 0"></div>
-      <div style="display:flex;justify-content:space-between;font-size:21px"><span>LINEN SHIRT</span><span>1,299</span></div>
-      <div style="display:flex;justify-content:space-between;font-size:21px;margin-top:10px"><span>COTTON SCARF</span><span>449</span></div>
-      <div style="display:flex;justify-content:space-between;font-size:21px;margin-top:10px"><span>TOTE BAG</span><span>299</span></div>
-      <div style="border-top:3px dashed #9a9aa4;margin:20px 0"></div>
-      <div style="display:flex;justify-content:space-between;font-size:30px;font-weight:700"><span>TOTAL</span><span>₹2,047</span></div>
-      <div style="height:70px;margin-top:22px;background:repeating-linear-gradient(90deg,#26262c 0 3px,transparent 3px 7px,#26262c 7px 9px,transparent 9px 15px,#26262c 15px 20px,transparent 20px 23px)"></div>
-      <div style="text-align:center;font-size:21px;margin-top:22px;letter-spacing:.16em;line-height:1.5">THANK YOU.<br>VISIT AGAIN.</div></div>
+  <!-- fridge door -->
+  <div class="abs" style="left:-20px;right:-20px;top:700px;height:700px;background:linear-gradient(90deg,#aeb9cc,#e3e9f2 22%,#cfd7e4 50%,#e9eef6 78%,#a9b4c8);box-shadow:0 -24px 50px rgba(0,10,40,.45)">
+    <div class="abs" style="left:0;right:0;top:0;height:700px;background:repeating-linear-gradient(90deg,rgba(255,255,255,.12) 0 3px,transparent 3px 7px)"></div>
+    <div class="abs" style="left:70px;top:90px;width:34px;height:520px;border-radius:17px;background:linear-gradient(90deg,#8c97ad,#f2f5fa 45%,#7d889e);box-shadow:8px 10px 16px rgba(0,0,0,.25)"></div></div>
+  <!-- the list, held by magnets -->
+  <div class="abs" style="left:250px;top:640px;width:640px;height:700px;background:#fffdf4;transform:rotate(-3deg);box-shadow:0 40px 50px -20px rgba(0,10,40,.6);padding:96px 54px 0 70px;z-index:3;background-image:linear-gradient(90deg,transparent 52px,rgba(220,80,80,.5) 52px 54px,transparent 54px)">
+    <div class="abs" style="left:20px;top:26px;font-weight:700;font-size:22px;letter-spacing:.2em;color:#6a7396">THIS WEEK</div>
+    {rows1}
+    <div style="display:flex;align-items:center;gap:22px;height:92px;position:relative">
+      <svg width="46" height="46" viewBox="0 0 46 46" fill="none" stroke="#d3342a" stroke-width="4" stroke-linecap="round" stroke-dasharray="3 8"><rect x="4" y="4" width="38" height="38" rx="7"/></svg>
+      <span class="s" style="font-size:54px;color:#d3342a">Marigold Lane ???</span></div>
   </div>
-  <!-- the bin -->
-  {CRUMPLE(150, 600, 860, 20)}{CRUMPLE(128, 760, 840, -30)}{CRUMPLE(120, 700, 800, 60)}{CRUMPLE(104, 850, 880, 10)}
-  <div class="abs" style="left:580px;top:960px;width:400px;height:440px;background:repeating-linear-gradient(90deg,#b4bfd4 0 12px,#6f7fa3 12px 15px);clip-path:polygon(0 0,100% 0,90% 100%,10% 100%);z-index:5;box-shadow:inset 0 -30px 40px rgba(10,30,70,.35)"></div>
-  <div class="abs" style="left:566px;top:944px;width:428px;height:44px;border-radius:50%;background:linear-gradient(180deg,#e2e8f4,#8e9cbc);box-shadow:0 8px 14px rgba(0,0,0,.4);z-index:6"></div>
+  <div class="abs" style="left:520px;top:612px;width:74px;height:74px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ff8a80,#d3342a 60%,#8f1a14);box-shadow:0 10px 14px rgba(0,0,0,.45);z-index:5"></div>
   <div class="abs" style="right:84px;top:76px;display:flex;align-items:center;gap:6px;z-index:6">
     <span class="s" style="font-size:44px;color:#fff">swipe</span>{arrow(130, 60, "M6 36 C36 18 70 50 120 30", "#fff", 5, (120, 30, -22))}</div>'''))
 
@@ -88,9 +83,9 @@ slides.append(frame("c", f'''
   <div class="abs" style="left:640px;top:690px;width:400px;height:680px;transform:rotate(5deg);transform-origin:50% 8%;filter:drop-shadow(0 40px 36px rgba(40,25,5,.45))">
     <div style="position:absolute;inset:0;background:var(--kraft);clip-path:polygon(18% 0,82% 0,100% 11%,100% 100%,0 100%,0 11%);padding:140px 30px 30px;color:#2a1c08">
       <div class="abs" style="left:50%;top:44px;width:54px;height:54px;margin-left:-27px;border-radius:50%;background:#f2ede1;box-shadow:inset 0 5px 8px rgba(0,0,0,.35)"></div>
-      <div style="text-align:center;font-weight:700;font-size:21px;letter-spacing:.2em">MARIGOLD LANE</div>
-      <div style="text-align:center;font-weight:600;font-size:24px;margin-top:22px;letter-spacing:.06em">LINEN SHIRT · SKY BLUE</div>
-      <div class="d" style="text-align:center;font-size:80px;margin-top:20px;letter-spacing:0">₹1,299</div>
+      <div style="text-align:center;font-weight:700;font-size:17px;letter-spacing:.16em">MARIGOLD LANE GROCERS</div>
+      <div style="text-align:center;font-weight:600;font-size:24px;margin-top:22px;letter-spacing:.06em">FRESH TOMATOES · 1 KG</div>
+      <div class="d" style="text-align:center;font-size:96px;margin-top:20px;letter-spacing:0">₹40</div>
       <div style="height:84px;margin:24px 16px 0;background:repeating-linear-gradient(90deg,#2a1c08 0 4px,transparent 4px 9px,#2a1c08 9px 11px,transparent 11px 18px,#2a1c08 18px 24px,transparent 24px 28px)"></div>
       <div style="margin:30px 14px 0;border-top:3px dashed rgba(42,28,8,.55);padding-top:26px">
         <div style="font-weight:600;font-size:23px;letter-spacing:.12em">SOLD TO:</div>
@@ -158,8 +153,13 @@ slides.append(frame("n", f'''
     <div class="s" style="font-size:240px;position:absolute;left:260px;top:158px;transform:rotate(-5deg)">bag.</div>
   </div>
   <!-- card poking out of the bag -->
-  <div class="abs" style="left:300px;top:540px;width:520px;height:440px;border-radius:30px;background:#fff;transform:rotate(-7deg);box-shadow:0 30px 50px -20px rgba(0,0,0,.5);display:flex;align-items:flex-start;justify-content:center;padding-top:38px;z-index:2">
+  <div class="abs" style="left:270px;top:540px;width:520px;height:440px;border-radius:30px;background:#fff;transform:rotate(-6deg);box-shadow:0 30px 50px -20px rgba(0,0,0,.5);display:flex;align-items:flex-start;justify-content:center;padding-top:38px;z-index:2">
     <img src="assets/logo-full.png" style="width:330px"></div>
+  <!-- greens and a tomato peeking out -->
+  <svg class="abs" style="left:50px;top:700px;z-index:2" width="300" height="320" viewBox="0 0 300 320"><ellipse cx="120" cy="150" rx="35.0" ry="105.0" fill="#2f8a43" transform="rotate(-38 120 235.0)"/><ellipse cx="170" cy="120" rx="35.0" ry="105.0" fill="#3fa653" transform="rotate(-18 170 205.0)"/><ellipse cx="220" cy="110" rx="35.0" ry="105.0" fill="#2a7a3b" transform="rotate(2 220 195.0)"/><ellipse cx="70" cy="190" rx="35.0" ry="105.0" fill="#49b45d" transform="rotate(-58 70 275.0)"/></svg>
+  <svg class="abs" style="left:790px;top:720px;z-index:2" width="280" height="320" viewBox="0 0 280 320"><ellipse cx="130" cy="150" rx="35.0" ry="105.0" fill="#2f8a43" transform="rotate(34 130 235.0)"/><ellipse cx="80" cy="120" rx="35.0" ry="105.0" fill="#3fa653" transform="rotate(16 80 205.0)"/><ellipse cx="30" cy="110" rx="35.0" ry="105.0" fill="#2a7a3b" transform="rotate(-4 30 195.0)"/><ellipse cx="180" cy="190" rx="35.0" ry="105.0" fill="#49b45d" transform="rotate(56 180 275.0)"/></svg>
+  <div class="abs" style="left:850px;top:840px;width:140px;height:130px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ff8a70,#e03a2a 55%,#a3180f);box-shadow:0 14px 18px -6px rgba(0,0,0,.5);z-index:4"></div>
+  <svg class="abs" style="left:876px;top:822px;z-index:5" width="90" height="50" viewBox="0 0 90 50" fill="#2f8a43"><path d="M45 40 C30 40 10 30 8 14 C24 16 36 24 45 40Z"/><path d="M45 40 C60 40 80 30 82 14 C66 16 54 24 45 40Z"/><path d="M45 40 C40 24 44 10 54 2 C58 18 52 30 45 40Z"/></svg>
   <!-- bag handles -->
   <svg class="abs" style="left:250px;top:700px;z-index:1" width="640" height="300" viewBox="0 0 640 300" fill="none" stroke="#e8d4a8" stroke-width="12" stroke-linecap="round"><path d="M150 260 C130 80 250 40 320 150"/><path d="M490 260 C510 80 390 40 320 150"/></svg>
   <!-- bag body -->
@@ -167,7 +167,8 @@ slides.append(frame("n", f'''
     <div class="abs" style="left:0;right:0;top:0;height:46px;background:rgba(0,0,0,.14)"></div>
     <div class="abs" style="left:50%;top:0;bottom:0;width:4px;margin-left:-2px;background:rgba(0,0,0,.08)"></div>
     <div class="abs" style="left:150px;top:150px;display:flex;align-items:center;gap:20px;color:#3a2810;font-weight:700;font-size:40px;letter-spacing:.14em">{FLOWER(70, "#3a2810")}MARIGOLD LANE</div>
-    <div class="abs" style="left:150px;top:250px;width:520px;font-weight:600;font-size:34px;line-height:1.35;color:#3a2810">Bring Wystak to the billing counter. DM us <b>“STACK”</b>.</div></div>
+    <div class="abs" style="left:240px;top:210px;font-weight:700;font-size:26px;letter-spacing:.4em;color:#3a2810;opacity:.8">GROCERS</div>
+    <div class="abs" style="left:150px;top:290px;width:520px;font-weight:600;font-size:34px;line-height:1.35;color:#3a2810">Bring Wystak to the billing counter. DM us <b>“STACK”</b>.</div></div>
 '''))
 
 if __name__ == "__main__":
