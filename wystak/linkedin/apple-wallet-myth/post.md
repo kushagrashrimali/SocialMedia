@@ -4,7 +4,7 @@ Status: draft. Image built by `build.py` into `slides/`.
 
 ## Image
 
-Soft lilac gradient with a faint grid. Headline "Apple Pay isn't live. Passes still work." with the line "Apple Wallet and Google Wallet. One loyalty pass for every phone." A row of dark wallet passes recedes into the distance, and one white Wystak pass with a teal edge steps out of the line. Wystak logo top-right, www.wystak.com bottom-left, the tagline bottom-right.
+A dense field of identical dark, embossed wallet passes with soft depth of field, and one glowing white-and-teal Wystak pass standing out in the middle with the Wystak mark. Only three lines of text: "Apple Pay isn't live. Wallet passes still work." (with "work." in teal), and www.wystak.com at the bottom. Nothing else on the image.
 
 ## Post text
 
@@ -33,7 +33,7 @@ Passes work in Apple Wallet and Google Wallet. See how Wystak works or talk to t
 
 ## Image alt text
 
-A row of dark wallet passes receding into the distance, with one white Wystak loyalty pass stepping out of the line, under the headline "Apple Pay isn't live. Passes still work." Wystak.
+A crowd of identical dark wallet passes with one glowing white and teal Wystak pass standing out in the middle, under the headline "Apple Pay isn't live. Wallet passes still work." www.wystak.com.
 
 ## Reshare lines
 
