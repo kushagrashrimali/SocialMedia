@@ -7,7 +7,7 @@ Paste this file into a Claude chat to get step-by-step help setting up the proje
 A GitHub repo (`kushagrashrimali/SocialMedia`, branch `claude/modest-fermi-lv21nq`) that makes WYSTAK's marketing videos and posts with code:
 
 - **Reels (video):** HTML + GSAP + Three.js, rendered to MP4 by HyperFrames (headless Chromium + ffmpeg).
-- **Carousels and LinkedIn posts:** HTML slides rendered to PNG/PDF by headless Chromium (`wystak/carousels/launch/build.py`).
+- **Carousels and LinkedIn posts:** HTML slides rendered to PNG/PDF by headless Chromium (`wystak/instagram/carousels/launch-v1/build.py`).
 - **Sound:** Python scripts (numpy/scipy/ffmpeg) re-cut a licensed Mixkit music track and add soft effects.
 - **Rules and lessons:** `CLAUDE.md` at the repo root. Claude Code reads it automatically; it holds the brand rules, the process for each format and every lesson learned so far.
 
@@ -95,7 +95,7 @@ Needs the ElevenLabs voiceover in `assets/`. See `videos/loyalty-evolution-reel/
 
 ### Carousels and LinkedIn
 
-Copy `wystak/carousels/launch/` to `wystak/carousels/<name>/`, edit `build.py`, run it. Outputs go in `wystak/` or `wystak/linkedin/<name>/`.
+Copy `wystak/instagram/carousels/launch-v1/` to `wystak/instagram/carousels/<name>/`, edit `build.py`, run it. Outputs go in `wystak/` or `wystak/linkedin/<name>/`.
 
 ## 5. Skills used (all live in `.claude/skills/`; Claude Code loads them automatically)
 

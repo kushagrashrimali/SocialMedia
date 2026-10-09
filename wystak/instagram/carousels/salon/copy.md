@@ -1,6 +1,6 @@
 # WYSTAK salon post (teal), 5 slides, 1080×1350
 
-Fictional salon: The Saffron Room. Rebuild with `python3 wystak/carousels/salon/build.py`.
+Fictional salon: The Saffron Room. Rebuild with `python3 wystak/instagram/carousels/salon/build.py`.
 Type: DM Serif Display + Allura + Poppins. Grounds: teal and blush.
 
 | # | Headline | Object |

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Verify a delivered reel: format, duration, loudness, and a contact sheet of frames pulled from the MP4 itself.
-# usage: bash sound/verify.sh ../../wystak/wystak-iphone-reel.mp4 /path/to/out-dir
+# usage: bash sound/verify.sh ../../wystak/instagram/reels/finals/wystak-iphone-reel.mp4 /path/to/out-dir
 set -euo pipefail
 mp4="$1"; out="$2"; mkdir -p "$out"
 ffprobe -v error -show_entries format=duration,size:stream=codec_name,width,height,r_frame_rate,sample_rate,channels -of default=nw=1 "$mp4"

@@ -38,9 +38,9 @@ lockup and a stacking-passes metaphor. An introduction, not an explainer ("What 
 ```
 python3 -I sound/make_sound.py
 npx --yes hyperframes@0.8.139 render --resolution portrait-4k -q delivery -o renders/wystak-launch-intro-4k.mp4
-bash sound/master.sh renders/wystak-launch-intro-4k.mp4 ../../wystak/launch-intro
-ffmpeg -i renders/wystak-launch-intro-4k.mp4 -frames:v 1 ../../wystak/launch-intro/wystak-launch-intro-cover.png
-ffmpeg -sseof -0.05 -i renders/wystak-launch-intro-4k.mp4 -frames:v 1 ../../wystak/launch-intro/wystak-launch-intro-final-frame.png
+bash sound/master.sh renders/wystak-launch-intro-4k.mp4 ../../wystak/instagram/reels/finals/launch-intro
+ffmpeg -i renders/wystak-launch-intro-4k.mp4 -frames:v 1 ../../wystak/instagram/reels/finals/launch-intro/wystak-launch-intro-cover.png
+ffmpeg -sseof -0.05 -i renders/wystak-launch-intro-4k.mp4 -frames:v 1 ../../wystak/instagram/reels/finals/launch-intro/wystak-launch-intro-final-frame.png
 ```
 (`tools/stills.mjs` exports the same stills straight from the page; it is very slow on the software renderer.)
 

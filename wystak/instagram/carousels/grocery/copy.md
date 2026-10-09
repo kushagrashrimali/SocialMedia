@@ -1,6 +1,6 @@
 # WYSTAK retail post for grocery stores (navy), 5 slides, 1080×1350
 
-Fictional shop: Marigold Lane Grocers. Rebuild with `python3 wystak/carousels/retail/build.py`.
+Fictional shop: Marigold Lane Grocers. Rebuild with `python3 wystak/instagram/carousels/grocery/build.py`.
 Type: Archivo Black + Permanent Marker + Poppins. Grounds: navy and cream.
 
 | # | Headline | Object |

@@ -1,6 +1,6 @@
 # WYSTAK launch post, object style (5 slides, 1080×1350)
 
-Files: `slides/wystak-launch-01.png` to `-05.png`. Rebuild with `python3 wystak/carousels/launch-objects/build.py`.
+Files: `slides/wystak-launch-01.png` to `-05.png`. Rebuild with `python3 wystak/instagram/carousels/launch/build.py`.
 
 | # | Headline | Object |
 |---|---|---|

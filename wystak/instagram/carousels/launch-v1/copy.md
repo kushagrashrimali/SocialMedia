@@ -1,6 +1,6 @@
 # WYSTAK launch carousel (8 slides, 1080×1350)
 
-Files: `wystak/carousels/launch/slides/wystak-launch-01.png` to `-08.png`. Rebuild them with `python3 wystak/carousels/launch/build.py`.
+Files: `wystak/instagram/carousels/launch-v1/slides/wystak-launch-01.png` to `-08.png`. Rebuild them with `python3 wystak/instagram/carousels/launch-v1/build.py`.
 
 Approach: Reelo's posting mindset, which is merchant-first, opens on a question that provokes owners, keeps the logo in the same spot on every post, shows product UI in phones and stays in one consistent colour world. The execution is Apple-style: one idea per slide, lots of space, a product shot as the hero. Dark navy and light grey slides alternate, and one accent word sits in each headline.
 

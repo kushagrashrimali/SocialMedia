@@ -172,4 +172,4 @@ slides.append(frame("n", f'''
 '''))
 
 if __name__ == "__main__":
-    render(slides, HERE, "wystak-retail", sys.argv[1:])
+    render(slides, HERE, "wystak-grocery", sys.argv[1:])

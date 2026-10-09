@@ -60,12 +60,12 @@ Choose to sign in with your Claude account (not an API key). Claude Code reads `
 
 | Task | Command |
 |---|---|
-| Rebuild the launch carousel | `python3 wystak/carousels/launch/build.py` |
+| Rebuild the launch carousel | `python3 wystak/instagram/carousels/launch/build.py` |
 | Preview a reel in the browser | `cd videos/wystak-launch-reel && npx hyperframes preview` |
 | Check a reel | `npx hyperframes check` (inside the reel folder) |
 | Render a reel | `npx hyperframes render -q delivery -o renders/out.mp4` |
 
-If the carousel builder can't find Chrome, point it there: `CHROME="/path/to/chrome" python3 wystak/carousels/launch/build.py`.
+If the carousel builder can't find Chrome, point it there: `CHROME="/path/to/chrome" python3 wystak/instagram/carousels/launch/build.py`.
 
 ## Differences from the cloud session
 
@@ -121,7 +121,7 @@ Open a terminal in the project folder, run `claude`, then go step by step. Wait 
 
 Claude studies the reference (story, pacing, design, captions, sound) and tells you what it found.
 
-**Step 2: script.** Claude writes the voiceover script in the reference's style and saves it in `wystak/scripts/`. Ask for changes until you like it ("make the hook shorter", "less salesy").
+**Step 2: script.** Claude writes the voiceover script in the reference's style and saves it in `wystak/instagram/reels/scripts/`. Ask for changes until you like it ("make the hook shorter", "less salesy").
 
 **Step 3: audio.** Paste the script into ElevenLabs, generate the voice, download the MP3, and save it as `voiceover.mp3` in the job folder. Then say:
 > The audio is ready: @inbox/2026-10-20-diwali-reel/voiceover.mp3. Make the storyboard.
@@ -135,7 +135,7 @@ Repeat until you're happy. To see real motion before the final render, run `cd v
 
 ## Making a carousel or single-image post (4 steps)
 
-**The template.** Every post reuses the design system of the launch carousel: `wystak/carousels/launch/build.py`. That file holds the colours, fonts, phone and pass drawings, the logo badge and the slide layout. Claude copies it into a new folder (for example `wystak/carousels/offline-scanner/`) and changes the text and visuals, so all your posts look like one family. You don't need to edit it yourself. If you ever want a different look, say so and name a reference.
+**The template.** Every post follows the object-style system in `wystak/instagram/carousels/` (shared helpers in `_common/common.py`, one `build.py` per post). Claude starts a new folder (for example `wystak/instagram/carousels/offline-scanner/`) and gives it new objects, layouts and type, so posts share a design way of thinking without repeating each other. You don't need to edit it yourself. If you ever want a different look, say so and name a reference.
 
 **Step 1: brief and reference.** Put screenshots or PDFs of posts you like (and any photos you want used) in a job folder, then say:
 > Let's make a carousel. Follow the post process in CLAUDE.md. Topic: (what it's about and who it's for). References are in @inbox/2026-10-22-offline-scanner-carousel/. Use the launch carousel template.
@@ -146,7 +146,7 @@ Mention any real facts you're happy to show (an offer, a real number). Otherwise
 
 **Step 3: draft sheet.** Claude renders all slides and saves one preview image of every slide side by side. Open it and reply with changes ("slide 4: swap the phone for the dashboard").
 
-**Step 4: "go".** Say **go**. Claude exports the final PNGs to `wystak/carousels/<name>/slides/`, saves the caption in a copy file next to them, commits and pushes. Upload the PNGs to Instagram in order (01, 02, ...) and paste the caption.
+**Step 4: "go".** Say **go**. Claude exports the final PNGs to `wystak/instagram/carousels/<name>/slides/`, saves the caption in a copy file next to them, commits and pushes. Upload the PNGs to Instagram in order (01, 02, ...) and paste the caption.
 
 ## Making a LinkedIn post (4 steps)
 
@@ -187,5 +187,5 @@ It commits and pushes. To publish:
 - **One job per Claude session.** Start a new `claude` session for each new reel or post; type `/clear` to start fresh in the same window.
 - **Pick up later:** everything is saved in files, so if you close the session you can come back with "Continue the Diwali reel in videos/diwali-reel; we were at the storyboard step."
 - **Change an old post:** "Change slide 6 of the launch carousel to say ... and re-render it." Claude edits that project and rebuilds it.
-- **Rebuild without AI:** `python3 wystak/carousels/<name>/build.py` remakes a carousel; `npx hyperframes render` inside a reel folder remakes a reel.
+- **Rebuild without AI:** `python3 wystak/instagram/carousels/<name>/build.py` remakes a carousel; `npx hyperframes render` inside a reel folder remakes a reel.
 - **Brand rules** (merchant audience, no invented numbers, the Bean Theory sample café, the logo files, "Whys-tak" in ElevenLabs) live in `CLAUDE.md`, and Claude follows them automatically. Edit that file to change a rule.
