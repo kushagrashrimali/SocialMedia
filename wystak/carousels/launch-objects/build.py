@@ -32,7 +32,7 @@ def find_chrome():
     raise SystemExit("Chrome not found. Install Google Chrome, or set CHROME=/path/to/chrome")
 
 
-TOTAL = 8
+TOTAL = 5
 GRAIN = ("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='600'>"
          "<filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/>"
          "<feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")
@@ -52,16 +52,15 @@ body{font-family:P,sans-serif;-webkit-font-smoothing:antialiased}
 .slide{position:relative;width:1080px;height:1350px;overflow:hidden}
 .v{background:radial-gradient(90% 70% at 50% 40%,#7d3cc0 0%,#5a1f95 45%,#3a1166 100%);color:#fff}
 .p{background:var(--paper);color:var(--ink)}
+.n{background:radial-gradient(90% 70% at 50% 40%,#16407f 0%,#0a2860 50%,#061a42 100%);color:#fff}
 .grain{position:absolute;inset:0;background:url("GRAIN");pointer-events:none;z-index:50}
-.v .grain{opacity:.22;mix-blend-mode:soft-light}
+.v .grain,.n .grain{opacity:.22;mix-blend-mode:soft-light}
 .p .grain{opacity:.16;mix-blend-mode:multiply}
 .vig{position:absolute;inset:0;pointer-events:none;z-index:49;box-shadow:inset 0 0 220px rgba(20,0,40,.45)}
 .p .vig{box-shadow:inset 0 0 200px rgba(90,70,40,.16)}
-.badge{position:absolute;left:84px;top:80px;height:60px;padding:0 22px;border-radius:30px;background:#fff;display:flex;align-items:center;box-shadow:0 8px 24px rgba(0,0,0,.14);z-index:40}
-.badge img{height:36px}
 .d{font-family:A,sans-serif;text-transform:uppercase;line-height:1;letter-spacing:.005em;white-space:nowrap}
 .s{font-family:C,cursive;font-weight:700;line-height:.8;white-space:nowrap}
-.v .s{color:var(--aqua)} .p .s{color:var(--violet)}
+.v .s,.n .s{color:var(--aqua)} .p .s{color:var(--violet)}
 .sub{font-weight:500;font-size:36px;line-height:1.35}
 .v .sub{color:rgba(255,255,255,.82)} .p .sub{color:#4a4552}
 .tape{position:relative;display:inline-block;padding:0 .12em;z-index:0}
@@ -114,10 +113,9 @@ def thumb(w, rot, ink="#1b1530"):
   </g></svg>'''
 
 
-def frame(cls, body, badge=True):
-    b = '<div class="badge"><img src="assets/logo-wordmark.png"></div>' if badge else ''
+def frame(cls, body):
     return f'''<!doctype html><html><head><meta charset="utf-8"><style>{CSS}</style></head><body>
-    <div class="slide {cls}">{b}{body}<div class="vig"></div><div class="grain"></div></div></body></html>'''
+    <div class="slide {cls}">{body}<div class="vig"></div><div class="grain"></div></div></body></html>'''
 
 
 slides = []
@@ -144,37 +142,9 @@ slides.append(frame("v", f'''
     {arrow(150, 70, "M8 40 C40 20 80 58 138 34", "#fff", 6, (138, 34, -22))}
   </div>'''))
 
-# 02 wallet fan
-def card(bg, fg, top, bottom, rot, x, y, w=420, h=250, z=1, extra=""):
-    return f'''<div class="abs" style="left:{x}px;top:{y}px;width:{w}px;height:{h}px;border-radius:30px;background:{bg};color:{fg};transform:rotate({rot}deg);transform-origin:50% 130%;box-shadow:0 30px 60px -24px rgba(40,20,60,.55);padding:28px 32px;z-index:{z}">
-      <div style="display:flex;justify-content:space-between;font-weight:700;font-size:23px;letter-spacing:.08em">{top}</div>{bottom}{extra}</div>'''
-
-lbl = lambda t: f'<div style="font-weight:600;font-size:16px;letter-spacing:.16em;opacity:.7;margin-top:30px">{t}</div>'
-fan = (
-    card("#1e2f5c", "#fff", "<span>BOARDING PASS</span><span>✈</span>",
-         f'{lbl("FROM → TO")}<div class="d" style="font-size:72px;margin-top:4px">BLR → BOM</div>', -24, 110, 900, z=1)
-  + card("#e0672b", "#fff", "<span>MOVIE TICKET</span><span>SCREEN 4</span>",
-         f'{lbl("SEAT")}<div class="d" style="font-size:72px;margin-top:4px">ROW F · 12</div>', -9, 250, 860, z=2)
-  + card("#2b2b33", "#fff", "<span>CITY METRO</span><span>₹240</span>",
-         f'{lbl("BALANCE")}<div class="d" style="font-size:72px;margin-top:4px">₹240</div>', 6, 390, 850, z=3)
-)
-slides.append(frame("p", f'''
-  <div class="abs" style="left:84px;top:210px;width:930px">
-    <div class="d" style="font-size:104px;color:var(--ink)">They don't need one.</div>
-    <div class="d" style="font-size:104px;color:var(--ink);margin-top:4px">The <span class="s" style="font-size:150px;text-transform:none;display:inline-block;transform:rotate(-5deg) translateY(10px)">wallet</span> is <span class="tape">already</span></div>
-    <div class="d" style="font-size:104px;color:var(--ink);margin-top:4px">on their phone.</div>
-    <div class="sub" style="margin-top:34px">Boarding passes. Movie tickets. <b style="font-weight:700;color:var(--violet)">Now your café.</b></div>
-  </div>
-  <div class="abs" style="left:0;top:0;width:1080px;height:1350px">{fan}
-    {card("linear-gradient(160deg,#0a8a8f,#06646c)", "#fff", f'<span style="display:flex;gap:12px;align-items:center">{CRANE(30)}PAPER CRANE COFFEE</span><span>132 PTS</span>',
-          f'{lbl("NEXT REWARD")}<div class="d" style="font-size:72px;margin-top:4px">132 / 150</div>', 20, 520, 870, w=440, z=4)}
-  </div>
-  <div class="abs" style="left:640px;top:1250px;z-index:6;transform:rotate(-6deg)"><span class="s" style="font-size:66px">yours</span></div>
-  <div class="abs" style="left:800px;top:1170px;z-index:6">{arrow(140, 110, "M10 90 C50 90 90 70 110 20", "#6b2ba6", 6, (110, 20, -70))}</div>'''))
-
-# 03 newspaper
+# 02 newspaper
 col = lambda n, w: ''.join(f'<div style="height:9px;margin:9px 0;background:#cfc7b6;border-radius:2px;width:{w if i < n-1 else w*0.6:.0f}px"></div>' for i in range(n))
-slides.append(frame("v", f'''
+slides.append(frame("n", f'''
   <div class="abs" style="left:120px;top:250px;width:840px;height:990px;perspective:1600px">
    <div style="position:absolute;inset:0;transform:rotateX(9deg) rotateY(-10deg) rotateZ(-3deg);transform-origin:50% 60%">
     <div style="position:absolute;inset:0;background:#f1ebdd;box-shadow:0 70px 120px -30px rgba(10,0,30,.8);padding:46px 52px;color:#16131c">
@@ -192,8 +162,8 @@ slides.append(frame("v", f'''
         </div>
         <div style="flex:1">
           <div style="font-weight:700;font-size:30px;line-height:1.15">Introducing Wystak.</div>
-          <div style="font-weight:500;font-size:19px;line-height:1.4;margin-top:10px;color:#3b3640">Your loyalty pass in Apple Wallet and Google Wallet. No app to download.</div>
-          {col(4, 300)}
+          <div style="font-weight:500;font-size:19px;line-height:1.4;margin-top:10px;color:#3b3640">Your loyalty pass in Apple Wallet and Google Wallet. Tap or scan at the counter to join. No app.</div>
+          {col(3, 300)}
         </div>
       </div>
       <div style="display:flex;gap:30px;margin-top:18px"><div style="flex:1">{col(3, 340)}</div><div style="flex:1">{col(3, 340)}</div></div>
@@ -203,71 +173,42 @@ slides.append(frame("v", f'''
   </div>
   <div class="abs" style="left:560px;top:150px;transform:rotate(-6deg);z-index:6"><span class="s" style="font-size:84px">read all about it</span></div>'''))
 
-# 04 table tent with QR on the counter
+# 03 tap or scan: NFC + QR stand on the counter, a phone tapping it
+NFC = lambda s, c: f'<svg width="{s}" height="{s}" viewBox="0 0 48 48" fill="none" stroke="{c}" stroke-width="4" stroke-linecap="round"><path d="M14 16 C18 20 18 28 14 32"/><path d="M21 11 C28 18 28 30 21 37"/><path d="M28 6 C38 16 38 32 28 42"/></svg>'
 slides.append(frame("p", f'''
   <div class="abs" style="left:0;right:0;top:0;height:1350px;background-image:linear-gradient(rgba(60,40,20,.07) 2px,transparent 2px),linear-gradient(90deg,rgba(60,40,20,.07) 2px,transparent 2px);background-size:135px 135px"></div>
-  <div class="abs" style="left:84px;top:210px;width:920px">
-    <div class="d" style="font-size:170px">One scan.</div>
+  <div class="abs" style="left:84px;top:150px;width:920px">
+    <div class="d" style="font-size:170px">Tap. Or scan.</div>
     <div class="d" style="font-size:170px">No <span class="s" style="font-size:240px;text-transform:none;display:inline-block;transform:rotate(-6deg) translateY(16px)">app.</span></div>
-    <div class="sub" style="margin-top:70px;max-width:560px;font-size:32px">A QR at your counter. The pass is in their Apple Wallet or Google Wallet in seconds.</div>
+    <div class="sub" style="margin-top:60px;max-width:600px;font-size:32px">Tap the stand or scan the QR. They're a member, with the pass in Apple Wallet or Google Wallet, in seconds.</div>
   </div>
-  <svg class="abs" style="left:610px;top:640px" width="420" height="420" viewBox="0 0 420 420"><circle cx="210" cy="210" r="150" fill="none" stroke="#7a4a22" stroke-opacity=".16" stroke-width="16"/><circle cx="216" cy="206" r="146" fill="none" stroke="#7a4a22" stroke-opacity=".1" stroke-width="5"/></svg>
-  <div class="abs" style="left:700px;top:880px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle at 50% 50%,#fff 0 58%,#e9e4dc 59% 100%);box-shadow:0 30px 50px -20px rgba(60,30,10,.45)">
-    <div style="position:absolute;left:54px;top:54px;width:192px;height:192px;border-radius:50%;background:radial-gradient(circle at 45% 40%,#d9b48c 0 18%,#8a5530 34%,#4a2814 70%);box-shadow:inset 0 0 0 10px #f7f4ef"></div>
-    <div style="position:absolute;left:255px;top:120px;width:90px;height:56px;border-radius:0 30px 30px 0;border:14px solid #fff;border-left:none;box-shadow:6px 10px 14px -6px rgba(0,0,0,.25)"></div>
-  </div>
-  <div class="abs" style="left:150px;top:790px;width:430px;height:520px;border-radius:26px;background:linear-gradient(165deg,#0a8a8f,#06646c);transform:rotate(-7deg);box-shadow:0 50px 80px -30px rgba(40,30,20,.6);color:#fff;padding:40px 44px;text-align:center">
+  <div class="abs" style="left:96px;top:800px;width:500px;height:500px;border-radius:28px;background:linear-gradient(165deg,#0a8a8f,#06646c);transform:rotate(-6deg);box-shadow:0 50px 80px -30px rgba(40,30,20,.6);color:#fff;padding:36px 36px;text-align:center">
     <div style="display:flex;gap:12px;align-items:center;justify-content:center;font-weight:700;font-size:21px;letter-spacing:.08em;white-space:nowrap">{CRANE(30)}PAPER CRANE COFFEE</div>
-    <div style="margin:24px auto 0;width:280px;height:280px;background:#fff;border-radius:22px;padding:22px">{qr(236, 7, "#0b3b40")}</div>
-    <div style="font-weight:700;font-size:28px;margin-top:28px">Scan to add your pass</div>
-    <div style="font-weight:500;font-size:19px;opacity:.8;margin-top:6px;letter-spacing:.04em">Apple Wallet · Google Wallet</div>
+    <div style="display:flex;gap:24px;margin-top:26px">
+      <div style="flex:1;height:240px;border-radius:22px;background:#fff;color:#0b3b40;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px">
+        {qr(150, 7, "#0b3b40")}<div style="font-weight:700;font-size:26px;letter-spacing:.14em">SCAN</div></div>
+      <div style="flex:1;height:240px;border-radius:22px;background:#fff;color:#0b3b40;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;box-shadow:inset 0 0 0 4px rgba(6,115,124,.25)">
+        {NFC(120, "#0b3b40")}<div style="font-weight:700;font-size:26px;letter-spacing:.14em">TAP</div></div>
+    </div>
+    <div style="text-align:left;padding-left:6px"><div style="font-weight:700;font-size:32px;margin-top:28px;white-space:nowrap">Become a member.</div>
+    <div style="font-weight:500;font-size:19px;opacity:.8;margin-top:4px;letter-spacing:.04em">Apple Wallet · Google Wallet</div></div>
   </div>
-  <div class="abs" style="left:620px;top:690px;transform:rotate(-8deg)"><span class="s" style="font-size:78px">scan me</span></div>
-  <div class="abs" style="left:530px;top:790px">{arrow(150, 140, "M120 14 C110 70 80 100 20 120", "#6b2ba6", 6, (20, 120, 160))}</div>'''))
-
-# 05 lock screen
-slides.append(frame("v", f'''
-  <div class="abs" style="left:84px;top:210px;width:930px">
-    <div class="d" style="font-size:132px">Every visit,</div>
-    <div class="d" style="font-size:132px">on their lock</div>
-    <div class="s" style="font-size:190px;position:absolute;left:470px;top:250px;transform:rotate(-6deg);z-index:8">screen.</div>
-  </div>
-  <div class="abs" style="left:210px;top:600px;width:660px;height:1200px;border-radius:96px;padding:16px;background:linear-gradient(145deg,#4a4f5a,#1a1d23 40%,#3a3e47 70%,#15171c);box-shadow:0 70px 130px -30px rgba(10,0,30,.8);transform:rotate(3deg)">
-    <div style="position:relative;width:100%;height:100%;border-radius:80px;overflow:hidden;background:radial-gradient(120% 70% at 30% 10%,#8f5ad0 0%,#3d1a74 45%,#120a2c 100%)">
-      <div style="position:absolute;left:50%;top:24px;width:170px;height:48px;margin-left:-85px;border-radius:24px;background:#000"></div>
-      <div style="position:absolute;left:0;right:0;top:120px;text-align:center;color:#fff">
-        <div style="font-weight:500;font-size:30px;opacity:.85">Thursday, 9 October</div>
-        <div style="font-weight:600;font-size:170px;letter-spacing:-.03em;line-height:1">8:12</div></div>
-      <div style="position:absolute;left:28px;right:28px;top:430px;border-radius:38px;background:rgba(245,243,250,.9);padding:26px 28px;display:flex;gap:20px;color:#111">
-        <div style="width:80px;height:80px;border-radius:20px;background:linear-gradient(160deg,#0a8a8f,#06646c);flex:none;display:flex;align-items:center;justify-content:center">{CRANE(44)}</div>
-        <div style="flex:1"><div style="display:flex;justify-content:space-between;font-weight:600;font-size:24px;color:#555"><span>PAPER CRANE COFFEE</span><span style="font-weight:500">now</span></div>
-        <div style="font-weight:700;font-size:36px;margin-top:4px">+18 points added</div>
-        <div style="font-weight:500;font-size:25px;color:#444;margin-top:4px;line-height:1.3">You're at 132 of 150. One more visit and it's on the house.</div></div></div>
+  <svg class="abs" style="left:500px;top:810px;z-index:5" width="200" height="160" viewBox="0 0 200 160" fill="none" stroke="#6b2ba6" stroke-width="7" stroke-linecap="round"><path d="M40 120 C52 100 70 92 92 96"/><path d="M26 98 C44 66 80 54 112 62"/><path d="M12 76 C36 32 92 16 132 30"/></svg>
+  <div class="abs" style="left:470px;top:975px;width:340px;height:680px;border-radius:56px;padding:12px;background:linear-gradient(145deg,#4a4f5a,#1a1d23 40%,#3a3e47 70%,#15171c);transform:rotate(-24deg);transform-origin:0 0;box-shadow:-30px 60px 90px -30px rgba(40,30,20,.6);z-index:4">
+    <div style="position:relative;width:100%;height:100%;border-radius:46px;overflow:hidden;background:linear-gradient(180deg,#d9d3e6,#b9aed0)">
+      <div style="position:absolute;left:50%;top:16px;width:96px;height:28px;margin-left:-48px;border-radius:14px;background:#000"></div>
+      <div style="position:absolute;left:12px;right:12px;top:96px;bottom:12px;border-radius:34px;background:#fff;padding:26px 24px;text-align:center;color:#111">
+        <div style="width:96px;height:96px;margin:0 auto;border-radius:24px;background:linear-gradient(160deg,#0a8a8f,#06646c);display:flex;align-items:center;justify-content:center">{CRANE(54)}</div>
+        <div style="font-weight:700;font-size:26px;margin-top:18px">Paper Crane Coffee</div>
+        <div style="font-weight:500;font-size:19px;color:#666;margin-top:4px">Become a member</div>
+        <div style="margin-top:34px;height:62px;border-radius:31px;background:#111;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:21px">Add to Wallet</div>
+      </div>
     </div>
   </div>
-  <svg class="abs" style="left:150px;top:970px;z-index:6" width="820" height="330" viewBox="0 0 820 330" fill="none" stroke="#5fd4cf" stroke-width="8" stroke-linecap="round"><path d="M70 120 C120 30 560 10 740 60 C820 90 800 230 700 270 C520 330 160 320 70 250 C10 200 30 140 120 90"/></svg>
-  <div class="abs" style="left:520px;top:1270px;transform:rotate(-4deg);z-index:6"><span class="s" style="font-size:62px">seconds after paying</span></div>'''))
+  <div class="abs" style="left:740px;top:700px;transform:rotate(-6deg)"><span class="s" style="font-size:80px">tap to join</span></div>
+  <div class="abs" style="left:680px;top:780px;z-index:6">{arrow(130, 120, "M100 10 C96 50 76 80 24 96", "#6b2ba6", 6, (24, 96, 165))}</div>'''))
 
-# 06 myth vs fact
-slides.append(frame("p", f'''
-  <div class="abs" style="left:0;right:0;top:0;height:1350px;background-image:linear-gradient(rgba(60,40,20,.07) 2px,transparent 2px),linear-gradient(90deg,rgba(60,40,20,.07) 2px,transparent 2px);background-size:135px 135px"></div>
-  <div class="abs" style="left:0;right:0;top:200px;text-align:center">
-    <div class="d" style="font-size:230px;display:inline-block;background:var(--aqua);padding:14px 40px 0;transform:rotate(-3deg);box-shadow:0 14px 30px -14px rgba(0,0,0,.3)">Myth</div>
-    <div class="d" style="font-size:90px;margin:6px 0">vs</div>
-    <div class="s" style="font-size:300px;transform:rotate(-5deg)">fact</div>
-  </div>
-  <div class="abs" style="left:96px;top:880px;width:420px;height:330px;background:#fff;transform:rotate(-4deg);box-shadow:0 30px 50px -24px rgba(40,30,20,.5);padding:36px 38px">
-    <div style="font-weight:700;font-size:22px;letter-spacing:.18em;color:#8a8590">MYTH</div>
-    <div style="position:relative;font-weight:700;font-size:46px;line-height:1.15;margin-top:16px">Loyalty needs an app.
-      <svg style="position:absolute;left:-10px;top:0" width="370" height="110" viewBox="0 0 370 110" fill="none" stroke="#e5332a" stroke-width="7" stroke-linecap="round"><path d="M6 32 C90 22 200 40 352 24"/><path d="M8 86 C70 78 130 92 190 80"/></svg></div>
-  </div>
-  <div class="abs" style="left:560px;top:860px;width:430px;height:350px;background:var(--violet);color:#fff;transform:rotate(3deg);box-shadow:0 30px 50px -24px rgba(40,20,60,.6);padding:36px 38px">
-    <div style="font-weight:700;font-size:22px;letter-spacing:.18em;color:var(--lilac)">FACT</div>
-    <div style="font-weight:700;font-size:52px;line-height:1.12;margin-top:16px">It needs one scan.</div>
-    <svg style="position:absolute;right:34px;bottom:30px" width="110" height="90" viewBox="0 0 110 90" fill="none" stroke="#5fd4cf" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"><path d="M8 48 L40 78 L102 10"/></svg>
-  </div>'''))
-
-# 07 order pad of regulars
+# 04 order pad of regulars
 rows = [("Aarav", "14 visits", True), ("Meera", "11 visits", True), ("Rohan", "9 visits", True), ("Kabir", "last seen 26 days ago", False)]
 pad_rows = ''.join(f'''<div style="position:relative;height:96px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid #c9d8e8">
   <span class="s" style="font-size:66px;color:#1d2a6b">{n}</span><span class="s" style="font-size:48px;color:#1d2a6b;opacity:.85">{v}</span>
@@ -292,7 +233,7 @@ slides.append(frame("v", f'''
     <div style="position:absolute;left:484px;top:0;width:36px;height:34px;border-radius:0 10px 10px 0;background:#e98a9a"></div>
   </div>'''))
 
-# 08 envelope invitation
+# 05 envelope invitation
 slides.append(frame("p", f'''
   <div class="abs" style="left:0;right:0;top:100px;text-align:center">
     <div class="d" style="font-size:190px">Open this.</div>
@@ -311,7 +252,7 @@ slides.append(frame("p", f'''
   </div>
   <div class="abs" style="left:0;right:0;top:1236px;text-align:center">
     <div style="font-weight:600;font-size:36px">Bring Wystak to your counter. DM us <span style="color:var(--violet);font-weight:700">“STACK”</span>.</div>
-  </div>''', badge=False))
+  </div>'''))
 
 
 CHROME, IS_SHELL = find_chrome()
