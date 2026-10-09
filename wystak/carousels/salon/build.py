@@ -2,7 +2,7 @@
 
 Story: nobody knows when a client last visited. The appointment card's "last visit" is blank; every client has a
 hair shade and now a pass; a tap on the desk bell joins; the mirror of polaroids shows who is drifting; a
-reserved card on the desk invites the salon to Wystak.
+flat lay of salon tools around the Wystak card is the finishing touch.
 Type: DM Serif Display + Allura script accent word + Poppins. Grounds: teal and blush.
 """
 import sys, pathlib
@@ -146,23 +146,26 @@ slides.append(frame("b", f'''
   {polaroid(430, 830, 2, "K", "#8aa0a8", "41 days ago", faded=True)}
   <svg class="abs" style="left:380px;top:800px;z-index:7" width="320" height="340" viewBox="0 0 320 340" fill="none" stroke="#d3342a" stroke-width="7" stroke-linecap="round"><path d="M70 60 C150 10 280 30 296 150 C310 260 230 330 130 322 C40 314 6 220 20 140 C28 100 60 70 120 50"/></svg>'''))
 
-# 05 reserved card on the front desk
+# 05 flat lay: the finishing touch
 slides.append(frame("t", f'''
   <div class="abs" style="left:84px;top:150px">
-    <div class="d" style="font-size:128px">Reserve a</div>
-    <div class="d" style="font-size:128px">spot in every</div>
-    <div class="s" style="font-size:230px;position:absolute;left:330px;top:310px;transform:rotate(-5deg)">wallet.</div>
+    <div class="d" style="font-size:146px">The finishing</div>
+    <div class="s" style="font-size:300px;margin-top:-34px;margin-left:60px;transform:rotate(-5deg)">touch.</div>
   </div>
-  <div class="abs" style="left:-20px;right:-20px;top:1060px;height:400px;background:linear-gradient(180deg,#0a3b42,#04272d)"></div>
-  <!-- reserved tent card -->
-  <div class="abs" style="left:190px;top:700px;width:700px;height:480px;transform:rotate(-3deg);filter:drop-shadow(0 50px 40px rgba(0,20,25,.65))">
-    <div style="position:absolute;inset:0 0 70px 0;background:linear-gradient(180deg,#fbf4e8,#efe3d2);border-radius:10px;text-align:center;padding-top:34px;color:#16343a">
-      <div class="d" style="font-size:100px;letter-spacing:.06em">RESERVED</div>
-      <div style="width:120px;height:3px;background:var(--teal);margin:10px auto 0"></div>
-      <img src="assets/logo-full.png" style="width:240px;margin-top:20px"></div>
-    <div style="position:absolute;left:0;right:0;bottom:0;height:70px;background:linear-gradient(180deg,#d9ccb8,#bfae93);transform:perspective(300px) rotateX(-18deg);transform-origin:50% 0;border-radius:0 0 10px 10px"></div></div>
-  <div class="abs" style="left:770px;top:1050px;z-index:5">{SCISSORS(140, 28)}</div>
-  <div class="sub abs" style="left:84px;top:1210px;width:600px;font-size:32px;z-index:6">Bring Wystak to the front desk.<br>DM us <b style="color:var(--peach)">“STACK”</b>.</div>'''))
+  <!-- hand mirror -->
+  <div class="abs" style="left:560px;top:600px;width:340px;height:340px;border-radius:50%;background:linear-gradient(150deg,#f0d9a6,#b88a4a 55%,#ecd7a8);padding:20px;transform:rotate(18deg);box-shadow:0 40px 50px -20px rgba(0,25,30,.6);z-index:1">
+    <div style="width:100%;height:100%;border-radius:50%;background:linear-gradient(115deg,transparent 0 30%,rgba(255,255,255,.85) 31% 38%,transparent 39% 46%,rgba(255,255,255,.6) 47% 50%,transparent 51%),radial-gradient(110% 90% at 30% 20%,#fbf7f4 0%,#dfe6e8 45%,#aebcc2 100%);box-shadow:inset 0 0 40px rgba(60,40,30,.35)"></div></div>
+  <div class="abs" style="left:790px;top:900px;width:90px;height:320px;border-radius:44px;background:linear-gradient(90deg,#b88a4a,#f0d9a6 45%,#a87b3c);transform:rotate(-30deg);transform-origin:50% 0;box-shadow:0 30px 30px -14px rgba(0,25,30,.55);z-index:0"></div>
+  <!-- the Wystak card -->
+  <div class="abs" style="left:150px;top:690px;width:560px;height:460px;border-radius:30px;background:#fff;transform:rotate(-6deg);box-shadow:0 50px 70px -26px rgba(0,25,30,.75);display:flex;align-items:center;justify-content:center;z-index:3">
+    <img src="assets/logo-full.png" style="width:340px"></div>
+  <!-- comb -->
+  <div class="abs" style="left:420px;top:1215px;width:520px;transform:rotate(-6deg);z-index:2;filter:drop-shadow(0 20px 16px rgba(0,25,30,.5))">
+    <div style="height:56px;border-radius:30px 30px 8px 8px;background:linear-gradient(180deg,#ffe6d4,#f3c9ae)"></div>
+    <div style="height:84px;background:repeating-linear-gradient(90deg,#f3c9ae 0 7px,transparent 7px 14px);clip-path:polygon(0 0,100% 0,98% 100%,2% 100%)"></div></div>
+  <!-- scissors -->
+  <div class="abs" style="left:96px;top:1140px;z-index:4">{SCISSORS(170, 38)}</div>
+  <div class="sub abs" style="left:84px;top:540px;width:640px;font-size:32px;z-index:6">Bring Wystak to the front desk. DM us <b style="color:var(--peach)">“STACK”</b>.</div>'''))
 
 if __name__ == "__main__":
     render(slides, HERE, "wystak-salon", sys.argv[1:])

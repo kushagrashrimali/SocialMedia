@@ -123,3 +123,7 @@ The user drops reference videos, ElevenLabs audio, reference screenshots/PDFs an
 - In all copy and in replies, never use gendered pronouns (he, she, his, her, him). Refer to people by role ("the client", "the shopper", "the owner") or in the plural ("customers", "they"). Applies to slide text, captions, alt text, scripts and chat.
 - Headlines must be plain, easy sentences that read clearly on the first look. Avoid clipped or twisted grammar ("Not who.").
 - Different posts must open with different stories. Do not start two posts with the same idea (for example "a best customer quietly left").
+
+## Do not mention phone-number collection in posts
+
+- Wystak identifies customers by phone number (the only unique identifier), so no post may joke about, complain about or imply that shops will not ask for or collect phone numbers ("nobody wants to give their number" is out). Leave phone-number data collection out of every post, including captions, slide copy and alt text. Build the story on something else: the pass in the wallet, tap or scan, points on the lock screen, who comes back and who stopped.

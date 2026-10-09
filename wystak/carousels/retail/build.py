@@ -1,9 +1,9 @@
 """WYSTAK retail post (navy): 5 slides, 1080x1350.
 
-Story: the billing counter. Shoppers refuse to give a phone number; the shop knows what sold but not who
+Story: the paper receipt ends in the bin; the shop knows what sold but not who
 bought it; a tap at the card machine fixes it; the owner sees who stopped; Wystak goes in the shopping bag.
 Type: Archivo Black capitals + Permanent Marker accent word + Poppins. Grounds: navy and cream.
-Objects: speech bubbles with a sticky note, a swing tag, a card machine, a khata ledger with a rubber stamp, a kraft bag.
+Objects: a receipt and a bin of crumpled receipts, a swing tag, a card machine, a khata ledger with a rubber stamp, a kraft bag.
 """
 import sys, pathlib
 HERE = pathlib.Path(__file__).resolve().parent
@@ -45,24 +45,34 @@ def frame(cls, body):
 
 slides = []
 
-# 01 cover: the billing-counter ask
+# 01 cover: every receipt ends in the bin
+ZIG = "polygon(0 0,100% 0,100% 100%,95% 100%,90% 97%,85% 100%,80% 97%,75% 100%,70% 97%,65% 100%,60% 97%,55% 100%,50% 97%,45% 100%,40% 97%,35% 100%,30% 97%,25% 100%,20% 97%,15% 100%,10% 97%,5% 100%,0% 97%)"
+CLIP = ["polygon(98.4% 50.0%,94.0% 68.2%,81.3% 81.3%,66.3% 89.3%,50.0% 95.1%,33.1% 90.7%,16.2% 83.8%,10.2% 66.5%,5.2% 50.0%,7.7% 32.5%,15.3% 15.3%,32.8% 8.4%,50.0% 7.2%,68.2% 6.1%,82.7% 17.3%,89.3% 33.7%)","polygon(91.3% 50.0%,94.8% 68.6%,83.7% 83.7%,66.3% 89.3%,50.0% 95.0%,33.0% 91.1%,17.1% 82.9%,5.8% 68.3%,9.1% 50.0%,12.8% 34.6%,15.8% 15.8%,33.0% 9.0%,50.0% 2.4%,65.3% 13.0%,81.4% 18.6%,93.6% 31.9%)","polygon(99.6% 50.0%,95.7% 68.9%,78.7% 78.7%,65.6% 87.7%,50.0% 98.4%,31.9% 93.8%,17.0% 83.0%,10.2% 66.5%,3.9% 50.0%,7.4% 32.4%,17.6% 17.6%,34.1% 11.6%,50.0% 5.7%,66.8% 9.4%,83.4% 16.6%,96.1% 30.9%)","polygon(92.4% 50.0%,92.0% 67.4%,80.9% 80.9%,67.6% 92.5%,50.0% 96.3%,34.4% 87.6%,21.6% 78.4%,5.3% 68.5%,7.4% 50.0%,10.9% 33.8%,14.7% 14.7%,32.9% 8.7%,50.0% 1.6%,67.1% 8.6%,82.8% 17.2%,88.3% 34.1%)"]
+CRUMPLE = lambda d, x, y, rot: (f'<div class="abs" style="left:{x}px;top:{y}px;width:{d}px;height:{d}px;transform:rotate({rot}deg);z-index:4;filter:drop-shadow(0 16px 14px rgba(0,0,0,.45))">'
+    f'<div style="position:absolute;inset:0;clip-path:{CLIP[(x + y) % 4]};background:radial-gradient(circle at 28% 28%,#fff 0 18%,transparent 19%),radial-gradient(circle at 72% 36%,#d9d3c2 0 16%,transparent 17%),radial-gradient(circle at 40% 74%,#c4bda8 0 20%,transparent 21%),radial-gradient(circle at 82% 78%,#fffef8 0 14%,transparent 15%),radial-gradient(circle at 55% 52%,#e9e5d6 0 30%,transparent 31%),#d3ccb8"></div></div>')
 slides.append(frame("n", f'''
   <div class="abs" style="left:84px;top:170px">
-    <div class="d" style="font-size:98px">Nobody wants<br>to say their<br>number at</div>
-    <div class="s" style="font-size:210px;margin-top:-6px;margin-left:6px;transform:rotate(-4deg)">billing.</div>
+    <div class="d" style="font-size:94px">Every receipt<br>ends in the</div>
+    <div class="s" style="font-size:250px;margin-top:-10px;margin-left:10px;transform:rotate(-4deg)">bin.</div>
   </div>
-  <!-- sticky note taped to the screen -->
-  <div class="abs" style="left:84px;top:830px;width:400px;height:400px;background:linear-gradient(160deg,#ffe36a,#f6c92f);transform:rotate(-6deg);box-shadow:0 36px 50px -22px rgba(0,0,0,.6);padding:42px 36px">
-    <div class="abs" style="left:150px;top:-26px;width:110px;height:46px;background:rgba(255,255,255,.55);transform:rotate(3deg)"></div>
-    <div class="s" style="color:#3a2c00;font-size:62px;line-height:1.1;white-space:normal">ASK FOR<br>PHONE<br>NUMBER!!</div>
-    <div style="position:absolute;right:34px;bottom:24px;font-weight:600;font-size:22px;color:#6a5200">- the owner</div>
+  <div class="sub abs" style="left:560px;top:690px;width:440px;font-size:34px;text-align:right">Your shop should not.</div>
+  <!-- the receipt -->
+  <div class="abs" style="left:84px;top:760px;width:400px;height:640px;transform:rotate(-7deg);filter:drop-shadow(0 34px 30px rgba(0,0,0,.5))">
+    <div style="position:absolute;inset:0;background:#fbfaf2;clip-path:{ZIG};padding:36px 32px;color:#26262c;font-weight:600;letter-spacing:.06em">
+      <div style="text-align:center;display:flex;gap:10px;align-items:center;justify-content:center;font-weight:700;font-size:25px;letter-spacing:.14em">{FLOWER(32, "#26262c")}MARIGOLD LANE</div>
+      <div style="border-top:3px dashed #9a9aa4;margin:20px 0"></div>
+      <div style="display:flex;justify-content:space-between;font-size:21px"><span>LINEN SHIRT</span><span>1,299</span></div>
+      <div style="display:flex;justify-content:space-between;font-size:21px;margin-top:10px"><span>COTTON SCARF</span><span>449</span></div>
+      <div style="display:flex;justify-content:space-between;font-size:21px;margin-top:10px"><span>TOTE BAG</span><span>299</span></div>
+      <div style="border-top:3px dashed #9a9aa4;margin:20px 0"></div>
+      <div style="display:flex;justify-content:space-between;font-size:30px;font-weight:700"><span>TOTAL</span><span>₹2,047</span></div>
+      <div style="height:70px;margin-top:22px;background:repeating-linear-gradient(90deg,#26262c 0 3px,transparent 3px 7px,#26262c 7px 9px,transparent 9px 15px,#26262c 15px 20px,transparent 20px 23px)"></div>
+      <div style="text-align:center;font-size:21px;margin-top:22px;letter-spacing:.16em;line-height:1.5">THANK YOU.<br>VISIT AGAIN.</div></div>
   </div>
-  <!-- the ask -->
-  <div class="abs" style="left:520px;top:820px;width:470px;padding:34px 38px;border-radius:44px 44px 44px 8px;background:#fff;color:#101a33;box-shadow:0 30px 50px -20px rgba(0,0,0,.55);transform:rotate(2deg)">
-    <div style="font-weight:700;font-size:42px;line-height:1.2">Phone number, please?</div></div>
-  <!-- the answer -->
-  <div class="abs" style="left:610px;top:1060px;width:400px;padding:30px 36px;border-radius:44px 44px 8px 44px;background:var(--aqua);color:#06223f;box-shadow:0 30px 50px -20px rgba(0,0,0,.55);transform:rotate(-2deg)">
-    <div style="font-weight:700;font-size:40px;line-height:1.2">No, it's okay.</div></div>
+  <!-- the bin -->
+  {CRUMPLE(150, 600, 860, 20)}{CRUMPLE(128, 760, 840, -30)}{CRUMPLE(120, 700, 800, 60)}{CRUMPLE(104, 850, 880, 10)}
+  <div class="abs" style="left:580px;top:960px;width:400px;height:440px;background:repeating-linear-gradient(90deg,#b4bfd4 0 12px,#6f7fa3 12px 15px);clip-path:polygon(0 0,100% 0,90% 100%,10% 100%);z-index:5;box-shadow:inset 0 -30px 40px rgba(10,30,70,.35)"></div>
+  <div class="abs" style="left:566px;top:944px;width:428px;height:44px;border-radius:50%;background:linear-gradient(180deg,#e2e8f4,#8e9cbc);box-shadow:0 8px 14px rgba(0,0,0,.4);z-index:6"></div>
   <div class="abs" style="right:84px;top:76px;display:flex;align-items:center;gap:6px;z-index:6">
     <span class="s" style="font-size:44px;color:#fff">swipe</span>{arrow(130, 60, "M6 36 C36 18 70 50 120 30", "#fff", 5, (120, 30, -22))}</div>'''))
 
