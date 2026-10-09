@@ -1,6 +1,6 @@
 # LinkedIn post: iPhone or Android, one loyalty pass works on both (single image, 1080×1350)
 
-Status: draft. Image built by `build.py` into `slides/`.
+Status: final. Image: `wystak-one-pass-both-wallets-1080x1350.png` (rebuild with `python3 build.py`). Upload the PNG, paste the post text, then add the first comment.
 
 ## Image
 
