@@ -68,7 +68,7 @@ body{font-family:P,sans-serif;-webkit-font-smoothing:antialiased}
 .abs{position:absolute}
 """.replace("GRAIN", GRAIN)
 
-CRANE = lambda s, c="#fff": f'<svg width="{s}" height="{s}" viewBox="0 0 34 34" fill="none" stroke="{c}" stroke-width="2.6" stroke-linejoin="round"><path d="M3 21 L17 6 L31 21 L17 17 Z"/><path d="M17 17 L17 29"/></svg>'
+BEAN = lambda s, c="#fff": f'<svg width="{s}" height="{s}" viewBox="0 0 34 34" fill="none" stroke="{c}" stroke-width="2.6" stroke-linecap="round"><g transform="rotate(35 17 17)"><ellipse cx="17" cy="17" rx="9.5" ry="14"/><path d="M17 3.5 C11 11 23 23 17 30.5"/></g></svg>'
 
 
 def qr(size, seed, color="#0a2860"):
@@ -129,8 +129,8 @@ slides.append(frame("v", f'''
   </div>
   <div class="abs" style="left:100px;top:790px;width:660px;border-radius:44px;background:rgba(246,244,250,.97);color:#111;transform:rotate(-4deg);box-shadow:0 50px 90px -30px rgba(10,0,30,.75),0 0 0 1px rgba(255,255,255,.6) inset;overflow:hidden">
     <div style="display:flex;flex-direction:column;align-items:center;padding:42px 50px 30px;text-align:center">
-      <div style="width:116px;height:116px;border-radius:28px;background:linear-gradient(160deg,#0a8a8f,#06646c);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(0,0,0,.18)">{CRANE(66)}</div>
-      <div style="font-weight:600;font-size:32px;margin-top:22px;letter-spacing:-.01em;white-space:nowrap">Delete “Paper Crane Coffee”?</div>
+      <div style="width:116px;height:116px;border-radius:28px;background:linear-gradient(160deg,#0a8a8f,#06646c);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(0,0,0,.18)">{BEAN(66)}</div>
+      <div style="font-weight:600;font-size:32px;margin-top:22px;letter-spacing:-.01em;white-space:nowrap">Delete “Bean Theory”?</div>
       <div style="font-weight:400;font-size:24px;color:#555;margin-top:10px;line-height:1.35">This will also delete its data.</div>
     </div>
     <div style="border-top:1.5px solid #d9d6de;height:92px;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:32px;color:#e5332a;background:rgba(229,51,42,.07)">Delete App</div>
@@ -183,7 +183,7 @@ slides.append(frame("p", f'''
     <div class="sub" style="margin-top:60px;max-width:600px;font-size:32px">Tap the stand or scan the QR. They're a member, with the pass in Apple Wallet or Google Wallet, in seconds.</div>
   </div>
   <div class="abs" style="left:96px;top:800px;width:500px;height:500px;border-radius:28px;background:linear-gradient(165deg,#0a8a8f,#06646c);transform:rotate(-6deg);box-shadow:0 50px 80px -30px rgba(40,30,20,.6);color:#fff;padding:36px 36px;text-align:center">
-    <div style="display:flex;gap:12px;align-items:center;justify-content:center;font-weight:700;font-size:21px;letter-spacing:.08em;white-space:nowrap">{CRANE(30)}PAPER CRANE COFFEE</div>
+    <div style="display:flex;gap:12px;align-items:center;justify-content:center;font-weight:700;font-size:21px;letter-spacing:.08em;white-space:nowrap">{BEAN(30)}BEAN THEORY</div>
     <div style="display:flex;gap:24px;margin-top:26px">
       <div style="flex:1;height:240px;border-radius:22px;background:#fff;color:#0b3b40;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px">
         {qr(150, 7, "#0b3b40")}<div style="font-weight:700;font-size:26px;letter-spacing:.14em">SCAN</div></div>
@@ -198,8 +198,8 @@ slides.append(frame("p", f'''
     <div style="position:relative;width:100%;height:100%;border-radius:46px;overflow:hidden;background:linear-gradient(180deg,#d9d3e6,#b9aed0)">
       <div style="position:absolute;left:50%;top:16px;width:96px;height:28px;margin-left:-48px;border-radius:14px;background:#000"></div>
       <div style="position:absolute;left:12px;right:12px;top:96px;bottom:12px;border-radius:34px;background:#fff;padding:26px 24px;text-align:center;color:#111">
-        <div style="width:96px;height:96px;margin:0 auto;border-radius:24px;background:linear-gradient(160deg,#0a8a8f,#06646c);display:flex;align-items:center;justify-content:center">{CRANE(54)}</div>
-        <div style="font-weight:700;font-size:26px;margin-top:18px">Paper Crane Coffee</div>
+        <div style="width:96px;height:96px;margin:0 auto;border-radius:24px;background:linear-gradient(160deg,#0a8a8f,#06646c);display:flex;align-items:center;justify-content:center">{BEAN(54)}</div>
+        <div style="font-weight:700;font-size:26px;margin-top:18px">Bean Theory</div>
         <div style="font-weight:500;font-size:19px;color:#666;margin-top:4px">Become a member</div>
         <div style="margin-top:34px;height:62px;border-radius:31px;background:#111;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:21px">Add to Wallet</div>
       </div>
@@ -219,7 +219,7 @@ slides.append(frame("v", f'''
     <div class="d" style="font-size:104px">And who <span class="s" style="font-size:170px;text-transform:none;display:inline-block;transform:rotate(-6deg) translateY(14px)">stopped.</span></div>
   </div>
   <div class="abs" style="left:170px;top:560px;width:720px;height:820px;background:#fbf7ec;transform:rotate(-4deg);box-shadow:0 60px 110px -30px rgba(10,0,30,.8)">
-    <div style="height:70px;background:#0a2860;display:flex;align-items:center;justify-content:center;gap:12px;color:#fff;font-weight:700;font-size:22px;letter-spacing:.14em">{CRANE(28)}PAPER CRANE COFFEE · REGULARS</div>
+    <div style="height:70px;background:#0a2860;display:flex;align-items:center;justify-content:center;gap:12px;color:#fff;font-weight:700;font-size:22px;letter-spacing:.14em">{BEAN(28)}BEAN THEORY · REGULARS</div>
     <div style="height:14px;background:radial-gradient(circle at 7px 7px,#3a1166 0 4px,transparent 5px) 0 0/22px 14px"></div>
     <div style="position:relative;padding:20px 120px 0 60px;border-left:3px solid #e8a3a3;margin-left:44px">{pad_rows}
       <div style="height:96px;border-bottom:2px solid #c9d8e8;display:flex;align-items:center;justify-content:flex-end"><span class="s" style="font-size:60px;color:#6b2ba6;transform:rotate(-3deg)">↑ quietly stopped</span></div><div style="height:96px;border-bottom:2px solid #c9d8e8"></div>

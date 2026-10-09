@@ -40,7 +40,7 @@ The user drops reference videos, ElevenLabs audio, reference screenshots/PDFs an
 - Logo: the navy, purple and teal three-card mark in `wystak/brand/`. Use the supplied files; never redraw it. Tagline: **ALL YOUR PASSES. ONE STACK.**
 - The name is pronounced "WHYS-TAK". Spell it "Whys-tak" in ElevenLabs text.
 - English only. The context is Indian (UPI, WhatsApp, kirana). India has no loyalty-card or stamp-card culture, so never build a story on lost loyalty cards.
-- No invented statistics, prices, customers or traction. The fictional sample merchant is **Paper Crane Coffee**. No real company logos; show Apple Wallet and Google Wallet with equal weight.
+- No invented statistics, prices, customers or traction. The fictional sample merchant is **Bean Theory** (a café). Never use Paper Crane Coffee again; it appears only in older reels. No real company logos; show Apple Wallet and Google Wallet with equal weight.
 - Claims allowed (pitch deck): no app, scan at the counter to add the pass, points on the lock screen within seconds of a scan, and the owner sees who comes back and who stopped.
 - Full context: `wystak/WYSTAK_Project_Context.md`, `wystak/WYSTAK_Pitch_Deck.pdf`.
 

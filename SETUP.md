@@ -188,4 +188,4 @@ It commits and pushes. To publish:
 - **Pick up later:** everything is saved in files, so if you close the session you can come back with "Continue the Diwali reel in videos/diwali-reel; we were at the storyboard step."
 - **Change an old post:** "Change slide 6 of the launch carousel to say ... and re-render it." Claude edits that project and rebuilds it.
 - **Rebuild without AI:** `python3 wystak/carousels/<name>/build.py` remakes a carousel; `npx hyperframes render` inside a reel folder remakes a reel.
-- **Brand rules** (merchant audience, no invented numbers, Paper Crane Coffee, the logo files, "Whys-tak" in ElevenLabs) live in `CLAUDE.md`, and Claude follows them automatically. Edit that file to change a rule.
+- **Brand rules** (merchant audience, no invented numbers, the Bean Theory sample café, the logo files, "Whys-tak" in ElevenLabs) live in `CLAUDE.md`, and Claude follows them automatically. Edit that file to change a rule.
