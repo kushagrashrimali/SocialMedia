@@ -145,3 +145,7 @@ The user drops reference videos, ElevenLabs audio, reference screenshots/PDFs an
 ## Do not mention phone-number collection in posts
 
 - Wystak identifies customers by phone number (the only unique identifier), so no post may joke about, complain about or imply that shops will not ask for or collect phone numbers ("nobody wants to give their number" is out). Leave phone-number data collection out of every post, including captions, slide copy and alt text. Build the story on something else: the pass in the wallet, tap or scan, points on the lock screen, who comes back and who stopped.
+
+## Apple Pay is live in India
+
+- Apple Pay is live in India. Never say or imply it is not, and never build a post on the idea that Apple Wallet does not work in India. The old playbook line saying so was wrong. Show Apple Wallet and Google Wallet with equal weight. Check any market fact with the user before it goes into a post.

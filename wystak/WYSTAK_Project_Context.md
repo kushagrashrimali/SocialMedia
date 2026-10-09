@@ -64,8 +64,7 @@ of a scan at the counter.** No app to install, no plastic to print.
   GST-clean invoicing).
 - **The gap:** big chains already have Google Wallet via Pine Labs, EasyRewardz, Twid. Nobody
   serves the long tail — a ₹1,500-a-month Indian café. **That gap is the entire business.**
-- **Quiet advantage:** Apple Pay isn't live in India, so Indians assume "Apple Wallet doesn't work
-  here". Passes work fully. The market hasn't noticed.
+- **Correction (October 2026):** Apple Pay *is* live in India. The earlier line saying it was not live was wrong. Never claim otherwise in any post, video or deck. Wallet passes work in both Apple Wallet and Google Wallet.
 
 ### The single most important moment — build videos around it
 
