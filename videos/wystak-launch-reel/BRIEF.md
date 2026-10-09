@@ -12,7 +12,7 @@ length: 33.6s
 
 ## Intent
 
-The WYSTAK launch reel, built to win merchant clients. It follows the final merchant script (`wystak/scripts/launch-film-final-vo.md`) and takes its look from the reference reel (`Video-47672.mp4`): a sage paper ground, one centred cut-out object per beat, word-by-word captions mixing a grotesk sans with italic serif emphasis, and one black frame carrying a single huge word.
+The WYSTAK launch reel, built to win merchant clients. It follows the final merchant script (`wystak/instagram/reels/scripts/launch-film-final-vo.md`) and takes its look from the reference reel (`Video-47672.mp4`): a sage paper ground, one centred cut-out object per beat, word-by-word captions mixing a grotesk sans with italic serif emphasis, and one black frame carrying a single huge word.
 
 ## Assets
 

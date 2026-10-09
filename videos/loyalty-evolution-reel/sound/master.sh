@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Master the rendered reel's audio to -14 LUFS integrated (true peak -1.5 dBTP) with a two-pass
 # ffmpeg loudnorm, re-encode the video to an upload-friendly H.264 (~6 Mbps), and write the delivery file.
-# usage (from the project folder): bash sound/master.sh renders/loyalty-evolution-reel.mp4 ../../wystak/loyalty-evolution-reel.mp4
+# usage (from the project folder): bash sound/master.sh renders/loyalty-evolution-reel.mp4 ../../wystak/instagram/reels/finals/loyalty-evolution-reel.mp4
 set -euo pipefail
 in="$1"; out="$2"
 stats=$(ffmpeg -hide_banner -nostats -i "$in" -vn -af loudnorm=I=-14:TP=-1.5:LRA=11:print_format=json -f null - 2>&1 | sed -n '/^{/,/^}/p')

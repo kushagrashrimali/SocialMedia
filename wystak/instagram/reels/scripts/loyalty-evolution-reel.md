@@ -33,4 +33,4 @@ Now they notice.
 Why-stack. All your passes. One stack.
 ```
 
-Reel: `wystak/loyalty-evolution-reel.mp4` (project in `videos/loyalty-evolution-reel/`).
+Reel: `wystak/instagram/reels/finals/loyalty-evolution-reel.mp4` (project in `videos/loyalty-evolution-reel/`).

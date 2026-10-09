@@ -2,6 +2,24 @@
 
 This repo holds WYSTAK's marketing reels: scripts and brand files in `wystak/`, HyperFrames video projects in `videos/`, and the installed video and Instagram skills in `.claude/skills/`.
 
+## Where things live (keep this layout)
+
+```
+wystak/
+  brand/                  logo files (never redraw)
+  instagram/
+    carousels/<name>/     one folder per carousel: build.py, assets/, slides/ (final PNGs), copy.md (slide copy, caption, alt text)
+    carousels/_common/    shared render helpers
+    single-posts/<name>/  single-image posts
+    reels/finals/         delivered reel MP4s
+    reels/scripts/        reel voiceover scripts
+  linkedin/<name>/        LinkedIn posts (post.md plus the final image, PDF or MP4)
+  x/<name>/               X (Twitter) posts
+videos/<name>/            reel and film projects (HyperFrames)
+```
+
+Each post folder's name says the topic (`launch`, `grocery`, `salon`). Finals go in git; drafts do not.
+
 ## Reel process (follow for every new reel)
 
 1. **Reference video.** The user sends a reference reel. Study its story, pacing, design, type, captions and sound (contact sheets from ffmpeg, cut timings).
@@ -17,7 +35,7 @@ This repo holds WYSTAK's marketing reels: scripts and brand files in `wystak/`, 
 3. **Draft sheet, then stop.** Render all slides and send one contact sheet showing every slide side by side. The user marks what to change; revise until they're happy.
 4. **Final after "go".** Export the final 1080×1350 PNGs (1080×1080 if a square post is asked for), save the copy file with the caption and alt text, commit, and send the files.
 
-Posts reuse the system in `wystak/carousels/launch/` (`build.py`: HTML slides rendered by headless Chromium, alternating navy and light slides, logo badge top-left, one accent word per headline).
+Posts reuse the system in `wystak/instagram/carousels/` (HTML slides rendered by headless Chromium through `_common/common.py`; `launch/`, `grocery/` and `salon/` are the current object-style posts, and `launch-v1/` is the older phone-mockup launch carousel). See the object-style lessons below for the design direction.
 
 Commit and push without asking, but only what is worth keeping: reusable scripts, templates and the lessons below. Do not commit every reel render, draft, voice take or intermediate media; send those to the user as files instead.
 
@@ -27,12 +45,12 @@ The LinkedIn audience is wider than Instagram's: merchants first, plus investors
 
 1. **Brief.** The user sends the goal (launch, insight or opinion, product explainer, milestone, hiring, event), the format or "you pick", references (screenshots or a PDF of LinkedIn posts or pages they like) and any real facts they're happy to share.
 2. **Post text, then stop.** Send 2 or 3 hook options (scored with `ig-reel/hookscore.py`), the full post text, the hashtags and a first comment. For visual posts, also send the slide or image plan. The user edits or approves.
-3. **Visual draft, then stop.** For image, document or video posts, render drafts in the Wystak look (reuse `wystak/carousels/launch/build.py` and adapt the sizes) and send a preview sheet. Revise until the user is happy. Text-only posts skip this step.
+3. **Visual draft, then stop.** For image, document or video posts, render drafts in the Wystak look (reuse `wystak/instagram/carousels/_common/common.py` and a carousel's `build.py`, and adapt the sizes) and send a preview sheet. Revise until the user is happy. Text-only posts skip this step.
 4. **Final after "go".** Export the final file (PNG for an image, a PDF combining all pages for a document carousel, MP4 for video). Save `post.md` with the post text, hashtags, first comment, alt text and a short reshare line for each founder. Everything goes in `wystak/linkedin/<name>/`; commit and push.
 
 ## Inputs from the user
 
-The user drops reference videos, ElevenLabs audio, reference screenshots/PDFs and photos into `inbox/<date-topic>/` (git-ignored) and points to them with `@inbox/...`. Watch videos by extracting frames and audio with ffmpeg. Put finished outputs in `wystak/` (posts, final MP4s, `wystak/linkedin/<name>/` for LinkedIn) and `videos/<name>/` (reel projects), and tell the user each file's path. For a new carousel, copy `wystak/carousels/launch/` to `wystak/carousels/<name>/` and edit its `build.py`. User-facing steps are in `SETUP.md`, Part B.
+The user drops reference videos, ElevenLabs audio, reference screenshots/PDFs and photos into `inbox/<date-topic>/` (git-ignored) and points to them with `@inbox/...`. Watch videos by extracting frames and audio with ffmpeg. Put finished outputs in the `wystak/` folders below and `videos/<name>/` (reel projects), and tell the user each file's path. For a new carousel, copy `wystak/instagram/carousels/salon/` to `wystak/instagram/carousels/<name>/`, rename its type and objects (never reuse a post's design), and edit its `build.py`. User-facing steps are in `SETUP.md`, Part B.
 
 ## Brand and content rules
 
@@ -108,7 +126,7 @@ The user drops reference videos, ElevenLabs audio, reference screenshots/PDFs an
 
 ## Lessons from the object-style launch post (Instagram design direction)
 
-- Project: `wystak/carousels/launch-objects/` (`build.py`). The user's references were agency posts from Pinterest. This is the design thinking to keep for every Instagram post:
+- Project: `wystak/instagram/carousels/launch/` (`build.py`). The user's references were agency posts from Pinterest. This is the design thinking to keep for every Instagram post:
   - one real-world object carries each slide's idea (a delete dialog, a newspaper, a counter stand, an order pad, an envelope), drawn in code;
   - huge condensed capitals with one handwritten accent word, plus a small sans for the line under it;
   - one bold ground per slide, warm paper in between, with grain, real shadows, halftone cut-outs, highlighter tape and hand-drawn arrows or circles;
@@ -117,3 +135,13 @@ The user drops reference videos, ElevenLabs audio, reference screenshots/PDFs an
 - The launch post has no logo badge on the slides (the brand appears in the reveal and the end card). Ask before adding one.
 - Carousels: keep them to 4-5 slides.
 - Wystak also offers NFC: a customer taps the counter stand to become a member (as well as scanning the QR).
+
+## Writing rule: no gendered pronouns
+
+- In all copy and in replies, never use gendered pronouns (he, she, his, her, him). Refer to people by role ("the client", "the shopper", "the owner") or in the plural ("customers", "they"). Applies to slide text, captions, alt text, scripts and chat.
+- Headlines must be plain, easy sentences that read clearly on the first look. Avoid clipped or twisted grammar ("Not who.").
+- Different posts must open with different stories. Do not start two posts with the same idea (for example "a best customer quietly left").
+
+## Do not mention phone-number collection in posts
+
+- Wystak identifies customers by phone number (the only unique identifier), so no post may joke about, complain about or imply that shops will not ask for or collect phone numbers ("nobody wants to give their number" is out). Leave phone-number data collection out of every post, including captions, slide copy and alt text. Build the story on something else: the pass in the wallet, tap or scan, points on the lock screen, who comes back and who stopped.
