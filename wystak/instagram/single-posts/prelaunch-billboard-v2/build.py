@@ -58,16 +58,18 @@ body{{font-family:J,sans-serif}}
 .h{{position:absolute;left:0;right:0;top:105px;text-align:center;font-weight:800;font-size:146px;line-height:1.02;letter-spacing:-.05em;color:#0b1238;white-space:nowrap}}
 .g{{background:linear-gradient(90deg,#7b2ff7 0%,#5b3df5 35%,#2f86ee 70%,#1fc4d8 100%);-webkit-background-clip:text;background-clip:text;color:transparent}}
 .img{{position:absolute;left:-40px;top:{UPPER - hh}px;width:{hw}px;height:{hh}px;-webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 14%)}}
-.low{{position:absolute;left:0;right:0;top:{UPPER}px;bottom:0;background:linear-gradient(180deg,#1a1c24 0%,#0c0d12 55%,#060709 100%)}}
-.low::before{{content:'';position:absolute;inset:0;box-shadow:inset 0 10px 18px rgba(0,0,0,.75),inset 0 -2px 0 rgba(255,255,255,.05)}}
-.t{{position:absolute;top:50%;transform:translateY(-50%);font-weight:800;font-size:92px;line-height:1.0;letter-spacing:-.03em;white-space:nowrap;
-  text-shadow:0 -2px 0 rgba(255,255,255,.28),0 3px 0 #000,0 5px 2px rgba(0,0,0,.85),0 10px 22px rgba(0,0,0,.6)}}
-.cs{{left:60px;color:#b98cff}}
-.url{{right:60px;text-align:right;color:#f1f2f7}}
+.low{{position:absolute;left:0;right:0;top:{UPPER}px;bottom:0;background:#fff;border-top:6px solid #0b1238}}
+.box{{position:absolute;left:46px;right:46px;top:46px;bottom:52px;background:linear-gradient(180deg,#ffffff,#f1f2f6);border:7px solid #0b1238;
+  box-shadow:inset 0 4px 10px rgba(11,18,56,.10);display:flex;flex-direction:column;align-items:center;justify-content:center}}
+.t{{text-align:center;font-family:AB,sans-serif;white-space:nowrap;letter-spacing:-.01em;
+  text-shadow:-2px -2px 0 rgba(255,255,255,1),3px 4px 0 rgba(11,18,56,.28),6px 8px 14px rgba(11,18,56,.22)}}
+.cs{{font-size:100px;line-height:1;color:#7a2fe6}}
+.url{{margin-top:44px;font-size:74px;line-height:1;color:#0b1238}}
+@font-face{{font-family:AB;src:url(assets/archivo-black-latin-400-normal.woff2)}}
 </style></head><body>
 <div class="up"><div class="h">Something<br>new is<br><span class="g">stacking up…</span></div>
 <img class="img" src="assets/holder.png"></div>
-<div class="low"><div class="t cs">COMING<br>SOON</div><div class="t url">www.<br>wystak.com</div></div>
+<div class="low"><div class="box"><div class="t cs">COMING SOON</div><div class="t url">www.wystak.com</div></div></div>
 </body></html>'''
 
 
