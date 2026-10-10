@@ -35,9 +35,9 @@ def html():
 *{{margin:0;padding:0;box-sizing:border-box}}
 html,body{{width:{W}px;height:{H}px;overflow:hidden}}
 body{{font-family:I,sans-serif;color:{IVORY};
-  background:radial-gradient(60% 34% at 72% 72%,rgba(124,77,255,.55) 0%,rgba(124,77,255,0) 100%),
-             radial-gradient(70% 40% at 10% 0%,rgba(46,99,214,.35) 0%,rgba(46,99,214,0) 100%),
-             linear-gradient(180deg,#111641 0%,{INK} 55%,#060819 100%)}}
+  background:radial-gradient(60% 34% at 70% 72%,rgba(190,170,255,.55) 0%,rgba(190,170,255,0) 100%),
+             radial-gradient(80% 45% at 15% 0%,rgba(120,160,255,.45) 0%,rgba(120,160,255,0) 100%),
+             linear-gradient(180deg,#5A47D6 0%,#4433B8 50%,#33268F 100%)}}
 .abs{{position:absolute}}
 .grain{{position:absolute;inset:0;opacity:.07;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='300' height='300' filter='url(%23n)'/></svg>")}}
 .time{{left:0;right:0;top:46px;text-align:center;font-weight:600;font-size:30px;opacity:.75}}
@@ -54,7 +54,7 @@ body{{font-family:I,sans-serif;color:{IVORY};
 .hl .g{{color:{GOLD}}}
 .sub{{left:68px;top:1110px;font-weight:500;font-size:40px;opacity:.82;letter-spacing:-.01em}}
 .sub b{{color:{GOLD};font-weight:700}}
-.hero{{left:{W - hw + 10}px;top:1170px;width:{hw}px;height:{hh}px;-webkit-mask-image:linear-gradient(180deg,#000 94%,transparent 100%);
+.hero{{left:{W - hw + 10}px;top:1120px;width:{hw}px;height:{hh}px;-webkit-mask-image:linear-gradient(180deg,#000 94%,transparent 100%);
   filter:drop-shadow(0 40px 46px rgba(0,0,0,.55)) drop-shadow(0 0 60px rgba(124,77,255,.25))}}
 .foot{{left:64px;right:64px;bottom:64px;height:120px;border-top:2px solid rgba(246,241,231,.18);padding-top:28px;height:150px;display:flex;align-items:center;gap:34px}}
 .foot img{{height:42px;filter:brightness(0) invert(96%) sepia(8%) saturate(300%)}}
@@ -70,7 +70,6 @@ body{{font-family:I,sans-serif;color:{IVORY};
 <div class="b in">So… what’s Wystak?<small>12:47 PM</small></div>
 <div class="b out">Soon. Very soon.<small>12:47 PM {TICKS}</small></div>
 <div class="abs hl">Every story<br>has a moment.<br><span class="g">This is ours.</span></div>
-<div class="abs sub">Something new is on its way. <b>Watch this space.</b></div>
 <img class="abs hero" src="assets/holder-dark.png">
 <div class="abs foot"><img src="assets/logo-wordmark.png"><div class="div"></div>
   <div><div class="cs">COMING SOON</div><div class="url">www.wystak.com</div></div></div>
