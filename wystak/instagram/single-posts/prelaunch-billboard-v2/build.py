@@ -49,29 +49,25 @@ def poster_html(hsize):
     hw = 1160
     hh = round(hsize[1] * hw / hsize[0])
     return f'''<!doctype html><html><head><meta charset="utf-8"><style>
-@font-face{{font-family:P;src:url(assets/poppins-latin-500-normal.woff2);font-weight:500}}
-@font-face{{font-family:P;src:url(assets/poppins-latin-700-normal.woff2);font-weight:700}}
-@font-face{{font-family:P;src:url(assets/poppins-latin-800-normal.woff2);font-weight:800}}
+@font-face{{font-family:J;src:url(assets/plus-jakarta-sans-latin-700-normal.woff2);font-weight:700}}
+@font-face{{font-family:J;src:url(assets/plus-jakarta-sans-latin-800-normal.woff2);font-weight:800}}
 *{{margin:0;padding:0;box-sizing:border-box}}
 html,body{{width:{W}px;height:{H}px;overflow:hidden;background:#fff}}
-body{{font-family:P,sans-serif}}
-.up{{position:absolute;left:0;top:0;width:{W}px;height:{UPPER}px;background:#fff}}
-.h{{position:absolute;left:0;right:0;top:110px;text-align:center;font-weight:800;font-size:142px;line-height:1.04;letter-spacing:-.045em;color:#0b1238;white-space:nowrap}}
+body{{font-family:J,sans-serif}}
+.up{{position:absolute;left:0;top:0;width:{W}px;height:{UPPER}px;background:#fff;overflow:hidden}}
+.h{{position:absolute;left:0;right:0;top:105px;text-align:center;font-weight:800;font-size:146px;line-height:1.02;letter-spacing:-.05em;color:#0b1238;white-space:nowrap}}
 .g{{background:linear-gradient(90deg,#7b2ff7 0%,#5b3df5 35%,#2f86ee 70%,#1fc4d8 100%);-webkit-background-clip:text;background-clip:text;color:transparent}}
-.img{{position:absolute;left:-40px;-webkit-mask-image:radial-gradient(75% 80% at 50% 55%,#000 70%,transparent 100%);top:{UPPER - hh}px;width:{hw}px;height:{hh}px}}
-.line{{position:absolute;left:0;right:0;top:{UPPER}px;height:3px;background:#dcdde5}}
-.low{{position:absolute;left:0;right:0;top:{UPPER + 3}px;bottom:0;background:linear-gradient(180deg,#f1f2f6,#e7e8ee)}}
-.plate{{position:absolute;left:48px;right:48px;top:44px;bottom:44px;border-radius:34px;background:linear-gradient(160deg,#f4f5f8,#e9eaf0);
-  box-shadow:inset 6px 6px 14px rgba(150,152,175,.35),inset -6px -6px 14px rgba(255,255,255,.95)}}
-.cs{{position:absolute;left:64px;top:50%;transform:translateY(-50%);font-weight:800;font-size:84px;line-height:.98;letter-spacing:-.01em;color:#7a2fe6;
-  text-shadow:-2px -2px 1px rgba(255,255,255,.95),3px 3px 2px rgba(70,20,130,.55),6px 7px 12px rgba(60,30,110,.28)}}
-.url{{position:absolute;right:64px;top:50%;transform:translateY(-50%);font-weight:700;font-size:45px;letter-spacing:.005em;color:#0b1238;
-  text-shadow:-2px -2px 1px rgba(255,255,255,.95),2px 3px 2px rgba(10,18,56,.45),5px 6px 10px rgba(10,18,56,.22)}}
+.img{{position:absolute;left:-40px;top:{UPPER - hh}px;width:{hw}px;height:{hh}px;-webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 14%)}}
+.low{{position:absolute;left:0;right:0;top:{UPPER}px;bottom:0;background:linear-gradient(180deg,#1a1c24 0%,#0c0d12 55%,#060709 100%)}}
+.low::before{{content:'';position:absolute;inset:0;box-shadow:inset 0 10px 18px rgba(0,0,0,.75),inset 0 -2px 0 rgba(255,255,255,.05)}}
+.t{{position:absolute;top:50%;transform:translateY(-50%);font-weight:800;font-size:92px;line-height:1.0;letter-spacing:-.03em;white-space:nowrap;
+  text-shadow:0 -2px 0 rgba(255,255,255,.28),0 3px 0 #000,0 5px 2px rgba(0,0,0,.85),0 10px 22px rgba(0,0,0,.6)}}
+.cs{{left:60px;color:#b98cff}}
+.url{{right:60px;text-align:right;color:#f1f2f7}}
 </style></head><body>
 <div class="up"><div class="h">Something<br>new is<br><span class="g">stacking up…</span></div>
 <img class="img" src="assets/holder.png"></div>
-<div class="line"></div>
-<div class="low"><div class="plate"><div class="cs">COMING<br>SOON</div><div class="url">www.wystak.com</div></div></div>
+<div class="low"><div class="t cs">COMING<br>SOON</div><div class="t url">www.<br>wystak.com</div></div>
 </body></html>'''
 
 
