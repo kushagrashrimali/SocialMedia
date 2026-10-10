@@ -13,6 +13,7 @@ import build as v2
 from PIL import Image
 
 W, H = v2.W, v2.H
+FEED = False      # True: the Instagram single post, 1080x1350
 INK, IVORY, GOLD, MINT = "#0B1238", "#FBF3E6", "#F4C66E", "#9FF0D2"
 
 ICON = lambda d, w=46: f'<svg width="{w}" height="{w}" viewBox="0 0 24 24" fill="none" stroke="{IVORY}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">{d}</svg>'
@@ -24,6 +25,22 @@ TICKS = '<svg width="34" height="20" viewBox="0 0 34 20" fill="none" stroke="#3B
 
 
 BG = "#C24366"   # raspberry pink
+
+# the Instagram single post (1080x1350): the same poster, tightened to the 4:5 feed frame
+FEED_CSS = """
+html,body{height:1350px}
+.time{top:30px;font-size:26px}
+.head{top:70px;height:84px}
+.av{width:80px;height:80px} .av img{width:58px!important}
+.name{font-size:36px} .on{font-size:24px}
+.b{font-size:36px;padding:20px 28px 18px;border-radius:26px} .b small{font-size:19px}
+.in{top:186px} .out{top:318px}
+.hl{top:462px;font-size:116px}
+.card{height:230px;border-radius:30px}
+.pocket{left:180px;top:1040px;width:720px;height:268px;border-radius:30px 30px 96px 96px;-webkit-mask:radial-gradient(124px 58px at 50% 0,transparent 98%,#000 100%)}
+.stitch{inset:20px;border-radius:18px 18px 80px 80px}
+.mark{width:190px;top:58%}
+"""
 
 
 def shade(hexc, k):
@@ -42,6 +59,8 @@ def cards():
     out = ""
     for i, (c1, c2, ic, label, mark) in enumerate(spec):
         x = 160 - i * 20; y = 1270 + i * 132; w = 760 + i * 40
+        if FEED:
+            x = 220 - i * 16; y = 842 + i * 88; w = 640 + i * 32
         ring = ('<svg width="56" height="56" viewBox="0 0 56 56" fill="none" stroke="rgba(255,255,255,.85)" stroke-width="3" stroke-dasharray="8 7"><circle cx="28" cy="28" r="24"/></svg>' if mark == "dashed" else
                 '<svg width="56" height="56" viewBox="0 0 56 56" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="28" cy="28" r="24"/><path d="M18 29l7 7 13-15"/></svg>')
         out += f'<div class="abs card" style="left:{x}px;top:{y}px;width:{w}px;z-index:{i + 2};background:linear-gradient(135deg,{c1},{c2})"></div>'
@@ -90,7 +109,7 @@ body{{font-family:I,sans-serif;color:{IVORY};
 .cs{{font-weight:800;font-size:44px;letter-spacing:.14em;color:{GOLD}}}
 .url{{font-weight:800;font-size:58px;letter-spacing:-.02em;line-height:1.05}}
 .fade{{left:0;right:0;bottom:0;height:330px;background:linear-gradient(180deg,rgba(6,8,25,0) 0%,rgba(6,8,25,.92) 55%,#060819 100%)}}
-</style></head><body>
+{FEED_CSS if FEED else ''}</style></head><body>
 <div class="abs time">12:47 PM</div>
 <div class="abs head">{BACK}<div class="av"><img src="assets/logo-mark.png" style="width:66px"></div>
   <div><div class="name">Wystak</div><div class="on">online</div></div>
@@ -107,6 +126,11 @@ body{{font-family:I,sans-serif;color:{IVORY};
 if __name__ == "__main__":
     out = HERE / "slides"; out.mkdir(exist_ok=True)
     v2.HERE = HERE
+    if "--feed" in sys.argv:
+        FEED = True; v2.H = H = 1350
+        BG = "#C24366"
+        v2.render(html(), out / "wystak-prelaunch-post.png")
+        sys.exit()
     for bg in (sys.argv[1:] or [BG]):
         BG = bg if bg.startswith("#") else "#" + bg
         v2.render(html(), out / f"wystak-poster-v4-{BG[1:].lower()}.png")
