@@ -124,6 +124,13 @@ The user drops reference videos, ElevenLabs audio, reference screenshots/PDFs an
 - Card flips read better flat (`scaleX`) than with a strong `rotationY` perspective.
 - Pushes that stack, iOS-style: each new one lands in the bottom slot and lifts the earlier ones. Don't let rising cards cross each other.
 
+## Lessons from the palm-tree reveal storyboard (photo plate, no generated images)
+
+- Project: `videos/wystak-palm-reveal/` (`storyboard/build_storyboard.py`, `DIRECTION.md`, `VIDEO_PROMPT.md`). Image generators can't be downloaded here (Canva returns only thumbnails), so storyboards that must keep a real scene are built as composites on the one photo plate. That keeps people, light and background identical across frames.
+- Lift objects off the plate: fit a smooth sky model to rebuild the sky behind them, unwrap thin objects (trunks) into texture strips and redraw them along new curves, and unmix crowns or fronds against the sky model. Assign frond pixels by connectivity from each crown, not by nearest point.
+- Mattes for things in front: everything below the hedge line, plus per-object boxes for heads and lamp posts. Where an old object stood, interpolate the hedge-top line across it, or the new object shows through in its old shape.
+- Logo layers: split `logo-mark.png` by hue, keep only the connected body of each colour (flood fill after a small opening), and straighten the navy pass's right edge with a fitted line. The last frame always uses the file itself, in one piece.
+
 ## Lessons from the object-style launch post (Instagram design direction)
 
 - Project: `wystak/instagram/carousels/launch/` (`build.py`). The user's references were agency posts from Pinterest. This is the design thinking to keep for every Instagram post:
