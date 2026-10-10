@@ -23,9 +23,33 @@ BACK = ICON('<path d="M19 12H5M11 6l-6 6 6 6"/>')
 TICKS = '<svg width="34" height="20" viewBox="0 0 34 20" fill="none" stroke="#3B82F6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 11l5 5 10-11"/><path d="M14 15l2 1 10-11"/></svg>'
 
 
+BG = "#C24366"
+
+
+def shade(hexc, k):
+    r, g, b = (int(hexc[i:i + 2], 16) for i in (1, 3, 5))
+    return "#%02x%02x%02x" % tuple(max(0, min(255, round(c * k))) for c in (r, g, b))
+
+
+TK = '<svg width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"><path d="M4 6h16v4a2 2 0 0 0 0 4v4H4v-4a2 2 0 0 0 0-4z"/><path d="M12 9.2l.9 1.8 2 .3-1.45 1.4.35 2-1.8-.95-1.8.95.35-2-1.45-1.4 2-.3z" fill="#fff" stroke="none"/></svg>'
+CR = '<svg width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"><path d="M3 8l4.5 4L12 5l4.5 7L21 8l-2 10H5z"/></svg>'
+WL = '<svg width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2.5"/><path d="M16 12.5h5"/><circle cx="16.5" cy="12.5" r=".9" fill="#fff"/></svg>'
+
+
+def cards():
+    """Three passes in the Wystak colours standing in a dark leather pocket, as in the user's wallet reference."""
+    spec = [("#1f3f9e", "#0a2860", TK, "PASS", "dashed"), ("#8e46d8", "#5a1f96", CR, "MEMBER", "dashed"), ("#1aa9a6", "#06737c", WL, "REWARDS", "check")]
+    out = ""
+    for i, (c1, c2, ic, label, mark) in enumerate(spec):
+        x = 160 - i * 20; y = 1270 + i * 132; w = 760 + i * 40
+        ring = ('<svg width="56" height="56" viewBox="0 0 56 56" fill="none" stroke="rgba(255,255,255,.85)" stroke-width="3" stroke-dasharray="8 7"><circle cx="28" cy="28" r="24"/></svg>' if mark == "dashed" else
+                '<svg width="56" height="56" viewBox="0 0 56 56" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="28" cy="28" r="24"/><path d="M18 29l7 7 13-15"/></svg>')
+        out += f'''<div class="abs card" style="left:{x}px;top:{y}px;width:{w}px;z-index:{i + 2};background:linear-gradient(135deg,{c1},{c2})">
+  <div style="display:flex;align-items:center;gap:22px">{ic}<div style="font-weight:800;font-size:44px;letter-spacing:.06em">{label}</div></div>{ring}</div>'''
+    return out
+
+
 def html():
-    hs = Image.open(HERE / "assets" / "holder-dark.png").size
-    hw = 900; hh = round(hs[1] * hw / hs[0])
     return f'''<!doctype html><html><head><meta charset="utf-8"><style>
 @font-face{{font-family:I;src:url(assets/inter-latin-500-normal.woff2);font-weight:500}}
 @font-face{{font-family:I;src:url(assets/inter-latin-600-normal.woff2);font-weight:600}}
@@ -35,9 +59,9 @@ def html():
 *{{margin:0;padding:0;box-sizing:border-box}}
 html,body{{width:{W}px;height:{H}px;overflow:hidden}}
 body{{font-family:I,sans-serif;color:{IVORY};
-  background:radial-gradient(60% 32% at 68% 72%,rgba(150,255,210,.30) 0%,rgba(150,255,210,0) 100%),
-             radial-gradient(80% 40% at 10% 0%,rgba(120,230,190,.22) 0%,rgba(120,230,190,0) 100%),
-             linear-gradient(180deg,#0E6B4F 0%,#0A5540 55%,#063A2C 100%)}}
+  background:radial-gradient(60% 30% at 50% 74%,rgba(255,255,255,.16) 0%,rgba(255,255,255,0) 100%),
+             radial-gradient(80% 40% at 10% 0%,rgba(255,255,255,.12) 0%,rgba(255,255,255,0) 100%),
+             linear-gradient(180deg,{shade(BG,1.12)} 0%,{BG} 55%,{shade(BG,0.72)} 100%)}}
 .abs{{position:absolute}}
 .grain{{position:absolute;inset:0;opacity:.07;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='300' height='300' filter='url(%23n)'/></svg>")}}
 .time{{left:0;right:0;top:46px;text-align:center;font-weight:600;font-size:30px;opacity:.75}}
@@ -54,8 +78,15 @@ body{{font-family:I,sans-serif;color:{IVORY};
 .hl .g{{color:{GOLD}}}
 .sub{{left:68px;top:1110px;font-weight:500;font-size:40px;opacity:.82;letter-spacing:-.01em}}
 .sub b{{color:{GOLD};font-weight:700}}
-.hero{{left:{W - hw + 10}px;top:1120px;width:{hw}px;height:{hh}px;-webkit-mask-image:linear-gradient(180deg,#000 94%,transparent 100%);
-  filter:drop-shadow(0 40px 44px rgba(0,25,15,.55))}}
+.card{{height:300px;border-radius:34px;padding:34px 44px;display:flex;justify-content:space-between;align-items:flex-start;color:#fff;
+  box-shadow:0 -10px 30px rgba(0,0,0,.18),inset 0 2px 0 rgba(255,255,255,.25)}}
+.pocket{{left:110px;top:1620px;width:860px;height:430px;z-index:10;border-radius:36px 36px 120px 120px;
+  background:radial-gradient(70% 60% at 50% 30%,#2a2a2e 0%,#17171a 70%,#0e0e10 100%);box-shadow:0 40px 60px rgba(0,0,0,.45),inset 0 3px 0 rgba(255,255,255,.08);
+  -webkit-mask:radial-gradient(150px 70px at 50% 0,transparent 98%,#000 100%)}}
+.stitch{{position:absolute;inset:26px;border:3px dashed rgba(255,140,90,.35);border-radius:22px 22px 100px 100px}}
+.badge{{position:absolute;left:50%;top:56%;transform:translate(-50%,-50%);width:200px;height:200px;border-radius:50%;background:#F6F1E7;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 10px 30px rgba(0,0,0,.5),inset 0 -4px 10px rgba(0,0,0,.15)}}
+.badge img{{width:150px}}
 .foot{{left:64px;right:64px;bottom:64px;height:120px;border-top:3px solid rgba(251,243,230,.22);padding-top:28px;height:150px;display:flex;align-items:center;gap:34px}}
 .foot img{{height:96px}}
 .div{{width:3px;height:92px;background:rgba(11,18,56,.3)}}
@@ -70,8 +101,8 @@ body{{font-family:I,sans-serif;color:{IVORY};
 <div class="b in">So… what’s Wystak?<small>12:47 PM</small></div>
 <div class="b out">Soon. Very soon.<small>12:47 PM {TICKS}</small></div>
 <div class="abs hl">Every story<br>has a moment.<br><span class="g">This is ours.</span></div>
-<img class="abs hero" src="assets/holder-dark.png">
-<div class="abs foot" style="justify-content:center"><div class="url" style="font-size:72px">www.wystak.com</div></div>
+{cards()}
+<div class="abs pocket"><div class="stitch"></div><div class="badge"><img src="assets/logo-mark.png"></div></div>
 <div class="grain"></div>
 </body></html>'''
 
@@ -79,5 +110,7 @@ body{{font-family:I,sans-serif;color:{IVORY};
 if __name__ == "__main__":
     out = HERE / "slides"; out.mkdir(exist_ok=True)
     v2.HERE = HERE
-    v2.render(html(), out / "wystak-poster-v4.png")
+    for bg in (sys.argv[1:] or [BG]):
+        BG = bg if bg.startswith("#") else "#" + bg
+        v2.render(html(), out / f"wystak-poster-v4-{BG[1:].lower()}.png")
     print("ok")
