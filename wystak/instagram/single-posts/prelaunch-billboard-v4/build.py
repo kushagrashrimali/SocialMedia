@@ -35,9 +35,9 @@ def html():
 *{{margin:0;padding:0;box-sizing:border-box}}
 html,body{{width:{W}px;height:{H}px;overflow:hidden}}
 body{{font-family:I,sans-serif;color:{IVORY};
-  background:radial-gradient(60% 32% at 68% 72%,rgba(255,150,140,.40) 0%,rgba(255,150,140,0) 100%),
-             radial-gradient(80% 40% at 10% 0%,rgba(255,170,120,.22) 0%,rgba(255,170,120,0) 100%),
-             linear-gradient(180deg,#9A1F3E 0%,#7A1430 55%,#560B21 100%)}}
+  background:radial-gradient(60% 32% at 68% 72%,rgba(150,255,210,.30) 0%,rgba(150,255,210,0) 100%),
+             radial-gradient(80% 40% at 10% 0%,rgba(120,230,190,.22) 0%,rgba(120,230,190,0) 100%),
+             linear-gradient(180deg,#0E6B4F 0%,#0A5540 55%,#063A2C 100%)}}
 .abs{{position:absolute}}
 .grain{{position:absolute;inset:0;opacity:.07;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='300' height='300' filter='url(%23n)'/></svg>")}}
 .time{{left:0;right:0;top:46px;text-align:center;font-weight:600;font-size:30px;opacity:.75}}
@@ -45,7 +45,7 @@ body{{font-family:I,sans-serif;color:{IVORY};
 .av{{width:92px;height:92px;border-radius:50%;background:#FFFFFF;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,.35)}}
 .name{{font-weight:700;font-size:40px;line-height:1.1}} .on{{font-weight:500;font-size:26px;color:{MINT}}}
 .icons{{margin-left:auto;display:flex;gap:44px;align-items:center}}
-.b{{position:absolute;padding:26px 34px 22px;border-radius:30px;font-weight:500;font-size:42px;line-height:1.2;box-shadow:0 14px 30px rgba(40,0,10,.35)}}
+.b{{position:absolute;padding:26px 34px 22px;border-radius:30px;font-weight:500;font-size:42px;line-height:1.2;box-shadow:0 14px 30px rgba(0,30,20,.35)}}
 .b small{{display:block;text-align:right;font-size:22px;margin-top:6px;opacity:.6;font-weight:500}}
 .in{{left:64px;top:282px;background:#FFFFFF;color:#141833;border-bottom-left-radius:8px}}
 .out{{right:64px;top:452px;background:#CDEFE3;color:#0D2A22;border-bottom-right-radius:8px}}
@@ -55,7 +55,7 @@ body{{font-family:I,sans-serif;color:{IVORY};
 .sub{{left:68px;top:1110px;font-weight:500;font-size:40px;opacity:.82;letter-spacing:-.01em}}
 .sub b{{color:{GOLD};font-weight:700}}
 .hero{{left:{W - hw + 10}px;top:1120px;width:{hw}px;height:{hh}px;-webkit-mask-image:linear-gradient(180deg,#000 94%,transparent 100%);
-  filter:drop-shadow(0 40px 44px rgba(30,0,8,.55))}}
+  filter:drop-shadow(0 40px 44px rgba(0,25,15,.55))}}
 .foot{{left:64px;right:64px;bottom:64px;height:120px;border-top:3px solid rgba(251,243,230,.22);padding-top:28px;height:150px;display:flex;align-items:center;gap:34px}}
 .foot img{{height:96px}}
 .div{{width:3px;height:92px;background:rgba(11,18,56,.3)}}
@@ -71,7 +71,7 @@ body{{font-family:I,sans-serif;color:{IVORY};
 <div class="b out">Soon. Very soon.<small>12:47 PM {TICKS}</small></div>
 <div class="abs hl">Every story<br>has a moment.<br><span class="g">This is ours.</span></div>
 <img class="abs hero" src="assets/holder-dark.png">
-<div class="abs foot"><div class="cs">COMING SOON</div><div class="url" style="margin-left:auto">www.wystak.com</div></div>
+<div class="abs foot" style="justify-content:center"><div class="url" style="font-size:72px">www.wystak.com</div></div>
 <div class="grain"></div>
 </body></html>'''
 
