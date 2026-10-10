@@ -130,6 +130,10 @@ The user drops reference videos, ElevenLabs audio, reference screenshots/PDFs an
 - Lift objects off the plate: fit a smooth sky model to rebuild the sky behind them, unwrap thin objects (trunks) into texture strips and redraw them along new curves, and unmix crowns or fronds against the sky model. Assign frond pixels by connectivity from each crown, not by nearest point.
 - Mattes for things in front: everything below the hedge line, plus per-object boxes for heads and lamp posts. Where an old object stood, interpolate the hedge-top line across it, or the new object shows through in its old shape.
 - Logo layers: split `logo-mark.png` by hue, keep only the connected body of each colour (flood fill after a small opening), and straighten the navy pass's right edge with a fitted line. The last frame always uses the file itself, in one piece.
+- The film (`film/render_film.py`) renders the same pipeline frame by frame, with every parameter a function of time:
+  - Morphing one shape into the logo: never cross-dissolve two shapes that don't line up (it shows a double image). Settle the old shapes inside the logo's outline, then reveal the logo with a growth mask (distance from the old shapes' centre lines, growing to cover the logo).
+  - A still plate needs life: fountain and sea shimmer (displacement fields scrolling in time), frond flutter, live grain over everything, and a slow push-in that starts slightly inside the plate's soft border.
+  - Kill a background render with `pgrep -f "python3 render_film" | xargs kill`; `pkill -f render_film.py` also matches and kills the shell running the command.
 
 ## Lessons from the object-style launch post (Instagram design direction)
 

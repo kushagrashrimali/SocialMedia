@@ -28,6 +28,27 @@ The trees were always a W; nature just finishes the thought.
 | 6.6–7.8 s | 5 | **The passes emerge.** The fourth stroke reveals itself as the first pass: its ticket presses up from the surface. The purple pass, then the teal pass, swing out from behind it around a pivot at the W's foot. | Purple starts 0.12 s before teal. Each pass decelerates into place (ease-out, about 0.6 s). A light rotational motion blur; each pass casts a soft shadow on the one behind it. |
 | 7.8–10.0 s | 6 | **The Wystak logo.** The exact supplied logo, held still and clean, in the garden. The visitors keep filming. | No motion on the logo. Ambient motion only (water, fronds gone, people). Hold at least 2 s. |
 
+## The film as built (v1)
+
+The delivered film (`wystak/instagram/reels/finals/wystak-palm-reveal.mp4`) is rendered frame by frame from the storyboard pipeline, not by a video model.
+
+- **Render:** `film/render_film.py` renders 300 frames at 1080 × 1080, 30 fps (about 25 minutes on four cores).
+- **Sound:** `sound/make_sound.py` makes the sound.
+- **Master:** `sound/master.sh` encodes the file and masters the audio to −14 LUFS.
+- **Check:** `sound/verify.sh` pulls a contact sheet from the delivered MP4.
+
+What the build changes from the plan above:
+
+- **Life in the still.**
+  - The photo is a single still, so the film plays as a cinemagraph: the fountains' spray rises and sparkles, the sea shimmers, the fronds flutter, live film grain runs over everything, and a slow 3 % push-in carries the shot.
+  - The visitors stay still.
+- **The handover to the W (5.95–6.40 s).** The trunks settle onto the W's centre lines at about 80 % of the stroke width. The exact W then fills out around them through a growth mask, so it never passes its own outline (no cross-dissolve, no double image). A one-percent damped settle follows at 6.4 s.
+- **The passes.**
+  - The ticket appears on the navy pass at 6.62 s.
+  - The purple pass swings out at 6.70 s and the teal at 6.82 s (cubic ease-out, motion blur from the real angular speed, fading contact shadows).
+  - From 7.62 s the picture is the supplied logo file in one piece.
+- **No music.** The repo has no approved track for this film, so the mix is seaside ambience plus the story sounds and the Wystak chime at 7.6 s.
+
 ## How to hand frames to a video model
 
 - **Use the frames as keyframes.** Use the six frames as keyframes for image-to-video in first-and-last-frame mode, one segment per row of the table: 1→2, 2→3, 3→4, 4→5, 5→6. The prompt for each segment is in `VIDEO_PROMPT.md`.
