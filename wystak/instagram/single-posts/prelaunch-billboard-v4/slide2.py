@@ -40,12 +40,12 @@ body{{font-family:I,sans-serif;color:{IVORY};
 .hl{{left:64px;top:1050px;font-weight:900;font-size:108px;line-height:.98;letter-spacing:-.055em;white-space:nowrap}}
 .hl .g{{color:{GOLD}}}
 </style></head><body>
-<div class="abs time">12:48 PM</div>
+<div class="abs time">11:11 PM</div>
 <div class="abs head">{v4.BACK}<div class="av"><img src="assets/logo-mark.png" style="width:58px"></div>
   <div><div class="name">Wystak</div><div class="on">online</div></div>
   <div class="icons">{v4.PHONE}{v4.VIDEO}{v4.DOTS}</div></div>
-<div class="b in">How soon is soon?<small>12:48 PM</small></div>
-<div class="b ph"><img src="assets/garden.jpg"><small>12:48 PM {v4.TICKS}</small></div>
+<div class="b in">How soon is soon?<small>11:11 PM</small></div>
+<div class="b ph"><img src="assets/garden.jpg"><small>11:11 PM {v4.TICKS}</small></div>
 <div class="abs hl">Closer than<br><span class="g">you think.</span></div>
 </body></html>'''
 

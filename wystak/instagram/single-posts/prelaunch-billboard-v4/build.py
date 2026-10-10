@@ -110,12 +110,12 @@ body{{font-family:I,sans-serif;color:{IVORY};
 .url{{font-weight:800;font-size:58px;letter-spacing:-.02em;line-height:1.05}}
 .fade{{left:0;right:0;bottom:0;height:330px;background:linear-gradient(180deg,rgba(6,8,25,0) 0%,rgba(6,8,25,.92) 55%,#060819 100%)}}
 {FEED_CSS if FEED else ''}</style></head><body>
-<div class="abs time">12:47 PM</div>
+<div class="abs time">11:11 PM</div>
 <div class="abs head">{BACK}<div class="av"><img src="assets/logo-mark.png" style="width:66px"></div>
   <div><div class="name">Wystak</div><div class="on">online</div></div>
   <div class="icons">{PHONE}{VIDEO}{DOTS}</div></div>
-<div class="b in">So… what’s Wystak?<small>12:47 PM</small></div>
-<div class="b out">Soon. Very soon.<small>12:47 PM {TICKS}</small></div>
+<div class="b in">So… what’s Wystak?<small>11:11 PM</small></div>
+<div class="b out">Soon. Very soon.<small>11:11 PM {TICKS}</small></div>
 <div class="abs hl">Every story<br>has a moment.<br><span class="g">This is ours.</span></div>
 {cards()}
 <div class="abs pocket"><div class="stitch"></div><img class="mark" src="assets/logo-mark.png"></div>
