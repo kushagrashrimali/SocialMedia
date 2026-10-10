@@ -1,0 +1,117 @@
+<!doctype html>
+<!-- Cafe Aroma loyalty pass, drawn as a real Wallet pass would be laid out.
+     ?apple  -> Apple Wallet store card (360x500 CSS px)
+     ?google -> Google Wallet loyalty card (360x520 CSS px)
+     Rendered to PNG at 3x by storyboard/card/render.sh. -->
+<html><head><meta charset="utf-8"><style>
+@font-face { font-family: "Inter Tight"; src: url("../../assets/vendor/fonts/inter-tight-latin-400-normal.woff2"); font-weight: 400; }
+@font-face { font-family: "Inter Tight"; src: url("../../assets/vendor/fonts/inter-tight-latin-500-normal.woff2"); font-weight: 500; }
+@font-face { font-family: "Inter Tight"; src: url("../../assets/vendor/fonts/inter-tight-latin-600-normal.woff2"); font-weight: 600; }
+@font-face { font-family: "Inter Tight"; src: url("../../assets/vendor/fonts/inter-tight-latin-700-normal.woff2"); font-weight: 700; }
+@font-face { font-family: "Instrument Serif"; src: url("../../assets/vendor/fonts/instrument-serif-latin-400-normal.woff2"); font-style: normal; }
+@font-face { font-family: "Instrument Serif"; src: url("../../assets/vendor/fonts/instrument-serif-latin-400-italic.woff2"); font-style: italic; }
+@font-face { font-family: "JetBrains Mono"; src: url("../../assets/vendor/fonts/jetbrains-mono-latin-500-normal.woff2"); font-weight: 500; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { background: transparent; }
+:root { --bg: #2a1a11; --ink: #f5ead9; --lab: #caa47a; --gold: #d9b26f; }
+.card { position: relative; width: 360px; overflow: hidden; color: var(--ink); font-family: "Inter Tight", sans-serif;
+  background: var(--bg); -webkit-font-smoothing: antialiased; }
+/* fine paper-like grain + a soft top light: the only "material" a real pass background carries */
+.card::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .22; mix-blend-mode: overlay;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E"); }
+.card::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, rgba(255,236,205,.07) 0%, rgba(255,236,205,0) 32%); }
+
+/* ---------- brand lockup ---------- */
+.lock { display: flex; align-items: center; gap: 9px; }
+.mark { width: 30px; height: 30px; flex: none; }
+.wm { line-height: 1; }
+.wm b { display: block; font-family: "Instrument Serif", serif; font-weight: 400; font-size: 23px; letter-spacing: -.005em; color: var(--ink); }
+.wm i { display: block; font-style: normal; font-weight: 600; font-size: 7.4px; letter-spacing: .26em; color: var(--lab); margin-top: 3px; }
+.lab { font-weight: 600; font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--lab); }
+.val { font-weight: 500; font-size: 17px; letter-spacing: -.01em; color: var(--ink); margin-top: 3px; }
+.mono { font-family: "JetBrains Mono", monospace; font-weight: 500; letter-spacing: 0; }
+
+/* ---------- Apple Wallet store card ---------- */
+.apple { height: 500px; border-radius: 15px; }
+.apple .hdr { position: absolute; left: 15px; right: 15px; top: 13px; height: 38px; display: flex; justify-content: space-between; align-items: center; }
+.apple .hdr .hf { text-align: right; }
+.apple .hdr .hf .val { font-size: 18px; }
+.apple .strip { position: absolute; left: 0; right: 0; top: 62px; height: 134px; overflow: hidden; }
+.apple .strip img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.apple .strip::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(20,11,6,.78) 0%, rgba(20,11,6,.35) 46%, rgba(20,11,6,0) 70%); }
+.apple .prim { position: absolute; left: 15px; top: 84px; z-index: 2; }
+.apple .prim .lab { color: #e8cfa6; }
+.apple .prim .big { font-weight: 300; font-size: 58px; line-height: .95; letter-spacing: -.035em; margin-top: 6px; color: #fff7ea; }
+.apple .prim .big small { font-family: "Instrument Serif", serif; font-style: italic; font-size: 24px; letter-spacing: 0; color: var(--gold); margin-left: 6px; }
+.apple .sec { position: absolute; left: 15px; right: 15px; top: 212px; display: flex; justify-content: space-between; }
+.apple .sec .r { text-align: right; }
+.apple .aux { position: absolute; left: 15px; right: 15px; top: 266px; display: flex; justify-content: space-between; }
+.apple .aux .val { font-size: 14px; }
+.apple .bc { position: absolute; left: 34px; right: 34px; bottom: 22px; height: 118px; border-radius: 8px; background: #fbf8f2; padding: 13px 14px 0; }
+.apple .bc .num { text-align: center; font-family: "JetBrains Mono", monospace; font-size: 10.5px; color: #3b2a1f; margin-top: 7px; letter-spacing: .08em; }
+
+/* ---------- Google Wallet loyalty card ---------- */
+.google { height: 520px; border-radius: 22px; }
+.google .top { position: absolute; left: 18px; right: 18px; top: 18px; display: flex; align-items: center; gap: 10px; }
+.google .top .disc { width: 36px; height: 36px; border-radius: 50%; background: #f5ead9; display: flex; align-items: center; justify-content: center; }
+.google .top .iss { font-weight: 500; font-size: 15px; color: var(--ink); }
+.google .prog { position: absolute; left: 18px; right: 18px; top: 72px; font-family: "Instrument Serif", serif; font-size: 34px; line-height: 1.02; letter-spacing: -.005em; }
+.google .prog em { color: var(--gold); }
+.google .row { position: absolute; left: 18px; right: 18px; top: 130px; display: flex; gap: 34px; }
+.google .bc { position: absolute; left: 50%; top: 196px; width: 170px; height: 170px; margin-left: -85px; border-radius: 14px; background: #fbf8f2; padding: 13px; }
+.google .bc .num { position: absolute; left: 0; right: 0; top: 178px; text-align: center; font-family: "JetBrains Mono", monospace; font-size: 10.5px; color: var(--lab); letter-spacing: .08em; }
+.google .hero { position: absolute; left: 0; right: 0; bottom: 0; height: 118px; overflow: hidden; }
+.google .hero img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 55%; display: block; }
+</style></head><body>
+<div id="out"></div>
+<script>
+// deterministic barcode / QR so every render is identical
+function rng(s) { return () => ((s = (s * 1664525 + 1013904223) >>> 0) / 4294967296); }
+function code128(w, h) {
+  const r = rng(77); let x = 0, bars = "";
+  const unit = w / 214; const runs = [2, 1, 1, 2, 3, 2];            // start-like guard
+  let seq = runs.slice(); while (seq.length < 120) seq.push(1 + Math.floor(r() * 4));
+  seq = seq.concat([2, 3, 3, 1, 1, 1, 2]);                           // stop guard
+  const total = seq.reduce((a, b) => a + b, 0), u = w / total;
+  seq.forEach((n, i) => { if (i % 2 === 0) bars += `<rect x="${(x * u).toFixed(2)}" y="0" width="${(n * u).toFixed(2)}" height="${h}"/>`; x += n; });
+  return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" fill="#1c120c" style="display:block">${bars}</svg>`;
+}
+function qr(size) {
+  const N = 29, m = size / N, r = rng(31); let s = "";
+  const f = (x, y) => x >= 0 && x < 8 && y >= 0 && y < 8;
+  for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) {
+    if (f(x, y) || f(x - (N - 8), y) || f(x, y - (N - 8))) continue;
+    if (r() > 0.5) s += `<rect x="${x * m}" y="${y * m}" width="${m + .3}" height="${m + .3}"/>`;
+  }
+  const fp = (x, y) => `<rect x="${x*m}" y="${y*m}" width="${7*m}" height="${7*m}" rx="${m*1.4}"/><rect x="${(x+1)*m}" y="${(y+1)*m}" width="${5*m}" height="${5*m}" rx="${m}" fill="#fbf8f2"/><rect x="${(x+2)*m}" y="${(y+2)*m}" width="${3*m}" height="${3*m}" rx="${m*.6}"/>`;
+  return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" fill="#1c120c" style="display:block">${s}${fp(0,0)}${fp(N-7,0)}${fp(0,N-7)}</svg>`;
+}
+// Cafe Aroma mark: a coffee bean inside a fine ring
+const MARK = (c, bg) => `<svg class="mark" viewBox="0 0 30 30"><circle cx="15" cy="15" r="14.2" fill="${bg}" stroke="${c}" stroke-width="1.1"/>
+  <g transform="rotate(-32 15 15)"><ellipse cx="15" cy="15" rx="6.1" ry="8.6" fill="${c}"/>
+  <path d="M15 6.6 C12.2 10.4 17.8 13.6 15 23.4" fill="none" stroke="${bg}" stroke-width="1.5" stroke-linecap="round"/></g></svg>`;
+const LOCK = `<div class="lock">${MARK("#f5ead9", "transparent")}<div class="wm"><b>Cafe Aroma</b><i>COFFEE HOUSE · BANDRA</i></div></div>`;
+
+const apple = `<div class="card apple">
+  <div class="hdr">${LOCK}<div class="hf"><div class="lab">Tier</div><div class="val">Gold</div></div></div>
+  <div class="strip"><img src="../../assets/ui/aroma-strip.jpg"></div>
+  <div class="prim"><div class="lab">Aroma points</div><div class="big">132<small>/ 150</small></div></div>
+  <div class="sec"><div><div class="lab">Member</div><div class="val">Aarav Mehta</div></div>
+    <div class="r"><div class="lab">Next reward</div><div class="val">Free cappuccino</div></div></div>
+  <div class="aux"><div><div class="lab">Member since</div><div class="val">March 2025</div></div>
+    <div style="text-align:right"><div class="lab">Visits</div><div class="val">12</div></div></div>
+  <div class="bc">${code128(264, 64)}<div class="num">AROMA 0042 7781</div></div>
+</div>`;
+
+const google = `<div class="card google">
+  <div class="top"><div class="disc">${MARK("#2a1a11", "#f5ead9").replace('class="mark"', 'class="mark" style="width:30px;height:30px"')}</div><div class="iss">Cafe Aroma</div></div>
+  <div class="prog">Aroma <em>Rewards</em></div>
+  <div class="row"><div><div class="lab">Points</div><div class="val">132</div></div><div><div class="lab">Tier</div><div class="val">Gold</div></div><div><div class="lab">Member</div><div class="val">Aarav Mehta</div></div></div>
+  <div class="bc">${qr(144)}<div class="num">AROMA 0042 7781</div></div>
+  <div class="hero"><img src="../../assets/ui/aroma-hero.jpg"></div>
+</div>`;
+
+document.getElementById("out").innerHTML = location.search.includes("google") ? google : apple;
+</script>
+</body></html>

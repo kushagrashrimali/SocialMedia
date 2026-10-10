@@ -1,0 +1,75 @@
+/* WYSTAK launch intro: look. Layout is authored at 1080x1920 and rendered at 2x (2160x3840). */
+/* fonts are declared in index.html (asset paths must be root-relative) */
+
+:root {
+  --paper: #f7f5fa;          /* brand Paper, the off-white ground */
+  --ink: #1a0b2e;            /* brand Aubergine: the ink on light grounds */
+  --crease: #4c1d95;         /* brand Crease */
+  --navy: rgb(31, 47, 117);  /* the logo's own pass colours, used only as faint tints in the glass */
+  --plum: rgb(107, 43, 166);
+  --teal: rgb(15, 143, 138);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--paper); }
+#root { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--paper);
+  font-family: "Archivo", sans-serif; -webkit-font-smoothing: antialiased; }
+
+/* ---------- camera ---------- */
+#world { position: absolute; inset: 0; transform-origin: 50% 44%; }
+.stage { position: absolute; inset: 0; perspective: 2600px; perspective-origin: 50% 42%; }
+
+/* ---------- background: off-white, one soft key light, a whisper of grain ---------- */
+.bg { position: absolute; inset: 0; background: linear-gradient(180deg, #faf9fc 0%, #f6f4f9 55%, #f1eef6 100%); }
+.bg-key { position: absolute; left: -240px; top: 120px; width: 1560px; height: 1560px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0) 70%); }
+.bg-tint { position: absolute; left: 140px; top: 520px; width: 800px; height: 760px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(107, 43, 166, 0.05), rgba(107, 43, 166, 0)); }
+.bg-floor { position: absolute; left: 0; right: 0; bottom: 0; height: 700px;
+  background: linear-gradient(180deg, rgba(234, 230, 242, 0) 0%, rgba(234, 230, 242, 0.55) 100%); }
+.grain { position: absolute; inset: 0; opacity: 0.022; pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
+/* ---------- glass: thin, clear, a bright rim, a soft shadow ---------- */
+.glass { position: absolute; border-radius: 30px; overflow: hidden;
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.22) 45%, rgba(255, 255, 255, 0.38) 100%);
+  -webkit-backdrop-filter: blur(var(--frost, 14px)) saturate(135%); backdrop-filter: blur(var(--frost, 14px)) saturate(135%);
+  border: 1px solid rgba(255, 255, 255, 0.92);
+  box-shadow: inset 0 1.5px 0 rgba(255, 255, 255, 1), inset 0 -1px 0 rgba(26, 11, 46, 0.05), inset 0 0 0 1px rgba(255, 255, 255, 0.25),
+    0 0 0 1px rgba(26, 11, 46, 0.045), 0 46px 90px -40px rgba(26, 11, 46, 0.22), 0 16px 30px -18px rgba(26, 11, 46, 0.12); }
+.glass::before { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: radial-gradient(120% 70% at 0% 0%, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0) 46%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0) 72%, rgba(255, 255, 255, 0.35) 100%); }
+.glass .tint { position: absolute; inset: 0; border-radius: inherit; opacity: 0.09; }
+.glass .sw { position: absolute; top: -40%; bottom: -40%; left: 0; width: 30%; pointer-events: none;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.85) 50%, rgba(255, 255, 255, 0) 100%);
+  transform: translateX(-180%) skewX(-16deg); }
+.glass .rim { position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  box-shadow: inset 2px 0 0 rgba(255, 255, 255, 0.55), inset -1px 0 0 rgba(160, 140, 200, 0.18); }
+
+/* the cover pass: the frosted glass the lockup is first seen through */
+#pane { left: 200px; top: 520px; width: 680px; height: 820px; border-radius: 44px; --frost: 9px; transform-style: preserve-3d; }
+
+/* thin sheets that drift behind the lockup */
+.sheet { position: absolute; border-radius: 64px; border: 1px solid rgba(255, 255, 255, 0.9);
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0.04));
+  box-shadow: 0 0 0 1px rgba(26, 11, 46, 0.03), 0 60px 120px -60px rgba(26, 11, 46, 0.16); opacity: 0; }
+#sheetA { left: -40px; top: 300px; width: 860px; height: 1200px; }
+#sheetB { left: 300px; top: 420px; width: 860px; height: 1140px; }
+
+/* the stack: glass passes that deal in behind the mark */
+#deck { position: absolute; left: 200px; top: 520px; width: 680px; height: 820px; transform-style: preserve-3d; }
+#deck .glass { left: 0; top: 0; width: 680px; height: 820px; border-radius: 44px; --frost: 12px; opacity: 0; }
+
+/* ---------- the lockup: the official mark and wordmark, untouched ---------- */
+#lockup { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+#mark { position: absolute; left: 260px; top: 618px; width: 560px; height: 364px; display: block; }
+#word { position: absolute; left: 240px; top: 1078px; width: 600px; height: 72px; display: block; }
+.mark-shadow { position: absolute; left: 300px; top: 940px; width: 480px; height: 90px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(26, 11, 46, 0.16), rgba(26, 11, 46, 0)); }
+
+/* ---------- tagline ---------- */
+#tagline { position: absolute; left: 0; right: 0; top: 1204px; text-align: center; white-space: nowrap;
+  font: 600 24px/1 "Archivo", sans-serif; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); padding-left: 0.16em; }
+#tagline .w { display: inline-block; opacity: 0; }
+#tagline .accent { color: var(--crease); }

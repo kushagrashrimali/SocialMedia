@@ -22,13 +22,13 @@
 3. **Never invent a statistic.** Any number not in section 6 goes on screen as a visible bracketed
    placeholder — `[N]`, `[PRICE]`, `[CITY]` — and gets flagged for a human to fill.
 4. **Never put a real company's name or logo on a mockup.** The standing fictional sample
-   merchant is **Paper Crane Coffee**.
+   merchant is **Bean Theory**.
 5. **Never market WYSTAK as an Apple product.** About 19 in 20 Indian phones are Android. Show
    Google Wallet at least as prominently as Apple Wallet.
 6. **Never recolour or modify the "Add to Apple Wallet" / "Add to Google Wallet" badges.** They
    are licensed artwork, used exactly as provided.
 7. **Never show a lock-screen push that is marketing.** Pushes are genuine state changes only
-   (`+18 points at Paper Crane Coffee`), never "New paneer tikka roll launched!".
+   (`+18 points at Bean Theory`), never "New paneer tikka roll launched!".
 8. **Never show or promise points expiry, rotating QR codes, velocity limits or geofencing as live
    features.** They are Phase 1, not built yet. Showing them is a false claim (and expiry copy is a
    consumer-protection dark-pattern risk).
@@ -64,8 +64,7 @@ of a scan at the counter.** No app to install, no plastic to print.
   GST-clean invoicing).
 - **The gap:** big chains already have Google Wallet via Pine Labs, EasyRewardz, Twid. Nobody
   serves the long tail — a ₹1,500-a-month Indian café. **That gap is the entire business.**
-- **Quiet advantage:** Apple Pay isn't live in India, so Indians assume "Apple Wallet doesn't work
-  here". Passes work fully. The market hasn't noticed.
+- **Correction (October 2026):** Apple Pay *is* live in India. The earlier line saying it was not live was wrong. Never claim otherwise in any post, video or deck. Wallet passes work in both Apple Wallet and Google Wallet.
 
 ### The single most important moment — build videos around it
 
@@ -208,7 +207,7 @@ product surfaces (dashboards, docs, pass accents), not for re-ordering the logo.
 3. **One scan, one push.** Never a digest, never a promo blast.
 4. **The merchant is the name.** Customers know the café, not WYSTAK. WYSTAK sits second, small.
 
-Reference push: **"+18 points at Paper Crane Coffee"** / *"You're at 132 of 150. One more and the
+Reference push: **"+18 points at Bean Theory"** / *"You're at 132 of 150. One more and the
 next one is on the house."*
 
 Wallet pushes carry no payload — the phone fetches the new pass — so the substance lives on the
@@ -355,7 +354,7 @@ the measured figure.
 These follow the documents above; treat as a draft brief for the first session.
 
 - **Launch / hero film (30–45s):** dark Void ground → the four cards fan out of the W → counter
-  scan at Paper Crane Coffee → lock screen: `+18 points at Paper Crane Coffee` → pass face shows
+  scan at Bean Theory → lock screen: `+18 points at Bean Theory` → pass face shows
   `132 / 150` → "No app. No plastic." → Apple **and** Google Wallet side by side → tagline → logo.
 - **Merchant explainer (60–90s):** the problem (plastic cards lost, apps nobody installs, WhatsApp
   messages nobody scrolls back to) → standee QR enrolment in under ten seconds → scan on a cheap

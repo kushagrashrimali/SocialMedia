@@ -1,0 +1,8 @@
+node_modules/
+snapshots/
+.hyperframes/
+renders/work-*/
+renders/.*
+renders/*.mp4
+storyboard/frames/
+renders/*.log

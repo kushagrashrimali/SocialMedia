@@ -1,0 +1,14 @@
+{
+  "name": "wystak-iphone-reel",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npx --yes hyperframes@0.8.139 preview",
+    "check": "npx --yes hyperframes@0.8.139 check",
+    "render": "npx --yes hyperframes@0.8.139 render",
+    "publish": "npx --yes hyperframes@0.8.139 publish"
+  },
+  "devDependencies": {
+    "@hyperframes/core": "^0.8.139"
+  }
+}
