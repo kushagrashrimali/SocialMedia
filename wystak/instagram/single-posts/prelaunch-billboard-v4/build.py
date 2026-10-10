@@ -23,7 +23,7 @@ BACK = ICON('<path d="M19 12H5M11 6l-6 6 6 6"/>')
 TICKS = '<svg width="34" height="20" viewBox="0 0 34 20" fill="none" stroke="#3B82F6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 11l5 5 10-11"/><path d="M14 15l2 1 10-11"/></svg>'
 
 
-BG = "#C24366"
+BG = "#C24366"   # raspberry pink
 
 
 def shade(hexc, k):
@@ -44,8 +44,7 @@ def cards():
         x = 160 - i * 20; y = 1270 + i * 132; w = 760 + i * 40
         ring = ('<svg width="56" height="56" viewBox="0 0 56 56" fill="none" stroke="rgba(255,255,255,.85)" stroke-width="3" stroke-dasharray="8 7"><circle cx="28" cy="28" r="24"/></svg>' if mark == "dashed" else
                 '<svg width="56" height="56" viewBox="0 0 56 56" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="28" cy="28" r="24"/><path d="M18 29l7 7 13-15"/></svg>')
-        out += f'''<div class="abs card" style="left:{x}px;top:{y}px;width:{w}px;z-index:{i + 2};background:linear-gradient(135deg,{c1},{c2})">
-  <div style="display:flex;align-items:center;gap:22px">{ic}<div style="font-weight:800;font-size:44px;letter-spacing:.06em">{label}</div></div>{ring}</div>'''
+        out += f'<div class="abs card" style="left:{x}px;top:{y}px;width:{w}px;z-index:{i + 2};background:linear-gradient(135deg,{c1},{c2})"></div>'
     return out
 
 
@@ -81,12 +80,10 @@ body{{font-family:I,sans-serif;color:{IVORY};
 .card{{height:300px;border-radius:34px;padding:34px 44px;display:flex;justify-content:space-between;align-items:flex-start;color:#fff;
   box-shadow:0 -10px 30px rgba(0,0,0,.18),inset 0 2px 0 rgba(255,255,255,.25)}}
 .pocket{{left:110px;top:1620px;width:860px;height:430px;z-index:10;border-radius:36px 36px 120px 120px;
-  background:radial-gradient(70% 60% at 50% 30%,#2a2a2e 0%,#17171a 70%,#0e0e10 100%);box-shadow:0 40px 60px rgba(0,0,0,.45),inset 0 3px 0 rgba(255,255,255,.08);
+  background:radial-gradient(80% 70% at 50% 25%,#FFFDF8 0%,#F4EEE3 60%,#E6DCCB 100%);box-shadow:0 40px 60px rgba(60,0,20,.40),inset 0 3px 0 rgba(255,255,255,.9),inset 0 -10px 24px rgba(120,90,50,.18);
   -webkit-mask:radial-gradient(150px 70px at 50% 0,transparent 98%,#000 100%)}}
-.stitch{{position:absolute;inset:26px;border:3px dashed rgba(255,140,90,.35);border-radius:22px 22px 100px 100px}}
-.badge{{position:absolute;left:50%;top:56%;transform:translate(-50%,-50%);width:200px;height:200px;border-radius:50%;background:#F6F1E7;display:flex;align-items:center;justify-content:center;
-  box-shadow:0 10px 30px rgba(0,0,0,.5),inset 0 -4px 10px rgba(0,0,0,.15)}}
-.badge img{{width:150px}}
+.stitch{{position:absolute;inset:26px;border:3px dashed rgba(150,110,70,.45);border-radius:22px 22px 100px 100px}}
+.mark{{position:absolute;left:50%;top:57%;transform:translate(-50%,-50%);width:260px;filter:drop-shadow(0 4px 6px rgba(60,40,20,.25))}}
 .foot{{left:64px;right:64px;bottom:64px;height:120px;border-top:3px solid rgba(251,243,230,.22);padding-top:28px;height:150px;display:flex;align-items:center;gap:34px}}
 .foot img{{height:96px}}
 .div{{width:3px;height:92px;background:rgba(11,18,56,.3)}}
@@ -102,7 +99,7 @@ body{{font-family:I,sans-serif;color:{IVORY};
 <div class="b out">Soon. Very soon.<small>12:47 PM {TICKS}</small></div>
 <div class="abs hl">Every story<br>has a moment.<br><span class="g">This is ours.</span></div>
 {cards()}
-<div class="abs pocket"><div class="stitch"></div><div class="badge"><img src="assets/logo-mark.png"></div></div>
+<div class="abs pocket"><div class="stitch"></div><img class="mark" src="assets/logo-mark.png"></div>
 <div class="grain"></div>
 </body></html>'''
 
