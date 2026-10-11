@@ -10,32 +10,40 @@ A raspberry chat screen at 12:47 PM. "So… what's Wystak?" gets the reply "Soon
 "Every story has a moment. This is ours.", with navy, purple and teal passes rising out of an ivory wallet pocket that
 carries the Wystak logo.
 
-## Hook options (scored with `ig-reel/hookscore.py`)
+## Hook options (the first two lines are all that show before "…see more")
 
-The scorer is built for Reel hooks, so a teaser that holds back the product scores low on specificity and stakes. These
-are the best of the options I tried without inventing facts.
-
-1. **48.6:** "Your regulars already carry the one thing you need." (used below)
-2. **39.2:** "Every story has a moment. This one is ours."
-3. **36.4:** "We have been building something for the counter you visit every week."
+1. "Your regulars carry a wallet on their phone. Your shop is not in it yet." (used below)
+2. "Most small shops cannot see which regulars quietly stopped coming."
+3. "Every story has a moment. This one is ours."
 
 ## Post text
 
-Your regulars already carry the one thing you need.
+Your regulars carry a wallet on their phone.
+Your shop is not in it yet.
 
-They just don't know it yet. Neither does the café on your street, the kirana you trust, or the salon you have visited for years.
+Think of the café on your street, the kirana you trust, the salon you have visited for years. They know their regulars by name. But they cannot see who keeps coming back, and who quietly stopped.
 
-We have been building something for them. For the counter, the owner behind it, and the people who keep coming back.
+We have spent months building something for them. No app to install. Nothing for the customer to carry.
 
 We are not ready to show it all. But every story has a moment, and this one is ours.
 
-Follow Wystak to be here when it lands.
+What is the one thing you wish you knew about your regulars? Tell us in the comments. 👇
 
-#ComingSoon #SmallBusiness #Retail #IndiaStartups
+Follow Wystak so you are here when it lands.
+
+#SmallBusiness #CustomerLoyalty #Retail #DigitalWallet #StartupIndia
 
 ## First comment
 
-Get early access, or talk to us if you run a café, grocery store or salon, or build POS and payment tools for them: www.wystak.com
+Early access and partnerships (cafés, grocery stores, salons, POS and payment partners): www.wystak.com
+
+## Posting tips for reach
+
+- Post the image as a single image (1080×1350), not a link. Put the link in the first comment, as above.
+- Post on a weekday morning (Tuesday to Thursday, 8 to 10 AM IST) and stay on the thread for the first hour, replying to every comment.
+- Have each founder reshare in their own words (lines below) within the first hour, and comment on the post from their own profiles. Early comments help more than likes.
+- Tag partners or merchants only if they agreed, and never tag for reach alone.
+- Keep it to 5 hashtags: 2 broad (#SmallBusiness, #Retail), 2 topic (#CustomerLoyalty, #DigitalWallet), 1 local (#StartupIndia).
 
 ## Image alt text
 

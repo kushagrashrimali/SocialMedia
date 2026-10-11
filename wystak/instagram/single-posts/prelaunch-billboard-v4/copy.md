@@ -4,13 +4,17 @@ File: `slides/wystak-prelaunch-post.png` (1080x1350). Build: `python3 build.py -
 
 ## Caption
 
-Every story has a moment. This is ours. 💳
+Every story has a moment. This one is ours. 💳
 
-Something is stacking up for cafés, kiranas, salons and every shop that knows its regulars by name.
+Something new is on its way for the café on your corner, the kirana you trust and the salon you never skip, and for every shop that knows its regulars by name.
 
-Follow along. You'll want to be here when it drops.
+No app. Nothing to carry. Just a new way to say thank you to the people who keep coming back.
 
-#Wystak #ComingSoon #SmallBusinessIndia
+Follow @wystak to be here when it lands. 👀
+
+Save this post. You will want to remember when it started.
+
+#Wystak #ComingSoon #SmallBusinessIndia #CafeOwners #KiranaStore #SalonBusiness #LoyaltyProgram #StartupIndia
 
 ## Alt text
 
