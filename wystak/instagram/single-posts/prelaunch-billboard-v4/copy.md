@@ -14,7 +14,7 @@ Follow along. You'll want to be here when it drops.
 
 ## Alt text
 
-A raspberry-pink poster styled as a chat screen. A message reads "So… what's Wystak?" and the reply says "Soon. Very soon." Below, large text says "Every story has a moment. This is ours." Navy, purple and teal cards rise out of an ivory wallet pocket with the Wystak logo on it.
+A raspberry-pink poster styled as a chat screen at 12:47 PM. A message reads "So… what's Wystak?" and the reply says "Soon. Very soon." Below, large text says "Every story has a moment. This is ours." Navy, purple and teal cards rise out of an ivory wallet pocket with the Wystak logo on it.
 
 # Carousel version (2 slides)
 
