@@ -84,3 +84,18 @@ Previews from https://assets.mixkit.co/active_storage/sfx/<id>/<id>-preview.mp3,
 - Fonts: Poppins (every overlay since v10), Inter Tight (phone interfaces), JetBrains Mono; Archivo, Archivo Black, Manrope, IBM Plex Mono in earlier versions (SIL Open Font License, via @fontsource on npm; Poppins licence in `vendor/fonts/OFL-poppins.txt`). GSAP from npm.
 - `voiceover.wav`: WYSTAK's ElevenLabs recording (Kendra), edited.
 - `music-bed.wav`: the Mixkit track edited by `sound/make_music.py`. `sfx.wav`: the Mixkit sound effects above, placed by `sound/make_sound.py` (synthesised: the futuristic Wystak chime under the introduction and the low logo thump).
+
+## Photo cut, Gen Z people (stills/genz/)
+
+The photo version of this reel (v4, commit 9f7c8a3, delivered as "loyalty-evolution-reel2") with its six people stills replaced by brighter Gen Z shots at the user's request. Same file names, size (1215×2160, 9:16) and timings as v4's `stills/in-*.jpg`, so they drop straight into that build. All Unsplash License.
+
+| File | Beat | Page | Photographer |
+|---|---|---|---|
+| stills/genz/in-open.jpg | A · "India didn't stop rewarding customers" (café table, denim jacket) | https://unsplash.com/photos/pU94XoJXx18 | Anshika Panchal (India) |
+| stills/genz/in-counter.jpg | C · "Every counter started collecting data" (shopper at a store counter) | https://unsplash.com/photos/bMXwCe0QmFY | Amirhossein Soltani |
+| stills/genz/in-visit.jpg | E1 · "Every visit." (walking up the street) | https://unsplash.com/photos/2BOZxtZhaUM | Fares Hamouche |
+| stills/genz/in-purchase.jpg | E2 · "Every purchase." (browsing a gift shop) | https://unsplash.com/photos/91YATwsQW2g | Arun Prakash (India) |
+| stills/genz/in-friends.jpg | G · "Cafés remembered birthdays" (two friends at a celebration) | https://unsplash.com/photos/MfxGemi_An4 | Skytech Aviation (New Delhi) |
+| stills/genz/in-notice.jpg | O · "Now they notice" (smiling at the phone in a café; bottle label blurred) | https://unsplash.com/photos/T90gWliuCQQ | Airam Dato-on |
+
+Rebuild: `git worktree add ../v4 9f7c8a3`, copy `stills/genz/in-*.jpg` over its `assets/stills/`, then `npx hyperframes@0.8.139 render`.
