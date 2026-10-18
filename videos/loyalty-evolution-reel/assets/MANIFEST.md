@@ -92,12 +92,12 @@ The photo version of this reel (v4, commit 9f7c8a3, delivered as "loyalty-evolut
 | File | Beat | Page | Photographer |
 |---|---|---|---|
 | stills/genz/in-open.jpg | A · "India didn't stop rewarding customers" (café table, beret, coffee and croissant) | https://unsplash.com/photos/yW_Wq83XBxY | Amir Abbaspoor |
-| stills/genz/in-counter.jpg | C · "Every counter started collecting data" (shopper at a store counter) | https://unsplash.com/photos/bMXwCe0QmFY | Amirhossein Soltani |
+| stills/genz/in-counter.jpg | C · "Every counter started collecting data" (café owner and customer at the counter with tablets; 1024×818 source cropped x 0.10-0.875, extended to 9:16 with `storyboard/extend_stretch.py` and a soft blurred wall above) | Supplied by the user (Oct 2026); AI-generated image, the user holds the rights | — |
 | stills/genz/in-visit.jpg | E1 · "Every visit." (two friends laughing over drinks at a café table; landscape photo extended to 9:16 by `storyboard/extend_pair.py`: tiled wall rebuilt above, table stretched into a soft foreground below) | https://unsplash.com/photos/d7jgsEdPcpw | Julio Lopez |
 | stills/genz/in-purchase.jpg | E2 · "Every purchase." (browsing a gift shop) | https://unsplash.com/photos/91YATwsQW2g | Arun Prakash (India) |
 | stills/genz/in-friends.jpg | G · "Cafés remembered birthdays better than your cousins" (four friends reading menus at a café table; landscape photo extended to 9:16 by `storyboard/extend_stretch.py src.jpg out.jpg 0.25 0.94 560 60 170`) | Supplied by the user (Oct 2026); the user holds the licence | — |
 | stills/genz/in-notice.jpg | O · "Now they notice" (smiling at the phone in a café; bottle label blurred) | https://unsplash.com/photos/T90gWliuCQQ | Airam Dato-on |
 
-`in-counter.jpg` has soft blurred headroom added above the photo so the face sits below the profile card. The sample customer is renamed from Aarav to Ananya (same "AM" initials) to match the people now shown.
+The sample customer is renamed from Aarav to Ananya (same "AM" initials) to match the people now shown.
 
 Rebuild: `git worktree add ../v4 9f7c8a3`, copy `stills/genz/in-*.jpg` over its `assets/stills/`, run `sed -i "s/Aarav/Ananya/g" index.html`, then `npx hyperframes@0.8.139 render` and master the audio to -14 LUFS.
