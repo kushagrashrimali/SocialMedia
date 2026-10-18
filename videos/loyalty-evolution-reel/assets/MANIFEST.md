@@ -95,7 +95,7 @@ The photo version of this reel (v4, commit 9f7c8a3, delivered as "loyalty-evolut
 | stills/genz/in-counter.jpg | C · "Every counter started collecting data" (shopper at a store counter) | https://unsplash.com/photos/bMXwCe0QmFY | Amirhossein Soltani |
 | stills/genz/in-visit.jpg | E1 · "Every visit." (two friends laughing over drinks at a café table; landscape photo extended to 9:16 by `storyboard/extend_pair.py`: tiled wall rebuilt above, table stretched into a soft foreground below) | https://unsplash.com/photos/d7jgsEdPcpw | Julio Lopez |
 | stills/genz/in-purchase.jpg | E2 · "Every purchase." (browsing a gift shop) | https://unsplash.com/photos/91YATwsQW2g | Arun Prakash (India) |
-| stills/genz/in-friends.jpg | G · "Cafés remembered birthdays" (two friends at a celebration) | https://unsplash.com/photos/MfxGemi_An4 | Skytech Aviation (New Delhi) |
+| stills/genz/in-friends.jpg | G · "Cafés remembered birthdays better than your cousins" (four friends reading menus at a café table; landscape photo extended to 9:16 by `storyboard/extend_stretch.py src.jpg out.jpg 0.25 0.94 560 60 170`) | Supplied by the user (Oct 2026); the user holds the licence | — |
 | stills/genz/in-notice.jpg | O · "Now they notice" (smiling at the phone in a café; bottle label blurred) | https://unsplash.com/photos/T90gWliuCQQ | Airam Dato-on |
 
 `in-counter.jpg` has soft blurred headroom added above the photo so the face sits below the profile card. The sample customer is renamed from Aarav to Ananya (same "AM" initials) to match the people now shown.
