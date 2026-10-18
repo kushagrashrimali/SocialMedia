@@ -91,9 +91,9 @@ The photo version of this reel (v4, commit 9f7c8a3, delivered as "loyalty-evolut
 
 | File | Beat | Page | Photographer |
 |---|---|---|---|
-| stills/genz/in-open.jpg | A · "India didn't stop rewarding customers" (café table, denim jacket) | https://unsplash.com/photos/pU94XoJXx18 | Anshika Panchal (India) |
+| stills/genz/in-open.jpg | A · "India didn't stop rewarding customers" (café table, beret, coffee and croissant) | https://unsplash.com/photos/yW_Wq83XBxY | Amir Abbaspoor |
 | stills/genz/in-counter.jpg | C · "Every counter started collecting data" (shopper at a store counter) | https://unsplash.com/photos/bMXwCe0QmFY | Amirhossein Soltani |
-| stills/genz/in-visit.jpg | E1 · "Every visit." (walking up the street) | https://unsplash.com/photos/2BOZxtZhaUM | Fares Hamouche |
+| stills/genz/in-visit.jpg | E1 · "Every visit." (two friends laughing over drinks at a café table; landscape photo extended to 9:16 by `storyboard/extend_pair.py`: tiled wall rebuilt above, table stretched into a soft foreground below) | https://unsplash.com/photos/d7jgsEdPcpw | Julio Lopez |
 | stills/genz/in-purchase.jpg | E2 · "Every purchase." (browsing a gift shop) | https://unsplash.com/photos/91YATwsQW2g | Arun Prakash (India) |
 | stills/genz/in-friends.jpg | G · "Cafés remembered birthdays" (two friends at a celebration) | https://unsplash.com/photos/MfxGemi_An4 | Skytech Aviation (New Delhi) |
 | stills/genz/in-notice.jpg | O · "Now they notice" (smiling at the phone in a café; bottle label blurred) | https://unsplash.com/photos/T90gWliuCQQ | Airam Dato-on |
