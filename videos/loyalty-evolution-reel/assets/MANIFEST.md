@@ -98,4 +98,6 @@ The photo version of this reel (v4, commit 9f7c8a3, delivered as "loyalty-evolut
 | stills/genz/in-friends.jpg | G · "Cafés remembered birthdays" (two friends at a celebration) | https://unsplash.com/photos/MfxGemi_An4 | Skytech Aviation (New Delhi) |
 | stills/genz/in-notice.jpg | O · "Now they notice" (smiling at the phone in a café; bottle label blurred) | https://unsplash.com/photos/T90gWliuCQQ | Airam Dato-on |
 
-Rebuild: `git worktree add ../v4 9f7c8a3`, copy `stills/genz/in-*.jpg` over its `assets/stills/`, then `npx hyperframes@0.8.139 render`.
+`in-counter.jpg` has soft blurred headroom added above the photo so the face sits below the profile card. The sample customer is renamed from Aarav to Ananya (same "AM" initials) to match the people now shown.
+
+Rebuild: `git worktree add ../v4 9f7c8a3`, copy `stills/genz/in-*.jpg` over its `assets/stills/`, run `sed -i "s/Aarav/Ananya/g" index.html`, then `npx hyperframes@0.8.139 render` and master the audio to -14 LUFS.
