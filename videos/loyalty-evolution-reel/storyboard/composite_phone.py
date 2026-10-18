@@ -20,6 +20,41 @@ ap.add_argument("--dim", type=float, default=0.82)
 a = ap.parse_args()
 
 
+def screen_quad(c):
+    """Corners of the screen as a perspective quad: split the contour into its four sides
+    (by the nearest side of the min-area rectangle), fit a line to the straight middle of each
+    side, and intersect neighbours. A plain min-area rectangle ignores perspective and leaves a
+    gap between the UI and the bezel on the far side of the phone."""
+    box = cv2.boxPoints(cv2.minAreaRect(c))
+    s = box.sum(1); d = np.diff(box, axis=1).ravel()
+    tl, br = box[np.argmin(s)], box[np.argmax(s)]; tr, bl = box[np.argmin(d)], box[np.argmax(d)]
+    rect = [tl, tr, br, bl]
+    # work on the filled convex hull, so the notch cut-out doesn't pull the top edge down
+    hull = cv2.convexHull(c)
+    x, y, w, h = cv2.boundingRect(hull)
+    m = np.zeros((h + 4, w + 4), np.uint8)
+    cv2.fillPoly(m, [hull - [x - 2, y - 2]], 1)
+    cs, _ = cv2.findContours(m, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+    pts = (max(cs, key=cv2.contourArea).reshape(-1, 2) + [x - 2, y - 2]).astype(np.float32)
+    lines = []
+    for k in range(4):
+        p0, p1 = rect[k], rect[(k + 1) % 4]
+        v = p1 - p0; L = np.linalg.norm(v); u = v / L; nrm = np.array([-u[1], u[0]])
+        dist = np.abs((pts - p0) @ nrm); along = (pts - p0) @ u / L
+        sel = pts[(dist < 0.08 * L + 6) & (along > 0.2) & (along < 0.8)]
+        if len(sel) < 10:
+            return np.float32(rect)
+        vx, vy, x0, y0 = cv2.fitLine(sel, cv2.DIST_HUBER, 0, 0.01, 0.01).ravel()
+        lines.append((np.array([x0, y0]), np.array([vx, vy])))
+    quad = []
+    for k in range(4):  # corner k sits between side k-1 and side k
+        (a0, ad), (b0, bd) = lines[k - 1], lines[k]
+        A = np.array([ad, -bd]).T
+        t = np.linalg.solve(A, b0 - a0)
+        quad.append(a0 + ad * t[0])
+    return np.float32(quad)
+
+
 def cover_crop(img, cx, cy, zoom, w, h):
     ih, iw = img.shape[:2]
     tw = min(iw, ih * w / h) / zoom
@@ -79,10 +114,10 @@ for i in range(n):
     screen = np.zeros_like(canvas_fg)
     if cnts:
         c = max(cnts, key=cv2.contourArea)
-        box = cv2.boxPoints(cv2.minAreaRect(c))
-        s = box.sum(1); d = np.diff(box, axis=1).ravel()
-        tl, br = box[np.argmin(s)], box[np.argmax(s)]; tr, bl = box[np.argmin(d)], box[np.argmax(d)]
-        M = cv2.getPerspectiveTransform(np.float32([[0, 0], [uw, 0], [uw, uh], [0, uh]]), np.float32([tl, tr, br, bl]))
+        q = screen_quad(c)
+        # push the corners out a few pixels so the UI always runs under the bezel
+        cen = q.mean(0); q = cen + (q - cen) * 1.012
+        M = cv2.getPerspectiveTransform(np.float32([[0, 0], [uw, 0], [uw, uh], [0, uh]]), q)
         screen = cv2.warpPerspective(ui, M, (W, H), flags=cv2.INTER_LINEAR)
     # background with a slow push
     k = 1.0 + a.push * i / max(1, n - 1)

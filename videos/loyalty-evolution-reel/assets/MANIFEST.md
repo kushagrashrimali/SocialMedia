@@ -101,3 +101,5 @@ The photo version of this reel (v4, commit 9f7c8a3, delivered as "loyalty-evolut
 The sample customer is renamed from Aarav to Ananya (same "AM" initials) to match the people now shown.
 
 Rebuild: `git worktree add ../v4 9f7c8a3`, copy `stills/genz/in-*.jpg` over its `assets/stills/`, run `sed -i "s/Aarav/Ananya/g" index.html`, then `npx hyperframes@0.8.139 render` and master the audio to -14 LUFS.
+
+Hand-held phone composites for the photo cut (`footage/genz/scan-at-counter.mp4`, `pay-at-counter.mp4`) were rebuilt with the fixed `storyboard/composite_phone.py`, which fits the screen as a perspective quad on the screen's convex outline (the old min-area rectangle left a gap at the far bezel and a dark wedge beside the notch). Source: Mixkit 42636 (4K), `--scale 0.6`; scan from 1.2s for 2.5s over `stills/counter-long.jpg`, pay from 2.25s for 2.03s over `stills/cafe-india.jpg`. The passes and the scan screen (`ui/genz/`) carry the renamed member, Ananya Mehta.
