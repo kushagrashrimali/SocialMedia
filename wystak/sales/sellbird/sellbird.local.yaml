@@ -1,0 +1,118 @@
+persona:
+  name: Kushagra
+  company: WYSTAK
+  role: Founder
+  email: hello@wystak.com
+  linkedin: linkedin.com/company/wystak
+  tone: warm, plain-spoken, founder-to-owner; Indian English; short sentences
+product:
+  name: WYSTAK
+  description: 'Digital loyalty cards for cafés and restaurants that live in the customer''s Apple Wallet
+    or Google Wallet. The customer scans a QR at the counter (or taps NFC) and the pass is in their wallet:
+    no app to download. Staff scan the pass on any phone, tablet or laptop camera; points or stamps update
+    within seconds and show on the lock screen. The owner sees who came back, who is close to a reward
+    and who stopped coming.'
+  pricing: Shared on a call. No credit card required to try it. Do not quote a price in email.
+  key_benefits:
+  - 'No app for customers: one QR scan (or NFC tap) and the pass is in Apple Wallet or Google Wallet'
+  - Points update on the lock screen within seconds of a scan, so the café stays on the customer's phone
+    after they pay by UPI
+  - Any phone, tablet or laptop camera is the scanner; no POS integration, no extra hardware, manual code
+    entry as a backup
+  - The card carries the café's own logo, colours and reward
+  - 'A simple dashboard: who came back, who is one stamp from a reward, and lapsed regulars worth reaching
+    out to'
+  objection_responses:
+    we already use WhatsApp broadcasts: Those work until they get muted. A wallet pass sits next to their
+      cards and updates on the lock screen after every visit, so it is seen without anyone opening a chat.
+    my customers won't download an app: They don't have to. It's one scan at the counter and the card
+      is in Apple Wallet or Google Wallet.
+    we don't have time at the counter: Staff point any phone at the pass and it's done. If a scan fails
+      they type the code. No POS changes.
+    too expensive: Happy to walk you through what it costs for one outlet, and you can try it before paying
+      anything.
+    not interested: No worries. Mind if I ask how you keep regulars coming back today?
+  offer:
+    primary: Monthly plan per outlet
+    entry: A free walkthrough showing the pass with your own branding and reward, then a no-credit-card
+      trial
+    goal: book_call
+    booking_method: ask_preference
+    booking_url: ''
+    meeting_duration: 15 minutes
+    meeting_owner: Kushagra (founder), on a call or at the café
+icp:
+  industries:
+  - Café
+  - Bakery
+  - Dessert shop
+  - Coffee roaster with a café
+  - Quick-service restaurant
+  company_size: 1-3 outlets, independent, owner-run
+  titles:
+  - Owner
+  - Founder
+  - Co-founder
+  - Partner
+  - Café Manager
+  geography:
+  - Bengaluru, India
+  hiring_signals:
+  - Barista
+  - Café Manager
+  - Outlet Manager
+  - Store Manager
+  geo_coordinates:
+    Bengaluru, India: 12.9716,77.5946,12
+  keyword_variants:
+    Café:
+    - cafe
+    - coffee shop
+    - specialty coffee
+    Bakery:
+    - bakery
+    - patisserie
+channels:
+  email:
+    enabled: true
+    provider: gmail
+    max_daily_sends: 20
+    require_approval: true
+    send_to_risky: false
+    max_bounce_rate: 0.05
+    warmup:
+      start_date: ''
+      min_days: 14
+      start_sends: 5
+      daily_increase: 3
+      dkim_selector: ''
+    signature:
+      logo: ''
+      width: 120
+      alt: ''
+      link: ''
+      direction: auto
+    link_domains:
+    - wystak.com
+  linkedin:
+    enabled: false
+    max_daily_connections: 20
+    max_daily_messages: 10
+usage:
+  max_daily_claude_percent: 80
+  heartbeat_interval_minutes: 15
+  quiet_hours:
+    start: '21:00'
+    end: 09:00
+    timezone: Asia/Kolkata
+compliance:
+  postal_address: ''
+  opt_out_line: Not interested? Reply "no thanks" and I won't email again.
+  do_not_contact: []
+  precleared:
+    enabled: false
+    sender_country: ''
+    address_source: unknown
+    prospect_country: ''
+writer:
+  email_rules: skills/email_rules.md
