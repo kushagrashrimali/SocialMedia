@@ -1,40 +1,41 @@
-# Sellbird (formerly Harvey) set up for WYSTAK
+# Sellbird (formerly Harvey): WYSTAK's business finder
 
-Sellbird is an open-source outreach agent: https://github.com/ethanplusai/sellbird (tested at commit 867fb3b).
-It finds businesses, reads their sites, finds the owner, verifies one email, drafts a short sequence and handles replies.
-Every email waits in the Outbox for approval (`require_approval: true`).
+Open-source agent: https://github.com/ethanplusai/sellbird (set up at commit 867fb3b).
+WYSTAK uses it **only to find businesses** in Udaipur: names, addresses, phones, websites and what their sites show.
+Email is turned off (`channels.email.enabled: false`). Nothing is ever sent.
 
-This folder holds WYSTAK's trained files. The cloud session can't run Sellbird for real (no persistent loop, no Gmail login, and map and café sites are blocked), so run it on your own Mac.
+## Files here
 
-## Run it on your machine
+- `sellbird.local.yaml`: WYSTAK's product, and the target list of 18 local business types in Udaipur (24.5854, 73.7125, 10 km).
+- `product_knowledge.md`, `email_rules.md`: what WYSTAK is and the brand rules, in case Sellbird ever drafts anything.
+- `osm-local-business-tags.patch`: Sellbird's free OpenStreetMap search only knew trades (roofers, dentists). This patch adds cafés, bakeries, sweet shops, ice cream, juice, restaurants, gyms, yoga, salons, barbers, spas, cinemas, bars, boutiques, pet shops and laundries. Sellbird's discovery tests still pass with it (222).
+
+## Set up on your Mac (once)
 
 ```bash
 git clone https://github.com/ethanplusai/sellbird.git && cd sellbird
+git checkout 867fb3b && git apply ../SocialMedia/wystak/sales/sellbird/osm-local-business-tags.patch
 python3.13 -m venv .venv && source .venv/bin/activate && pip install -e .
 cp ../SocialMedia/wystak/sales/sellbird/sellbird.local.yaml .
-cp ../SocialMedia/wystak/sales/sellbird/email_rules.md ../SocialMedia/wystak/sales/sellbird/product_knowledge.md skills/
-cp .env.example .env    # add the keys below
+cp ../SocialMedia/wystak/sales/sellbird/product_knowledge.md ../SocialMedia/wystak/sales/sellbird/email_rules.md skills/
 sellbird signals --confirm free
-sellbird dashboard
 ```
 
-## What it still needs from you
+## Use it
 
-1. **Sender name.** `persona.name` is set to "Kushagra" (founder). Change it if someone else sends.
-2. **A mailbox.** A Google Workspace mailbox on a second domain (not wystak.com), with 2-4 weeks of warmup, then `sellbird gmail auth`.
-3. **A verifier key.** `REOON_API_KEY` (600 free a month). Without one, no email is ever sent.
-4. **A discovery source for cafés.** The free OpenStreetMap source has no café or bakery category, so use a paid one:
-   `sellbird discover --provider dataforseo_listings --max-spend 2.00` (DataForSEO, about $0.37 per 1,000 businesses, $1 free credit)
-   or Serper (2,500 free searches). Each run shows the cost before it spends anything.
-5. **A postal address** in `compliance.postal_address`, which is shown under cold emails.
+```bash
+sellbird discover --estimate     # what it will search, and the cost ($0 on OpenStreetMap)
+sellbird discover                # find the businesses and read their websites (free)
+sellbird companies               # CSV of every business, with a fit score and why
+sellbird export --all            # CSV of everything found
+sellbird dashboard               # browse it all on the dashboard
+```
 
-## Why the website training was done by hand
+For one type only, edit `icp.industries` in `sellbird.local.yaml`. For another city, change `geography` and `geo_coordinates`.
+OpenStreetMap has few Udaipur listings. For a fuller list, use a paid source that shows its cost first:
+`sellbird discover --provider dataforseo_listings --max-spend 2.00` (DataForSEO, about $0.37 per 1,000 businesses; add the login to `.env`).
 
-wystak.com is a JavaScript app, so `sellbird train` gets an empty page. The product facts came from the rendered site
-and `wystak/WYSTAK_Project_Context.md`, under the brand rules in CLAUDE.md
-(no stats, no prices in email, no phone-number talk, Apple and Google Wallet with equal weight, no gendered pronouns).
+## Why not in this cloud session
 
-## A note on fit
-
-Owners of independent cafés in Bengaluru often answer an Instagram DM, a WhatsApp message or a visit at a quiet hour faster than a cold email.
-Use Sellbird as a list builder (`sellbird export`, `sellbird companies`) and pick the channel per café.
+The OpenStreetMap search servers (Overpass) don't answer from the cloud container, and most business websites are blocked there. Run it on your Mac.
+wystak.com is a JavaScript app, so `sellbird train` sees an empty page. The product facts were written by hand from the live site.

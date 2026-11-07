@@ -1,0 +1,38 @@
+diff --git a/sellbird/collectors/discover.py b/sellbird/collectors/discover.py
+index 58f8e08..34038ee 100644
+--- a/sellbird/collectors/discover.py
++++ b/sellbird/collectors/discover.py
+@@ -1111,6 +1111,33 @@ class OpenStreetMap(DiscoveryProvider):
+         "panader": ['shop=bakery'],
+         "clinica": ['amenity=clinic'],
+         "clínica": ['amenity=clinic'],
++        # Local repeat-visit businesses (cafés, food, fitness, beauty, retail).
++        "café": ['amenity=cafe'],
++        "cafe": ['amenity=cafe'],
++        "coffee": ['amenity=cafe'],
++        "bakery": ['shop=bakery', 'shop=pastry'],
++        "cake": ['shop=bakery', 'shop=pastry'],
++        "sweet": ['shop=confectionery', 'shop=pastry'],
++        "mithai": ['shop=confectionery'],
++        "ice cream": ['amenity=ice_cream', 'shop=ice_cream'],
++        "juice": ['shop=beverages', 'amenity=juice_bar'],
++        "restaurant": ['amenity=restaurant'],
++        "fast food": ['amenity=fast_food'],
++        "qsr": ['amenity=fast_food'],
++        "gym": ['leisure=fitness_centre'],
++        "fitness": ['leisure=fitness_centre', 'leisure=sports_centre'],
++        "yoga": ['leisure=fitness_centre', 'sport=yoga'],
++        "salon": ['shop=hairdresser', 'shop=beauty'],
++        "hair": ['shop=hairdresser'],
++        "beauty": ['shop=beauty'],
++        "spa": ['shop=massage', 'leisure=spa'],
++        "cinema": ['amenity=cinema'],
++        "barber": ['shop=hairdresser'],
++        "bar": ['amenity=bar', 'amenity=pub'],
++        "pub": ['amenity=pub', 'amenity=bar'],
++        "boutique": ['shop=boutique', 'shop=clothes'],
++        "pet": ['shop=pet'],
++        "laundry": ['shop=laundry', 'shop=dry_cleaning'],
+     }
+ 
+     def _tags(self, term: str) -> list[str]:

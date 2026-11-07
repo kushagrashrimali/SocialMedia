@@ -1,7 +1,7 @@
 persona:
-  name: Kushagra
+  name: WYSTAK founders
   company: WYSTAK
-  role: Founder
+  role: Founders, Udaipur
   email: hello@wystak.com
   linkedin: linkedin.com/company/wystak
   tone: warm, plain-spoken, founder-to-owner; Indian English; short sentences
@@ -40,41 +40,48 @@ product:
     booking_method: ask_preference
     booking_url: ''
     meeting_duration: 15 minutes
-    meeting_owner: Kushagra (founder), on a call or at the café
+    meeting_owner: A WYSTAK founder, in person in Udaipur
 icp:
   industries:
   - Café
   - Bakery
-  - Dessert shop
-  - Coffee roaster with a café
-  - Quick-service restaurant
-  company_size: 1-3 outlets, independent, owner-run
+  - Sweet shop
+  - Ice cream parlour
+  - Juice bar
+  - Restaurant
+  - Fast food
+  - Gym
+  - Yoga studio
+  - Unisex salon
+  - Barber
+  - Beauty parlour
+  - Spa
+  - Cinema
+  - Bar
+  - Boutique
+  - Pet shop
+  - Laundry
+  company_size: 1-5 outlets, owner-run, mostly local regulars
   titles:
   - Owner
   - Founder
   - Co-founder
   - Partner
-  - Café Manager
+  - Manager
   geography:
-  - Bengaluru, India
+  - Udaipur, Rajasthan
   hiring_signals:
   - Barista
-  - Café Manager
+  - Trainer
+  - Stylist
   - Outlet Manager
   - Store Manager
   geo_coordinates:
-    Bengaluru, India: 12.9716,77.5946,12
-  keyword_variants:
-    Café:
-    - cafe
-    - coffee shop
-    - specialty coffee
-    Bakery:
-    - bakery
-    - patisserie
+    Udaipur, Rajasthan: 24.5854,73.7125,10
+  keyword_variants: {}
 channels:
   email:
-    enabled: true
+    enabled: false
     provider: gmail
     max_daily_sends: 20
     require_approval: true

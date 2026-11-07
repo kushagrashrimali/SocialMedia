@@ -240,7 +240,7 @@ pass face, not in the notification.
 
 ## 5. The market and the merchant story
 
-**Beachhead:** cafés and bakeries in **one neighbourhood of Bengaluru** (then Mumbai → Delhi NCR →
+**Beachhead (updated Nov 2026):** the founders are in **Udaipur**, so local repeat-visit businesses in Udaipur come first. The playbook's original plan was cafés and bakeries in one neighbourhood of Bengaluru (then Mumbai → Delhi NCR →
 Pune, Hyderabad, Ahmedabad, Jaipur). Highest visit frequency (2–8×/month), one decision-maker, no
 regulatory complexity.
 
